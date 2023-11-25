@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-Sebas Peñaherrera 6835
-=======
+
 Cesar Ayala 6814
 Milton Coello 6869
 Sebas Peñaherrera 6835
 
->>>>>>> Stashed changes
