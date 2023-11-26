@@ -1,5 +1,6 @@
-
+-- INTEGRANTES --
 Cesar Ayala 6814
 Milton Coello 6869
 Sebas Peñaherrera 6835
+Bryan Castelo 6866
 
