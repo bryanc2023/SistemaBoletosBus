@@ -3,7 +3,6 @@ package com.nuevo.springboot.reservas.app.models.dao;
 import java.util.List;
 
 import com.nuevo.springboot.reservas.app.models.entity.Boleto;
-import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 
 public interface IBoletoDao {

@@ -21,7 +21,7 @@ import jakarta.persistence.TemporalType;
 public class Boleto{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@ManyToOne
