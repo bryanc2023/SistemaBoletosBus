@@ -1,0 +1,4 @@
+
+*.properties
+proyecto-reservas-bus/proyecto-reservas-bus/target/classes/application.properties
+proyecto-reservas-bus/proyecto-reservas-bus/src/main/resources/application.properties
