@@ -30,6 +30,9 @@
 					<li class="nav-item">
 						<a class="nav-link" th:href=${"/cronograma/listar"}>Cronogramas</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href=${"/personal/listar"}>Personal</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -38,52 +41,48 @@
 		<div>
 			<h1 th:text="${titulo}"></h1>
 		</div>
-		<form th:action="@{/cronograma/form}" th:object="${cronograma}" method="post"
+		<form th:action="@{/personal/form}" th:object="${personal}" method="post"
 			style="max-width:600px;margin:0 auto;">
-
 			<div class="m-3"></div>
 			<div class="form-group row">
-				<label class="col-form-label col-sm-4">Fecha</label>
+				<label class="col-form-label col-sm-4">Nombre </label>
 				<div class="col-sm-8">
-					<input type="date" th:field="*{fecha}" class="form-control" required>
-				</div>
-			</div>
-
-			<div class="m-3"></div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-4">Descripcion </label>
-				<div class="col-sm-8">
-					<input type="text" th:field="*{descripcion}" class="form-control" required>
-				</div>
-			</div>
-
-			<div class="m-3"></div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-4">Dia</label>
-				<div class="col-sm-8">
-					<input type="number" th:field="*{dia}" class="form-control" required>
+					<input type="text" th:field="*{nombre}" class="form-control" required>
 				</div>
 			</div>
 			<div class="m-3"></div>
 			<div class="form-group row">
-				<label class="col-form-label col-sm-4">Mes</label>
+				<label class="col-form-label col-sm-4">Apellido</label>
 				<div class="col-sm-8">
-					<input type="text" th:field="*{mes}" class="form-control" required>
+					<input type="text" th:field="*{apellido}" class="form-control" required>
 				</div>
 			</div>
 			<div class="m-3"></div>
 			<div class="form-group row">
-				<label class="col-form-label col-sm-4">Año</label>
+				<label class="col-form-label col-sm-4">Género</label>
 				<div class="col-sm-8">
-					<input type="number" th:field="*{anio}" class="form-control" required>
+					<input type="text" th:field="*{genero}" class="form-control" required>
 				</div>
 			</div>
-
 			<div class="m-3"></div>
-
+			<div class="m-3"></div>
+			<div class="form-group row">
+				<label class="col-form-label col-sm-4">fecha de ingreso</label>
+				<div class="col-sm-8">
+					<input type="date" th:field="*{fechaIngreso}" class="form-control" required>
+				</div>
+			</div>
+			<div class="m-3"></div>
+			<div class="form-group row">
+				<label class="col-form-label col-sm-4">Numero de puesto</label>
+				<div class="col-sm-8">
+					<input type="number" th:field="*{nroPuesto}" class="form-control" required>
+				</div>
+			</div>
+			<div class="m-3"></div>
 
 			<div class="text-center p">
-				<button type="submit" class="btn btn-primary">Guardar cronograma</button>
+				<button type="submit" class="btn btn-primary">Guardar personal</button>
 			</div>
 			<input type="hidden" th:field="*{id}">
 
