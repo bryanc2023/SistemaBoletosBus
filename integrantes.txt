@@ -1,17 +1,5 @@
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-Cesar Ayala 6814
-Milton Coello 6869
-Sebas Peñaherrera 6835
-=======
->>>>>>> Stashed changes
 
 Cesar Ayala 6814
 Milton Coello 6869
 Sebas Peñaherrera 6835
-
-<<<<<<< Updated upstream
-=======
->>>>>>> 4642df43209157b2108ed24ea5afbf97d3685617
->>>>>>> Stashed changes
+Bryan Castelo 6866
