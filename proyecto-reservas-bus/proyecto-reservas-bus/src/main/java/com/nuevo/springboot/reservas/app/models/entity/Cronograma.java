@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -31,10 +33,21 @@ public class Cronograma{
 	private int mes;
 	private int anio;
 	
+	@ManyToOne
+	@JoinColumn(name="id_unidad")
+	private Unidad unidad;
+	
+	@ManyToOne
+	@JoinColumn(name="id_ruta")
+	private Ruta ruta;
+	
+	
 	@PrePersist
 	public void prePersist() {
 		fecha=new Date();
 	}
+	
+	
 	
 	public Cronograma(Long id, String descripcion, Date fecha, int dia, int mes, int anio) {
 		super();

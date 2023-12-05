@@ -3,10 +3,14 @@ package com.nuevo.springboot.reservas.app.models.entity;
 import java.util.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Table
@@ -15,7 +19,8 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column(name = "id_usuario")
+	private Integer id;
 	@Column(name = "nombre_usuario")
 	private String nombreUsuario;
 	@Column(name = "correo_usuario")
@@ -24,10 +29,10 @@ public class Usuario {
 	private String contraseñaUsuario;
 	@Column(name = "estado_actividad")
 	private String estadoActividad;
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNombreUsuario() {
@@ -54,7 +59,7 @@ public class Usuario {
 	public void setEstadoActividad(String estadoActividad) {
 		this.estadoActividad = estadoActividad;
 	}
-	public Usuario(Long id, String nombreUsuario, String correoUsuario, String contraseñaUsuario,
+	public Usuario(Integer id, String nombreUsuario, String correoUsuario, String contraseñaUsuario,
 			String estadoActividad) {
 		super();
 		this.id = id;
@@ -73,7 +78,7 @@ public class Usuario {
 	public Usuario() {
 		super();
 	}
-	public Usuario(Long id) {
+	public Usuario(Integer id) {
 		super();
 		this.id = id;
 	}
