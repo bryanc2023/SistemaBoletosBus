@@ -2,12 +2,15 @@ package com.nuevo.springboot.reservas.app.models.entity;
 
 
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -18,9 +21,16 @@ public class Ruta{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@Column (name="id_ruta")
+	private Integer id;
 	
+	@ManyToOne
+    @JoinColumn(name = "id_usuario_administrador")
+    private Administrador administrador;
 	
+	@OneToMany
+	@JoinColumn(name = "id_ruta")
+	private List<Cronograma> cronogramas;
 	
 	@Column (name="ruta_origen")
 	private String rutaOrigen;
@@ -30,30 +40,32 @@ public class Ruta{
 	private float costoRuta;
 	
 	
-	public Ruta(Long id, String rutaOrigen, String rutaDestino, float costoRuta) {
+	public Ruta(Integer id, String rutaOrigen, String rutaDestino, float costoRuta,Administrador administrador) {
 		super();
 		this.id = id;
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
+		this.administrador=administrador;
 	}
 	public Ruta() {
 		super();
 	}
-	public Ruta(Long id) {
+	public Ruta(Integer id) {
 		super();
 		this.id = id;
 	}
-	public Ruta(String rutaOrigen, String rutaDestino, float costoRuta) {
+	public Ruta(String rutaOrigen, String rutaDestino, float costoRuta, Administrador administrador) {
 		super();
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
+		this.administrador=administrador;
 	}
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getRutaOrigen() {
@@ -74,6 +86,14 @@ public class Ruta{
 	public void setCostoRuta(float costoRuta) {
 		this.costoRuta = costoRuta;
 	}
+	public Administrador getAdministrador() {
+		return administrador;
+	}
+	public void setAdministrador(Administrador administrador) {
+		this.administrador = administrador;
+	}
+	
+	
 	
 	
 	

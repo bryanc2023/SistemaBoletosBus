@@ -20,9 +20,11 @@ public class Unidad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany
-	@JoinColumn(name = "unidad_id")
-	private List<Boleto> boletos = new ArrayList<>();
+	@OneToMany(mappedBy = "unidad")
+	private List<Boleto> boletos;
+	
+	@OneToMany(mappedBy = "unidad")
+	private List<Cronograma> cronogramas;
 
 	@Column
 	private Integer numero;
