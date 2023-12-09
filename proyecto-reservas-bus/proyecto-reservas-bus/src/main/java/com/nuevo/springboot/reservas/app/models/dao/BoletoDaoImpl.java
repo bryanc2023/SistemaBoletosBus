@@ -11,7 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class BoletoDaoImpl implements IBoletoDao {
+public class BoletoDaoImpl implements IConsolidatedDao<Boleto> {
 
 	@PersistenceContext
 	private EntityManager em;

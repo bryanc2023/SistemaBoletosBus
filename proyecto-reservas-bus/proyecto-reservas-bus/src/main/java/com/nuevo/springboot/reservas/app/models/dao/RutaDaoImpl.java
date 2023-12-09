@@ -11,7 +11,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 @Repository
-public class RutaDaoImpl implements IRutaDao {
+public class RutaDaoImpl implements IConsolidatedDao<Ruta> {
 
 	@PersistenceContext 
 	private EntityManager em;

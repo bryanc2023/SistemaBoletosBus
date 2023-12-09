@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.ICronogramaDao;
+import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
+
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
 
 
@@ -17,7 +18,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
 @Controller
 public class CronogramaController {
 	@Autowired
-	private ICronogramaDao croDao;
+	private IConsolidatedDao<Cronograma> croDao;
 	
 	@GetMapping("/cronograma/listar")
 	public String listar(Model model) {

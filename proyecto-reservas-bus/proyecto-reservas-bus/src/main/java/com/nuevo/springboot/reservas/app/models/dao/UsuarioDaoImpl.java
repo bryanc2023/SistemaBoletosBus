@@ -10,7 +10,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 @Repository
-public class UsuarioDaoImpl implements IUsuarioDao {
+public class UsuarioDaoImpl implements IConsolidatedDao<Usuario> {
 	@PersistenceContext
 	
 	private EntityManager em;

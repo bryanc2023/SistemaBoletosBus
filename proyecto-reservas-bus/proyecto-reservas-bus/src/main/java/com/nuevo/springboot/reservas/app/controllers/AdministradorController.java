@@ -7,14 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IAdministradorDao;
+
+import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 import com.nuevo.springboot.reservas.app.models.entity.Administrador;
 
 @Controller
 public class AdministradorController {
 
 	@Autowired
-	private IAdministradorDao administradorDao;
+	private IConsolidatedDao<Administrador> administradorDao;
 	
 	@GetMapping("/administrador/listar")
 	public String listar(Model model) {
