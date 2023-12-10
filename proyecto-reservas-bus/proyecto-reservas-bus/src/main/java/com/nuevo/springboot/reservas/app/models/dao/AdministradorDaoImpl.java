@@ -10,7 +10,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Administrador;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 @Repository
-public class AdministradorDaoImpl implements IAdministradorDao {
+public class AdministradorDaoImpl implements IConsolidatedDao<Administrador> {
 	@PersistenceContext
 	
 	private EntityManager em;

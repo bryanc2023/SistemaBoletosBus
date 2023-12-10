@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IBoletoDao;
+import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 import com.nuevo.springboot.reservas.app.models.entity.Boleto;
 
 
@@ -16,7 +16,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Boleto;
 public class BoletoController {
 
 	@Autowired
-	private IBoletoDao boletoDao;
+	private IConsolidatedDao<Boleto> boletoDao;
 	
 	@GetMapping("/boleto/listar")
 	public String listar(Model model) {

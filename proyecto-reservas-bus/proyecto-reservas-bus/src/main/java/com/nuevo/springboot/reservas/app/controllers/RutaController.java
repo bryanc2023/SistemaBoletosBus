@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IRutaDao;
+import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
+
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 
 
@@ -18,7 +19,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 public class RutaController {
 	
 	@Autowired
-	private IRutaDao rutaDao;
+	private IConsolidatedDao<Ruta> rutaDao;
 	
 	@GetMapping("/ruta/listar")
 	public String listar(Model model) {

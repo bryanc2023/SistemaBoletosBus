@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class PersonalDaoImpl implements IPersonalDao {
+public class PersonalDaoImpl implements IConsolidatedDao<Personal> {
 
 	@PersistenceContext
 	private EntityManager em;

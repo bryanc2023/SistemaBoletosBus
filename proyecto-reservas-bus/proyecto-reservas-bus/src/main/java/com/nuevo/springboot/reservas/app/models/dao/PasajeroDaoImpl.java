@@ -11,7 +11,7 @@ import jakarta.persistence.PersistenceContext;
 
 
 @Repository
-public class PasajeroDaoImpl implements IPasajeroDao {
+public class PasajeroDaoImpl implements IConsolidatedDao<Pasajero> {
 	
 	@PersistenceContext
 	private EntityManager em;

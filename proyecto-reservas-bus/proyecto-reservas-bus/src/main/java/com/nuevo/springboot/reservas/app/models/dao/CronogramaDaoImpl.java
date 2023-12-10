@@ -12,7 +12,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class CronogramaDaoImpl implements ICronogramaDao {
+public class CronogramaDaoImpl implements IConsolidatedDao<Cronograma>{
 
 	@PersistenceContext 
 	private EntityManager em;

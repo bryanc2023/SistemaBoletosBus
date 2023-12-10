@@ -11,7 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class UnidadDaoImpl implements IUnidadDao {
+public class UnidadDaoImpl implements IConsolidatedDao<Unidad> {
 
 	@PersistenceContext
 	private EntityManager em;
