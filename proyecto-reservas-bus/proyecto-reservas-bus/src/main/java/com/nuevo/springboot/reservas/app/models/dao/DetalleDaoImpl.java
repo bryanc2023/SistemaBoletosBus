@@ -12,7 +12,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Repository
-public class DetalleDaoImpl implements IDetalleDao {
+public class DetalleDaoImpl implements IConsolidatedDao<Detalle> {
 
 	@PersistenceContext
 	private EntityManager em;
