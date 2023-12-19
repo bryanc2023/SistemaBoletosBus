@@ -15,7 +15,7 @@ ALTER TABLE usuario ADD CHECK (estado_actividad IN ('Activo', 'Inactivo'));
 -- -----------------------------------------------------------------
 
 -- TABLA BOLETO
-ALTER TABLE boleto ADD CHECK (dia IN ('Lunes', 'Martes','Miercoles','Jueves','Viernes','S�bado','Domingo'));
+ALTER TABLE boleto ADD CHECK (dia IN ('Lunes', 'Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'));
 
 ALTER TABLE boleto ADD CHECK (hora_salida REGEXP '^[0-2][0-9]:[0-5][0-9]$');
 
