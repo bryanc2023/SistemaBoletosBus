@@ -40,7 +40,7 @@ public class Pasajero {
 	private String Telefono;
 	private String Genero;
 	private String Direccion;
-	private String Edad;
+	private int Edad;
 	
 	
 
@@ -110,16 +110,16 @@ public class Pasajero {
 		Direccion = direccion;
 	}
 
-	public String getEdad() {
+	public int getEdad() {
 		return Edad;
 	}
 
-	public void setEdad(String edad) {
+	public void setEdad(int edad) {
 		Edad = edad;
 	}
 
 	public Pasajero( List<Boleto> boletos, String nombre, String apellido, String telefono,
-			String genero, String direccion, String edad) {
+			String genero, String direccion, int edad) {
 		super();
 		this.boletos = boletos;
 		Nombre = nombre;
@@ -137,7 +137,7 @@ public class Pasajero {
 	}
 
 	public Pasajero(Integer id, Usuario usuario, List<Boleto> boletos, String nombre, String apellido, String telefono,
-			String genero, String direccion, String edad) {
+			String genero, String direccion, int edad) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
