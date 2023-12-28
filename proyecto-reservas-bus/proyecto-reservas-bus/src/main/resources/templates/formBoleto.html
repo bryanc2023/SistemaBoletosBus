@@ -43,7 +43,15 @@
 			<div class="form-group row">
 				<label class="col-form-label col-sm-4">dia</label>
 				<div class="col-sm-8">
-					<input type="date" th:field="*{dia}" class="form-control" required>
+					<select th:field="*{dia}" class="form-control">
+           				<option th:value="Lunes" th:text="Lunes">Lunes</option>
+						<option th:value="Martes" th:text="Martes">Martes</option>
+						<option th:value="Miercoles" th:text="Miercoles">Miercoles</option>
+						<option th:value="Jueves" th:text="Jueves">Jueves</option>
+						<option th:value="Viernes" th:text="Viernes">Viernes</option>
+						<option th:value="Sabado" th:text="Sabado">Sabado</option>
+						<option th:value="Domingo" th:text="Domingo">Domingo</option>
+					</select>
 				</div>
 			</div>
 			<div class="m-3"></div>
@@ -73,7 +81,10 @@
 			<div class="form-group row">
 				<label class="col-form-label col-sm-4">Metodo de pago</label>
 				<div class="col-sm-8">
-					<input type="text" th:field="*{metodoPago}" class="form-control" required>
+					<select th:field="*{metodoPago}" class="form-control">
+           				<option th:value="Efectivo" th:text="Efectivo">Efectivo</option>
+						<option th:value="Tarjeta" th:text="Tarjeta">Tarjeta</option>
+					</select>
 				</div>
 			</div>
 			<div class="m-3"></div>

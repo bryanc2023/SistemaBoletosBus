@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Personal;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+
 
 
 
@@ -18,12 +19,12 @@ import com.nuevo.springboot.reservas.app.models.entity.Personal;
 public class PersonalController {
 
 	@Autowired
-	private IConsolidatedDao<Personal> personalDao;
+	private  GenericDataService <Personal> personalService;
 	
 	@GetMapping("/personal/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE PERSONAL");
-	    model.addAttribute("personals", personalDao.findAll());
+	    model.addAttribute("personals", personalService.findAll());
 	    return "listarPersonal";
 	}
 	
@@ -39,7 +40,7 @@ public class PersonalController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Personal personal = null;
 		if(id > 0) {
-			personal = personalDao.findOne(id);
+			personal = personalService.findOne(id);
 		}else {
 		return "redirect:/personal/listar";
 		}
@@ -51,14 +52,14 @@ public class PersonalController {
 	@GetMapping("/personal/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			personalDao.delete(id);
+			personalService.delete(id);
 		}
 		return "redirect:/personal/listar";
 	}
 	
 	@PostMapping("/personal/form")
 	public String guardar(Personal personal) {
-	    personalDao.save(personal);
+		personalService.save(personal);
 	    return "redirect:listar";
 	}
 }

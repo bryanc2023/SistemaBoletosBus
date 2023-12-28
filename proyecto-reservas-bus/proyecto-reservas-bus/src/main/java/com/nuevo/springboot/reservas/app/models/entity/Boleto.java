@@ -44,7 +44,7 @@ public class Boleto{
 	private String dia;
 	@Column(name = "fecha_viaje" )
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yy-mm-dd")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	private Date fechaViaje;
 	
 	@PrePersist

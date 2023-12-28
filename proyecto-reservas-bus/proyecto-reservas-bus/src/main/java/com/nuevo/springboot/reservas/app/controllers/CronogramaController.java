@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+
 
 
 
@@ -18,12 +19,12 @@ import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
 @Controller
 public class CronogramaController {
 	@Autowired
-	private IConsolidatedDao<Cronograma> croDao;
+	private GenericDataService <Cronograma> cronogramaService;
 	
 	@GetMapping("/cronograma/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE CRONOGRAMAS");
-	    model.addAttribute("cronogramas", croDao.findAll());
+	    model.addAttribute("cronogramas", cronogramaService.findAll());
 	    return "listarCro";
 	}
 	
@@ -39,7 +40,7 @@ public class CronogramaController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Cronograma cronograma = null;
 		if(id > 0) {
-			cronograma = croDao.findOne(id);
+			cronograma = cronogramaService.findOne(id);
 		}else {
 		return "redirect:/cronograma/listar";
 		}
@@ -51,14 +52,14 @@ public class CronogramaController {
 	@GetMapping("/cronograma/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			croDao.delete(id);
+			cronogramaService.delete(id);
 		}
 		return "redirect:/cronograma/listar";
 	}
 	
 	@PostMapping("/cronograma/form")
 	public String guardar(Cronograma cronograma) {
-	    croDao.save(cronograma);
+		cronogramaService.save(cronograma);
 	    return "redirect:listar";
 	}
 	

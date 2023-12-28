@@ -7,22 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
-
 
 import com.nuevo.springboot.reservas.app.models.entity.Pasajero;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
 
 @Controller
 public class PasajeroController {
 		
 	
 	@Autowired
-	private IConsolidatedDao<Pasajero> pasajeroDao;
+	private  GenericDataService <Pasajero> pasajeroService;
 	
 	@GetMapping("/pasajero/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE PASAJEROS");
-	    model.addAttribute("pasajeros", pasajeroDao.findAll());
+	    model.addAttribute("pasajeros", pasajeroService.findAll());
 	    return "listarPasajero";
 	}
 	
@@ -38,7 +37,7 @@ public class PasajeroController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Pasajero pasajero = null;
 		if(id > 0) {
-			pasajero = pasajeroDao.findOne(id);
+			pasajero = pasajeroService.findOne(id);
 		}else {
 		return "redirect:listar";
 		}
@@ -50,14 +49,14 @@ public class PasajeroController {
 	@GetMapping("/pasajero/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			pasajeroDao.delete(id);
+			pasajeroService.delete(id);
 		}
 		return "redirect:/pasajero/listar";
 	}
 
 	@PostMapping("/pasajero/form")
 	public String guardar(Pasajero pasajero) {
-	    pasajeroDao.save(pasajero);
+		pasajeroService.save(pasajero);
 	    return "redirect:listar";
 	}
 	
