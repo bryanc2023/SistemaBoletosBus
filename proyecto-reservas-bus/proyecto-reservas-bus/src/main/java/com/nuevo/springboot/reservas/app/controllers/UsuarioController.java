@@ -36,7 +36,7 @@ public class UsuarioController {
 	@GetMapping("/usuario/form/{id}")
 	public String editar(@PathVariable(value = "id") Integer id, Model model, RedirectAttributes flash) {
 		Usuario usuario = null;
-		if (id > 0) {
+		if (id > 0) { 
 			usuario = usuarioService.findOne(id);
 			if (usuario == null) {
 				flash.addFlashAttribute("error", "El id del usuario no existe en la base de datos!");
