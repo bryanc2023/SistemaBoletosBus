@@ -23,7 +23,6 @@ import jakarta.persistence.TemporalType;
 
 @Table
 @Entity
-
 public class Administrador{
 
 	

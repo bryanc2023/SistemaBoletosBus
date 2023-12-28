@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Detalle;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
 
 
 @Controller
 public class DetalleController {
 	@Autowired
-	private IConsolidatedDao<Detalle> detalleDao;
+	private  GenericDataService <Detalle> detalleService;
 	
 	@GetMapping("/detalle/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE DETALLES");
-	    model.addAttribute("detalles", detalleDao.findAll());
+	    model.addAttribute("detalles", detalleService.findAll());
 	    return "listarDetalle";
 	}
 	
@@ -39,7 +39,7 @@ public class DetalleController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Detalle detalle = null;
 		if(id > 0) {
-			detalle = detalleDao.findOne(id);
+			detalle = detalleService.findOne(id);
 		}else {
 		return "redirect:listar";
 		}
@@ -51,14 +51,14 @@ public class DetalleController {
 	@GetMapping("/detalle/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			detalleDao.delete(id);
+			detalleService.delete(id);
 		}
 		return "redirect:/detalle/listar";
 	}
 
 	@PostMapping("/detalle/form")
 	public String guardar(Detalle detalle) {
-	    detalleDao.save(detalle);
+		detalleService.save(detalle);
 	    return "redirect:listar";
 	}
 }
