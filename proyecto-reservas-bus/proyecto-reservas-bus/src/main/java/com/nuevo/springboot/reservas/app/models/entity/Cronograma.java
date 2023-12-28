@@ -21,7 +21,7 @@ public class Cronograma{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Integer id;
 	
 	private String descripcion;
 	
@@ -29,8 +29,8 @@ public class Cronograma{
 	@DateTimeFormat(pattern="yy-mm-dd")
 	private Date fecha;
 
-	private int dia;
-	private int mes;
+	private String dia;
+	private String mes;
 	private int anio;
 	
 	@ManyToOne
@@ -49,7 +49,7 @@ public class Cronograma{
 	
 	
 	
-	public Cronograma(Long id, String descripcion, Date fecha, int dia, int mes, int anio) {
+	public Cronograma(Integer id, String descripcion, Date fecha, String dia, String mes, int anio) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -59,7 +59,7 @@ public class Cronograma{
 		this.anio = anio;
 	}
 
-	public Cronograma(String descripcion, Date fecha, int dia, int mes, int anio) {
+	public Cronograma(String descripcion, Date fecha, String dia, String mes, int anio) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
@@ -68,7 +68,7 @@ public class Cronograma{
 		this.anio = anio;
 	}
 
-	public Cronograma(Long id) {
+	public Cronograma(Integer id) {
 		super();
 		this.id = id;
 	}
@@ -77,11 +77,11 @@ public class Cronograma{
 		super();
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -101,19 +101,19 @@ public class Cronograma{
 		this.fecha = fecha;
 	}
 
-	public int getDia() {
+	public String getDia() {
 		return dia;
 	}
 
-	public void setDia(int dia) {
+	public void setDia(String dia) {
 		this.dia = dia;
 	}
 
-	public int getMes() {
+	public String getMes() {
 		return mes;
 	}
 
-	public void setMes(int mes) {
+	public void setMes(String mes) {
 		this.mes = mes;
 	}
 

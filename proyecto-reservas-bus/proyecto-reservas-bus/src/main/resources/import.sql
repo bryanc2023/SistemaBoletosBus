@@ -12,18 +12,8 @@ ALTER TABLE usuario ADD CHECK (correo_usuario LIKE '%_@__%.__%');
 -- Finalmente, para futuras inserciones o actualizaciones, se asegura que los valores sean solo 'Activo' o 'Inactivo'
 ALTER TABLE usuario ADD CHECK (estado_actividad IN ('Activo', 'Inactivo'));
 
--- -----------------------------------------------------------------
 
--- TABLA BOLETO
-ALTER TABLE boleto ADD CHECK (dia IN ('Lunes', 'Martes','Miercoles','Jueves','Viernes','S�bado','Domingo'));
 
-ALTER TABLE boleto ADD CHECK (hora_salida REGEXP '^[0-2][0-9]:[0-5][0-9]$');
-
-ALTER TABLE boleto ADD CHECK (metodo_pago IN ('Efectivo', 'Tarjeta'));
-
-ALTER TABLE boleto ADD CHECK (stock_boletos IN (1, 0));
-
-ALTER TABLE boleto ADD CHECK (numero_asiento > 0);
 -- -------------------------------------------------------------------------------
 
 -- TABLA CRONOGRAMA

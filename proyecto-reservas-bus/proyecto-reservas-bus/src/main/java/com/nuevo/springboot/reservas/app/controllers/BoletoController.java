@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 import com.nuevo.springboot.reservas.app.models.entity.Boleto;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
 
 
 
@@ -16,12 +16,12 @@ import com.nuevo.springboot.reservas.app.models.entity.Boleto;
 public class BoletoController {
 
 	@Autowired
-	private IConsolidatedDao<Boleto> boletoDao;
+	private GenericDataService<Boleto> boletoService;
 	
 	@GetMapping("/boleto/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE BOLETOS");
-	    model.addAttribute("boletos", boletoDao.findAll());
+	    model.addAttribute("boletos", boletoService.findAll());
 	    return "listarBoleto";
 	}
 
@@ -37,7 +37,7 @@ public class BoletoController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Boleto boleto = null;
 		if(id > 0) {
-			boleto = boletoDao.findOne(id);
+			boleto = boletoService.findOne(id);
 		}else {
 		return "redirect:listar";
 		}
@@ -49,14 +49,14 @@ public class BoletoController {
 	@GetMapping("/boleto/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			boletoDao.delete(id);
+			boletoService.delete(id);
 		}
 		return "redirect:/boleto/listar";
 	}
 
 	@PostMapping("/boleto/form")
 	public String guardar(Boleto boleto) {
-	    boletoDao.save(boleto);
+		boletoService.save(boleto);
 	    return "redirect:listar";
 	}
 	

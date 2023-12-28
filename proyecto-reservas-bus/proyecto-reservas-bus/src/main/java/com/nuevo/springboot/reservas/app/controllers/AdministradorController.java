@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 import com.nuevo.springboot.reservas.app.models.entity.Administrador;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+
 
 @Controller
 public class AdministradorController {
 
 	@Autowired
-	private IConsolidatedDao<Administrador> administradorDao;
+	private GenericDataService <Administrador> administradorService;
 	
 	@GetMapping("/administrador/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE ADMINISTRADORES");
-	    model.addAttribute("administradors", administradorDao.findAll());
+	    model.addAttribute("administradors", administradorService.findAll());
 	    return "listarAdministrador";
 	}
 	
@@ -36,7 +36,7 @@ public class AdministradorController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Administrador administrador = null;
 		if(id > 0) {
-			administrador = administradorDao.findOne(id);
+			administrador = administradorService.findOne(id);
 		}else {
 		return "redirect:/administrador/listar";
 		}
@@ -48,14 +48,14 @@ public class AdministradorController {
 	@GetMapping("/administrador/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			administradorDao.delete(id);
+			administradorService.delete(id);
 		}
 		return "redirect:/administrador/listar";
 	}
 	
 	@PostMapping("/administrador/form")
 	public String guardar(Administrador administrador) {
-	    administradorDao.save(administrador);
+		administradorService.save(administrador);
 	    return "redirect:listar";
 	}
 	

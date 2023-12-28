@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+
 
 
 
@@ -19,12 +20,12 @@ import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 public class RutaController {
 	
 	@Autowired
-	private IConsolidatedDao<Ruta> rutaDao;
+	private  GenericDataService <Ruta> rutaService;
 	
 	@GetMapping("/ruta/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE RUTAS");
-	    model.addAttribute("rutas", rutaDao.findAll());
+	    model.addAttribute("rutas", rutaService.findAll());
 	    return "listarRuta";
 	}
 	
@@ -40,7 +41,7 @@ public class RutaController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Ruta ruta = null;
 		if(id > 0) {
-			ruta = rutaDao.findOne(id);
+			ruta = rutaService.findOne(id);
 		}else {
 		return "redirect:/ruta/listar";
 		}
@@ -52,14 +53,14 @@ public class RutaController {
 	@GetMapping("/ruta/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			rutaDao.delete(id);
+			rutaService.delete(id);
 		}
 		return "redirect:/ruta/listar";
 	}
 	
 	@PostMapping("/ruta/form")
 	public String guardar(Ruta ruta) {
-	    rutaDao.save(ruta);
+		rutaService.save(ruta);
 	    return "redirect:listar";
 	}
 

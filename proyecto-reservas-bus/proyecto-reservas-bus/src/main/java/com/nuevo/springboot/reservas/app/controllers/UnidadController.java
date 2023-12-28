@@ -7,20 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.nuevo.springboot.reservas.app.models.dao.IConsolidatedDao;
-
+import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
+import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+
 
 @Controller
 public class UnidadController {
 
 	@Autowired
-	private IConsolidatedDao<Unidad> unidadDao;
+	private  GenericDataService <Unidad> unidadService;
 	
 	@GetMapping("/unidad/listar")
 	public String listar(Model model) {
 	    model.addAttribute("titulo", "LISTA DE UNIDADES");
-	    model.addAttribute("unidades", unidadDao.findAll());
+	    model.addAttribute("unidades", unidadService.findAll());
 	    return "listarUnidad";
 	}
 
@@ -36,7 +37,7 @@ public class UnidadController {
 	public String editar(@PathVariable(value="id") Integer id, Model model) {
 		Unidad unidad = null;
 		if(id > 0) {
-			unidad = unidadDao.findOne(id);
+			unidad = unidadService.findOne(id);
 		}else {
 		return "redirect:listar";
 		}
@@ -48,15 +49,15 @@ public class UnidadController {
 	@GetMapping("/unidad/eliminar/{id}")
 	public String eliminar(@PathVariable(value="id") Integer id) {
 		if(id > 0) {
-			unidadDao.delete(id);
+			unidadService.delete(id);
 		}
 		return "redirect:/unidad/listar";
 	}
 
 	@PostMapping("/unidad/form")
 	public String guardar(Unidad unidad) {
-	    unidadDao.save(unidad);
-	    return "redirect:listar";
+		unidadService.save(unidad);
+	    return "redirect:/unidad/listar";
 	}
 	
 }

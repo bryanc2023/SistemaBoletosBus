@@ -63,7 +63,10 @@
 			<div class="form-group row">
 				<label class="col-form-label col-sm-4">Genero</label>
 				<div class="col-sm-8">
-					<input type="text" th:field="*{genero}" class="form-control" required>
+					<select th:field="*{genero}" class="form-control">
+           				<option th:value="Masculino" th:text="Masculino">Masculino</option>
+						<option th:value="Femenino" th:text="Femenino">Femenino</option>
+					</select>
 				</div>
 			</div>
 			<div class="m-3"></div>
