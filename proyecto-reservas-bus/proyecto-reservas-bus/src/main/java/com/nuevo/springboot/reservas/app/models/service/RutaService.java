@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.IRutaDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
+import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 @Service
 public class RutaService implements  GenericDataService <Ruta>{
@@ -43,5 +44,21 @@ public class RutaService implements  GenericDataService <Ruta>{
 		return (List<Ruta>) rutaDao.findAll();
 	}
 
+	@Override
+	public Ruta save1(Ruta ruta) {
+	
+		return rutaDao.save(ruta);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Ruta findById(Integer id) {
+		return rutaDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	public void delete1(Integer id) {
+		rutaDao.deleteById(id);
+	}
 }
 
