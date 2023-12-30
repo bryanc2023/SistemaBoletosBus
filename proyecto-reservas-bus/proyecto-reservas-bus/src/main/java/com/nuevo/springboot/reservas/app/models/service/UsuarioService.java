@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nuevo.springboot.reservas.app.models.dao.IUsuarioDao;
-
+import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 import com.nuevo.springboot.reservas.app.models.entity.Usuario;
 
 @Service
@@ -43,4 +43,21 @@ public class UsuarioService implements  GenericDataService <Usuario>{
 		return (List<Usuario>) usuarioDao.findAll();
 	}
 
+	@Override
+	public Usuario save1(Usuario usuario) {
+
+		return usuarioDao.save(usuario);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findById(Integer id) {
+		return usuarioDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	@Transactional
+	public void delete1(Integer id) {
+		usuarioDao.deleteById(id);
+	}
 }

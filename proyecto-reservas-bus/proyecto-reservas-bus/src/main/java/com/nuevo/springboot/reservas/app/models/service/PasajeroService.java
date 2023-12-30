@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.IPasajeroDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Pasajero;
+import com.nuevo.springboot.reservas.app.models.entity.Personal;
 
 @Service
 public class PasajeroService implements  GenericDataService <Pasajero>{
@@ -42,5 +43,20 @@ public class PasajeroService implements  GenericDataService <Pasajero>{
 		return (List<Pasajero>) pasajeroDao.findAll();
 	}
 
+	@Override
+	public Pasajero save1(Pasajero pasajero) {
 	
+		return pasajeroDao.save(pasajero);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Pasajero findById(Integer id) {
+		return pasajeroDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	public void delete1(Integer id) {
+		pasajeroDao.deleteById(id);
+	}
 }

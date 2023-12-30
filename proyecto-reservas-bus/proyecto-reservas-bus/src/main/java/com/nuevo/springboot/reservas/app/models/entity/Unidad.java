@@ -1,6 +1,5 @@
 package com.nuevo.springboot.reservas.app.models.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -8,8 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Table
@@ -34,6 +33,7 @@ public class Unidad {
 	@Column(name = "cantidad_asientos")
 	private Integer cantidadAsientos;
 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -82,7 +82,7 @@ public class Unidad {
 		this.boletos = boletos;
 	}
 
-	public Unidad(Integer id, List<Boleto> boletos, Integer numeroInteger, String cooperativa, String estadoActividad,
+	public Unidad(Integer id, List<Boleto> boletos, Integer numero, String cooperativa, String estadoActividad,
 			Integer cantidadAsientos) {
 		super();
 		this.id = id;
@@ -98,7 +98,7 @@ public class Unidad {
 		this.id = id;
 	}
 
-	public Unidad(List<Boleto> boletos, Integer numeroInteger, String cooperativa, String estadoActividad,
+	public Unidad(List<Boleto> boletos, Integer numero, String cooperativa, String estadoActividad,
 			Integer cantidadAsientos) {
 		super();
 

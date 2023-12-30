@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.ICronogramaDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
+import com.nuevo.springboot.reservas.app.models.entity.Detalle;
 
 @Service
 public class CronogramaService implements GenericDataService <Cronograma>{
@@ -41,6 +42,23 @@ public class CronogramaService implements GenericDataService <Cronograma>{
 	@Transactional(readOnly=true)
 	public List<Cronograma> findAll() {
 		return (List<Cronograma>) cronogramaDao.findAll();
+	}
+
+	@Override
+	public Cronograma save1(Cronograma cronograma) {
+		return cronogramaDao.save(cronograma);
+	}
+
+
+	@Override
+	@Transactional(readOnly=true)
+	public Cronograma findById(Integer id) {
+		return cronogramaDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	public void delete1(Integer id) {
+		cronogramaDao.deleteById(id);
 	}
 
 }
