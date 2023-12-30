@@ -1,4 +1,4 @@
-package com.nuevo.springboot.reservas.app.controller.api;
+package com.nuevo.springboot.reservas.app.controllers.api;
 
 import java.util.List;
 

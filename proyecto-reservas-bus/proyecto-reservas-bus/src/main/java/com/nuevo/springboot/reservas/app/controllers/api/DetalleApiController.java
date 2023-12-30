@@ -1,4 +1,4 @@
-package com.nuevo.springboot.reservas.app.controller.api;
+package com.nuevo.springboot.reservas.app.controllers.api;
 
 import java.util.List;
 
@@ -14,50 +14,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nuevo.springboot.reservas.app.models.entity.Ruta;
+
+import com.nuevo.springboot.reservas.app.models.entity.Detalle;
 import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
 
 @RestController
 @RequestMapping("/api")
-public class RutaApiController {
+public class DetalleApiController {
 
 	@Autowired
-	private GenericDataService<Ruta> boletoService;
+	private GenericDataService<Detalle> detalleService;
 	
-	@GetMapping("/ruta")
-	public List<Ruta> index(){
-		return boletoService.findAll();
+	@GetMapping("/detalle")
+	public List<Detalle> index(){
+		return detalleService.findAll();
 	}
 	
-	@GetMapping("/ruta/{id}")
-	public Ruta show(@PathVariable Integer id) {
-		return boletoService.findById(id);
+	@GetMapping("/detalle/{id}")
+	public Detalle show(@PathVariable Integer id) {
+		return detalleService.findById(id);
 	}
 	
-	@PostMapping("/ruta")
+	@PostMapping("/detalle")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Ruta create(@RequestBody Ruta ruta) {
-	   return boletoService.save1(ruta);
+	public Detalle create(@RequestBody Detalle detalle) {
+	   return detalleService.save1(detalle);
 	}
 	
-	@PutMapping("/ruta/{id}")
+	@PutMapping("/detalle/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Ruta update(@RequestBody Ruta ruta, @PathVariable Integer id) {
-		Ruta rutaActual = boletoService.findById(id);
+	public Detalle update(@RequestBody Detalle detalle, @PathVariable Integer id) {
+		Detalle detalleActual = detalleService.findById(id);
 		
-		rutaActual.setAdministrador(ruta.getAdministrador());
-		rutaActual.setCostoRuta(ruta.getCostoRuta());
-		rutaActual.setId(ruta.getId());
-		rutaActual.setRutaDestino(ruta.getRutaDestino());
-		rutaActual.setRutaOrigen(ruta.getRutaOrigen());
+		detalleActual.setDescripcion(detalle.getDescripcion());
+		detalleActual.setId(detalle.getId());
+	
 		
-		
-		return boletoService.save1(rutaActual);
+		return detalleService.save1(detalleActual);
 	}
 	
-	@DeleteMapping("/ruta/{id}")
+	@DeleteMapping("/detalle/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Integer id) {
-		boletoService.delete(id);
+		detalleService.delete(id);
 	}
 }
