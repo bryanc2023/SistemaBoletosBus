@@ -9,10 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.IPasajeroDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Pasajero;
-import com.nuevo.springboot.reservas.app.models.entity.Personal;
 
 @Service
-public class PasajeroService implements  GenericDataService <Pasajero>{
+public class PasajeroService implements IPasajeroService{
 
 	@Autowired
 	private IPasajeroDao pasajeroDao;

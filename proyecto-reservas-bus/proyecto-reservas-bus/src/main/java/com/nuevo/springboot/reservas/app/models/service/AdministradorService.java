@@ -8,11 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nuevo.springboot.reservas.app.models.dao.IAdministradorDao;
 import com.nuevo.springboot.reservas.app.models.entity.Administrador;
-import com.nuevo.springboot.reservas.app.models.entity.Boleto;
 
 
 @Service
-public class AdministradorService implements GenericDataService <Administrador>{
+public class AdministradorService implements IAdministradorService{
 
 	@Autowired
 	private IAdministradorDao administradorDao;

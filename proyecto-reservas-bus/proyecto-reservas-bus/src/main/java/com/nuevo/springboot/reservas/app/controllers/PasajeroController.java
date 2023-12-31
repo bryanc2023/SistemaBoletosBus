@@ -10,14 +10,14 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nuevo.springboot.reservas.app.models.entity.Pasajero;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IPasajeroService;
 
 @Controller
 public class PasajeroController {
 		
 	
 	@Autowired
-	private  GenericDataService <Pasajero> pasajeroService;
+	private  IPasajeroService pasajeroService;
 	
 	@GetMapping("/pasajero/listar")
 	public String listar(Model model) {

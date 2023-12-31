@@ -43,7 +43,7 @@ public class Administrador{
 	@Column(name = "genero")
 	private String genero;
 	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yy-mm-dd")
+	@DateTimeFormat(pattern="yyyy-mm-dd")
 	@Column (name="fecha_ingreso")
 	private Date fechaIngreso;
 	

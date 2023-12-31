@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.ICronogramaDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
-import com.nuevo.springboot.reservas.app.models.entity.Detalle;
+
 
 @Service
-public class CronogramaService implements GenericDataService <Cronograma>{
+public class CronogramaService implements ICronogramaService{
 	
 
 	@Autowired

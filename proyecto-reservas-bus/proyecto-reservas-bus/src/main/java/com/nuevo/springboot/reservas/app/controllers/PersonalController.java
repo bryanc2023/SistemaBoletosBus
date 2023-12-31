@@ -10,13 +10,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nuevo.springboot.reservas.app.models.entity.Personal;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IPersonalService;
 
 @Controller
 public class PersonalController {
 
 	@Autowired
-	private GenericDataService<Personal> personalService;
+	private IPersonalService personalService;
 
 	@GetMapping("/personal/listar")
 	public String listar(Model model) {

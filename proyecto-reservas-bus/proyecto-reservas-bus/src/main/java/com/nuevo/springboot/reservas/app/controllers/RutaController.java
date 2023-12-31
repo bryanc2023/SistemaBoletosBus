@@ -1,22 +1,28 @@
 package com.nuevo.springboot.reservas.app.controllers;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+
+import com.nuevo.springboot.reservas.app.models.service.IRutaService;
+import com.nuevo.springboot.reservas.app.models.service.UploadFileService;
 
 @Controller
 public class RutaController {
 
 	@Autowired
-	private GenericDataService<Ruta> rutaService;
+	private IRutaService rutaService;
 
 	@GetMapping("/ruta/listar")
 	public String listar(Model model) {
@@ -24,7 +30,10 @@ public class RutaController {
 		model.addAttribute("rutas", rutaService.findAll());
 		return "listarRuta";
 	}
-
+	@Autowired
+	private UploadFileService upload;
+	
+	
 	@GetMapping("/ruta/form")
 	public String crear(Model model) {
 		Ruta ruta = new Ruta();
@@ -61,8 +70,24 @@ public class RutaController {
 	}
 
 	@PostMapping("/ruta/form")
-	public String guardar(Ruta ruta, RedirectAttributes flash, SessionStatus status) {
+	public String guardar(Ruta ruta, RedirectAttributes flash, SessionStatus status,@RequestParam("img") MultipartFile file) throws IOException {
 		String mensajeFlash = (ruta.getId() != null) ? "Ruta editada con exito!" : "Ruta creada con exito!";
+		//imagen
+		
+		if(ruta.getId()==null) { //cuando se crea un producto
+			String nombreImagen = upload.saveImage(file);
+			ruta.setImagen(nombreImagen);
+		}else {
+			if(file.isEmpty()) {
+				Ruta r = new Ruta();
+				r=rutaService.get(ruta.getId()).get();
+				ruta.setImagen(r.getImagen());
+			}else {
+				String nombreImagen = upload.saveImage(file);
+				ruta.setImagen(nombreImagen);
+			}
+		}
+		
 		rutaService.save(ruta);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);

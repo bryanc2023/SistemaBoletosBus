@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.IDetalleDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Detalle;
-import com.nuevo.springboot.reservas.app.models.entity.Pasajero;
+
 
 @Service
-public class DetalleService implements  GenericDataService <Detalle>{
+public class DetalleService implements  IDetalleService{
 
 	@Autowired
 	private IDetalleDao detalleDao;

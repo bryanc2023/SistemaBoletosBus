@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.ICronogramaService;
 
 @RestController
 @RequestMapping("/api")
 public class CronogramaApiController {
 
 	@Autowired
-	private GenericDataService<Cronograma> cronogramaService;
+	private ICronogramaService cronogramaService;
 	
 	@GetMapping("/cronograma")
 	public List<Cronograma> index(){

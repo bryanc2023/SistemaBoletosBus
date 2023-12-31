@@ -10,7 +10,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nuevo.springboot.reservas.app.models.entity.Boleto;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IBoletoService;
 
 
 
@@ -18,7 +18,7 @@ import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
 public class BoletoController {
 
 	@Autowired
-	private GenericDataService<Boleto> boletoService;
+	private IBoletoService boletoService;
 	
 	@GetMapping("/boleto/listar")
 	public String listar(Model model) {
