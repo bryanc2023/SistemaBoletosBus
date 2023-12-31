@@ -9,10 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.IPersonalDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Personal;
-import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 
 @Service
-public class PersonalService implements  GenericDataService <Personal>{
+public class PersonalService implements  IPersonalService{
 	
 
 	@Autowired

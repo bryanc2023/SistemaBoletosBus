@@ -15,15 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nuevo.springboot.reservas.app.models.entity.Administrador;
-
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IAdministradorService;
 
 @RestController
 @RequestMapping("/api")
 public class AdministradorApiController {
 
 	@Autowired
-	private GenericDataService<Administrador> administradorService;
+	private IAdministradorService administradorService;
 	
 	@GetMapping("/administrador")
 	public List<Administrador> index(){

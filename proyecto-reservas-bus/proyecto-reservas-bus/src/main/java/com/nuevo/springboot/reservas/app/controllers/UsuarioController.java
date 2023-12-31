@@ -10,13 +10,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nuevo.springboot.reservas.app.models.entity.Usuario;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IUsuarioService;
 
 @Controller
 public class UsuarioController {
 
 	@Autowired
-	private GenericDataService<Usuario> usuarioService;
+	private IUsuarioService usuarioService;
 
 	@GetMapping("/usuario/listar")
 	public String listar(Model model) {

@@ -15,35 +15,35 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IRutaService;
 
 @RestController
 @RequestMapping("/api")
 public class RutaApiController {
 
 	@Autowired
-	private GenericDataService<Ruta> boletoService;
+	private IRutaService rutaService;
 	
 	@GetMapping("/ruta")
 	public List<Ruta> index(){
-		return boletoService.findAll();
+		return rutaService.findAll();
 	}
 	
 	@GetMapping("/ruta/{id}")
 	public Ruta show(@PathVariable Integer id) {
-		return boletoService.findById(id);
+		return rutaService.findById(id);
 	}
 	
 	@PostMapping("/ruta")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Ruta create(@RequestBody Ruta ruta) {
-	   return boletoService.save1(ruta);
+	   return rutaService.save1(ruta);
 	}
 	
 	@PutMapping("/ruta/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Ruta update(@RequestBody Ruta ruta, @PathVariable Integer id) {
-		Ruta rutaActual = boletoService.findById(id);
+		Ruta rutaActual = rutaService.findById(id);
 		
 		rutaActual.setAdministrador(ruta.getAdministrador());
 		rutaActual.setCostoRuta(ruta.getCostoRuta());
@@ -52,12 +52,12 @@ public class RutaApiController {
 		rutaActual.setRutaOrigen(ruta.getRutaOrigen());
 		
 		
-		return boletoService.save1(rutaActual);
+		return rutaService.save1(rutaActual);
 	}
 	
 	@DeleteMapping("/ruta/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Integer id) {
-		boletoService.delete(id);
+		rutaService.delete(id);
 	}
 }

@@ -8,11 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nuevo.springboot.reservas.app.models.dao.IBoletoDao;
 import com.nuevo.springboot.reservas.app.models.entity.Boleto;
-import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
 
 
 @Service
-public class BoletoService implements GenericDataService <Boleto> {
+public class BoletoService implements IBoletoService {
 
 	@Autowired
 	private IBoletoDao boletoDao;

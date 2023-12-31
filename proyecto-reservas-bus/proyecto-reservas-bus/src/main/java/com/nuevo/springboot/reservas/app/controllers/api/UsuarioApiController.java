@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nuevo.springboot.reservas.app.models.entity.Usuario;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IUsuarioService;
 
 @RestController
 @RequestMapping("/api")
 public class UsuarioApiController {
 
 	@Autowired
-	private GenericDataService<Usuario> usuarioService;
+	private IUsuarioService usuarioService;
 	
 	@GetMapping("/usuario")
 	public List<Usuario> index(){

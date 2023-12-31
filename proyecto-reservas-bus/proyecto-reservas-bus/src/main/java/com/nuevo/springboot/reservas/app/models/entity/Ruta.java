@@ -4,6 +4,8 @@ package com.nuevo.springboot.reservas.app.models.entity;
 
 import java.util.List;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,14 +41,19 @@ public class Ruta{
 	@Column (name="costo_ruta")
 	private float costoRuta;
 	
+	private String imagen;
 	
-	public Ruta(Integer id, String rutaOrigen, String rutaDestino, float costoRuta,Administrador administrador) {
+
+	public Ruta(Integer id, Administrador administrador, List<Cronograma> cronogramas, String rutaOrigen,
+			String rutaDestino, float costoRuta, String imagen) {
 		super();
 		this.id = id;
+		this.administrador = administrador;
+		this.cronogramas = cronogramas;
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
-		this.administrador=administrador;
+		this.imagen = imagen;
 	}
 	public Ruta() {
 		super();
@@ -61,6 +68,20 @@ public class Ruta{
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
 		this.administrador=administrador;
+	}
+	
+	
+	public List<Cronograma> getCronogramas() {
+		return cronogramas;
+	}
+	public void setCronogramas(List<Cronograma> cronogramas) {
+		this.cronogramas = cronogramas;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
 	}
 	public Integer getId() {
 		return id;
@@ -92,7 +113,16 @@ public class Ruta{
 	public void setAdministrador(Administrador administrador) {
 		this.administrador = administrador;
 	}
-	
+	@Override
+	public String toString() {
+		return "Ruta [id=" + id + ", administrador=" + administrador + ", cronogramas=" + cronogramas + ", rutaOrigen="
+				+ rutaOrigen + ", rutaDestino=" + rutaDestino + ", costoRuta=" + costoRuta + ", imagen=" + imagen + "]";
+	}
+	public Ruta get() {
+		return null;
+	}
+
+
 	
 	
 	

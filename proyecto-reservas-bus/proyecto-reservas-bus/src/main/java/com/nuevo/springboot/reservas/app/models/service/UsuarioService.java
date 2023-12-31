@@ -7,11 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nuevo.springboot.reservas.app.models.dao.IUsuarioDao;
-import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 import com.nuevo.springboot.reservas.app.models.entity.Usuario;
 
 @Service
-public class UsuarioService implements  GenericDataService <Usuario>{
+public class UsuarioService implements IUsuarioService{
 	
 
 	@Autowired
@@ -60,4 +59,6 @@ public class UsuarioService implements  GenericDataService <Usuario>{
 	public void delete1(Integer id) {
 		usuarioDao.deleteById(id);
 	}
+
+
 }

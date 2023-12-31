@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.nuevo.springboot.reservas.app.models.entity.Detalle;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IDetalleService;
 
 @RestController
 @RequestMapping("/api")
 public class DetalleApiController {
 
 	@Autowired
-	private GenericDataService<Detalle> detalleService;
+	private IDetalleService detalleService;
 	
 	@GetMapping("/detalle")
 	public List<Detalle> index(){

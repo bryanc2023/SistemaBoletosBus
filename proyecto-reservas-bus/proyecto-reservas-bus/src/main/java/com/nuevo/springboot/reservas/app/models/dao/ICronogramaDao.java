@@ -2,12 +2,13 @@ package com.nuevo.springboot.reservas.app.models.dao;
 
 
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 
 
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
 
-public interface ICronogramaDao extends CrudRepository<Cronograma, Integer>{
+public interface ICronogramaDao extends JpaRepository<Cronograma, Integer>{
 	
 
 }

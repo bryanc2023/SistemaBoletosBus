@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.nuevo.springboot.reservas.app.models.entity.Pasajero;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IPasajeroService;
 
 
 @RestController
@@ -24,7 +23,7 @@ import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
 public class PasajeroApiController {
 
 	@Autowired
-	private GenericDataService<Pasajero> pasajeroService;
+	private IPasajeroService pasajeroService;
 	
 	@GetMapping("/pasajero")
 	public List<Pasajero> index(){

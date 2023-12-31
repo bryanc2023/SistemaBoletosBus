@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
-import com.nuevo.springboot.reservas.app.models.service.GenericDataService;
+import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
 
 @RestController
 @RequestMapping("/api")
 public class UnidadApiController {
 
 	@Autowired
-	private GenericDataService<Unidad> unidadService;
+	private IUnidadService unidadService;
 	
 	@GetMapping("/unidad")
 	public List<Unidad> index(){

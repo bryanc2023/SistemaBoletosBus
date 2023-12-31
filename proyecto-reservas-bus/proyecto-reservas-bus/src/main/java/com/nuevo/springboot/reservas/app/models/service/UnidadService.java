@@ -11,7 +11,7 @@ import com.nuevo.springboot.reservas.app.models.dao.IUnidadDao;
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 @Service
-public class UnidadService implements  GenericDataService <Unidad>{
+public class UnidadService implements  IUnidadService{
 	
 
 	@Autowired

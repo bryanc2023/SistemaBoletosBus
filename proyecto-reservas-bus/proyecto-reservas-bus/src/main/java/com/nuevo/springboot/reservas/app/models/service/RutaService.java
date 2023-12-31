@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.IRutaDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
-import com.nuevo.springboot.reservas.app.models.entity.Unidad;
+
 
 @Service
-public class RutaService implements  GenericDataService <Ruta>{
+public class RutaService implements  IRutaService{
 	
 
 	@Autowired
@@ -59,6 +59,12 @@ public class RutaService implements  GenericDataService <Ruta>{
 	@Override
 	public void delete1(Integer id) {
 		rutaDao.deleteById(id);
+	}
+
+	@Override
+	public Ruta get(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 
