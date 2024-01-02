@@ -11,7 +11,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Administrador;
 
 
 @Service
-public class AdministradorService implements GenericDataService <Administrador>{
+public class AdministradorService implements IAdministradorService{
 
 	@Autowired
 	private IAdministradorDao administradorDao;
@@ -40,5 +40,21 @@ public class AdministradorService implements GenericDataService <Administrador>{
 	@Transactional(readOnly=true)
 	public List<Administrador> findAll() {
 		return (List<Administrador>) administradorDao.findAll();
+	}
+
+	@Override
+	public Administrador save1(Administrador administrador) {
+		return administradorDao.save(administrador);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Administrador findById(Integer id) {
+		return administradorDao.findById(id).orElse(null);
+	}
+	
+	@Override
+	public void delete1(Integer id) {
+		administradorDao.deleteById(id);
 	}
 }

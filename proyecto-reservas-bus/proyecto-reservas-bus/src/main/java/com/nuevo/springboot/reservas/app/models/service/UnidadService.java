@@ -11,7 +11,7 @@ import com.nuevo.springboot.reservas.app.models.dao.IUnidadDao;
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 @Service
-public class UnidadService implements  GenericDataService <Unidad>{
+public class UnidadService implements  IUnidadService{
 	
 
 	@Autowired
@@ -21,7 +21,6 @@ public class UnidadService implements  GenericDataService <Unidad>{
 	@Transactional
 	public void save(Unidad unidad) {
 		unidadDao.save(unidad);
-		
 	}
 
 	@Override
@@ -43,5 +42,26 @@ public class UnidadService implements  GenericDataService <Unidad>{
 		return (List<Unidad>) unidadDao.findAll();
 	}
 
+	@Override
+	@Transactional
+	public Unidad save1(Unidad unidad) {
+		return unidadDao.save(unidad);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Unidad findById(Integer id) {
+		return unidadDao.findById(id).orElse(null);
+	}
+
+	@Override
+	public void delete1(Integer id) {
+		unidadDao.deleteById(id);
+		
+	}
+	
+	
+	
+	
 }
 

@@ -4,16 +4,25 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Table
 @Entity
@@ -29,6 +38,19 @@ public class Cronograma{
 	@DateTimeFormat(pattern="yy-mm-dd")
 	private Date fecha;
 
+	@DateTimeFormat(pattern="hh:mm:ss")
+	private String horaSalida;
+	
+	public String getHoraSalida() {
+		return horaSalida;
+	}
+
+
+
+	public void setHoraSalida(String horaSalida) {
+		this.horaSalida = horaSalida;
+	}
+
 	private String dia;
 	private String mes;
 	private int anio;
@@ -42,6 +64,30 @@ public class Cronograma{
 	private Ruta ruta;
 	
 	
+	public Unidad getUnidad() {
+		return unidad;
+	}
+
+
+
+	public void setUnidad(Unidad unidad) {
+		this.unidad = unidad;
+	}
+
+
+
+	public Ruta getRuta() {
+		return ruta;
+	}
+
+
+
+	public void setRuta(Ruta ruta) {
+		this.ruta = ruta;
+	}
+
+
+
 	@PrePersist
 	public void prePersist() {
 		fecha=new Date();
@@ -49,33 +95,54 @@ public class Cronograma{
 	
 	
 	
-	public Cronograma(Integer id, String descripcion, Date fecha, String dia, String mes, int anio) {
+	
+
+	public Cronograma() {
 		super();
-		this.id = id;
-		this.descripcion = descripcion;
-		this.fecha = fecha;
-		this.dia = dia;
-		this.mes = mes;
-		this.anio = anio;
 	}
 
-	public Cronograma(String descripcion, Date fecha, String dia, String mes, int anio) {
-		super();
-		this.descripcion = descripcion;
-		this.fecha = fecha;
-		this.dia = dia;
-		this.mes = mes;
-		this.anio = anio;
-	}
+
 
 	public Cronograma(Integer id) {
 		super();
 		this.id = id;
 	}
 
-	public Cronograma() {
+
+
+	
+
+
+	public Cronograma(Integer id, String descripcion, Date fecha, String horaSalida, String dia, String mes, int anio,
+			Unidad unidad, Ruta ruta) {
 		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.horaSalida = horaSalida;
+		this.dia = dia;
+		this.mes = mes;
+		this.anio = anio;
+		this.unidad = unidad;
+		this.ruta = ruta;
 	}
+
+
+
+	public Cronograma(String descripcion, Date fecha, String horaSalida, String dia, String mes, int anio,
+			Unidad unidad, Ruta ruta) {
+		super();
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.horaSalida = horaSalida;
+		this.dia = dia;
+		this.mes = mes;
+		this.anio = anio;
+		this.unidad = unidad;
+		this.ruta = ruta;
+	}
+
+
 
 	public Integer getId() {
 		return id;

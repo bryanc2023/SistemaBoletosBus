@@ -1,16 +1,26 @@
 package com.nuevo.springboot.reservas.app.models.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 @Table
 @Entity
@@ -24,7 +34,7 @@ public class Unidad {
 	private List<Boleto> boletos;
 	
 	@OneToMany(mappedBy = "unidad")
-	private List<Cronograma> cronogramas;
+	public List<Cronograma> cronogramas;
 
 	@Column
 	private Integer numero;
@@ -33,7 +43,11 @@ public class Unidad {
 	private String estadoActividad;
 	@Column(name = "cantidad_asientos")
 	private Integer cantidadAsientos;
+	@Column(name = "stock_boletos")
+	private boolean stockBoletos;
 
+
+	
 	public Integer getId() {
 		return id;
 	}
@@ -82,7 +96,7 @@ public class Unidad {
 		this.boletos = boletos;
 	}
 
-	public Unidad(Integer id, List<Boleto> boletos, Integer numeroInteger, String cooperativa, String estadoActividad,
+	public Unidad(Integer id, List<Boleto> boletos, Integer numero, String cooperativa, String estadoActividad,
 			Integer cantidadAsientos) {
 		super();
 		this.id = id;
@@ -98,7 +112,7 @@ public class Unidad {
 		this.id = id;
 	}
 
-	public Unidad(List<Boleto> boletos, Integer numeroInteger, String cooperativa, String estadoActividad,
+	public Unidad(List<Boleto> boletos, Integer numero, String cooperativa, String estadoActividad,
 			Integer cantidadAsientos) {
 		super();
 
@@ -111,5 +125,26 @@ public class Unidad {
 
 	public Unidad() {
 		super();
+	}
+	
+	public String getRutaOrigen() {
+	    if (cronogramas != null && !cronogramas.isEmpty()) {
+	        return cronogramas.get(0).getRuta().getRutaOrigen();
+	    }
+	    return null;
+	}
+	
+	public String getRutaDestino() {
+	    if (cronogramas != null && !cronogramas.isEmpty()) {
+	        return cronogramas.get(0).getRuta().getRutaDestino();
+	    }
+	    return null;
+	}
+	
+	public Float getCostoRuta() {
+	    if (cronogramas != null && !cronogramas.isEmpty()) {
+	        return cronogramas.get(0).getRuta().getCostoRuta();
+	    }
+	    return null;
 	}
 }

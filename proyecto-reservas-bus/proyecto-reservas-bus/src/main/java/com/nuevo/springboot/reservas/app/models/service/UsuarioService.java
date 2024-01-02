@@ -1,46 +1,84 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.nuevo.springboot.reservas.app.controlador.dto.UsuarioRegistroDTO;
+import com.nuevo.springboot.reservas.app.models.entity.Usuario;
+import com.nuevo.springboot.reservas.app.models.entity.Rol;
+import com.nuevo.springboot.reservas.app.models.entity.Ruta;
+import com.nuevo.springboot.reservas.app.models.dao.IDetalleDao;
 import com.nuevo.springboot.reservas.app.models.dao.IUsuarioDao;
 
-import com.nuevo.springboot.reservas.app.models.entity.Usuario;
+
 
 @Service
-public class UsuarioService implements  GenericDataService <Usuario>{
+public class UsuarioService implements IUsuarioService{
+
 	
+	private IUsuarioDao usuarioRepositorio;
+	 @Autowired
+	    public UsuarioService(IUsuarioDao usuarioRepository) {
+	        this.passwordEncoder = new BCryptPasswordEncoder();
+			this.usuarioRepositorio = usuarioRepository;
+	    }
 
-	@Autowired
-	private IUsuarioDao usuarioDao;
+	private final BCryptPasswordEncoder passwordEncoder;
+
+   
+    public UsuarioService(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+    
+
 	
 	@Override
-	@Transactional
-	public void save(Usuario unidad) {
-		usuarioDao.save(unidad);
-		
+	public Usuario guardar(UsuarioRegistroDTO registroDTO) {
+		Usuario usuario = new Usuario(registroDTO.getNombre(), 
+				registroDTO.getApellido(),registroDTO.getEmail(),
+				passwordEncoder.encode(registroDTO.getPassword()),Arrays.asList(new Rol("ROLE_USER")));
+		return usuarioRepositorio.save(usuario);
 	}
 
 	@Override
-	@Transactional(readOnly=true)
-	public Usuario findOne(Integer id) {
-		return usuarioDao.findById(id).orElse(null);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Usuario usuario = usuarioRepositorio.findByEmail(username);
+		if(usuario == null) {
+			throw new UsernameNotFoundException("Usuario o password inválidos");
+		}
+		return new User(usuario.getEmail(),usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
 	}
 
+	private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles){
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
+	}
+	
 	@Override
-	@Transactional
-	public void delete(Integer id) {
-		usuarioDao.deleteById(id);
-		
+	public List<Usuario> listarUsuarios() {
+		return usuarioRepositorio.findAll();
 	}
 
-	@Override
-	@Transactional(readOnly=true)
-	public List<Usuario> findAll() {
-		return (List<Usuario>) usuarioDao.findAll();
-	}
+
+
+
+
+
+
+
+
+
+
 
 }

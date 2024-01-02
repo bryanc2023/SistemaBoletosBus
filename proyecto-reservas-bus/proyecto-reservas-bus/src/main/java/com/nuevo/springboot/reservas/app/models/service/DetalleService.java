@@ -10,8 +10,9 @@ import com.nuevo.springboot.reservas.app.models.dao.IDetalleDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Detalle;
 
+
 @Service
-public class DetalleService implements  GenericDataService <Detalle>{
+public class DetalleService implements  IDetalleService{
 
 	@Autowired
 	private IDetalleDao detalleDao;
@@ -42,4 +43,22 @@ public class DetalleService implements  GenericDataService <Detalle>{
 		return (List<Detalle>) detalleDao.findAll();
 	}
 
+	@Override
+	@Transactional
+	public Detalle save1(Detalle detalle) {
+		
+		return detalleDao.save(detalle);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Detalle findById(Integer id) {
+		return detalleDao.findById(id).orElse(null);
+	}
+	
+	
+	@Override
+	public void delete1(Integer id) {
+		detalleDao.deleteById(id);
+	}
 }

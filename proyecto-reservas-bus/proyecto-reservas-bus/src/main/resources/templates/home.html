@@ -1,46 +1,87 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
-	<title th:text="${titulo}"></title>
+	<title>Bienvenido</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#"></a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" th:href=${"/unidad/listar"}>Unidades</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href=${"/boleto/listar"}>Boletos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href=${"/ruta/listar"}>Rutas</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href=${"/cronograma/listar"}>Cronogramas</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href=${"/personal/listar"}>Personal</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href=${"/usuario/listar"}>Personal</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
 
-<h1 th:text="${mensaje}"></h1>
-</body>
-</html>
+	
+
+      <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+	    <h1 class="display-2">Bienvenido a Reservas de boletoss</h1>
+	    <p class="lead">Puedes reservar en línea</p>
+	</header>
+	    <h4>
+			Bienvenido <span sec:authentication="principal.username"></span>
+		</h4>
+		
+		
+      <!-- Page Features -->
+      <div class="row text-center">
+  <h1>Reservar boletos:</h1>
+     <h1>Unidades disponibles:</h1>
+
+<form id="detalleForm" action="/boleto/form" method="POST" style="display: none;">
+    <input type="hidden" name="unidadId" id="unidadId">
+    <input type="hidden" name="cronogramaId" id="cronogramaId">
+    <input type="hidden" name="horaSalida" id="horaSalida">
+    <input type="hidden" name="costo" id="costo">
+</form>
+
+
+   <div class="col-lg-3 col-md-6 mb-4" th:each="unidad: ${unidades}">
+    <div class="card-deck">
+        <div class="card h-100" th:each="cronograma : ${unidad.cronogramas}">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) > 0}">
+                    Origen: <span th:text="${unidad.getRutaOrigen()}"></span>
+                </p>
+                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) == 0}">
+                    Sin ruta asignada.
+                </p>
+                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) > 0}">
+                    Destino: <span th:text="${unidad.getRutaDestino()}"></span>
+                </p>
+                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) == 0}">
+                    Sin ruta asignada.
+                </p>
+                <p class="card-text">Unidad: <span th:text="${unidad.numero}"></span></p>
+                <p class="card-text">Cooperativa: <span th:text="${unidad.cooperativa}"></span></p>
+                <!-- Detalles del cronograma de la unidad -->
+                <p class="card-text">
+                    <span th:text="'Fecha: ' + ${cronograma.fecha}"></span>
+                    <span th:text="'Hora: ' + ${cronograma.horaSalida}"></span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="btn btn-success">Ver detalles</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+        
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+ <footer th:replace="layout/layout :: footer"></footer>
+    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  </body>
+
+  </html>
