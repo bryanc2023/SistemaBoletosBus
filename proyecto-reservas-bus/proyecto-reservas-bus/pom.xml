@@ -55,11 +55,7 @@
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
 
-        	<dependency>
-        		<groupId>com.aniket</groupId>
-        		<artifactId>portal</artifactId>
-        		<version>0.0.1-SNAPSHOT</version>
-        	</dependency>
+       
     </dependencies>
 
     <build>
