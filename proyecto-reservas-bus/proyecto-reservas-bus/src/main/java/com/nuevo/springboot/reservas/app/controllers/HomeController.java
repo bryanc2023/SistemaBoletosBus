@@ -40,35 +40,38 @@ public class HomeController {
 	private  ICronogramaService cronogramaService;
 	
 	@GetMapping("/")
-	public String mostrarHome(Model model) {
-		
-		model.addAttribute("titulo", "Pagina de inicio");
-		model.addAttribute("mensaje", "Bienvenido a Reserva de boletos");
-		model.addAttribute("cronogramas", cronogramaService.findAll());
-		model.addAttribute("unidades", unidadService.findAll());
-		return "home";
+	public String mostrarHome(Authentication authentication,Model model) {
+		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+
+		    if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+		        // Lógica para mostrar contenido específico para el rol de admin
+		        model.addAttribute("mensaje", "Bienvenido ADMIN");
+		        // Agrega más atributos al modelo si es necesario para el rol de admin
+		        return "administrador/home"; // Vista para el rol de admin
+		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
+		        // Lógica para mostrar contenido específico para el rol de usuario
+		        model.addAttribute("mensaje", "Bienvenido USER");
+		        // Agrega más atributos al modelo si es necesario para el rol de usuario
+		        model.addAttribute("cronogramas", cronogramaService.findAll());
+		        model.addAttribute("unidades", unidadService.findAll());
+		        return "pasajero/home"; // Vista para el rol de usuario
+		    } else {
+		        // Manejar otras opciones si es necesario
+		        return "redirect:/login?error";
+		    }
 	
 
 	}
 	
-	@GetMapping("/redirectByRole")
-    public String redirectByRole(Authentication authentication) {
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-            return "redirect:/unidad/listar";
-        } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-            return "redirect:/";
-        } else {
-            // Manejar otras opciones si es necesario
-            return "redirect:/login?error";
-        }
-    }
+	
+	
+	
 	
 	@PostMapping("/search")
 	public String searchProduct(@RequestParam String nombre, Model model) {
 		//List<Unidad> unidad= unidadService.findAll().stream().filter( p -> p.getCooperativa().contains(nombre)).collect(Collectors.toList());
 		//model.addAttribute("unidades", unidad);		
-		return "home";
+		return "pasajero/home";
 	}
 
 	 }

@@ -1,75 +1,22 @@
-<!DOCTYPE html >
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout/layout :: head">
-
- </head>
-
-
+<head th:replace="layout/layout :: head"></head>
 <body>
-
+	
+	 <h4>
+			Bienvenido <span sec:authentication="principal.username"></span>
+		</h4>
+		<h4>
+			Puede editar sus unidades,rutas y cronogramas de la app
+		</h4>
+		 <div class="m-3"></div>
 	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
 
-    <!-- Page Content -->
-    <div class="container">
-
-      <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-	    <h1 class="display-2">Bienvenido a Reservas de boletos</h1>
-	    <p class="lead">Puedes reservar en línea</p>
-	</header>
-
-      <!-- Page Features -->
-      <div class="row text-center">
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <p class="card-text">Nombre del producto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="productohome.html" class="btn btn-success">Ver producto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <p class="card-text">Nombre del producto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-success">Ver producto</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <p class="card-text">Nombre del producto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-success">Ver producto</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-6 mb-4">
-          <div class="card h-100">
-            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-            <div class="card-body">
-              <p class="card-text">Nombre del producto.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-success">Ver producto</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
       <!-- /.row -->
 
     </div>
