@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout/layout :: head"></head>
+
 
 <body>
-	<header th:replace="layout/layout :: header"></header>
+	<script th:inline="javascript">
+    window.onload = function () {
+        var idUnidad = localStorage.getItem('idUnidad');
+        var cronogramaId = localStorage.getItem('cronogramaId');
+        var horaSalida = localStorage.getItem('horaSalida');
+        var costo = localStorage.getItem('costo');
+        var dia = localStorage.getItem('dia');
+        var fechaSalida = localStorage.getItem('fechaSalida');
+
+        document.getElementById('unidadId').value = idUnidad;
+        document.getElementById('dia').value = dia;
+        document.getElementById('cronogramaId').value = cronogramaId;
+        document.getElementById('horaSalida').value = horaSalida;
+        document.getElementById('costo').value = costo;
+
+        localStorage.clear(); // Limpiar los datos almacenados después de completar el formulario
+    };
+</script>
 
 	<div class="container py-4">
 
@@ -16,23 +33,14 @@
 					<div class="m-3"></div>
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">dia</label>
-						<div class="col-sm-8">
-							<select th:field="*{dia}" class="form-control">
-								<option th:value="Lunes" th:text="Lunes">Lunes</option>
-								<option th:value="Martes" th:text="Martes">Martes</option>
-								<option th:value="Miercoles" th:text="Miercoles">Miercoles</option>
-								<option th:value="Jueves" th:text="Jueves">Jueves</option>
-								<option th:value="Viernes" th:text="Viernes">Viernes</option>
-								<option th:value="Sabado" th:text="Sabado">Sabado</option>
-								<option th:value="Domingo" th:text="Domingo">Domingo</option>
-							</select>
-						</div>
+					    <input id="dia" type="text" th:field="*{dia}" class="form-control"
+								required>
 					</div>
 					<div class="m-3"></div>
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">fecha de viaje</label>
 						<div class="col-sm-8">
-							<input type="date" th:field="*{fechaViaje}" class="form-control"
+							<input id="fechaSalida" type="date" th:field="*{fechaViaje}" class="form-control"
 								required>
 						</div>
 					</div>
@@ -41,7 +49,7 @@
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">hora de salida</label>
 						<div class="col-sm-8">
-							<input type="time" th:field="*{horaSalida}" class="form-control"
+							<input id="horaSalida" type="time" th:field="*{horaSalida}" class="form-control"
 								required>
 						</div>
 					</div>
@@ -65,26 +73,12 @@
 						</div>
 					</div>
 					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">Descuento</label>
-						<div class="col-sm-8">
-							<input type="number" th:field="*{descuento}" class="form-control"
-								required>
-						</div>
-					</div>
+					
 					<div class="m-3"></div>
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Total a pagar</label>
 						<div class="col-sm-8">
-							<input type="number" th:field="*{totalPago}" class="form-control"
-								required>
-						</div>
-					</div>
-					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">iva</label>
-						<div class="col-sm-8">
-							<input type="number" th:field="*{iva}" class="form-control"
+							<input id="costo" type="number" th:field="*{totalPago}" class="form-control"
 								required>
 						</div>
 					</div>
@@ -100,7 +94,7 @@
 
 					<div class="text-center p">
 						<button type="submit" class="btn btn-secondary">Guardar
-							Unidad</button>
+							Boleto</button>
 					</div>
 					<input type="hidden" th:field="*{id}">
 

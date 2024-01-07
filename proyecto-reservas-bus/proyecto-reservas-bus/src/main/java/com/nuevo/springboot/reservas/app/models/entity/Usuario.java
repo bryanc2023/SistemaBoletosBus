@@ -2,82 +2,121 @@ package com.nuevo.springboot.reservas.app.models.entity;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import java.util.Collection;
 
-@Table
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
 @Entity
+@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	private Integer id;
-	@Column(name = "nombre_usuario")
-	private String nombreUsuario;
-	@Column(name = "correo_usuario")
-	private String correoUsuario;
-	@Column(name = "contraseña_usuario")
-	private String contraseñaUsuario;
-	@Column(name = "estado_actividad")
-	private String estadoActividad;
-	public Integer getId() {
+	private Long id;
+
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "apellido")
+	private String apellido;
+
+	private String email;
+	private String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "usuarios_roles",
+			joinColumns = @JoinColumn(name = "usuario_id",referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
+			)
+	private Collection<Rol> roles;
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNombreUsuario() {
-		return nombreUsuario;
+
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getCorreoUsuario() {
-		return correoUsuario;
+
+	public String getApellido() {
+		return apellido;
 	}
-	public void setCorreoUsuario(String correoUsuario) {
-		this.correoUsuario = correoUsuario;
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
-	public String getContraseñaUsuario() {
-		return contraseñaUsuario;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setContraseñaUsuario(String contraseñaUsuario) {
-		this.contraseñaUsuario = contraseñaUsuario;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getEstadoActividad() {
-		return estadoActividad;
+
+	public String getPassword() {
+		return password;
 	}
-	public void setEstadoActividad(String estadoActividad) {
-		this.estadoActividad = estadoActividad;
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public Usuario(Integer id, String nombreUsuario, String correoUsuario, String contraseñaUsuario,
-			String estadoActividad) {
+
+	public Collection<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Rol> roles) {
+		this.roles = roles;
+	}
+
+	public Usuario(Long id, String nombre, String apellido, String email, String password, Collection<Rol> roles) {
 		super();
 		this.id = id;
-		this.nombreUsuario = nombreUsuario;
-		this.correoUsuario = correoUsuario;
-		this.contraseñaUsuario = contraseñaUsuario;
-		this.estadoActividad = estadoActividad;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
 	}
-	public Usuario(String nombreUsuario, String correoUsuario, String contraseñaUsuario, String estadoActividad) {
+
+	public Usuario(String nombre, String apellido, String email, String password, Collection<Rol> roles) {
 		super();
-		this.nombreUsuario = nombreUsuario;
-		this.correoUsuario = correoUsuario;
-		this.contraseñaUsuario = contraseñaUsuario;
-		this.estadoActividad = estadoActividad;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
 	}
+
 	public Usuario() {
-		super();
+		
 	}
-	public Usuario(Integer id) {
-		super();
-		this.id = id;
-	}
-
-
 }

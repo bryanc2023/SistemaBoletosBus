@@ -1,5 +1,6 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.nuevo.springboot.reservas.app.models.dao.ICronogramaDao;
 
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
+import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 
 @Service
@@ -59,6 +61,11 @@ public class CronogramaService implements ICronogramaService{
 	@Override
 	public void delete1(Integer id) {
 		cronogramaDao.deleteById(id);
+	}
+
+	@Override
+	public boolean existsByFechaAndUnidadAndHoraSalida(Date fecha, Unidad unidad, String horaSalida) {
+		 return cronogramaDao.existsByFechaAndUnidadAndHoraSalida(fecha, unidad, horaSalida);
 	}
 
 }

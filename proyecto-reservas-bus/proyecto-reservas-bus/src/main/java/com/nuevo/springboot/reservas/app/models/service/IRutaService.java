@@ -15,6 +15,11 @@ public interface IRutaService {
 	public Ruta findById(Integer id);
 	public Ruta get(Integer id);
 	public void delete1(Integer id);
+	List<Ruta> duplicados();
+	List<Ruta> duplicados2();
+	List<Ruta> findByOrigenAndDestino(String rutaOrigen, String rutaDestino);
+	
+	
 
 
 

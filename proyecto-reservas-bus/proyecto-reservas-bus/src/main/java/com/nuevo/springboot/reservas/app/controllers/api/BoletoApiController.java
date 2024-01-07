@@ -45,18 +45,13 @@ public class BoletoApiController {
 	public Boleto update(@RequestBody Boleto boleto, @PathVariable Integer id) {
 		Boleto boletoActual = boletoService.findById(id);
 		
-		boletoActual.setDescuento(boleto.getDescuento());
 		boletoActual.setDetalle(boleto.getDetalle());
 		boletoActual.setDia(boleto.getDia());
 		boletoActual.setFechaViaje(boleto.getFechaViaje());
 		boletoActual.setHoraSalida(boleto.getHoraSalida());
 		boletoActual.setId(boleto.getId());
-		boletoActual.setIva(boleto.getIva());
 		boletoActual.setMetodoPago(boleto.getMetodoPago());
 		boletoActual.setNumeroAsiento(boleto.getNumeroAsiento());
-		boletoActual.setPasajero(boleto.getPasajero());
-		boletoActual.setPersonal(boleto.getPersonal());
-		boletoActual.setStockBoletos(boleto.isStockBoletos());
 		boletoActual.setTotalPago(boleto.getTotalPago());
 		boletoActual.setUnidad(boleto.getUnidad());
 		

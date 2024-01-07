@@ -43,7 +43,7 @@ public class UnidadApiController {
 	@PutMapping("/unidad/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Unidad update(@RequestBody Unidad unidad, @PathVariable Integer id) {
-		Unidad unidadActual = unidadService.findById(id);
+		Unidad unidadActual = unidadService.findOne(id);
 		
 		unidadActual.setBoletos(unidad.getBoletos());
 		unidadActual.setCantidadAsientos(unidad.getCantidadAsientos());

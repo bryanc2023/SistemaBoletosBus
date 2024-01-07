@@ -4,17 +4,24 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
 
 @Entity
 @Table
@@ -33,13 +40,13 @@ public class Boleto{
 	@JoinColumn(name="id_detalle")
 	private Detalle detalle;
 	
-	@ManyToOne
-	@JoinColumn(name="id_usuario_personal")
-	private Personal personal;
-	
-	@ManyToOne
-	@JoinColumn(name="id_usuario_pasajero")
-	private Pasajero pasajero;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_asiento")
+	private Asiento asiento;
+		
+	 
+
+
 	
 	private String dia;
 	@Column(name = "fecha_viaje" )
@@ -61,16 +68,12 @@ public class Boleto{
 	@Column(name = "metodo_pago")
 	private String metodoPago;
 	
-	private Float descuento;
 	
 	@Column(name = "total_Pago")
 	private Float totalPago;
 	
-	private Float iva;
 
-	@Column(name = "stock_boletos")
-	private boolean stockBoletos;
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -95,21 +98,7 @@ public class Boleto{
 		this.detalle = detalle;
 	}
 
-	public Personal getPersonal() {
-		return personal;
-	}
 
-	public void setPersonal(Personal personal) {
-		this.personal = personal;
-	}
-
-	public Pasajero getPasajero() {
-		return pasajero;
-	}
-
-	public void setPasajero(Pasajero pasajero) {
-		this.pasajero = pasajero;
-	}
 
 	public String getDia() {
 		return dia;
@@ -151,13 +140,7 @@ public class Boleto{
 		this.metodoPago = metodoPago;
 	}
 
-	public Float getDescuento() {
-		return descuento;
-	}
 
-	public void setDescuento(Float descuento) {
-		this.descuento = descuento;
-	}
 
 	public Float getTotalPago() {
 		return totalPago;
@@ -167,59 +150,38 @@ public class Boleto{
 		this.totalPago = totalPago;
 	}
 
-	public Float getIva() {
-		return iva;
+	
+
+	
+
+
+	public Boleto(Unidad unidad, Detalle detalle, Asiento asiento, String dia, Date fechaViaje, String horaSalida,
+			Integer numeroAsiento, String metodoPago, Float totalPago) {
+		super();
+		this.unidad = unidad;
+		this.detalle = detalle;
+		this.asiento = asiento;
+		this.dia = dia;
+		this.fechaViaje = fechaViaje;
+		this.horaSalida = horaSalida;
+		this.numeroAsiento = numeroAsiento;
+		this.metodoPago = metodoPago;
+		this.totalPago = totalPago;
 	}
 
-	public void setIva(Float iva) {
-		this.iva = iva;
-	}
-
-	public boolean isStockBoletos() {
-		return stockBoletos;
-	}
-
-	public void setStockBoletos(boolean stockBoletos) {
-		this.stockBoletos = stockBoletos;
-	}
-
-	public Boleto(Integer id, Unidad unidad, Detalle detalle, Personal personal, Pasajero pasajero, String dia,
-			Date fechaViaje, String horaSalida, Integer numeroAsiento, String metodoPago, Float descuento,
-			Float totalPago, Float iva, boolean stockBoletos) {
+	public Boleto(Integer id, Unidad unidad, Detalle detalle, Asiento asiento, String dia, Date fechaViaje,
+			String horaSalida, Integer numeroAsiento, String metodoPago, Float totalPago) {
 		super();
 		this.id = id;
 		this.unidad = unidad;
 		this.detalle = detalle;
-		this.personal = personal;
-		this.pasajero = pasajero;
+		this.asiento = asiento;
 		this.dia = dia;
 		this.fechaViaje = fechaViaje;
 		this.horaSalida = horaSalida;
 		this.numeroAsiento = numeroAsiento;
 		this.metodoPago = metodoPago;
-		this.descuento = descuento;
 		this.totalPago = totalPago;
-		this.iva = iva;
-		this.stockBoletos = stockBoletos;
-	}
-
-	public Boleto(Unidad unidad, Detalle detalle, Personal personal, Pasajero pasajero, String dia, Date fechaViaje,
-			String horaSalida, Integer numeroAsiento, String metodoPago, Float descuento, Float totalPago, Float iva,
-			boolean stockBoletos) {
-		super();
-		this.unidad = unidad;
-		this.detalle = detalle;
-		this.personal = personal;
-		this.pasajero = pasajero;
-		this.dia = dia;
-		this.fechaViaje = fechaViaje;
-		this.horaSalida = horaSalida;
-		this.numeroAsiento = numeroAsiento;
-		this.metodoPago = metodoPago;
-		this.descuento = descuento;
-		this.totalPago = totalPago;
-		this.iva = iva;
-		this.stockBoletos = stockBoletos;
 	}
 
 	public Boleto(Integer id) {

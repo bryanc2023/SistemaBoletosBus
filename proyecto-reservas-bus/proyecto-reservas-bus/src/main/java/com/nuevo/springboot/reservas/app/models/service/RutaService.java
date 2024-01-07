@@ -1,6 +1,9 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +69,46 @@ public class RutaService implements  IRutaService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Ruta> duplicados() {
+		List<Ruta> rutas = findAll(); // Obtener tu lista de rutas desde tu servicio o repositorio
+
+		// Usar un HashSet para eliminar duplicados basados en rutaOrigen
+		Set<String> origenesUnicos = new HashSet<>();
+		List<Ruta> rutasSinDuplicados = new ArrayList<>();
+
+		for (Ruta ruta : rutas) {
+		    if (origenesUnicos.add(ruta.getRutaOrigen())) {
+		        rutasSinDuplicados.add(ruta);
+		    }
+		}
+		return rutasSinDuplicados;
+	}
+
+	@Override
+	public List<Ruta> duplicados2() {
+		List<Ruta> rutas = findAll(); // Obtener tu lista de rutas desde tu servicio o repositorio
+
+		// Usar un HashSet para eliminar duplicados basados en rutaOrigen
+		Set<String> destinosUnicos = new HashSet<>();
+		List<Ruta> rutasSinDuplicados = new ArrayList<>();
+
+		for (Ruta ruta : rutas) {
+		    if (destinosUnicos.add(ruta.getRutaDestino())) {
+		        rutasSinDuplicados.add(ruta);
+		    }
+		}
+		return rutasSinDuplicados;
+	}
+	
+	// Método para obtener rutas por origen y destino con cronograma
+    @Override
+    @Transactional(readOnly = true)
+    public List<Ruta> findByOrigenAndDestino(String rutaOrigen, String rutaDestino) {
+        return rutaDao.findByRutaOrigenAndRutaDestino(rutaOrigen, rutaDestino);
+    }
+
+
 }
 
