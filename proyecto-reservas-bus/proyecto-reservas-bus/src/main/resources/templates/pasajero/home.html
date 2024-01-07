@@ -36,41 +36,45 @@
 </form>
 
 <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Buscar" aria-label="Search" name="nombre"
-					autocomplete="off">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-			</form>
+				<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+    <input class="form-control mr-sm-2" type="date" name="fecha" id="fecha" placeholder="Seleccionar fecha">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+</form>
+				
 
-   <div class="col-lg-3 col-md-6 mb-4" th:each="unidad: ${unidades}">
-    <div class="card-deck">
-        <div class="card h-100" th:each="cronograma : ${unidad.cronogramas}">
+   <div class="row text-center" th:if="${#lists.isEmpty(resultados)}">
+    <p>No se encontraron resultados.</p>
+</div>
+
+<div class="row text-center" th:if="${not #lists.isEmpty(resultados)}">
+    <div class="col-lg-3 col-md-6 mb-4" th:each="resultado: ${resultados}">
+        <div class="card h-100">
             <img class="card-img-top" src="http://placehold.it/500x325" alt="">
             <div class="card-body">
-                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) > 0}">
-                    Origen: <span th:text="${unidad.getRutaOrigen()}"></span>
-                </p>
-                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) == 0}">
-                    Sin ruta asignada.
-                </p>
-                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) > 0}">
-                    Destino: <span th:text="${unidad.getRutaDestino()}"></span>
-                </p>
-                <p class="card-text" th:if="${#lists.size(unidad.cronogramas) == 0}">
-                    Sin ruta asignada.
-                </p>
-                <p class="card-text">Unidad: <span th:text="${unidad.numero}"></span></p>
-                <p class="card-text">Cooperativa: <span th:text="${unidad.getCooperativa().getNombre()}"></span></p>
-                <!-- Detalles del cronograma de la unidad -->
                 <p class="card-text">
-                    <span th:text="'Fecha: ' + ${cronograma.fecha}"></span>
-                    <span th:text="'Hora: ' + ${cronograma.horaSalida}"></span>
+                    Origen: <span th:text="${resultado[4]}"></span>
                 </p>
+                <p class="card-text">
+                    Destino: <span th:text="${resultado[5]}"></span>
+                </p>
+                <p class="card-text">Unidad: <span th:text="${resultado[0]}"></span></p>
+                <p class="card-text">Cooperativa: <span th:text="${resultado[1]}"></span></p>
+                <!-- Detalles del cronograma de la unidad -->
+                
+                
+                        <span th:text="'Fecha: ' +  ${resultado[2]}"></span>
+                        <span th:text="'Hora: ' + ${resultado[3]}"></span>
+                  
+        
             </div>
             <div class="card-footer">
                 <a href="#" class="btn btn-success">Ver detalles</a>
             </div>
         </div>
+    </div>
+</div>
+</div>
+</div>
     </div>
 </div>
 

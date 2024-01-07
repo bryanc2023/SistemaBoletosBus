@@ -1,5 +1,6 @@
 package com.nuevo.springboot.reservas.app.models.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,9 +35,9 @@ public class Cronograma{
 	
 	private String descripcion;
 	
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yy-mm-dd")
-	private Date fecha;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate fecha;
 
 	@DateTimeFormat(pattern="hh:mm:ss")
 	private String horaSalida;
@@ -88,10 +89,7 @@ public class Cronograma{
 
 
 
-	@PrePersist
-	public void prePersist() {
-		fecha=new Date();
-	}
+	
 	
 	
 	
@@ -113,7 +111,7 @@ public class Cronograma{
 	
 
 
-	public Cronograma(Integer id, String descripcion, Date fecha, String horaSalida, String dia, String mes, int anio,
+	public Cronograma(Integer id, String descripcion, LocalDate fecha, String horaSalida, String dia, String mes, int anio,
 			Unidad unidad, Ruta ruta) {
 		super();
 		this.id = id;
@@ -129,7 +127,7 @@ public class Cronograma{
 
 
 
-	public Cronograma(String descripcion, Date fecha, String horaSalida, String dia, String mes, int anio,
+	public Cronograma(String descripcion, LocalDate fecha, String horaSalida, String dia, String mes, int anio,
 			Unidad unidad, Ruta ruta) {
 		super();
 		this.descripcion = descripcion;
@@ -160,11 +158,11 @@ public class Cronograma{
 		this.descripcion = descripcion;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

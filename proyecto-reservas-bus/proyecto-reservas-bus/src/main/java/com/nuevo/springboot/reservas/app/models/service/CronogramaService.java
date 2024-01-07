@@ -1,5 +1,6 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public class CronogramaService implements ICronogramaService{
 	}
 
 	@Override
-	public boolean existsByFechaAndUnidadAndHoraSalida(Date fecha, Unidad unidad, String horaSalida) {
+	public boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad, String horaSalida) {
 		 return cronogramaDao.existsByFechaAndUnidadAndHoraSalida(fecha, unidad, horaSalida);
 	}
 
