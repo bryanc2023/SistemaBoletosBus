@@ -31,6 +31,10 @@ public class Asiento {
 	@OneToOne(mappedBy = "asiento", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
 	private Boleto boleto;
 	
+	@ManyToOne
+	@JoinColumn(name="id_cronograma")
+	private Cronograma cronograma;
+	
 	@Column(name = "fila")
 	private String fila;
 	
@@ -39,6 +43,16 @@ public class Asiento {
 	
 	@Column(name = "estado", nullable = false)
 	private String estado;
+
+	
+	
+	public Cronograma getCronograma() {
+		return cronograma;
+	}
+
+	public void setCronograma(Cronograma cronograma) {
+		this.cronograma = cronograma;
+	}
 
 	public Integer getId() {
 		return id;
@@ -93,20 +107,25 @@ public class Asiento {
 		this.id = id;
 	}
 
-	public Asiento(Integer id, Unidad unidad, Boleto boleto, String fila, String columna, String estado) {
+
+
+	public Asiento(Unidad unidad, Boleto boleto, Cronograma cronograma, String fila, String columna, String estado) {
 		super();
-		this.id = id;
 		this.unidad = unidad;
 		this.boleto = boleto;
+		this.cronograma = cronograma;
 		this.fila = fila;
 		this.columna = columna;
 		this.estado = estado;
 	}
 
-	public Asiento(Unidad unidad, Boleto boleto, String fila, String columna, String estado) {
+	public Asiento(Integer id, Unidad unidad, Boleto boleto, Cronograma cronograma, String fila, String columna,
+			String estado) {
 		super();
+		this.id = id;
 		this.unidad = unidad;
 		this.boleto = boleto;
+		this.cronograma = cronograma;
 		this.fila = fila;
 		this.columna = columna;
 		this.estado = estado;

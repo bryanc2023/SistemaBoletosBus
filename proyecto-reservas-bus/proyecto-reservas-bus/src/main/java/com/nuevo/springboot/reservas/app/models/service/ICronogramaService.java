@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import com.nuevo.springboot.reservas.app.models.entity.Asiento;
 import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 public interface ICronogramaService {
 
-	public void save(Cronograma entity);
+	public void save(Cronograma cronograma,Unidad unidad);
     public Cronograma findOne(Integer id);
     public void delete(Integer id);
     public List<Cronograma> findAll();

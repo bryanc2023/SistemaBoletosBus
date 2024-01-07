@@ -11,7 +11,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 public interface IUnidadService {
 
-	public void save(Unidad entity,Integer cantidad);
+	public void save(Unidad entity);
     public Unidad findOne(Integer id);
     public void delete(Integer id);
     public List<Unidad> findAll();

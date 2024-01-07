@@ -74,6 +74,9 @@ public class CronogramaController {
 			return "redirect:/cronograma/listar";
 		}
 		model.addAttribute("cronograma", cronograma);
+		model.addAttribute("unidades", unidadService.findAll());
+		model.addAttribute("rutas", rutaService.findAll());
+		model.addAttribute("cooperativa", cooperativaService.findAll());
 		model.addAttribute("titulo", "Editar cronograma");
 		return "formCro";
 	}
@@ -100,7 +103,7 @@ public class CronogramaController {
 	        return "redirect:/cronograma/form";
 	    }else {
 	    // Guardar el cronograma con las relaciones establecidas
-	    cronogramaService.save(cronograma);
+	    cronogramaService.save(cronograma,unidadSeleccionada);
 	    status.setComplete();
 
 	   
