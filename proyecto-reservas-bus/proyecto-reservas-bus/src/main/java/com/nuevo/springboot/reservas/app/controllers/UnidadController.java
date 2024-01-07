@@ -57,6 +57,7 @@ public class UnidadController {
 			return "redirect:listar";
 		}
 		model.addAttribute("unidad", unidad);
+		model.addAttribute("cooperativas", cooperativaService.findAll());
 		model.addAttribute("titulo", "Editar cliente");
 		return "formUnidad";
 	}
@@ -85,7 +86,7 @@ public class UnidadController {
 
 	        
 	        // Si no existe una unidad con el mismo número para la misma cooperativa, se guarda
-	        unidadService.save(unidad,unidad.getCantidadAsientos());
+	        unidadService.save(unidad);
 	        status.setComplete();
 	        flash.addFlashAttribute("success", mensajeFlash);
 	        return "redirect:/unidad/listar";

@@ -42,6 +42,31 @@ public class AsientoService implements IAsientoService{
 		return (List<Asiento>) asientoDao.findAll();
 	}
 
+	@Override
+	public List<Asiento> findByCronogramaId(Integer cronogramaId) {
+		return asientoDao.findByCronogramaId(cronogramaId);
+	}
+
+	@Override
+	public List<Asiento> findByCronogramaId1(Integer cronogramaId) {
+		return asientoDao.findByCronogramaId1(cronogramaId);
+	}
+	
+	@Override
+	public List<Asiento> findByCronogramaId2(Integer cronogramaId) {
+		return asientoDao.findByCronogramaId2(cronogramaId);
+	}
+	
+	@Override
+	public List<Asiento> findByCronogramaId3(Integer cronogramaId) {
+		return asientoDao.findByCronogramaId3(cronogramaId);
+	}
+	
+	@Override
+	public List<Asiento> findByCronogramaId4(Integer cronogramaId) {
+		return asientoDao.findByCronogramaId4(cronogramaId);
+	}
+
 	
 
 }
