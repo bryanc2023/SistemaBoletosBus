@@ -42,4 +42,6 @@ public class AsientoService implements IAsientoService{
 		return (List<Asiento>) asientoDao.findAll();
 	}
 
+	
+
 }
