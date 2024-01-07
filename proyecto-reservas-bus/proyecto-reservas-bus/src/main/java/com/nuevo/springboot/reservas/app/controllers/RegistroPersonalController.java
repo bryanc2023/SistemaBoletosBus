@@ -12,12 +12,12 @@ import com.nuevo.springboot.reservas.app.models.service.UsuarioService;
 
 
 @Controller
-@RequestMapping("/registro")
-public class RegistroUsuarioControlador {
+@RequestMapping("/personal/form")
+public class RegistroPersonalController {
 
 	private UsuarioService usuarioServicio;
 
-	public RegistroUsuarioControlador(UsuarioService usuarioServicio) {
+	public RegistroPersonalController(UsuarioService usuarioServicio) {
 		super();
 		this.usuarioServicio = usuarioServicio;
 	}
@@ -29,13 +29,13 @@ public class RegistroUsuarioControlador {
 
 	@GetMapping
 	public String mostrarFormularioDeRegistro() {
-		return "registro";
+		return "administrador/registroPersonal";
 	}
 	
 	@PostMapping
 	public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
-		usuarioServicio.guardar(registroDTO);
-		return "redirect:/registro?exito";
+		usuarioServicio.guardarUsuarioPersonal(registroDTO);
+		return "redirect:/personal/listar";
 	}
 	
 

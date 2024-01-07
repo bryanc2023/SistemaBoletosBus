@@ -18,6 +18,8 @@ public interface IRutaService {
 	List<Ruta> duplicados();
 	List<Ruta> duplicados2();
 	List<Ruta> findByOrigenAndDestino(String rutaOrigen, String rutaDestino);
+	
+	
 
 
 

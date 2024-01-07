@@ -47,9 +47,7 @@ public class Configuracion {
 	private int cantidadVentaB;
 	
 	
-	@ManyToOne
-    @JoinColumn(name = "id_usuario_administrador")
-    private Administrador administrador;
+
 
 
 	public Integer getId() {
@@ -102,36 +100,27 @@ public class Configuracion {
 	}
 
 
-	public Administrador getAdministrador() {
-		return administrador;
+
+
+
+
+
+	public Configuracion(Date fechaConfiguracion, float descuento, float iva, int cantidadVentaB) {
+		super();
+		this.fechaConfiguracion = fechaConfiguracion;
+		this.descuento = descuento;
+		this.iva = iva;
+		this.cantidadVentaB = cantidadVentaB;
 	}
 
 
-	public void setAdministrador(Administrador administrador) {
-		this.administrador = administrador;
-	}
-
-
-	public Configuracion(Integer id, Date fechaConfiguracion, float descuento, float iva, int cantidadVentaB,
-			Administrador administrador) {
+	public Configuracion(Integer id, Date fechaConfiguracion, float descuento, float iva, int cantidadVentaB) {
 		super();
 		this.id = id;
 		this.fechaConfiguracion = fechaConfiguracion;
 		this.descuento = descuento;
 		this.iva = iva;
 		this.cantidadVentaB = cantidadVentaB;
-		this.administrador = administrador;
-	}
-
-
-	public Configuracion(Date fechaConfiguracion, float descuento, float iva, int cantidadVentaB,
-			Administrador administrador) {
-		super();
-		this.fechaConfiguracion = fechaConfiguracion;
-		this.descuento = descuento;
-		this.iva = iva;
-		this.cantidadVentaB = cantidadVentaB;
-		this.administrador = administrador;
 	}
 
 

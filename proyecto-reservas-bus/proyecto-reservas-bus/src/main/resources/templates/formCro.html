@@ -89,7 +89,7 @@
 						<div class="col-sm-8">
 							<select th:field="*{unidad.id}" class="form-control">
 								<option th:each="unidad : ${unidades}" th:value="${unidad.id}"
-									th:text="${unidad.numero} + ' - ' + ${unidad.cooperativa}"></option>
+									th:text="${unidad.numero} + ' - ' + ${unidad.cooperativa.nombre}"></option>
 							</select>
 						</div>
 					</div>

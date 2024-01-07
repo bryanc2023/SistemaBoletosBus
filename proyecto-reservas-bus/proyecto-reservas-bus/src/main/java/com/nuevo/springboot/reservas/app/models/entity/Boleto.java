@@ -45,13 +45,8 @@ public class Boleto{
 	private Asiento asiento;
 		
 	 
-	@ManyToOne
-	@JoinColumn(name="id_usuario_personal")
-	private Personal personal;
-	
-	@ManyToOne
-	@JoinColumn(name="id_usuario_pasajero")
-	private Pasajero pasajero;
+
+
 	
 	private String dia;
 	@Column(name = "fecha_viaje" )
@@ -103,21 +98,7 @@ public class Boleto{
 		this.detalle = detalle;
 	}
 
-	public Personal getPersonal() {
-		return personal;
-	}
 
-	public void setPersonal(Personal personal) {
-		this.personal = personal;
-	}
-
-	public Pasajero getPasajero() {
-		return pasajero;
-	}
-
-	public void setPasajero(Pasajero pasajero) {
-		this.pasajero = pasajero;
-	}
 
 	public String getDia() {
 		return dia;
@@ -173,14 +154,13 @@ public class Boleto{
 
 	
 
-	public Boleto(Integer id, Unidad unidad, Detalle detalle, Personal personal, Pasajero pasajero, String dia,
-			Date fechaViaje, String horaSalida, Integer numeroAsiento, String metodoPago,Float totalPago) {
+
+	public Boleto(Unidad unidad, Detalle detalle, Asiento asiento, String dia, Date fechaViaje, String horaSalida,
+			Integer numeroAsiento, String metodoPago, Float totalPago) {
 		super();
-		this.id = id;
 		this.unidad = unidad;
 		this.detalle = detalle;
-		this.personal = personal;
-		this.pasajero = pasajero;
+		this.asiento = asiento;
 		this.dia = dia;
 		this.fechaViaje = fechaViaje;
 		this.horaSalida = horaSalida;
@@ -189,13 +169,13 @@ public class Boleto{
 		this.totalPago = totalPago;
 	}
 
-	public Boleto(Unidad unidad, Detalle detalle, Personal personal, Pasajero pasajero, String dia, Date fechaViaje,
-			String horaSalida, Integer numeroAsiento, String metodoPago,  Float totalPago) {
+	public Boleto(Integer id, Unidad unidad, Detalle detalle, Asiento asiento, String dia, Date fechaViaje,
+			String horaSalida, Integer numeroAsiento, String metodoPago, Float totalPago) {
 		super();
+		this.id = id;
 		this.unidad = unidad;
 		this.detalle = detalle;
-		this.personal = personal;
-		this.pasajero = pasajero;
+		this.asiento = asiento;
 		this.dia = dia;
 		this.fechaViaje = fechaViaje;
 		this.horaSalida = horaSalida;

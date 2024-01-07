@@ -52,8 +52,6 @@ public class BoletoApiController {
 		boletoActual.setId(boleto.getId());
 		boletoActual.setMetodoPago(boleto.getMetodoPago());
 		boletoActual.setNumeroAsiento(boleto.getNumeroAsiento());
-		boletoActual.setPasajero(boleto.getPasajero());
-		boletoActual.setPersonal(boleto.getPersonal());
 		boletoActual.setTotalPago(boleto.getTotalPago());
 		boletoActual.setUnidad(boleto.getUnidad());
 		

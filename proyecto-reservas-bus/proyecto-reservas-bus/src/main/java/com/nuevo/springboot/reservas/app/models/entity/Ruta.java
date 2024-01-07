@@ -21,7 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.TemporalType;
 
-@Table
+@Table (uniqueConstraints = @UniqueConstraint(columnNames = {"ruta_origen", "ruta_destino"}))
 @Entity
 public class Ruta{
 	
@@ -31,12 +31,9 @@ public class Ruta{
 	@Column (name="id_ruta")
 	private Integer id;
 	
-	@ManyToOne
-    @JoinColumn(name = "id_usuario_administrador")
-    private Administrador administrador;
 	
-	@OneToMany
-	@JoinColumn(name = "id_ruta")
+	
+	@OneToMany(mappedBy = "ruta",cascade = CascadeType.REMOVE)
 	public List<Cronograma> cronogramas;
 	
 	@Column (name="ruta_origen")
@@ -47,13 +44,13 @@ public class Ruta{
 	private float costoRuta;
 	
 	
-	public Ruta(Integer id, String rutaOrigen, String rutaDestino, float costoRuta,Administrador administrador) {
+	public Ruta(Integer id, String rutaOrigen, String rutaDestino, float costoRuta) {
 		super();
 		this.id = id;
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
-		this.administrador=administrador;
+		
 	}
 	public Ruta() {
 		super();
@@ -62,12 +59,12 @@ public class Ruta{
 		super();
 		this.id = id;
 	}
-	public Ruta(String rutaOrigen, String rutaDestino, float costoRuta, Administrador administrador) {
+	public Ruta(String rutaOrigen, String rutaDestino, float costoRuta) {
 		super();
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
-		this.administrador=administrador;
+	
 	}
 	public Integer getId() {
 		return id;
@@ -93,12 +90,7 @@ public class Ruta{
 	public void setCostoRuta(float costoRuta) {
 		this.costoRuta = costoRuta;
 	}
-	public Administrador getAdministrador() {
-		return administrador;
-	}
-	public void setAdministrador(Administrador administrador) {
-		this.administrador = administrador;
-	}
+	
 	
 	
 	

@@ -54,12 +54,12 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
 		</dependency>
-        <!-- Otras dependencias -->
-        <dependency>
-        	<groupId>com.registro.usuarios</groupId>
-        	<artifactId>com.registro.usuarios</artifactId>
-        	<version>1.0</version>
-        </dependency>
+
+        	<dependency>
+        		<groupId>com.aniket</groupId>
+        		<artifactId>portal</artifactId>
+        		<version>0.0.1-SNAPSHOT</version>
+        	</dependency>
     </dependencies>
 
     <build>

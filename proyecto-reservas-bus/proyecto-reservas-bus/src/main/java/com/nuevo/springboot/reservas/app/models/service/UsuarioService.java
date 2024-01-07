@@ -70,15 +70,78 @@ public class UsuarioService implements IUsuarioService{
 		return usuarioRepositorio.findAll();
 	}
 
+	@Override
+	public Usuario guardarUsuarioPersonal(UsuarioRegistroDTO registroDTO) {
+        Usuario usuario = new Usuario(registroDTO.getNombre(), registroDTO.getApellido(), registroDTO.getEmail(),
+                passwordEncoder.encode(registroDTO.getPassword()), Arrays.asList(new Rol("ROLE_PERSONAL")));
+        return usuarioRepositorio.save(usuario);
+    }
 
 
 
+	@Override
+	public void save(Usuario usuario) {
+		usuarioRepositorio.save(usuario);
+	}
 
 
 
+	@Override
+	public Usuario findOne(Long id) {
+		return usuarioRepositorio.findById(id).orElse(null);
+	}
 
 
 
+	@Override
+	public void delete(Long id) {
+		usuarioRepositorio.deleteById(id);
+		
+	}
 
+
+
+	@Override
+	public List<Usuario> findAll() {
+		return (List<Usuario>) usuarioRepositorio.findAll();
+	}
+
+
+
+	@Override
+	public Usuario save1(Usuario usuario) {
+		return usuarioRepositorio.save(usuario);
+	}
+
+
+
+	@Override
+	public Usuario findById(Long id) {
+		return usuarioRepositorio.findById(id).orElse(null);
+	}
+
+
+
+	@Override
+	public Usuario get(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void delete1(Long id) {
+		// TODO Auto-generated method stub
+		usuarioRepositorio.deleteById(id);
+	}
+
+
+
+	@Override
+	public List<Usuario> findByRole(String rol) {
+		return usuarioRepositorio.findByRolesNombre(rol);
+
+	}
 
 }

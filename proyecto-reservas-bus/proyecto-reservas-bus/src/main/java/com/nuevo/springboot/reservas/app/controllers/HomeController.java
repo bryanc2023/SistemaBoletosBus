@@ -6,6 +6,7 @@ package com.nuevo.springboot.reservas.app.controllers;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,17 +19,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+
+import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 import com.nuevo.springboot.reservas.app.models.service.ICronogramaService;
 import com.nuevo.springboot.reservas.app.models.service.IRutaService;
 import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
-import com.registro.usuarios.modelo.Ruta;
+
 
 @Controller
 public class HomeController {
 	
-	/**Metodo para buscar dado el origen y destino
-	 * 
-	 */
+
 	@Autowired
 	private  IRutaService rutaService;
 	
@@ -63,5 +64,11 @@ public class HomeController {
         }
     }
 	
+	@PostMapping("/search")
+	public String searchProduct(@RequestParam String nombre, Model model) {
+		//List<Unidad> unidad= unidadService.findAll().stream().filter( p -> p.getCooperativa().contains(nombre)).collect(Collectors.toList());
+		//model.addAttribute("unidades", unidad);		
+		return "home";
+	}
 
 	 }

@@ -54,13 +54,13 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/caste/.m2/repository/org/springframework/boot/spring-boot-test/2.6.4/spring-boot-test-2.6.4.jar" sourcepath="C:/Users/caste/.m2/repository/org/springframework/boot/spring-boot-test/2.6.4/spring-boot-test-2.6.4-sources.jar">
+	<classpathentry kind="lib" path="C:/Users/caste/.m2/repository/org/springframework/boot/spring-boot-test/2.7.3/spring-boot-test-2.7.3.jar" sourcepath="C:/Users/caste/.m2/repository/org/springframework/boot/spring-boot-test/2.7.3/spring-boot-test-2.7.3-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="test" value="true"/>
 			<attribute name="maven.groupId" value="org.springframework.boot"/>
 			<attribute name="maven.artifactId" value="spring-boot-test"/>
-			<attribute name="maven.version" value="2.6.4"/>
+			<attribute name="maven.version" value="2.7.3"/>
 			<attribute name="maven.scope" value="test"/>
 		</attributes>
 	</classpathentry>

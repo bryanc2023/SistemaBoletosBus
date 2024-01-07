@@ -45,7 +45,7 @@ public class RutaApiController {
 	public Ruta update(@RequestBody Ruta ruta, @PathVariable Integer id) {
 		Ruta rutaActual = rutaService.findById(id);
 		
-		rutaActual.setAdministrador(ruta.getAdministrador());
+		
 		rutaActual.setCostoRuta(ruta.getCostoRuta());
 		rutaActual.setId(ruta.getId());
 		rutaActual.setRutaDestino(ruta.getRutaDestino());

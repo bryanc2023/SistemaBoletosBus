@@ -108,5 +108,7 @@ public class RutaService implements  IRutaService{
     public List<Ruta> findByOrigenAndDestino(String rutaOrigen, String rutaDestino) {
         return rutaDao.findByRutaOrigenAndRutaDestino(rutaOrigen, rutaDestino);
     }
+
+
 }
 

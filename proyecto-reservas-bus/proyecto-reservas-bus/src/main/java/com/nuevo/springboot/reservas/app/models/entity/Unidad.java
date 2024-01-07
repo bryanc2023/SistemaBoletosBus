@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-@Table
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"numero", "id_cooperativa"}))
 @Entity
 public class Unidad {
 
@@ -30,15 +30,22 @@ public class Unidad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany(mappedBy = "unidad")
+	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
 	private List<Boleto> boletos;
 	
-	@OneToMany(mappedBy = "unidad")
+	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
 	public List<Cronograma> cronogramas;
+	
+	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
+	public List<Asiento> asientos;
+	
+	@ManyToOne
+	@JoinColumn(name="id_cooperativa")
+	private Cooperativa cooperativa;
 
 	@Column
 	private Integer numero;
-	private String cooperativa;
+
 	@Column(name = "estado_actividad")
 	private String estadoActividad;
 	@Column(name = "cantidad_asientos")
@@ -48,6 +55,38 @@ public class Unidad {
 
 
 	
+	public List<Asiento> getAsientos() {
+		return asientos;
+	}
+
+	public void setAsientos(List<Asiento> asientos) {
+		this.asientos = asientos;
+	}
+
+	public List<Cronograma> getCronogramas() {
+		return cronogramas;
+	}
+
+	public void setCronogramas(List<Cronograma> cronogramas) {
+		this.cronogramas = cronogramas;
+	}
+
+	public Cooperativa getCooperativa() {
+		return cooperativa;
+	}
+
+	public void setCooperativa(Cooperativa cooperativa) {
+		this.cooperativa = cooperativa;
+	}
+
+	public boolean isStockBoletos() {
+		return stockBoletos;
+	}
+
+	public void setStockBoletos(boolean stockBoletos) {
+		this.stockBoletos = stockBoletos;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -64,13 +103,7 @@ public class Unidad {
 		this.numero = numero;
 	}
 
-	public String getCooperativa() {
-		return cooperativa;
-	}
-
-	public void setCooperativa(String cooperativa) {
-		this.cooperativa = cooperativa;
-	}
+	
 
 	public String getEstadoActividad() {
 		return estadoActividad;
@@ -96,31 +129,41 @@ public class Unidad {
 		this.boletos = boletos;
 	}
 
-	public Unidad(Integer id, List<Boleto> boletos, Integer numero, String cooperativa, String estadoActividad,
-			Integer cantidadAsientos) {
-		super();
-		this.id = id;
-		this.boletos = boletos;
-		this.numero = numero;
-		this.cooperativa = cooperativa;
-		this.estadoActividad = estadoActividad;
-		this.cantidadAsientos = cantidadAsientos;
-	}
+	
 
 	public Unidad(Integer id) {
 		super();
 		this.id = id;
 	}
 
-	public Unidad(List<Boleto> boletos, Integer numero, String cooperativa, String estadoActividad,
-			Integer cantidadAsientos) {
-		super();
+	
 
+	public Unidad(List<Boleto> boletos, List<Cronograma> cronogramas, List<Asiento> asientos, Cooperativa cooperativa,
+			Integer numero, String estadoActividad, Integer cantidadAsientos, boolean stockBoletos) {
+		super();
 		this.boletos = boletos;
-		this.numero = numero;
+		this.cronogramas = cronogramas;
+		this.asientos = asientos;
 		this.cooperativa = cooperativa;
+		this.numero = numero;
 		this.estadoActividad = estadoActividad;
 		this.cantidadAsientos = cantidadAsientos;
+		this.stockBoletos = stockBoletos;
+	}
+
+	public Unidad(Integer id, List<Boleto> boletos, List<Cronograma> cronogramas, List<Asiento> asientos,
+			Cooperativa cooperativa, Integer numero, String estadoActividad, Integer cantidadAsientos,
+			boolean stockBoletos) {
+		super();
+		this.id = id;
+		this.boletos = boletos;
+		this.cronogramas = cronogramas;
+		this.asientos = asientos;
+		this.cooperativa = cooperativa;
+		this.numero = numero;
+		this.estadoActividad = estadoActividad;
+		this.cantidadAsientos = cantidadAsientos;
+		this.stockBoletos = stockBoletos;
 	}
 
 	public Unidad() {

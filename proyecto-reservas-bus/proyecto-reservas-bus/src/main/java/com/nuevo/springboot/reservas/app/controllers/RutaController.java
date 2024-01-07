@@ -2,13 +2,18 @@ package com.nuevo.springboot.reservas.app.controllers;
 
 import java.io.IOException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -67,14 +72,21 @@ import com.nuevo.springboot.reservas.app.models.service.UploadFileService;
 		}
 		
 		@PostMapping("/ruta/form")
-		public String guardar(Ruta ruta) {
-			rutaService.save(ruta);
-		    return "redirect:listar";
+		public String guardar(Ruta ruta, Model model) {
+			 try {
+		            rutaService.save(ruta);
+		            return "redirect:/ruta/listar";
+		        } catch (DataIntegrityViolationException ex) {
+		            String errorMessage = "Error: Ruta duplicada. Esta ruta ya existe.";
+		            model.addAttribute("mensaje", errorMessage);
+		            return "formRuta"; // Redirige de vuelta al formulario con el mensaje de error.
+		        }
+			
 		}
 		
-		/**Metodo para buscar dado el origen y destino
-		 * 
-		 */
+	
+		
+		
 		
 
 	}

@@ -17,4 +17,6 @@ public interface IRutaDao extends JpaRepository<Ruta, Integer>{
             "AND r.rutaDestino = :rutaDestino " 
             )
     List<Ruta> findByRutaOrigenAndRutaDestino(@Param("rutaOrigen") String rutaOrigen, @Param("rutaDestino") String rutaDestino);
+	
+
 }
