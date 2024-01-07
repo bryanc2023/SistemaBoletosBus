@@ -36,7 +36,7 @@ public class Unidad {
 	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
 	public List<Cronograma> cronogramas;
 	
-	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "unidad", cascade =CascadeType.ALL)
 	public List<Asiento> asientos;
 	
 	@ManyToOne
@@ -190,4 +190,7 @@ public class Unidad {
 	    }
 	    return null;
 	}
+	
+	
+	
 }

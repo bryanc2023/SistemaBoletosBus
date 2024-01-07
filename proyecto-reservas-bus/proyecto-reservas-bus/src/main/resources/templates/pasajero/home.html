@@ -17,9 +17,10 @@
 	    <h1 class="display-2">Bienvenido a Reservas de boletoss</h1>
 	    <p class="lead">Puedes reservar en línea</p>
 	</header>
-	    <h4>
+	 <h4>
 			Bienvenido <span sec:authentication="principal.username"></span>
 		</h4>
+		<li class="nav-item"><a href="/logout">Cerrar sesión</a></li>
 		
 		
       <!-- Page Features -->
@@ -59,7 +60,7 @@
                     Sin ruta asignada.
                 </p>
                 <p class="card-text">Unidad: <span th:text="${unidad.numero}"></span></p>
-                <p class="card-text">Cooperativa: <span th:text="${unidad.cooperativa}"></span></p>
+                <p class="card-text">Cooperativa: <span th:text="${unidad.getCooperativa().getNombre()}"></span></p>
                 <!-- Detalles del cronograma de la unidad -->
                 <p class="card-text">
                     <span th:text="'Fecha: ' + ${cronograma.fecha}"></span>
