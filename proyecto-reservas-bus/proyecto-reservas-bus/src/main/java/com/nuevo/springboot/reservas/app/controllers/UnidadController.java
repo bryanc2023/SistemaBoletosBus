@@ -83,8 +83,9 @@ public class UnidadController {
 	            return "formUnidad"; // Redirige de vuelta al formulario con el mensaje de error.
 	        }
 
+	        
 	        // Si no existe una unidad con el mismo número para la misma cooperativa, se guarda
-	        unidadService.save(unidad);
+	        unidadService.save(unidad,unidad.getCantidadAsientos());
 	        status.setComplete();
 	        flash.addFlashAttribute("success", mensajeFlash);
 	        return "redirect:/unidad/listar";

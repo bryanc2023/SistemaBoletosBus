@@ -24,6 +24,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 import com.nuevo.springboot.reservas.app.models.service.ICronogramaService;
 import com.nuevo.springboot.reservas.app.models.service.IRutaService;
 import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
+import com.nuevo.springboot.reservas.app.models.service.IUsuarioService;
 
 
 @Controller
@@ -39,6 +40,9 @@ public class HomeController {
 	@Autowired
 	private  ICronogramaService cronogramaService;
 	
+	@Autowired
+	private  IUsuarioService usuarioService;
+	
 	@GetMapping("/")
 	public String mostrarHome(Authentication authentication,Model model) {
 		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -52,7 +56,7 @@ public class HomeController {
 		        // Lógica para mostrar contenido específico para el rol de usuario
 		        model.addAttribute("mensaje", "Bienvenido USER");
 		        // Agrega más atributos al modelo si es necesario para el rol de usuario
-		        model.addAttribute("cronogramas", cronogramaService.findAll());
+		        
 		        model.addAttribute("unidades", unidadService.findAll());
 		        return "pasajero/home"; // Vista para el rol de usuario
 		    } else {
