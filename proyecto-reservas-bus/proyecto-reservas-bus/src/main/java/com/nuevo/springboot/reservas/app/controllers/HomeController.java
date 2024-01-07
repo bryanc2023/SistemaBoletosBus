@@ -4,7 +4,9 @@ package com.nuevo.springboot.reservas.app.controllers;
 
 
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,8 +58,8 @@ public class HomeController {
 		        // Lógica para mostrar contenido específico para el rol de usuario
 		        model.addAttribute("mensaje", "Bienvenido USER");
 		        // Agrega más atributos al modelo si es necesario para el rol de usuario
-		        
-		        model.addAttribute("unidades", unidadService.findAll());
+		        List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
+		        model.addAttribute("resultados", resultados);
 		        return "pasajero/home"; // Vista para el rol de usuario
 		    } else {
 		        // Manejar otras opciones si es necesario
@@ -72,10 +74,11 @@ public class HomeController {
 	
 	
 	@PostMapping("/search")
-	public String searchProduct(@RequestParam String nombre, Model model) {
-		//List<Unidad> unidad= unidadService.findAll().stream().filter( p -> p.getCooperativa().contains(nombre)).collect(Collectors.toList());
-		//model.addAttribute("unidades", unidad);		
-		return "pasajero/home";
+	public String searchProduct(@RequestParam("fecha") String fecha, Model model) {
+		
+        List<Object[]> unidades = unidadService.findByCronogramaFecha(fecha);
+        model.addAttribute("resultados", unidades);
+        return "pasajero/home";
 	}
 
 	 }

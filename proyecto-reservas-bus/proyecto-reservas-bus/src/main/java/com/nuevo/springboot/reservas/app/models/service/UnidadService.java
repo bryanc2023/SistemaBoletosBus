@@ -1,6 +1,8 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +94,18 @@ public class UnidadService implements  IUnidadService{
 	        Unidad unidadExistente = unidadDao.findByNumeroAndCooperativa(numero, cooperativa);
 	        return unidadExistente != null;
 	    }
+
+	@Override
+	public List<Object[]> findByCronogramaFecha(String fecha) {
+		return unidadDao.obtenerUnidadesConCronogramaYRutaPorFecha(fecha);
+	}
+
+	@Override
+	public List<Object[]>obtenerUnidadesConCronogramaYRuta() {
+		return unidadDao.obtenerUnidadesConCronogramaYRuta();
+	}
+
+	
 	
 	
 }

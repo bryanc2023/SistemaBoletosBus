@@ -1,5 +1,6 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface ICronogramaService {
 	public void delete1(Integer id);
 	
     //Validacion de fecha unidad y hora
-	 boolean existsByFechaAndUnidadAndHoraSalida(Date fecha, Unidad unidad, String horaSalida);
+	 boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad, String horaSalida);
 }
