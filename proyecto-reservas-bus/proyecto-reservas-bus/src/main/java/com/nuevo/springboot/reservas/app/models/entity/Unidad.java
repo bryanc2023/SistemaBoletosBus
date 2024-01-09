@@ -30,8 +30,7 @@ public class Unidad {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
-	private List<Boleto> boletos;
+	
 	
 	@OneToMany(mappedBy = "unidad", cascade = CascadeType.REMOVE)
 	public List<Cronograma> cronogramas;
@@ -121,13 +120,7 @@ public class Unidad {
 		this.cantidadAsientos = cantidadAsientos;
 	}
 
-	public List<Boleto> getBoletos() {
-		return boletos;
-	}
 
-	public void setBoletos(List<Boleto> boletos) {
-		this.boletos = boletos;
-	}
 
 	
 
@@ -138,10 +131,10 @@ public class Unidad {
 
 	
 
-	public Unidad(List<Boleto> boletos, List<Cronograma> cronogramas, List<Asiento> asientos, Cooperativa cooperativa,
+	public Unidad(List<Cronograma> cronogramas, List<Asiento> asientos, Cooperativa cooperativa,
 			Integer numero, String estadoActividad, Integer cantidadAsientos, boolean stockBoletos) {
 		super();
-		this.boletos = boletos;
+		
 		this.cronogramas = cronogramas;
 		this.asientos = asientos;
 		this.cooperativa = cooperativa;
@@ -151,12 +144,11 @@ public class Unidad {
 		this.stockBoletos = stockBoletos;
 	}
 
-	public Unidad(Integer id, List<Boleto> boletos, List<Cronograma> cronogramas, List<Asiento> asientos,
+	public Unidad(Integer id, List<Cronograma> cronogramas, List<Asiento> asientos,
 			Cooperativa cooperativa, Integer numero, String estadoActividad, Integer cantidadAsientos,
 			boolean stockBoletos) {
 		super();
 		this.id = id;
-		this.boletos = boletos;
 		this.cronogramas = cronogramas;
 		this.asientos = asientos;
 		this.cooperativa = cooperativa;

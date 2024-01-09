@@ -67,6 +67,33 @@ public class AsientoService implements IAsientoService{
 		return asientoDao.findByCronogramaId4(cronogramaId);
 	}
 
+	@Override
+	public Object[] obtenerCronogramaPorId(Integer idCronograma) {
+		return asientoDao.obtenerCronogramaPorId(idCronograma);
+	}
+
+	@Override
+	public List<Asiento> findByIds(List<Integer> idsAsientos) {
+		// TODO Auto-generated method stub
+		return asientoDao.findByIds(idsAsientos);
+	}
+
+	@Override
+	public List<Asiento> countByEstado(Integer cronogramaId) {
+		// TODO Auto-generated method stub
+		return asientoDao.countByEstado(cronogramaId);
+	}
+
+	@Override
+	@Transactional
+	public void updateEstadoToDisponible(Integer cronogramaId) {
+		asientoDao.updateEstadoToDisponible(cronogramaId);
+		
+	}
+
+
+	
+
 	
 
 }

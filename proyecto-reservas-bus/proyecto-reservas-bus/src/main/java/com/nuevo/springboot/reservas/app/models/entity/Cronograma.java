@@ -79,124 +79,20 @@ public class Cronograma{
 	@OneToMany(mappedBy = "cronograma",cascade = CascadeType.ALL)
 	public List<Asiento> asientos;
 	
+	@OneToMany(mappedBy = "cronograma",cascade = CascadeType.ALL)
+	public List<Boleto> boletos;
 	
 	
-	public void forEach(Consumer<? super Asiento> action) {
-		asientos.forEach(action);
+	
+	
+	public List<Boleto> getBoletos() {
+		return boletos;
 	}
 
 
 
-	public int size() {
-		return asientos.size();
-	}
-
-
-
-	public boolean isEmpty() {
-		return asientos.isEmpty();
-	}
-
-
-
-	public boolean contains(Object o) {
-		return asientos.contains(o);
-	}
-
-
-
-	public Iterator<Asiento> iterator() {
-		return asientos.iterator();
-	}
-
-
-
-	public Object[] toArray() {
-		return asientos.toArray();
-	}
-
-
-
-	public <T> T[] toArray(T[] a) {
-		return asientos.toArray(a);
-	}
-
-
-
-	public boolean add(Asiento e) {
-		return asientos.add(e);
-	}
-
-
-
-	public boolean remove(Object o) {
-		return asientos.remove(o);
-	}
-
-
-
-	public boolean containsAll(Collection<?> c) {
-		return asientos.containsAll(c);
-	}
-
-
-
-	public boolean addAll(Collection<? extends Asiento> c) {
-		return asientos.addAll(c);
-	}
-
-
-
-	public boolean addAll(int index, Collection<? extends Asiento> c) {
-		return asientos.addAll(index, c);
-	}
-
-
-
-	public boolean removeAll(Collection<?> c) {
-		return asientos.removeAll(c);
-	}
-
-
-
-	public boolean retainAll(Collection<?> c) {
-		return asientos.retainAll(c);
-	}
-
-
-
-	public void replaceAll(UnaryOperator<Asiento> operator) {
-		asientos.replaceAll(operator);
-	}
-
-
-
-	public <T> T[] toArray(IntFunction<T[]> generator) {
-		return asientos.toArray(generator);
-	}
-
-
-
-	public void sort(Comparator<? super Asiento> c) {
-		asientos.sort(c);
-	}
-
-
-
-	public void clear() {
-		asientos.clear();
-	}
-
-
-
-	public boolean equals(Object o) {
-		return asientos.equals(o);
-	}
-
-
-
-	public int hashCode() {
-		return asientos.hashCode();
+	public void setBoletos(List<Boleto> boletos) {
+		this.boletos = boletos;
 	}
 
 
@@ -325,8 +221,11 @@ public class Cronograma{
 		this.id = id;
 	}
 
+	
+
+
 	public Cronograma(String descripcion, LocalDate fecha, String horaSalida, String dia, String mes, int anio,
-			Unidad unidad, Ruta ruta, List<Asiento> asientos) {
+			Unidad unidad, Ruta ruta, List<Asiento> asientos, List<Boleto> boletos) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
@@ -337,12 +236,13 @@ public class Cronograma{
 		this.unidad = unidad;
 		this.ruta = ruta;
 		this.asientos = asientos;
+		this.boletos = boletos;
 	}
 
 
 
 	public Cronograma(Integer id, String descripcion, LocalDate fecha, String horaSalida, String dia, String mes,
-			int anio, Unidad unidad, Ruta ruta, List<Asiento> asientos) {
+			int anio, Unidad unidad, Ruta ruta, List<Asiento> asientos, List<Boleto> boletos) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -354,6 +254,7 @@ public class Cronograma{
 		this.unidad = unidad;
 		this.ruta = ruta;
 		this.asientos = asientos;
+		this.boletos = boletos;
 	}
 
 
