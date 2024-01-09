@@ -38,7 +38,7 @@ public class Boleto{
 	@JoinColumn(name="id_detalle")
 	private Detalle detalle;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_asiento")
 	private Asiento asiento;
 	
@@ -47,6 +47,9 @@ public class Boleto{
 	private Cronograma cronograma;
 		
 	 
+	@ManyToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
 
 
 	
@@ -85,6 +88,14 @@ public class Boleto{
 
 
 
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public String getMetodoPago() {
 		return metodoPago;
@@ -127,22 +138,27 @@ public class Boleto{
 		this.cronograma = cronograma;
 	}
 
-	public Boleto(Detalle detalle, Asiento asiento, Cronograma cronograma, String metodoPago, Float totalPago) {
+	
+
+	public Boleto(Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario, String metodoPago,
+			Float totalPago) {
 		super();
 		this.detalle = detalle;
 		this.asiento = asiento;
 		this.cronograma = cronograma;
+		this.usuario = usuario;
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
 	}
 
-	public Boleto(Integer id, Detalle detalle, Asiento asiento, Cronograma cronograma, String metodoPago,
-			Float totalPago) {
+	public Boleto(Integer id, Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario,
+			String metodoPago, Float totalPago) {
 		super();
 		this.id = id;
 		this.detalle = detalle;
 		this.asiento = asiento;
 		this.cronograma = cronograma;
+		this.usuario = usuario;
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
 	}

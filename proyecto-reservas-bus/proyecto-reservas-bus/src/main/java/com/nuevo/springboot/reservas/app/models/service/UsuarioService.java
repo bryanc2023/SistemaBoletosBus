@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -65,6 +67,19 @@ public class UsuarioService implements IUsuarioService{
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getNombre())).collect(Collectors.toList());
 	}
 	
+	 public Long obtenerIdUsuarioPorEmail(String email) {
+	        Usuario usuario = usuarioRepositorio.findByEmail(email);
+	        return usuario != null ? usuario.getId() : null;
+	    }
+
+    public Long obtenerIdUsuarioLogueado() {
+        Authentication authentication = (Authentication) SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String email = authentication.getUsername();
+            return obtenerIdUsuarioPorEmail(email);
+        }
+        return null;
+    }
 	@Override
 	public List<Usuario> listarUsuarios() {
 		return usuarioRepositorio.findAll();
