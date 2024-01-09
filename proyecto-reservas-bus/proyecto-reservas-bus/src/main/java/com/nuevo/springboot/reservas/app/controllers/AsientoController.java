@@ -120,9 +120,14 @@ public class AsientoController {
     public String actualizarEstadoAsiento(@PathVariable("asientoId") Integer asientoId, RedirectAttributes flash, Model model) {
         Asiento asiento = asientoService.findOne(asientoId);
      // Verificar la cantidad de asientos reservados después de actualizar el estado
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String email = ((UserDetails) principal).getUsername();
+        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+        List<Boleto> boletosReservados =boletoService.findByIdUsuario(idUsuario);
         List<Asiento> asientosReservados = asientoService.countByEstado(asiento.getCronograma().getId());
         int cantidadDeAsientosReservados = asientosReservados.size();
-        if(asiento.getEstado().equals("Reservado")|| cantidadDeAsientosReservados < 4){
+        int cantidadDeBoletosReservados = boletosReservados.size();
+        if(asiento.getEstado().equals("Reservado")|| cantidadDeAsientosReservados+cantidadDeBoletosReservados< 4){
         	 model.addAttribute("titulo", cantidadDeAsientosReservados);
              String estadoActual = asiento.getEstado();
              String nuevoEstado = estadoActual.equals("Disponible") ? "Reservado" : "Disponible";
