@@ -4,142 +4,248 @@
 <head>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<style>
+        .disponible {
+            width: 20px;
+            height: 20px;
+            background-color: gray;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .ocupado {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
-	<h1>Asientos disponibles</h1>
+	<header th:fragment="header">
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary"
+			data-bs-theme="dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="${'/'}">Buses</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					
+				</div>
+			</div>
+		</nav>
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text=${success}></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text=${error}></div>
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text=${warning}></div>
+		<div class="alert alert-info" th:if="${info != null}" th:text=${info}></div>
+		
+		
+	</header>
+
 	
-	<div class="container py-4">
-		<div class="row">
-			<div class="col-md-3">
-				<div class="card bg-light">
-					<div class="card-body">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>asiento</th>
-									<th>Seleccionar</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="asiento: ${asientos}">
-									<td th:text="${asiento.fila + asiento.columna}"
-										th:style="'background-color: ' + (${asiento.estado != null && asiento.estado == 'Disponible' ? 'gray' : 'red'})">
-									</td>
-									<td>
-										<button class="btn btn-secondary btn-xs"
-											onclick="seleccionarAsiento(this)"
-											th:disabled="${asiento.estado == 'Ocupado'}"
-        disabled="${asiento.estado == 'Ocupado'}">Seleccionar</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card bg-light">
-					<div class="card-body">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>asiento</th>
-									<th>Seleccionar</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="asiento2: ${asientos2}">
-									<td th:text="${asiento2.fila + asiento2.columna}"
-										th:style="'background-color: ' + (${asiento2.estado != null && asiento2.estado == 'Disponible' ? 'gray' : 'red'})">
-									</td>
-									<td>
-										<button class="btn btn-secondary btn-xs"
-											onclick="seleccionarAsiento(this)"
-											th:disabled="${asiento2.estado == 'Ocupado'}"
-        disabled="${asiento2.estado == 'Ocupado'}">Seleccionar</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card bg-light">
-					<div class="card-body">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>asiento</th>
-									<th>Seleccionar</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="asiento3: ${asientos3}">
-									<td th:text="${asiento3.fila + asiento3.columna}"
-										th:style="'background-color: ' + (${asiento3.estado != null && asiento3.estado == 'Disponible' ? 'gray' : 'red'})">
-									</td>
-									<td>
-										<button class="btn btn-secondary btn-xs"
-											onclick="seleccionarAsiento(this)"
-											th:disabled="${asiento3.estado == 'Ocupado'}"
-        disabled="${asiento3.estado == 'Ocupado'}">Seleccionar</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card bg-light">
-					<div class="card-body">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>asiento</th>
-									<th>Seleccionar</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="asiento4: ${asientos4}">
-									<td th:text="${asiento4.fila + asiento4.columna}"
-										th:style="'background-color: ' + (${asiento4.estado != null && asiento4.estado == 'Disponible' ? 'gray' : 'red'})">
-									</td>
-									<td>
-										<button class="btn btn-secondary btn-xs"
-											onclick="seleccionarAsiento(this)"
-											th:disabled="${asiento4.estado == 'Ocupado'}"
-        disabled="${asiento4.estado == 'Ocupado'}">Seleccionar</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+	
+		
+
+	<h1>Asientos de la unidad:</h1>
+
+
+	<div class="card h-100" th:each="dato: ${datos}">
+		<div class="card-body">
+			<p class="card-text">
+				Unidad: <span th:text="${dato[0]}"></span>
+			</p>
+			<p class="card-text">
+				Cooperativa: <span th:text="${dato[1]}"></span>
+			</p>
+			<p class="card-text">
+				Fecha: <span th:text="${dato[2]}"></span>
+			</p>
+			<p class="card-text">
+				Hora: <span th:text="${dato[3]}"></span>
+			</p>
+			<p class="card-text">
+				Origen: <span th:text="${dato[4]}"></span>
+			</p>
+			<p class="card-text">
+				Destino: <span th:text="${dato[5]}"></span>
+			</p>
 		</div>
-	</div>
 
-	<footer th:replace="layout/layout :: footer"></footer>
 
-	<script>
-		var asientosSeleccionados = 0;
+<div class="card-header" th:text="${titulo}"></div>
 
-		function seleccionarAsiento(boton) {
-			if (boton.style.backgroundColor === "green") {
-				boton.style.backgroundColor = "";
-				asientosSeleccionados--;
-			} else if (asientosSeleccionados < 4) {
-				boton.style.backgroundColor = "green";
-				asientosSeleccionados++;
-			} else {
-				alert("Por política, solo se pueden seleccionar 4 asientos máximo por unidad.");
-			}
-		}
+		<center><h1>Disponibles: <div class="disponible"></div> Ocupados: <div class="ocupado"></div></h1></center>
+	
+            <div class="row">
+                <div class="col">
+                    <h1>Seleccione asientos</h1>
+                </div>
+            </div>
+        </div>
+      
+        <div class="container py-4">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Numero-Asiento</th>
+										<th>Seleccionar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="asiento: ${asientos}">
+										<td th:text="${asiento.fila + asiento.columna}"
+											th:style="'background-color: ' + (${asiento.estado != null && asiento.estado == 'Ocupado' ? 'red' : 'gray'})">
+										</td>
+										<td>
+											<form th:action="@{'/asiento/' + ${asiento.id} + '/actualizarEstado'}" method="post">
+                                    <button type="submit" th:class="'btn btn-secondary btn-xs btn-estado btn-' + ${asiento.estado}"
+                                        th:text="${asiento.estado == 'Disponible' ? 'Seleccionar' : 'Deseleccionar'}"
+                                        th:disabled="${asiento.estado == 'Ocupado'}"
+                                        th:style="'background-color: ' + (${asiento.estado != null && asiento.estado == 'Disponible' ? 'green' : 'gray'})"
+                                        >
+                                    </button>
+                                </form>
+									             </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+				
+				 
+            <div class="col-md-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Numero-Asiento</th>
+										<th>Seleccionar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="asiento2: ${asientos2}">
+										<td th:text="${asiento2.fila + asiento2.columna}"
+											th:style="'background-color: ' + (${asiento2.estado != null && asiento2.estado == 'Ocupado' ? 'red' : 'gray'})">
+										</td>
+										<td>
+											<form th:action="@{'/asiento/' + ${asiento2.id} + '/actualizarEstado'}" method="post">
+                                    <button type="submit" th:class="'btn btn-secondary btn-xs btn-estado btn-' + ${asiento2.estado}"
+                                        th:text="${asiento2.estado == 'Disponible' ? 'Seleccionar' : 'Deseleccionar'}"
+                                        th:disabled="${asiento2.estado == 'Ocupado'}"
+                                        th:style="'background-color: ' + (${asiento2.estado != null && asiento2.estado == 'Disponible' ? 'green' : 'gray'})"
+                                        >
+                                    </button>
+                                </form>
+											</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+				
+					  
+            <div class="col-md-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Numero-Asiento</th>
+										<th>Seleccionar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="asiento3: ${asientos3}">
+										<td th:text="${asiento3.fila + asiento3.columna}"
+											th:style="'background-color: ' + (${asiento3.estado != null && asiento3.estado == 'Ocupado' ? 'red' : 'gray'})">
+										</td>
+										<td>
+											<form th:action="@{'/asiento/' + ${asiento3.id} + '/actualizarEstado'}" method="post">
+                                    <button type="submit" th:class="'btn btn-secondary btn-xs btn-estado btn-' + ${asiento3.estado}"
+                                        th:text="${asiento3.estado == 'Disponible' ? 'Seleccionar' : 'Deseleccionar'}"
+                                        th:disabled="${asiento3.estado == 'Ocupado'}"
+                                        th:style="'background-color: ' + (${asiento3.estado != null && asiento3.estado == 'Disponible' ? 'green' : 'gray'})"
+                                        >
+                                    </button>
+                                </form>
+											</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+				
+											  
+            <div class="col-md-3">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Numero-Asiento</th>
+										<th>Seleccionar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="asiento4: ${asientos4}">
+										<td th:text="${asiento4.fila + asiento4.columna}"
+											th:style="'background-color: ' + (${asiento4.estado != null && asiento4.estado == 'Ocupado' ? 'red' : 'gray'})">
+										</td>
+										<td>
+											<form th:action="@{'/asiento/' + ${asiento4.id} + '/actualizarEstado'}" method="post">
+                                    <button type="submit" th:class="'btn btn-secondary btn-xs btn-estado btn-' + ${asiento4.estado}"
+                                        th:text="${asiento4.estado == 'Disponible' ? 'Seleccionar' : 'Deseleccionar'}"
+                                        th:disabled="${asiento4.estado == 'Ocupado'}"
+                                        th:style="'background-color: ' + (${asiento4.estado != null && asiento4.estado == 'Disponible' ? 'green' : 'gray'})"
+                                        >
+                                    </button>
+                                </form>
+											</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="m-3"></div>
+  <center><div  th:each="dato: ${datos}">
+	<form th:action="@{'/asientos/guardarReserva/' + ${dato[6]}}" method="post">
+                                 
+                                    <button type="submit" class="btn btn-primary">
+										Realizar reserva
+									</button>
+                                </form>
+                                </div>
+                                </center>
 
-	</script>
+<div class="m-3"></div>
+ <center><div  th:each="dato: ${datos}">
+	<form th:action="@{'/asientos/cancelarReserva/' + ${dato[6]}}" method="post">
+                                 
+                                    <button type="submit" class="btn btn-danger">
+										Cancelar reserva
+									</button>
+                                </form>
+                                </div>
+                                </center>
+<footer th:replace="layout/layout :: footer"></footer>
 
 
 </body>

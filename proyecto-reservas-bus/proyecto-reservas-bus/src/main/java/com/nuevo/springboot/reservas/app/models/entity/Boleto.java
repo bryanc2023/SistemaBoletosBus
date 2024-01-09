@@ -32,38 +32,27 @@ public class Boleto{
 	@Column (name="id")
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name="id_unidad")
-	private Unidad unidad;
+
 	
 	@ManyToOne
 	@JoinColumn(name="id_detalle")
 	private Detalle detalle;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY, cascade= CascadeType.ALL)
 	@JoinColumn(name = "id_asiento")
 	private Asiento asiento;
+	
+	@ManyToOne
+	@JoinColumn(name="id_cronograma")
+	private Cronograma cronograma;
 		
 	 
 
 
 	
-	private String dia;
-	@Column(name = "fecha_viaje" )
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern="yyyy-mm-dd")
-	private Date fechaViaje;
 	
-	@PrePersist
-	public void prePersist() {
-		fechaViaje=new Date();
-	}
 	
-	@DateTimeFormat(pattern="hh:mm:ss")
-	private String horaSalida;
 	
-	@Column(name = "numero_asiento")
-	private Integer numeroAsiento;
 
 	@Column(name = "metodo_pago")
 	private String metodoPago;
@@ -82,13 +71,7 @@ public class Boleto{
 		this.id = id;
 	}
 
-	public Unidad getUnidad() {
-		return unidad;
-	}
 
-	public void setUnidad(Unidad unidad) {
-		this.unidad = unidad;
-	}
 
 	public Detalle getDetalle() {
 		return detalle;
@@ -100,37 +83,8 @@ public class Boleto{
 
 
 
-	public String getDia() {
-		return dia;
-	}
 
-	public void setDia(String dia) {
-		this.dia = dia;
-	}
 
-	public Date getFechaViaje() {
-		return fechaViaje;
-	}
-
-	public void setFechaViaje(Date fechaViaje) {
-		this.fechaViaje = fechaViaje;
-	}
-
-	public String getHoraSalida() {
-		return horaSalida;
-	}
-
-	public void setHoraSalida(String horaSalida) {
-		this.horaSalida = horaSalida;
-	}
-
-	public Integer getNumeroAsiento() {
-		return numeroAsiento;
-	}
-
-	public void setNumeroAsiento(Integer numeroAsiento) {
-		this.numeroAsiento = numeroAsiento;
-	}
 
 	public String getMetodoPago() {
 		return metodoPago;
@@ -155,31 +109,40 @@ public class Boleto{
 	
 
 
-	public Boleto(Unidad unidad, Detalle detalle, Asiento asiento, String dia, Date fechaViaje, String horaSalida,
-			Integer numeroAsiento, String metodoPago, Float totalPago) {
+	
+
+	public Asiento getAsiento() {
+		return asiento;
+	}
+
+	public void setAsiento(Asiento asiento) {
+		this.asiento = asiento;
+	}
+
+	public Cronograma getCronograma() {
+		return cronograma;
+	}
+
+	public void setCronograma(Cronograma cronograma) {
+		this.cronograma = cronograma;
+	}
+
+	public Boleto(Detalle detalle, Asiento asiento, Cronograma cronograma, String metodoPago, Float totalPago) {
 		super();
-		this.unidad = unidad;
 		this.detalle = detalle;
 		this.asiento = asiento;
-		this.dia = dia;
-		this.fechaViaje = fechaViaje;
-		this.horaSalida = horaSalida;
-		this.numeroAsiento = numeroAsiento;
+		this.cronograma = cronograma;
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
 	}
 
-	public Boleto(Integer id, Unidad unidad, Detalle detalle, Asiento asiento, String dia, Date fechaViaje,
-			String horaSalida, Integer numeroAsiento, String metodoPago, Float totalPago) {
+	public Boleto(Integer id, Detalle detalle, Asiento asiento, Cronograma cronograma, String metodoPago,
+			Float totalPago) {
 		super();
 		this.id = id;
-		this.unidad = unidad;
 		this.detalle = detalle;
 		this.asiento = asiento;
-		this.dia = dia;
-		this.fechaViaje = fechaViaje;
-		this.horaSalida = horaSalida;
-		this.numeroAsiento = numeroAsiento;
+		this.cronograma = cronograma;
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
 	}

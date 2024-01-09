@@ -45,7 +45,6 @@ public class UnidadApiController {
 	public Unidad update(@RequestBody Unidad unidad, @PathVariable Integer id) {
 		Unidad unidadActual = unidadService.findOne(id);
 		
-		unidadActual.setBoletos(unidad.getBoletos());
 		unidadActual.setCantidadAsientos(unidad.getCantidadAsientos());
 		unidadActual.setCooperativa(unidad.getCooperativa());
 		unidadActual.setEstadoActividad(unidad.getEstadoActividad());

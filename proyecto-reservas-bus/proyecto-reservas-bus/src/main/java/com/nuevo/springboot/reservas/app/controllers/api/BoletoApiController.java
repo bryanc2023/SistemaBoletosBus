@@ -46,14 +46,9 @@ public class BoletoApiController {
 		Boleto boletoActual = boletoService.findById(id);
 		
 		boletoActual.setDetalle(boleto.getDetalle());
-		boletoActual.setDia(boleto.getDia());
-		boletoActual.setFechaViaje(boleto.getFechaViaje());
-		boletoActual.setHoraSalida(boleto.getHoraSalida());
 		boletoActual.setId(boleto.getId());
 		boletoActual.setMetodoPago(boleto.getMetodoPago());
-		boletoActual.setNumeroAsiento(boleto.getNumeroAsiento());
 		boletoActual.setTotalPago(boleto.getTotalPago());
-		boletoActual.setUnidad(boleto.getUnidad());
 		
 		
 		return boletoService.save1(boletoActual);
