@@ -57,7 +57,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="asiento: ${asientos}">
+						<tr th:each="asiento: ${asientos}" th:data-id="${asiento.id}">
 							<td th:text="${asiento.fila}"></td>
 							<td th:text="${asiento.columna}"></td>
 							<td th:text="${asiento.estado}"></td>
@@ -69,16 +69,43 @@
 					</tbody>
 				</table>
 				
-                <a class="btn btn-secondary btn-xs"
-								th:href="@{/asientos/}+ ${resultado[7]}">Ver asientos</a>
+              
             </div>
         </div>
     </div>
 </div>
-				<a th:href="@{/unidad/form}" class="btn btn-secondary">Aceptar orden</a>
-			</div>
-		</div>
-	</div>
+
+<div>* Costo por boleto: <p th:text="${costo2}"></p></div>
+<div>* Costo subtotal (sin iva) : <p th:text="${costo}"></p></div>
+<div>* Costo total  : <p th:text="${costo3}"></p></div>
+ <script th:inline="javascript">
+        function guardarAsientos() {
+            var asientosSeleccionados = [];
+            var filasAsientos = document.querySelectorAll("tbody tr");
+
+            filasAsientos.forEach(function(fila) {
+                var idAsiento = fila.getAttribute("data-id");
+                asientosSeleccionados.push(idAsiento);
+            });
+
+            document.getElementById("idsAsientosSeleccionados").value = asientosSeleccionados.join(',');
+
+            document.getElementById("formReserva").submit();
+        }
+    </script>
+
+ <center><div  th:each="dato: ${datos}">
+	<form id="formReserva" th:action="@{'/asientos/guardarReserva/' + ${dato[6]}+'/'+${costo3}}" method="post">
+                                 
+                                   <input type="hidden" id="idsAsientosSeleccionados" name="idsAsientosSeleccionados" />
+                  <button type="submit" class="btn btn-secondary" onclick="guardarAsientos()">
+                    Aceptar reserva
+                </button>
+                                </form>
+                                </div>
+                                </center>
+                                
+                                <div class="m-3"></div>
 	<div class="m-3"></div>
  <center><div  th:each="dato: ${datos}">
 	<form th:action="@{'/asientos/cancelarReserva/' + ${dato[6]}}" method="post">

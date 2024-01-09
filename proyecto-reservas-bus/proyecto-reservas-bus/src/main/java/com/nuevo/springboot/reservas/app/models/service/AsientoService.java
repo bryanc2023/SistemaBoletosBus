@@ -1,5 +1,7 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class AsientoService implements IAsientoService{
 	
 	@Autowired
 	private IAsientoDao asientoDao;
+	
+	@Autowired
+	private IConfiguracionService configuracionService;
 
 	@Override
 	@Transactional
@@ -91,6 +96,38 @@ public class AsientoService implements IAsientoService{
 		
 	}
 
+	@Override
+	public double obtenerCostoRutaPorCronogramaId(Integer cronogramaId) {
+	    Double costo = asientoDao.obtenerCostoRutaPorCronogramaId(cronogramaId);
+	    return redondearDosDecimales(costo);
+	}
+
+	@Override
+	public double obtenerCostoTotal(Integer cronogramaId) {
+	    List<Asiento> asientosReservados = asientoDao.countByEstado(cronogramaId);
+	    int cantidadDeAsientosReservados = asientosReservados.size();
+	    Double costoRuta = asientoDao.obtenerCostoRutaPorCronogramaId(cronogramaId);
+	    return redondearDosDecimales(costoRuta * cantidadDeAsientosReservados);
+	}
+	
+	private double redondearDosDecimales(Double valor) {
+	    if (valor == null) {
+	        return 0.0;
+	    }
+	    BigDecimal bd = BigDecimal.valueOf(valor);
+	    bd = bd.setScale(2, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+
+	@Override
+	public double obtenerSubtotal(Integer cronogramaId) {
+		double iva = configuracionService.obtenerIVA();
+		double total = (obtenerCostoTotal(cronogramaId)*iva);
+		double cantidad = (obtenerCostoTotal(cronogramaId));
+		return redondearDosDecimales(total+cantidad);
+	}
+	
+	
 
 	
 

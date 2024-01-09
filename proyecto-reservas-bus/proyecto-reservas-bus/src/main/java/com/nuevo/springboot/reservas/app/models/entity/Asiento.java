@@ -28,7 +28,7 @@ public class Asiento {
 	@JoinColumn(name="id_unidad")
 	private Unidad unidad;
 	
-	@OneToOne(mappedBy = "asiento", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "asiento")
 	private Boleto boleto;
 	
 	@ManyToOne

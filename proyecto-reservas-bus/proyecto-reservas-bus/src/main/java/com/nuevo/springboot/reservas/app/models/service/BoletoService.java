@@ -60,5 +60,11 @@ public class BoletoService implements IBoletoService {
 	public void delete1(Integer id) {
 		boletoDao.deleteById(id);
 	}
+
+	@Override
+	public List<Boleto> findByIdUsuario(Long usuarioId) {
+		
+		return boletoDao.findByIdUsuario(usuarioId);
+	}
 	
 }

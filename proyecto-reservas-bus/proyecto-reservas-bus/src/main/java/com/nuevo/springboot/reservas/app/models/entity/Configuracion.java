@@ -47,7 +47,8 @@ public class Configuracion {
 	private int cantidadVentaB;
 	
 	
-
+	@Column(name = "estado", nullable = false)
+	private String estado;
 
 
 	public Integer getId() {

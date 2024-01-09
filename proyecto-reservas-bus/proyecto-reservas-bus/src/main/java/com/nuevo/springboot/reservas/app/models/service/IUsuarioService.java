@@ -32,5 +32,6 @@ public interface IUsuarioService extends UserDetailsService{
 	public Usuario get(Long id);
 	public void delete1(Long id);
 
-	
+	public Long obtenerIdUsuarioPorEmail(String email);
+	public Long obtenerIdUsuarioLogueado();
 }

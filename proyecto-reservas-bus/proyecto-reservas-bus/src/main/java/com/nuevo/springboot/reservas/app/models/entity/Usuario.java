@@ -3,6 +3,7 @@ package com.nuevo.springboot.reservas.app.models.entity;
 
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,6 +39,9 @@ public class Usuario {
 	@Column(name = "apellido")
 	private String apellido;
 
+	@OneToMany(mappedBy = "usuario", cascade =CascadeType.ALL)
+	public List<Boleto> boletos;
+	
 	private String email;
 	private String password;
 	
@@ -48,6 +52,16 @@ public class Usuario {
 			inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
 			)
 	private Collection<Rol> roles;
+
+	
+	
+	public List<Boleto> getBoletos() {
+		return boletos;
+	}
+
+	public void setBoletos(List<Boleto> boletos) {
+		this.boletos = boletos;
+	}
 
 	public Long getId() {
 		return id;
@@ -97,11 +111,37 @@ public class Usuario {
 		this.roles = roles;
 	}
 
+	
+	public Usuario(Long id, String nombre, String apellido, List<Boleto> boletos, String email, String password,
+			Collection<Rol> roles) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.boletos = boletos;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+
 	public Usuario(Long id, String nombre, String apellido, String email, String password, Collection<Rol> roles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+	}
+	
+	
+
+	public Usuario(String nombre, String apellido, List<Boleto> boletos, String email, String password,
+			Collection<Rol> roles) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.boletos = boletos;
 		this.email = email;
 		this.password = password;
 		this.roles = roles;
