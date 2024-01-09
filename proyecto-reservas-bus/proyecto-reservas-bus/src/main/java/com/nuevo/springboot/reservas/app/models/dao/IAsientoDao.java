@@ -35,6 +35,8 @@ public interface IAsientoDao extends JpaRepository<Asiento, Integer> {
 	
 	@Query("SELECT a FROM Asiento a WHERE a.cronograma.id = :cronogramaId AND a.estado = 'Reservado'")
 	List<Asiento> countByEstado(@Param("cronogramaId") Integer cronogramaId);
+	
+	
 
 	@Modifying
     @Query("UPDATE Asiento a SET a.estado = 'Disponible' WHERE a.cronograma.id = :cronogramaId AND a.estado = 'Reservado'")
