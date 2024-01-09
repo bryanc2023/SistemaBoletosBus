@@ -40,4 +40,10 @@ public interface IAsientoDao extends JpaRepository<Asiento, Integer> {
     @Query("UPDATE Asiento a SET a.estado = 'Disponible' WHERE a.cronograma.id = :cronogramaId AND a.estado = 'Reservado'")
     void updateEstadoToDisponible(@Param("cronogramaId") Integer cronogramaId);
 	
+	@Query(value = "SELECT c.costo_ruta FROM asiento a " +
+            "INNER JOIN cronograma b ON a.id_cronograma = b.id " +
+            "INNER JOIN ruta c ON b.id_ruta = c.id_ruta " +
+            "WHERE a.id_cronograma = :cronogramaId " +
+            "LIMIT 1", nativeQuery = true)
+    double obtenerCostoRutaPorCronogramaId(@Param("cronogramaId") Integer cronogramaId);
 }

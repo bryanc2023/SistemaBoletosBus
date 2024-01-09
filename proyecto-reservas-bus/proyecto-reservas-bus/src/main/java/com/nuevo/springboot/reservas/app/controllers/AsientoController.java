@@ -4,6 +4,9 @@ package com.nuevo.springboot.reservas.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,11 +23,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.nuevo.springboot.reservas.app.models.entity.Asiento;
+import com.nuevo.springboot.reservas.app.models.entity.Boleto;
+import com.nuevo.springboot.reservas.app.models.entity.Cronograma;
+import com.nuevo.springboot.reservas.app.models.entity.Usuario;
 import com.nuevo.springboot.reservas.app.models.service.IAsientoService;
+import com.nuevo.springboot.reservas.app.models.service.IBoletoService;
 import com.nuevo.springboot.reservas.app.models.service.ICooperativaService;
 import com.nuevo.springboot.reservas.app.models.service.ICronogramaService;
 import com.nuevo.springboot.reservas.app.models.service.IRutaService;
 import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
+import com.nuevo.springboot.reservas.app.models.service.IUsuarioService;
 
 
 
@@ -45,7 +53,12 @@ public class AsientoController {
 	
 	@Autowired
 	private IRutaService rutaService;
+	
+	@Autowired
+	private IBoletoService boletoService;
 
+	@Autowired
+	private IUsuarioService usuarioService;
     // Controlador para mostrar los asientos de un cronograma específico
     @GetMapping("/asientos/{cronogramaId}")
     public String mostrarAsientosCronograma(@PathVariable("cronogramaId") Integer cronogramaId, Model model) {
@@ -77,6 +90,9 @@ public class AsientoController {
        		model.addAttribute("asientos", asientosReservados);
        		model.addAttribute("datos", asientoService.obtenerCronogramaPorId(id));
        		model.addAttribute("ruta", rutaService.findAll());
+       		model.addAttribute("costo", asientoService.obtenerCostoTotal(id));
+       		model.addAttribute("costo2", asientoService.obtenerCostoRutaPorCronogramaId(id));
+       		model.addAttribute("costo3", asientoService.obtenerSubtotal(id));
        		return "pasajero/listarseleccion"; 
            }
         
@@ -134,6 +150,44 @@ public class AsientoController {
         return "redirect:/asientos/"+asiento.getCronograma().getId();
     }
 
+    
+    @PostMapping("/asientos/guardarReserva/{cronogramaId}/{costoTotal}")
+    public String aceptarReserva(@PathVariable("cronogramaId") Integer id, @PathVariable("costoTotal") Float costoTotal, @RequestParam("idsAsientosSeleccionados") String idsAsientosSeleccionados, Model model,
+    		Authentication authentication,RedirectAttributes flash) {
+    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String email = ((UserDetails) principal).getUsername();
+        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+        Usuario usuario =usuarioService.findById(idUsuario);
+    	String[] idsAsientosArray = idsAsientosSeleccionados.split(",");
+    	
+    	 for (String idAsiento : idsAsientosArray) {
+    	        // Crear un nuevo Boleto y establecer los valores necesarios
+    	        Boleto boleto = new Boleto();
+    	        Asiento asiento= new Asiento();
+    	        
+    	        asiento = asientoService.findOne(Integer.parseInt(idAsiento));
+    	        asiento.setEstado("Ocupado");
+    	        asientoService.save(asiento);
+
+    	        Cronograma cronograma = cronogramaService.findOne(id);
+    	        boleto.setAsiento(asiento);
+    	        boleto.setCronograma(cronograma);
+    	        boleto.setMetodoPago("Efectivo");
+    	        boleto.setTotalPago(costoTotal);
+    	        boleto.setUsuario(usuario);
+    	        
+    	        boletoService.save(boleto);
+    	        
+    	       
+    	    }
+
+    	 List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
+    	 String mensajeFlash =  "Boleto comprado correctamente" ;
+         
+         flash.addFlashAttribute("success", mensajeFlash);
+	        model.addAttribute("resultados", resultados);
+    		return "pasajero/home"; // Redireccionar a la página deseada después de procesar la reserva
+    }
    
  
    

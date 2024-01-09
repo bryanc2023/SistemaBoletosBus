@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 import com.nuevo.springboot.reservas.app.models.service.ICronogramaService;
@@ -48,6 +49,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String mostrarHome(Authentication authentication,Model model) {
 		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		    if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 		        // Lógica para mostrar contenido específico para el rol de admin
@@ -55,12 +57,15 @@ public class HomeController {
 		        // Agrega más atributos al modelo si es necesario para el rol de admin
 		        return "administrador/home"; // Vista para el rol de admin
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
-		        // Lógica para mostrar contenido específico para el rol de usuario
-		        model.addAttribute("mensaje", "Bienvenido USER");
-		        // Agrega más atributos al modelo si es necesario para el rol de usuario
+		    	 
+		    	        String email = ((UserDetails) principal).getUsername();
+		    	        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+		    	        model.addAttribute("id", idUsuario);
 		        List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
 		        model.addAttribute("resultados", resultados);
-		        return "pasajero/home"; // Vista para el rol de usuario
+		        return "pasajero/home"; 
+		       
+		     
 		    } else {
 		        // Manejar otras opciones si es necesario
 		        return "redirect:/login?error";

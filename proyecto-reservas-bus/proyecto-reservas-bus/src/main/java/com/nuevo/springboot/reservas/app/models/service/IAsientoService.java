@@ -29,4 +29,10 @@ public interface IAsientoService {
    
     List<Asiento> countByEstado(Integer cronogramaId);
     void updateEstadoToDisponible(Integer cronogramaId);
+    
+    double obtenerCostoRutaPorCronogramaId(Integer cronogramaId);
+    
+    double obtenerCostoTotal(Integer cronogramaId);
+    
+    double obtenerSubtotal(Integer cronogramaId);
 }
