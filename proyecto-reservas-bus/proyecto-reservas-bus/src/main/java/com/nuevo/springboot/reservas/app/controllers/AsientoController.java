@@ -123,7 +123,7 @@ public class AsientoController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	String email = ((UserDetails) principal).getUsername();
         Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
-        List<Boleto> boletosReservados =boletoService.findByIdUsuario(idUsuario);
+        List<Boleto> boletosReservados =boletoService.findByIdUsuarioCronograma(idUsuario,asiento.getCronograma().getId());
         List<Asiento> asientosReservados = asientoService.countByEstado(asiento.getCronograma().getId());
         int cantidadDeAsientosReservados = asientosReservados.size();
         int cantidadDeBoletosReservados = boletosReservados.size();

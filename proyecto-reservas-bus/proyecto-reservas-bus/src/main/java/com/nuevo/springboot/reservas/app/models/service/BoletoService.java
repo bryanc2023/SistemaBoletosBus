@@ -72,5 +72,11 @@ public class BoletoService implements IBoletoService {
 		
 		return boletoDao.findByUnidadId(unidadId);
 	}
+
+	@Override
+	public List<Boleto> findByIdUsuarioCronograma(Long usuarioId, Integer cronogramaId) {
+		// TODO Auto-generated method stub
+		return boletoDao.findByIdUsuarioCronograma(usuarioId,cronogramaId);
+	}
 	
 }
