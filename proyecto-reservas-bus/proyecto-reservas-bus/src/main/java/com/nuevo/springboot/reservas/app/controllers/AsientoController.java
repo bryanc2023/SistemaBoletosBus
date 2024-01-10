@@ -155,6 +155,7 @@ public class AsientoController {
         return "redirect:/asientos/"+asiento.getCronograma().getId();
     }
 
+
     
     @PostMapping("/asientos/guardarReserva/{cronogramaId}/{costoTotal}")
     public String aceptarReserva(@PathVariable("cronogramaId") Integer id, @PathVariable("costoTotal") Float costoTotal, @RequestParam("idsAsientosSeleccionados") String idsAsientosSeleccionados, Model model,
