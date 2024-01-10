@@ -18,5 +18,8 @@ public interface IBoletoService {
 	
 	
 	List<Boleto> findByIdUsuario(Long  usuarioId);
+	
+	List<Boleto> findByUnidadId(Integer unidadId);
 
+	List<Boleto> findByIdUsuarioCronograma(Long  usuarioId,Integer  cronogramaId);
 }

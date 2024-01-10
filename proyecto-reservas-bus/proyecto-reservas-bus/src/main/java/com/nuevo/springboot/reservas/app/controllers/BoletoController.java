@@ -1,5 +1,7 @@
 package com.nuevo.springboot.reservas.app.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Asiento;
 import com.nuevo.springboot.reservas.app.models.entity.Boleto;
 import com.nuevo.springboot.reservas.app.models.service.IAsientoService;
 import com.nuevo.springboot.reservas.app.models.service.IBoletoService;
+import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
 import com.nuevo.springboot.reservas.app.models.service.IUsuarioService;
 
 
@@ -32,6 +35,9 @@ public class BoletoController {
 	
 	@Autowired
 	private IAsientoService asientoService;
+	
+	@Autowired
+	private IUnidadService unidadService;
 	
 	@GetMapping("/pasajero/boleto")
 	public String listar(Model model,Authentication authentication) {
@@ -57,19 +63,29 @@ public class BoletoController {
 		return "redirect:/pasajero/boleto";
 	}
 
-	@PostMapping("/boleto/form")
-	public String guardar( Boleto boleto, RedirectAttributes flash, SessionStatus status) {
-		String mensajeFlash = (boleto.getId() != null)? "Boleto editado con exito!" : "Boleto creado con exito!";
-		boletoService.save(boleto);
-		status.setComplete();
-		flash.addFlashAttribute("success", mensajeFlash);
-	    return "redirect:listar";
-	}
+
 	
 	 @GetMapping("/ver/boleto")
 	    public String verBoletoQR(@RequestParam("id") Integer idBoleto) {
 	        
 	        return "pasajero/vista"; 
 	    }
+	 
+	 @GetMapping("/personal/boleto")
+		public String listarPersonal(Model model,Authentication authentication) {
+			
+		    model.addAttribute("unidades", unidadService.findAll());
+		    model.addAttribute("boletos", boletoService.findAll());
+		    return "personal/boleto";
+		}
 	
+	 
+	 @PostMapping("/buscarBoleto/{unidadId}")
+		public String searchBoleto(@PathVariable("unidadId") Integer id , Model model) {
+		   
+	        List<Boleto> boletos = boletoService.findByUnidadId(id);
+	        model.addAttribute("unidades", unidadService.findAll());
+	        model.addAttribute("boletos", boletos);
+	        return "pasajero/home";
+		}
 }

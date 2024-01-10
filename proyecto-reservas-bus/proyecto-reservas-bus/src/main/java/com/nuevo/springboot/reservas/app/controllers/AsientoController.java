@@ -123,7 +123,7 @@ public class AsientoController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	String email = ((UserDetails) principal).getUsername();
         Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
-        List<Boleto> boletosReservados =boletoService.findByIdUsuario(idUsuario);
+        List<Boleto> boletosReservados =boletoService.findByIdUsuarioCronograma(idUsuario,asiento.getCronograma().getId());
         List<Asiento> asientosReservados = asientoService.countByEstado(asiento.getCronograma().getId());
         int cantidadDeAsientosReservados = asientosReservados.size();
         int cantidadDeBoletosReservados = boletosReservados.size();
@@ -154,6 +154,7 @@ public class AsientoController {
         
         return "redirect:/asientos/"+asiento.getCronograma().getId();
     }
+
 
     
     @PostMapping("/asientos/guardarReserva/{cronogramaId}/{costoTotal}")
@@ -187,7 +188,7 @@ public class AsientoController {
     	    }
 
     	 List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
-    	 String mensajeFlash =  "Boleto comprado correctamente" ;
+    	 String mensajeFlash =  "Boleto reservado correctamente, acerquese a la ventanilla a cancelar el total." ;
          
          flash.addFlashAttribute("success", mensajeFlash);
 	        model.addAttribute("resultados", resultados);
