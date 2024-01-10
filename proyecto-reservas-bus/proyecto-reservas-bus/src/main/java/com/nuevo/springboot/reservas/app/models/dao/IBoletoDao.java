@@ -16,5 +16,7 @@ public interface IBoletoDao extends JpaRepository<Boleto, Integer>{
 	
 	@Query("SELECT a FROM Boleto a WHERE a.usuario.id = :usuarioId ")
 	List<Boleto> findByIdUsuario(@Param("usuarioId") Long  usuarioId);
-
+	
+	 @Query("SELECT a FROM Boleto a JOIN a.asiento b WHERE b.unidad.id = :unidadId")
+	 List<Boleto> findByUnidadId(@Param("unidadId") Integer unidadId);
 }

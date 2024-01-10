@@ -187,7 +187,7 @@ public class AsientoController {
     	    }
 
     	 List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
-    	 String mensajeFlash =  "Boleto comprado correctamente" ;
+    	 String mensajeFlash =  "Boleto reservado correctamente, acerquese a la ventanilla a cancelar el total." ;
          
          flash.addFlashAttribute("success", mensajeFlash);
 	        model.addAttribute("resultados", resultados);

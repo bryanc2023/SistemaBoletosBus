@@ -66,9 +66,11 @@ public class HomeController {
 		        return "pasajero/home"; 
 		       
 		     
+		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_PERSONAL"))) {
+		    	
+		        return "personal/home";
 		    } else {
-		        // Manejar otras opciones si es necesario
-		        return "redirect:/login?error";
+		    	 return "redirect:/login?error";
 		    }
 	
 

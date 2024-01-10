@@ -66,5 +66,11 @@ public class BoletoService implements IBoletoService {
 		
 		return boletoDao.findByIdUsuario(usuarioId);
 	}
+
+	@Override
+	public List<Boleto> findByUnidadId(Integer unidadId) {
+		
+		return boletoDao.findByUnidadId(unidadId);
+	}
 	
 }
