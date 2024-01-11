@@ -45,6 +45,7 @@ public class Usuario {
 	private String email;
 	private String password;
 	
+	@Column(name = "is_enabled")
 	private boolean isEnabled;
 	
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
