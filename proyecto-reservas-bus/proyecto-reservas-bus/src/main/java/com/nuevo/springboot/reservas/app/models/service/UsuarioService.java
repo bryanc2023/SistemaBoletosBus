@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.nuevo.springboot.reservas.app.controlador.dto.UsuarioRegistroDTO;
 import com.nuevo.springboot.reservas.app.models.entity.Usuario;
+import com.nuevo.springboot.reservas.app.models.entity.ConfirmationToken;
 import com.nuevo.springboot.reservas.app.models.entity.Rol;
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
+import com.nuevo.springboot.reservas.app.models.dao.IConfirmationTokenDao;
 import com.nuevo.springboot.reservas.app.models.dao.IDetalleDao;
 import com.nuevo.springboot.reservas.app.models.dao.IUsuarioDao;
 
@@ -29,6 +34,12 @@ import com.nuevo.springboot.reservas.app.models.dao.IUsuarioDao;
 @Service
 public class UsuarioService implements IUsuarioService{
 
+	@Autowired
+    private IConfirmationTokenDao confirmationTokenRepository;
+
+   @Autowired
+    private EmailServiceSender emailSenderService;
+   
 	
 	private IUsuarioDao usuarioRepositorio;
 	 @Autowired
@@ -47,12 +58,53 @@ public class UsuarioService implements IUsuarioService{
 
 	
 	@Override
-	public Usuario guardar(UsuarioRegistroDTO registroDTO) {
+	public void guardar(UsuarioRegistroDTO registroDTO) {
 		Usuario usuario = new Usuario(registroDTO.getNombre(), 
 				registroDTO.getApellido(),registroDTO.getEmail(),
 				passwordEncoder.encode(registroDTO.getPassword()),Arrays.asList(new Rol("ROLE_USER")));
-		return usuarioRepositorio.save(usuario);
+		
+		usuarioRepositorio.save(usuario);
+		ConfirmationToken confirmationToken = new ConfirmationToken(usuario);
+
+        confirmationTokenRepository.save(confirmationToken);
+
+         // Construir el cuerpo del correo con HTML
+        String verificationLink = "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken();
+        String emailBody = "<div style='text-align: center;'><h2>Complete Registration</h2>"
+                + "<p>To confirm your account, please click the button below:</p>"
+                + "<a href='" + verificationLink + "' style='"
+                + "background-color: #4CAF50; /* Green */"
+                + "border: none;"
+                + "color: white;"
+                + "padding: 15px 32px;"
+                + "text-align: center;"
+                + "text-decoration: none;"
+                + "display: inline-block;"
+                + "font-size: 16px;'>Verify Account</a></div>";
+
+        // Configurar el mensaje de correo
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(usuario.getEmail());
+        mailMessage.setSubject("Completa tu registro!");
+        mailMessage.setFrom("chand312902@gmail.com");
+        mailMessage.setText("To confirm your account, please click here: " + verificationLink);
+
+        // Configurar el contenido HTML del correo
+        MimeMessagePreparator messagePreparator = mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setTo(mailMessage.getTo());
+            messageHelper.setSubject(mailMessage.getSubject());
+            messageHelper.setFrom(mailMessage.getFrom());
+            messageHelper.setText(emailBody, true); // true indica que el contenido es HTML
+        };
+
+        // Enviar el correo
+        emailSenderService.sendHtmlEmail(messagePreparator);
+		
+		
 	}
+	
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -157,6 +209,14 @@ public class UsuarioService implements IUsuarioService{
 	public List<Usuario> findByRole(String rol) {
 		return usuarioRepositorio.findByRolesNombre(rol);
 
+	}
+
+
+
+	@Override
+	public Usuario findByEmail(String email) {
+		
+		return usuarioRepositorio.findByEmail(email);
 	}
 
 }

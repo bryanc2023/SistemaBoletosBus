@@ -24,6 +24,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
+import com.nuevo.springboot.reservas.app.models.entity.Usuario;
 import com.nuevo.springboot.reservas.app.models.service.ICronogramaService;
 import com.nuevo.springboot.reservas.app.models.service.IRutaService;
 import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
@@ -59,11 +60,16 @@ public class HomeController {
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
 		    	 
 		    	        String email = ((UserDetails) principal).getUsername();
-		    	        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
-		    	        model.addAttribute("id", idUsuario);
-		        List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
-		        model.addAttribute("resultados", resultados);
-		        return "pasajero/home"; 
+		    	        Usuario user = usuarioService.findByEmail(email);
+		    	        if (user.isEnabled()) {
+		    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+		    	            model.addAttribute("id", idUsuario);
+		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
+		    	            model.addAttribute("resultados", resultados);
+		    	            return "pasajero/home";
+		    	        } else {
+		    	            return "redirect:/login?error2";
+		    	        }
 		       
 		     
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_PERSONAL"))) {

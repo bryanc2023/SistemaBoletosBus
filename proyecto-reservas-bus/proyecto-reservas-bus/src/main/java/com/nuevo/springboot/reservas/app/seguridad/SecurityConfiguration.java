@@ -43,24 +43,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(
-				"/registro**",
-				"/js/**",
-				"/css/**",
-				"/img/**").permitAll()
-		.anyRequest().authenticated()
-		.and()
-		.formLogin()
-		.loginPage("/login")
-		.defaultSuccessUrl("/", true) 
-		.permitAll()
-		.and()
-		.logout()
-		.invalidateHttpSession(true)
-		.clearAuthentication(true)
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login?logout")
-		.permitAll();
+		  http.authorizeRequests()
+	        .antMatchers(
+	            "/registro",
+	            "/js/**",
+	            "/css/**",
+	            "/img/**",
+	            "/confirm-account", // Agregado para permitir el acceso sin autenticación
+	            "/accountVerified",  // Agregado para permitir el acceso sin autenticación
+	            "/error"  // Agregado para permitir el acceso sin autenticación
+	        ).permitAll()
+	        .anyRequest().authenticated()
+	        .and()
+	        .formLogin()
+	            .loginPage("/login")
+	            .defaultSuccessUrl("/", true)
+	            .permitAll()
+	        .and()
+	        .logout()
+	            .invalidateHttpSession(true)
+	            .clearAuthentication(true)
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	            .logoutSuccessUrl("/login?logout")
+	            .permitAll()
+	        .and()
+	        .exceptionHandling().accessDeniedPage("/error");
 	}
 }
 
