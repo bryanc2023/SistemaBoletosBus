@@ -67,11 +67,13 @@ public class UsuarioService implements IUsuarioService{
 		ConfirmationToken confirmationToken = new ConfirmationToken(usuario);
 
         confirmationTokenRepository.save(confirmationToken);
-
+        
          // Construir el cuerpo del correo con HTML
         String verificationLink = "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken();
+        String nombreCompleto = registroDTO.getNombre() + " " + registroDTO.getApellido();
         String emailBody = "<div style='text-align: center;'><h2>Complete Registration</h2>"
-                + "<p>To confirm your account, please click the button below:</p>"
+        		+ "<p>Estimado " + nombreCompleto + ",</p>"
+                + "<p>Para confirmar tu cuenta da click en el siguiente enlace:</p>"
                 + "<a href='" + verificationLink + "' style='"
                 + "background-color: #4CAF50; /* Green */"
                 + "border: none;"
@@ -80,7 +82,7 @@ public class UsuarioService implements IUsuarioService{
                 + "text-align: center;"
                 + "text-decoration: none;"
                 + "display: inline-block;"
-                + "font-size: 16px;'>Verify Account</a></div>";
+                + "font-size: 16px;'>Verificar Cuenta</a></div>";
 
         // Configurar el mensaje de correo
         SimpleMailMessage mailMessage = new SimpleMailMessage();
