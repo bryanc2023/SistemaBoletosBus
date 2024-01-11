@@ -42,11 +42,19 @@
 			<div class="col-md-6 col-md-offset-3">
 				<h1>Inicio de sesión</h1>
 				<form th:action="@{/login}" method="post">
+<div th:if="${param.error}">
+    <div class="alert alert-danger" >
+        Usuario o contraseña invalido
+    </div>
+   
+</div>
+					<div th:if="${param.error2}">
+    <div class="alert alert-danger" >
+               Por favor, confirma tu correo electrónico para iniciar sesión.
+    </div>
+</div>
+			
 
-					<div th:if=${param.error}>
-						<div class="alert alert-danger">Usuario o contraseña
-							inválidos</div>
-					</div>
 
 					<div th:if=${param.logout}>
 						<div class="alert alert-info">Ha cerrado sesión exitosamente

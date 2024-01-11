@@ -14,7 +14,7 @@ import com.nuevo.springboot.reservas.app.models.entity.Usuario;
 public interface IUsuarioService extends UserDetailsService{
 
 	
-	public Usuario guardar(UsuarioRegistroDTO registroDTO);
+	public void guardar(UsuarioRegistroDTO registroDTO);
 	
 	public List<Usuario> listarUsuarios();
 	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
@@ -22,6 +22,7 @@ public interface IUsuarioService extends UserDetailsService{
 	public Usuario guardarUsuarioPersonal(UsuarioRegistroDTO registroDTO);
 
 	List<Usuario> findByRole(String rol);
+	Usuario findByEmail(String email);
 
 	public void save(Usuario entity);
     public Usuario findOne(Long id);

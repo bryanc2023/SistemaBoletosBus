@@ -45,6 +45,8 @@ public class Usuario {
 	private String email;
 	private String password;
 	
+	private boolean isEnabled;
+	
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "usuarios_roles",
@@ -55,6 +57,14 @@ public class Usuario {
 
 	
 	
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
+	}
+
 	public List<Boleto> getBoletos() {
 		return boletos;
 	}
@@ -157,6 +167,5 @@ public class Usuario {
 	}
 
 	public Usuario() {
-		
 	}
 }
