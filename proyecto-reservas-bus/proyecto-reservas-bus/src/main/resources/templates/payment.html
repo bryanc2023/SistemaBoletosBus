@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braintree Payment</title>
+    <!-- Agrega los recursos necesarios de Braintree -->
+    <script src="https://js.braintreegateway.com/web/dropin/1.31.0/js/dropin.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<button id="submit-button">Purchase</button>
+
+<div id="checkout-message"></div>
+
+<!-- Script para manejar la interacción con Braintree -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    // Espera a que el DOM esté completamente cargado
+    $(document).ready(function () {
+
+        var clientToken;
+
+        // Función para manejar errores
+        function handleError(err) {
+            console.error('Error:', err);
+        }
+
+        // Función para procesar el pago con el nonce y la cantidad
+        function processPayment(nonce, amount) {
+            $.post('/api/payment/process-payment', { nonce: nonce, amount: amount }, function (response) {
+                // Verificar si hay una URL de redirección de Braintree
+                if (response.redirectUrl) {
+                    // Redirige al usuario a la página de pago de Braintree
+                    window.location.href = response.redirectUrl;
+                } else {
+                    // Muestra un mensaje de éxito si no hay URL de redirección
+                    $('#checkout-message').html('<p>' + response.message + '</p>');
+                }
+            });
+        }
+
+        // Función para inicializar Braintree Drop-in
+        function initializeBraintree() {
+            braintree.dropin.create({
+                authorization: clientToken,
+                container: '#checkout-message',
+                paypal: {
+                    flow: 'vault'
+                }
+            }, function (createErr, instance) {
+                if (createErr) {
+                    handleError(createErr);
+                    return;
+                }
+
+                // Manejar clic en el botón de compra
+                $('#submit-button').click(function () {
+                    instance.requestPaymentMethod(function (err, payload) {
+                        if (err) {
+                            handleError(err);
+                            return;
+                        }
+                        processPayment(payload.nonce, 10.00);
+                    });
+                });
+            });
+        }
+
+        // Obtener el token del servidor
+        $.get('/api/payment/token', function (data) {
+            clientToken = data;
+
+            // Inicializar Braintree Drop-in después de obtener el token
+            initializeBraintree();
+        }).fail(handleError);
+
+    });
+    /*]]>*/
+</script>
+
+
+
+
+</body>
+</html>

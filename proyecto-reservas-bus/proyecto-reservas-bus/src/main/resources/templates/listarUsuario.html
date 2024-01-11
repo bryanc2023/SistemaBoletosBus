@@ -16,18 +16,18 @@
 						<tr>
 							<th class="bg-dark text-white">id</th>
 							<th class="bg-dark text-white">nombre usuario</th>
+							<th class="bg-dark text-white">apellido usuario</th>
 							<th class="bg-dark text-white">correo usuario</th>
 							<th class="bg-dark text-white">contraseña usuario</th>
-							<th class="bg-dark text-white">estado actividad</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="usuario: ${usuarios}">
 							<td th:text="${usuario.id}"></td>
-							<td th:text="${usuario.nombreUsuario}"></td>
-							<td th:text="${usuario.correoUsuario}"></td>
-							<td th:text="${usuario.contraseñaUsuario}"></td>
-							<td th:text="${usuario.estadoActividad}"></td>
+							<td th:text="${usuario.nombre}"></td>
+							<td th:text="${usuario.apellido}"></td>
+							<td th:text="${usuario.email}"></td>
+							<td th:text="${usuario.password}"></td>
 							<td><a class="btn btn-secondary btn-xs"
 								th:href="@{/usuario/form/}+ ${usuario.id}">editar</a></td>
 							<td><a class="btn btn-danger btn-xs"

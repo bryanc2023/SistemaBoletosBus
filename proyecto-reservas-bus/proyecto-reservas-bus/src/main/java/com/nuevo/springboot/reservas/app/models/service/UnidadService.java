@@ -1,5 +1,8 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.nuevo.springboot.reservas.app.models.dao.IUnidadDao;
-
+import com.nuevo.springboot.reservas.app.models.entity.Asiento;
+import com.nuevo.springboot.reservas.app.models.entity.Cooperativa;
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 @Service
@@ -19,9 +23,11 @@ public class UnidadService implements  IUnidadService{
 	
 	@Override
 	@Transactional
-	public void save(Unidad unidad) {
-		unidadDao.save(unidad);
-	}
+	  public void save(Unidad unidad) {
+       
+       
+        unidadDao.save(unidad);
+    }
 
 	@Override
 	@Transactional(readOnly=true)
@@ -60,6 +66,23 @@ public class UnidadService implements  IUnidadService{
 		
 	}
 	
+	
+	 @Override
+	    public boolean existeUnidadConNumeroYCooperativa(Integer numero, Cooperativa cooperativa) {
+	        Unidad unidadExistente = unidadDao.findByNumeroAndCooperativa(numero, cooperativa);
+	        return unidadExistente != null;
+	    }
+
+	@Override
+	public List<Object[]> findByCronogramaFecha(String fecha) {
+		return unidadDao.obtenerUnidadesConCronogramaYRutaPorFecha(fecha);
+	}
+
+	@Override
+	public List<Object[]>obtenerUnidadesConCronogramaYRuta() {
+		return unidadDao.obtenerUnidadesConCronogramaYRuta();
+	}
+
 	
 	
 	

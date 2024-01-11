@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+	<header th:fragment="header">
+
+		<nav class="navbar navbar-expand-lg bg-body-tertiary"
+			data-bs-theme="dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" th:href="${'/'}">Buses</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					
+				</div>
+			</div>
+		</nav>
+		<div class="alert alert-success" th:if="${success != null}"
+			th:text=${success}></div>
+		<div class="alert alert-danger" th:if="${error != null}"
+			th:text=${error}></div>
+		<div class="alert alert-warning" th:if="${warning != null}"
+			th:text=${warning}></div>
+		<div class="alert alert-info" th:if="${info != null}" th:text=${info}></div>
+		
+		
+	</header>
+
+		 <div class="m-3"></div>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header"> Su seleccion fue:</div>
+			<div class="card-body">
+
+
+                 <div class="m-3"></div>
+				<table class="table table-striped table-bordered">
+					<thead class="thead-inverse">
+						<tr>
+						<tr>
+							<th class="bg-dark text-white">fila</th>
+							<th class="bg-dark text-white">columna</th>
+							<th class="bg-dark text-white">estado</th>
+							<th class="bg-dark text-white">fecha</th>
+							<th class="bg-dark text-white">hora</th>
+							<th class="bg-dark text-white">unidad</th>
+							<th class="bg-dark text-white">ruta</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="asiento: ${asientos}" th:data-id="${asiento.id}">
+							<td th:text="${asiento.fila}"></td>
+							<td th:text="${asiento.columna}"></td>
+							<td th:text="${asiento.estado}"></td>
+							<td th:text="${asiento.cronograma.fecha}"></td>
+							<td th:text="${asiento.cronograma.horaSalida}"></td>
+							<td th:text="${asiento.unidad.numero}+ ' - ' +${asiento.unidad.cooperativa.nombre}"></td>
+							<td th:text="${asiento.cronograma.ruta.rutaOrigen}+ ' - ' +${asiento.cronograma.ruta.rutaDestino}"></td>
+						</tr>
+					</tbody>
+				</table>
+				
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>* Costo por boleto: <p th:text="${costo2}"></p></div>
+<div>* Costo subtotal (sin iva) : <p th:text="${costo}"></p></div>
+<div>* Costo total  : <p th:text="${costo3}"></p></div>
+ <script th:inline="javascript">
+        function guardarAsientos() {
+            var asientosSeleccionados = [];
+            var filasAsientos = document.querySelectorAll("tbody tr");
+
+            filasAsientos.forEach(function(fila) {
+                var idAsiento = fila.getAttribute("data-id");
+                asientosSeleccionados.push(idAsiento);
+            });
+
+            document.getElementById("idsAsientosSeleccionados").value = asientosSeleccionados.join(',');
+
+            document.getElementById("formReserva").submit();
+        }
+    </script>
+
+ <center><div  th:each="dato: ${datos}">
+	<form id="formReserva" th:action="@{'/asientos/guardarReserva/' + ${dato[6]}+'/'+${costo3}}" method="post">
+                                 
+                                   <input type="hidden" id="idsAsientosSeleccionados" name="idsAsientosSeleccionados" />
+                  <button type="submit" class="btn btn-secondary" onclick="guardarAsientos()">
+                    Realizar reserva (Efectivo)
+                </button>
+                                </form>
+                                </div>
+                                </center>
+                                
+                                <div class="m-3"></div>
+	<div class="m-3"></div>
+	
+	<!-- Botón para pagar con tarjeta -->
+ <center><div>
+    <form th:action="@{/payment}" method="get">
+        <button type="submit" class="btn btn-dark btn-block btn-lg">Checkout</button>
+    </form>
+    </div>
+</center>
+ <center><div  th:each="dato: ${datos}">
+	<form th:action="@{'/asientos/cancelarReserva/' + ${dato[6]}}" method="post">
+                                 
+                                    <button type="submit" class="btn btn-danger">
+										Cancelar reserva
+									</button>
+                                </form>
+                                </div>
+                                </center>
+                                
+                                <div class="m-3"></div>
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

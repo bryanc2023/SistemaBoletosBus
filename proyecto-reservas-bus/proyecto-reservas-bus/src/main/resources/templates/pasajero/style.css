@@ -1,0 +1,6 @@
+@charset "ISO-8859-1";
+ /* Estilos para los diferentes estados */
+        .estado-disponible { background-color: green; }
+        .estado-reservado { background-color: orange; }
+        .estado-ocupado { background-color: red; }
+        .btn-ocupado { background-color: none; opacity: 0.5; }

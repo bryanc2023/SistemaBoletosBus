@@ -1,7 +1,12 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
+import com.nuevo.springboot.reservas.app.models.entity.Cooperativa;
 import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 public interface IUnidadService {
@@ -13,4 +18,12 @@ public interface IUnidadService {
 	public Unidad save1(Unidad entity);
 	public Unidad findById(Integer id);
 	public void delete1(Integer id);
+	
+	public boolean existeUnidadConNumeroYCooperativa(Integer numero, Cooperativa cooperativa);
+	
+	//Buscar por fecha
+	List<Object[]> findByCronogramaFecha(String fecha);
+	//Unidades y cronograma
+
+	List<Object[]> obtenerUnidadesConCronogramaYRuta();
 }

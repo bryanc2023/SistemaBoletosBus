@@ -4,19 +4,24 @@ package com.nuevo.springboot.reservas.app.models.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.TemporalType;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-@Table
+@Table (uniqueConstraints = @UniqueConstraint(columnNames = {"ruta_origen", "ruta_destino"}))
 @Entity
 public class Ruta{
 	
@@ -26,13 +31,10 @@ public class Ruta{
 	@Column (name="id_ruta")
 	private Integer id;
 	
-	@ManyToOne
-    @JoinColumn(name = "id_usuario_administrador")
-    private Administrador administrador;
 	
-	@OneToMany
-	@JoinColumn(name = "id_ruta")
-	private List<Cronograma> cronogramas;
+	
+	@OneToMany(mappedBy = "ruta",cascade = CascadeType.REMOVE)
+	public List<Cronograma> cronogramas;
 	
 	@Column (name="ruta_origen")
 	private String rutaOrigen;
@@ -41,19 +43,14 @@ public class Ruta{
 	@Column (name="costo_ruta")
 	private float costoRuta;
 	
-	private String imagen;
 	
-
-	public Ruta(Integer id, Administrador administrador, List<Cronograma> cronogramas, String rutaOrigen,
-			String rutaDestino, float costoRuta, String imagen) {
+	public Ruta(Integer id, String rutaOrigen, String rutaDestino, float costoRuta) {
 		super();
 		this.id = id;
-		this.administrador = administrador;
-		this.cronogramas = cronogramas;
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
-		this.imagen = imagen;
+		
 	}
 	public Ruta() {
 		super();
@@ -62,26 +59,12 @@ public class Ruta{
 		super();
 		this.id = id;
 	}
-	public Ruta(String rutaOrigen, String rutaDestino, float costoRuta, Administrador administrador) {
+	public Ruta(String rutaOrigen, String rutaDestino, float costoRuta) {
 		super();
 		this.rutaOrigen = rutaOrigen;
 		this.rutaDestino = rutaDestino;
 		this.costoRuta = costoRuta;
-		this.administrador=administrador;
-	}
 	
-	
-	public List<Cronograma> getCronogramas() {
-		return cronogramas;
-	}
-	public void setCronogramas(List<Cronograma> cronogramas) {
-		this.cronogramas = cronogramas;
-	}
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
 	}
 	public Integer getId() {
 		return id;
@@ -107,22 +90,8 @@ public class Ruta{
 	public void setCostoRuta(float costoRuta) {
 		this.costoRuta = costoRuta;
 	}
-	public Administrador getAdministrador() {
-		return administrador;
-	}
-	public void setAdministrador(Administrador administrador) {
-		this.administrador = administrador;
-	}
-	@Override
-	public String toString() {
-		return "Ruta [id=" + id + ", administrador=" + administrador + ", cronogramas=" + cronogramas + ", rutaOrigen="
-				+ rutaOrigen + ", rutaDestino=" + rutaDestino + ", costoRuta=" + costoRuta + ", imagen=" + imagen + "]";
-	}
-	public Ruta get() {
-		return null;
-	}
-
-
+	
+	
 	
 	
 	

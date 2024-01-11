@@ -11,24 +11,24 @@
 		<div class="card bg-dark text-white">
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
-				<form th:action="@{/cronograma/form}" th:object="${cronograma}"
-					method="post" style="max-width: 600px; margin: 0 auto;">
+				<form th:action="@{/cronograma/form}" th:object="${cronograma}" method="post"
+					style="max-width: 600px; margin: 0 auto;">
 
 					<div class="m-3"></div>
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Fecha</label>
-						<div class="col-sm-8">
-							<input type="date" th:field="*{fecha}" class="form-control"
-								required>
-						</div>
+							<div class="col-sm-8">
+        <input type="date" th:field="*{fecha}" id="fechaInput" class="form-control" onchange="llenarCamposFecha()" min="<?php echo date('Y-m-d'); ?>"
+            required>
+    </div>
+					
 					</div>
 
 					<div class="m-3"></div>
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Descripcion </label>
 						<div class="col-sm-8">
-							<input type="text" th:field="*{descripcion}" class="form-control"
-								required>
+							<input type="text" th:field="*{descripcion}" class="form-control" required>
 						</div>
 					</div>
 
@@ -36,7 +36,7 @@
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Dia</label>
 						<div class="col-sm-8">
-							<select th:field="*{dia}" class="form-control">
+							<select id="diaSelect" th:field="*{dia}" class="form-control">
 								<option th:value="Lunes" th:text="Lunes">Lunes</option>
 								<option th:value="Martes" th:text="Martes">Martes</option>
 								<option th:value="Miercoles" th:text="Miercoles">Miercoles</option>
@@ -52,7 +52,7 @@
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Mes</label>
 						<div class="col-sm-8">
-							<select th:field="*{mes}" class="form-control">
+							<select id="mesSelect" th:field="*{mes}" class="form-control">
 								<option th:value="Enero" th:text="Enero">Enero</option>
 								<option th:value="Febrero" th:text="Febrero">Febrero</option>
 								<option th:value="Marzo" th:text="Marzo">Marzo</option>
@@ -72,10 +72,44 @@
 					<div class="form-group row">
 						<label class="col-form-label col-sm-4">Año</label>
 						<div class="col-sm-8">
-							<input type="number" th:field="*{anio}" class="form-control"
-								required>
+							<input id="anioInput" type="number" th:field="*{anio}" class="form-control" required>
 						</div>
 					</div>
+					<!-- Campo oculto para el ID de la unidad -->
+					<div class="m-3"></div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Hora de salida</label>
+						<div class="col-sm-8">
+							<input type="time" th:field="*{horaSalida}" class="form-control" onchange="validarHora()" required>
+						</div>
+					</div>
+
+					<!-- Campo oculto para el ID de la ruta -->
+					<div class="m-3"></div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Unidad</label>
+						<div class="col-sm-8">
+							<select th:field="*{unidad.id}" class="form-control">
+								<option th:each="unidad : ${unidades}" th:value="${unidad.id}"
+									th:text="${unidad.numero} + ' - ' + ${unidad.cooperativa.nombre}"></option>
+							</select>
+						</div>
+					</div>
+
+					<div class="m-3"></div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Ruta</label>
+						<div class="col-sm-8">
+							<select th:field="*{ruta.id}" class="form-control">
+								<option th:each="ruta : ${rutas}" th:value="${ruta.id}"
+									th:text="${ruta.rutaOrigen} + ' - ' + ${ruta.rutaDestino}"></option>
+							</select>
+						</div>
+					</div>
+
+
+
+
 
 					<div class="m-3"></div>
 
@@ -86,11 +120,57 @@
 					</div>
 					<input type="hidden" th:field="*{id}">
 
+
 				</form>
 
 			</div>
 		</div>
 	</div>
+	<script>
+    function llenarCamposFecha() {
+        var fechaSeleccionada = document.getElementById('fechaInput').value;
+        var fecha = new Date(fechaSeleccionada);
+        
+        var dia = obtenerDia(fecha);
+        var mes = obtenerMes(fecha);
+        var anio = fecha.getFullYear();
+        
+        document.getElementById('diaSelect').value = dia;
+        document.getElementById('mesSelect').value = mes;
+        document.getElementById('anioInput').value = anio;
+    }
+
+    function obtenerDia(fecha) {
+        const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        return diasSemana[fecha.getDay()];
+    }
+
+    function obtenerMes(fecha) {
+        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        return meses[fecha.getMonth()];
+        }
+        // Obtener la fecha actual en formato YYYY-MM-DD
+       
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("fechaInput").setAttribute("min", today);
+    
+      function validarHora() {
+        var horaInput = document.querySelector('input[type="time"]');
+        var horaActual = new Date();
+        var hora = horaActual.getHours();
+        var minutos = horaActual.getMinutes();
+
+        // Ajustar para que siempre sea al menos una hora después
+        if (minutos < 60) {
+            minutos = '00';
+            hora += 1;
+        }
+
+        var horaMinima = hora.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0');
+        horaInput.setAttribute('min', horaMinima);
+    }
+    
+</script>
 	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 
