@@ -71,4 +71,6 @@ public class DetalleController {
 		flash.addFlashAttribute("success", mensajeFlash);
 	    return "redirect:listar";
 	}
+	
+	
 }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<h4 class="card-title">
+					<a th:href="@{/configuracion/form}" class="btn btn-primary">Crear
+						Configuracion</a>
+				</h4>
+				<table class="table table-striped table-bordered">
+					<thead class="thead-inverse">
+						<tr>
+							<th class="bg-dark text-white">id</th>
+							<th class="bg-dark text-white">fecha de Configuracion</th>
+							<th class="bg-dark text-white">descuento</th>
+							<th class="bg-dark text-white">iva</th>
+							<th class="bg-dark text-white">cantidad de VentaB</th>
+							<th class="bg-dark text-white">estado</th>
+							<th class="bg-dark text-white">editar</th>
+							<th class="bg-dark text-white">eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="configuracion: ${configuraciones}">
+							<td th:text="${configuracion.id}"></td>
+							<td th:text="${configuracion.fechaConfiguracion}"></td>
+							<td th:text="${configuracion.descuento}"></td>
+							<td th:text="${configuracion.iva}"></td>
+							<td th:text="${configuracion.cantidadVentaB}"></td>
+							<td th:text="${configuracion.estado}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/configuracion/form/}+ ${configuracion.id}">editar</a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/configuracion/eliminar/}+ ${configuracion.id}">eliminar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

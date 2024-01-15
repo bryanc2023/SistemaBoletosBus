@@ -26,6 +26,7 @@ public class ConfiguracionService implements  IConfiguracionService{
 		
 	}
 
+	
 	@Override
 	@Transactional(readOnly=true)
 	public Configuracion findOne(Integer id) {
@@ -86,8 +87,13 @@ public class ConfiguracionService implements  IConfiguracionService{
         return 0.0; // Otra acción en caso de que no se encuentre la configuración activa
     }
 	
+	public Configuracion findConfiguracionActiva() {
+	    return configuracionDao.findByEstado("activo");
+	}
 	
-	
+	public List<Configuracion> findAllConfiguracionesActivas() {
+        return configuracionDao.findAllConfiguracionesActivas();
+    }
 	
 }
 
