@@ -18,5 +18,5 @@ public interface IConfiguracionService {
 	 Configuracion findByEstado(String estado);
 	 double obtenerIVA();
 	 double obtenerDescuento();
-	
+	  List<Configuracion> findAllConfiguracionesActivas();
 }
