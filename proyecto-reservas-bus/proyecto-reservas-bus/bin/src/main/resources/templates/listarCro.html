@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title >Cronogramas disponibles</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Buses</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" th:href=${"/unidad/listar"}>Unidades</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href=${"/boleto/listar"}>Boletos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href=${"/ruta/listar"}>Rutas</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Cronogramas</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<h1 class="text-primary border border-primary border-top-0 border-end-0 border-start-0 " th:text="${titulo}">
+		</h1>
+
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>descripcion </th>
+					<th>fecha</th>
+					<th>dia</th>
+					<th>mes</th>
+					<th>anio</th>
+					<th>editar</th>
+					<th>eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cronograma: ${cronogramas}">
+					<td th:text="${cronograma.id}"></td>
+					<td th:text="${cronograma.descripcion}"></td>
+					<td th:text="${cronograma.fecha}"></td>
+					<td th:text="${cronograma.dia}"></td>
+					<td th:text="${cronograma.mes}"></td>
+					<td th:text="${cronograma.anio}"></td>
+					<td > <a class="btn btn-secondary btn-xs" th:href="@{/cronograma/form/}+ ${cronograma.id}">editar</a></td>
+					<td > <a class="btn btn-danger btn-xs" th:href="@{/cronograma/eliminar/}+ ${cronograma.id}">eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	<a th:href="@{/cronograma/form}" class="btn btn-secondary"> Crear Cronograma</a>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+	
+</body>
+</html>
