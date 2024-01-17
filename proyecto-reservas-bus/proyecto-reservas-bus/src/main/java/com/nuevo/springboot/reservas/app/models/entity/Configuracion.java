@@ -106,6 +106,16 @@ public class Configuracion {
 
 
 
+	public String getEstado() {
+		return estado;
+	}
+
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+
 	public Configuracion(Date fechaConfiguracion, float descuento, float iva, int cantidadVentaB) {
 		super();
 		this.fechaConfiguracion = fechaConfiguracion;
