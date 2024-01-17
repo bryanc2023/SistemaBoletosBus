@@ -13,76 +13,13 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
 	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
 	crossorigin="anonymous">
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			margin: 0;
-		}
-		.container {
-			background-color: #fff;
-			padding: 150px;
-			box-shadow: 0 0 10px rgba(0,0,0,0.1);
-			border-radius: 5px;
-			background-size: 140%;
-		}
-		.container h2 {
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.container form {
-			display: flex;
-			flex-direction: column;
-		}
-		.container label {
-			margin-bottom: 5px;
-		}
-		.container input[type="email"], .container input[type="password"] {
-			padding: 10px;
-			border: 1px solid #ccc;
-			border-radius: 5px;
-			margin-bottom: 10px;
-		}
-		.container input[type="submit"] {
-			background-color: #0042A4;
-			color: #fff;
-			padding: 10px;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-			margin-top: 10px;
-		}
-		.container input[type="submit"]:hover {
-			background-color: #0042A4;
-		}
-		.bus-image {
-  width: 40%; /* Adjust the width as needed */
-  height: auto;
-  margin-right: 2rem; /* Add some margin between the image and the login container */
-}
-.bus {
-  width: 40%; /* Adjust the width as needed */
-  height: auto;
-  margin-right: 2rem; /* Add some margin between the image and the login container */
-}
-		.container a {
-			text-align: center;
-			display: block;
-			margin-top: 10px;
-			color: #0042A4;
-			text-decoration: none;
-		}
-		.container a:hover {
-			text-decoration: underline;
-		}
-		.bus {
-			margin-right: 100%;
-		}
-	</style>
+	
+	<!-- link css -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+<script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
 </head>
 <body>
 	<div class="container">
@@ -125,10 +62,11 @@
 		</form>
 		
 	</div>
-	
-	
+		
           
 </body>
+
+
 
 <script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
