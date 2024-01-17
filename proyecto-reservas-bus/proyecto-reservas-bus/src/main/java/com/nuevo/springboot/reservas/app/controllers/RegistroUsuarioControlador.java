@@ -40,7 +40,7 @@ public class RegistroUsuarioControlador {
 
 	@GetMapping
 	public String mostrarFormularioDeRegistro() {
-		return "registro";
+		return "login";
 	}
 	
 	@PostMapping
@@ -48,7 +48,7 @@ public class RegistroUsuarioControlador {
 		
 		
 		usuarioServicio.guardar(registroDTO);
-		return "redirect:/registro?exito";
+		return "redirect:/login?exito";
 	}
 	
 	
