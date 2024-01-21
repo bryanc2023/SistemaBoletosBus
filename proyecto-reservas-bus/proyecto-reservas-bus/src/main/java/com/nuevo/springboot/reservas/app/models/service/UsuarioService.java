@@ -125,6 +125,8 @@ public class UsuarioService implements IUsuarioService{
 	        Usuario usuario = usuarioRepositorio.findByEmail(email);
 	        return usuario != null ? usuario.getId() : null;
 	    }
+	 
+	 
 
     public Long obtenerIdUsuarioLogueado() {
         Authentication authentication = (Authentication) SecurityContextHolder.getContext().getAuthentication();
