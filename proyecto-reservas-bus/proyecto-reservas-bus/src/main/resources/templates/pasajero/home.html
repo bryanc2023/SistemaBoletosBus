@@ -1,63 +1,24 @@
 <!DOCTYPE html >
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<meta charset="UTF-8" />
-	<title>Bienvenido</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-		<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-<script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
+<head th:replace="pasajero/layout :: head">
+	
 </head>
 
 <body>
+<link rel="stylesheet" th:href="@{/css/pasajero/home.css}" />
 
-	<header th:fragment="header">
+	<header th:replace="pasajero/layout :: header"></header>
 
-		<nav class="navbar navbar-expand-lg bg-body-tertiary"
-			data-bs-theme="dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" th:href="${'/'}">Buses</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNav"
-					aria-controls="navbarNav" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-						<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link"
-							th:href="${'/pasajero/boleto'}">Mis boletos</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/logout">Cerrar sesión</a></li>
-				
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="alert alert-success" th:if="${success != null}"
-			th:text=${success}></div>
-		<div class="alert alert-danger" th:if="${error != null}"
-			th:text=${error}></div>
-		<div class="alert alert-warning" th:if="${warning != null}"
-			th:text=${warning}></div>
-		<div class="alert alert-info" th:if="${info != null}" th:text=${info}></div>
-		
-		
-	</header>
+
 
 
       <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-	    <h1 class="display-2">Bienvenido a Reservas de boletoss</h1>
-	    <p class="lead">Puedes reservar en línea</p>
-	</header>
-	 <h4>
-			Bienvenido <span sec:authentication="principal.username"></span>
+
+	    <h4 class="titulo">
+			Bienvenido <span th:text="${pasajero}"></span>
 		</h4>
-		<h4>
-			id <span th:text="${id}"></span>
-		</h4>
+		
 		
 		
 		
@@ -128,9 +89,8 @@
     <!-- /.container -->
 
     <!-- Footer -->
- <footer th:replace="layout/layout :: footer"></footer>
-    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+ <footer th:replace="pasajero/layout :: footer"></footer>
+    
 
   </body>
 
