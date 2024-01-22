@@ -1,0 +1,18 @@
+  .disponible {
+            width: 20px;
+            height: 20px;
+            background-color: gray;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .ocupado {
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+       .uni h1{
+			font-weight: bold;
+		}

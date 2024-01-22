@@ -1,8 +1,126 @@
-.titulo{
-	font-style: italic;
-	padding-top: 2%;
+/*Estilos nombre*/
+.nombre{
+	box-shadow: 0 0.5px 3px rgba(0, 0, 0, 0.1); 
+	padding: 0.2%;
+	margin-left: 0.9%;
+	margin-top: 0.5%;
+	margin-right: 0.9%;
+	
+	
 }
 
-h4{
-	color: brown;
+.titulo{
+	font-weight: bold;
+	padding-top: 1%;
+	padding-left: 2%;
 }
+
+.titulo span{
+	color: #2880ff;
+}
+
+.titulo p{
+	font-weight: 50;
+    font-size: 20px;
+	color: #9eaab8;
+}
+
+
+/*Estilos nombre FIN*/
+
+/*Estilos Busqueda- Viajes actuales*/
+.inputt div div form label{
+	color: #9eaab8;
+}
+.busqueda{
+	
+	margin-left: 0.9%;
+	margin-top: 0.9%;
+	margin-right: 0.9%;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+.busqueda h4{
+	font-size: 50px;
+	font-weight: bold;
+	
+}
+
+.busqueda #fecha-actual{
+	color: #9eaab8;
+}
+
+.viaj{
+	font-weight: bold;
+	font-size:20px;
+}
+/*Estilos Busqueda- Viajes actuales FIN*/
+/*Estilos TARJETAS*/
+ #tarjeta .card {
+        margin-right: 15px; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+/*Estilos TARJETAS FIN*/
+
+/*Estilos Informacion que beneficios..*/
+.info{
+	
+	margin-left: 0.9%;
+	margin-top: 2%;
+	margin-right: 0.9%;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+ #tarjeta2 .card {
+        margin-right: 15px; 
+        margin-top: 15px;
+    }
+    
+    #tarjeta2 .card div div p{
+        text-align: justify; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+       #tarjeta2 .card h5{
+        font-weight: bold; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+    
+     #tarjeta2 .card div div img{
+        padding-top: 20%;
+        height: 100px; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+
+
+@media (max-width: 768px) {
+     #tarjeta2 .card div div img{
+        padding-top: 10px;
+        height: 150px; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+      }
+
+
+/*Estilos Informacion que beneficios.. FIN*/
+
+/*Estilos Consejos..*/
+
+.consejo{
+	
+	margin-left: 0.9%;
+	margin-top: 2%;
+	margin-right: 0.9%;
+	padding-left: 25px;
+	padding-right: 25px;
+}
+
+ #tarjeta3 .card {
+        margin-right: 40px; 
+        margin-top: 15px;
+        padding-top: 10px;
+    }
+    
+      #tarjeta3 .card div  p{
+        text-align: justify; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+    
+    #tarjeta3 .card h5{
+        font-weight: bold; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
