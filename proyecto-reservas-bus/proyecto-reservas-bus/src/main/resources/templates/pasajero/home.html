@@ -47,109 +47,118 @@
 		<br>
 		<h2 class="viaj">Viajes Proximos:</h2>
 		<p id="fecha-actual"></p>
-        
+
 		<div class="row text-center" th:if="${#lists.isEmpty(resultados)}">
 			<p>No se encontraron resultados.</p>
 		</div>
 
 		<div id="tarjeta" class="row text-center mb-3" th:if="${not #lists.isEmpty(resultados)}">
-    <div class="card" style="max-width: 450px;" th:each="resultado: ${resultados}">
-        <div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
-            <div class="col-md-4">
-                <img th:src="@{/images/logo.png}" class="img-fluid rounded-start" alt="...">
-                <p class="card-text"><small class="text-muted" th:text="'Unidad: '+ ${resultado[2]} +' ' + ${resultado[1]}"></small></p>
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${resultado[5]}+' - '+${resultado[6]}"></h5>
-                    <p class="card-text"><small class="text-muted" th:text="'Hora de salida: ' + ${resultado[4]}"></small></p>
-                    <a class="btn btn-primary" th:href="@{/asientos/}+ ${resultado[7]}">Reservar</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+			<div class="card" style="max-width: 450px;" th:each="resultado: ${resultados}">
+				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
+					<div class="col-md-4">
+						<img th:src="@{/images/logo.png}" class="img-fluid rounded-start" alt="...">
+						<p class="card-text"><small class="text-muted"
+								th:text="'Unidad: '+ ${resultado[2]} +' ' + ${resultado[1]}"></small></p>
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${resultado[5]}+' - '+${resultado[6]}"></h5>
+							<p class="card-text"><small class="text-muted"
+									th:text="'Hora de salida: ' + ${resultado[4]}"></small></p>
+							<a class="btn btn-primary" th:href="@{/asientos/}+ ${resultado[7]}">Reservar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
-	
+
 	<div class="info">
 
 		<h4 class="viaj">
 			¿Que beneficios te da BookMyDrive?
 		</h4>
-		
-		<div id="tarjeta2" class="row text-center mb-3" >
-    <div class="card" style="max-width: 450px;" >
-        <div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
-         
-            <div class="col-md-4">
-                <img th:src="@{/images/pasajero/img1.png}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" > Descuentos especiales</h5>
-                    <p class="card-text"><small class="text-muted" >Se aplican descuentos para personas de tercera edad en cada boleto que se compre</small></p>
-       
-                </div>
-            </div>
-        </div>
-    </div>
-      <div class="card" style="max-width: 450px;" >
-        <div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
-         
-            <div class="col-md-4">
-                <img th:src="@{/images/pasajero/img2.png}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" > Cancelación gratis</h5>
-                    <p class="card-text"><small class="text-muted" >
-Al cancelar no se aplica valores recaudos o extras si se lo realiza dentro del periodo de tiempo establecido, pero se le penaliza dentro de la aplicación</small></p>
-       
-                </div>
-            </div>
-        </div>
-    </div>
-      <div class="card" style="max-width: 450px;" >
-        <div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
-         
-            <div class="col-md-4">
-                <img th:src="@{/images/pasajero/img3.png}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" > Servicio puntual</h5>
-                    <p class="card-text"><small class="text-muted" >Los horarios y rutas se establecen segun los administradores de la aplicación</small></p>
-       
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+		<div id="tarjeta2" class="row text-center mb-3">
+			<div class="card" style="max-width: 450px;">
+				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
+
+					<div class="col-md-4">
+						<img th:src="@{/images/pasajero/img1.png}" class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title"> Descuentos especiales</h5>
+							<p class="card-text"><small class="text-muted">Se aplican descuentos para personas de
+									tercera edad en cada boleto que se compre</small></p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card" style="max-width: 450px;">
+				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
+
+					<div class="col-md-4">
+						<img th:src="@{/images/pasajero/img2.png}" class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title"> Cancelación gratis</h5>
+							<p class="card-text"><small class="text-muted">
+									Al cancelar no se aplica valores recaudos o extras si se lo realiza dentro del
+									periodo de tiempo establecido, pero se le penaliza dentro de la aplicación</small>
+							</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card" style="max-width: 450px;">
+				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
+
+					<div class="col-md-4">
+						<img th:src="@{/images/pasajero/img3.png}" class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title"> Servicio puntual</h5>
+							<p class="card-text"><small class="text-muted">Los horarios y rutas se establecen segun los
+									administradores de la aplicación</small></p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
-	
-	
+
+
 	<div class="consejo">
 
 		<h4 class="viaj">
 			Consejos de viaje
 		</h4>
-		<div id="tarjeta3" class="row text-center mb-3" >
-		<div class="card" style="max-width: 650px;" >
-        <div class="row g-0 mb-2"> 
-		<img th:src="@{/images/pasajero/img4.jpg}" height="350px" >
-		<h5 class="card-title" > No olvides tu equipaje</h5>
-		<p class="card-text"><small class="text-muted" >Recuerda que el personal ni la aplicación se responsabiliza por objetos perdidos dentro de cada viaje, asegurate de administrar tu equipaje en cada viaje</small></p>
-        </div>
-		</div>
-		<div class="card" style="max-width: 650px;" >
-        <div class="row g-0 mb-2"> 
-		<img th:src="@{/images/pasajero/img5.jpg}" height="350px" >
-		<h5 class="card-title" > Permanece atento a la hora</h5>
-		<p class="card-text"><small class="text-muted" >Si pierdes la reservación realizada , la aplicación no puede reembolsar el boleto vendido una vez efectuado el pago</small></p>
-        </div>
-		</div>
+		<div id="tarjeta3" class="row text-center mb-3">
+			<div class="card" style="max-width: 650px;">
+				<div class="row g-0 mb-2">
+					<img th:src="@{/images/pasajero/img4.jpg}" height="350px">
+					<h5 class="card-title"> No olvides tu equipaje</h5>
+					<p class="card-text"><small class="text-muted">Recuerda que el personal ni la aplicación se
+							responsabiliza por objetos perdidos dentro de cada viaje, asegurate de administrar tu
+							equipaje en cada viaje</small></p>
+				</div>
+			</div>
+			<div class="card" style="max-width: 650px;">
+				<div class="row g-0 mb-2">
+					<img th:src="@{/images/pasajero/img5.jpg}" height="350px">
+					<h5 class="card-title"> Permanece atento a la hora</h5>
+					<p class="card-text"><small class="text-muted">Si pierdes la reservación realizada , la aplicación
+							no puede reembolsar el boleto vendido una vez efectuado el pago</small></p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- Footer -->
