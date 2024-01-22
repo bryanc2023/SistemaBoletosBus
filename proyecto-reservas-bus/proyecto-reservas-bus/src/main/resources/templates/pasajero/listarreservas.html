@@ -23,8 +23,7 @@
 							<th class="bg-dark text-white">FECHA</th>
 							<th class="bg-dark text-white">HORA</th>
 							<th class="bg-dark text-white">MÉTODO DE PAGO</th>
-							<th class="bg-dark text-white">VER QR</th>
-						
+							<th class="bg-dark text-white">CANCELAR RESERVA</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,10 +34,10 @@
 							<td th:text="${boleto.cronograma.fecha}"></td>
 							<td th:text="${boleto.cronograma.horaSalida}"></td>
 							<td th:text="${boleto.metodoPago}"></td>
+					
+							
 							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/ver/boleto(id=${boleto.id})}">VER QR</a></td>
-							
-							
+								th:href="@{/cancelar/boleto/}+ ${boleto.id}+ '/'+ ${boleto.asiento.id}">CANCELAR BOLETO</a></td>
 							
 						</tr>
 					</tbody>
