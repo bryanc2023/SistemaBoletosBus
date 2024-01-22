@@ -190,9 +190,8 @@ public class AsientoController {
     	 List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
     	 String mensajeFlash =  "Boleto reservado correctamente, acerquese a la ventanilla a cancelar el total." ;
          
-         flash.addFlashAttribute("success", mensajeFlash);
 	        model.addAttribute("resultados", resultados);
-    		return "pasajero/home"; // Redireccionar a la página deseada después de procesar la reserva
+    		return "pasajero/confirmar_1"; // Redireccionar a la página deseada después de procesar la reserva
     }
    
  

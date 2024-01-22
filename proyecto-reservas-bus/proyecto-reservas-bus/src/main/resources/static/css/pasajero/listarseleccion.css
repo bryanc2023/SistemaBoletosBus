@@ -48,19 +48,39 @@
 	color: #9eaab8;
 }
 
-.info{
+.infor{
 	
-	margin-left: 0.9%;
-	margin-top: 2%;
-	margin-right: 0.9%;
-	padding-left: 25px;
-	padding-right: 25px;
+	margin-right: 30px;
+	margin-left: 180px;
+	margin-bottom: 10px;
+	
+
 }
 
-#tarjeta2 .card {
-        margin-right: 15px; 
-        margin-top: 15px;
-    }
+.infor h5{
+	text-align: center;
+	font-weight: bold;
+}
+
+.infor img{
+	margin-left: 35%;
+}
+
+.is {
+	text-align: center;
+	font-weight: bold;
+	color: #9eaab8;
+}
+
+.isa {
+	text-align: justify;
+	
+}
+.is p{
+	color: black;
+	font-weight: 100;
+}
+
     
     #tarjeta2 .card div div p{
         text-align: justify; /* Ajusta el valor según tu preferencia para el espacio horizontal */

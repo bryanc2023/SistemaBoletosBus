@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="pasajero/layout :: head">
+
+</head>
+
+<body>
+	<link rel="stylesheet" th:href="@{/css/pasajero/confirmar.css}" />
+	<header th:replace="pasajero/layout :: header"></header>
+
+	
+<div id="indi" class="card text-white bg-success mb-3" style="max-width: 700px;">
+  <div id="indititulo" class="card-header">RESERVA REALIZADA CON ÉXITO  <i class="fa fa-check-circle" aria-hidden="true"></i></div>
+  <div class="card-body">
+    <h5 class="card-title">Indicaciones:</h5>
+    <p class="card-text">- Acerquese a ventanilla dentro de una hora antes de la hora de salida a cancelar el valor total.</p>
+    <p class="card-text">- Si no se cancela la reserva se aplicara penalizaciones en la aplicacion</p>
+    <p class="card-text">- Los boletos tienen su propio QR individual para pasar.</p>
+    <p class="card-text">- Los boletos sin pagar presentaran estado "PENDIENTE"</p>
+    <p class="card-text">- Las cancelaciones de las reservaciones sin amonestaciones se aceptan en un lapso de 10 horas antes de que el viaje se realize.</p>
+   
+				<a class="btn btn-primary"  th:href="${'/'}" role="button">Aceptar</a>
+  </div>
+</div>
+
+			
+
+
+	<footer th:replace="pasajero/layout :: footer"></footer>
+	
+</body>
+
+</html>
