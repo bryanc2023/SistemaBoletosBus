@@ -128,6 +128,13 @@ public class AsientoService implements IAsientoService{
 	}
 	
 	
+	@Override
+	public int obtenerMax() {
+		int cantidad= configuracionService.obtenerMax();
+		
+		return cantidad;
+	}
+	
 
 	
 

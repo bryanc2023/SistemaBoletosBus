@@ -21,10 +21,13 @@ public interface IUnidadDao extends JpaRepository<Unidad, Integer>{
 
 	@Query(value = "SELECT a.id,a.numero,c.nombre,b.fecha,b.hora_salida,d.ruta_origen,d.ruta_destino,b.id as id_cronograma,a.imagen FROM unidad as a right join cronograma as b on a.id=b.id_unidad inner join cooperativa as c on a.id_cooperativa=c.id inner join ruta as d on b.id_ruta=d.id_ruta where b.fecha=?1", nativeQuery = true)
     List<Object[]> obtenerUnidadesConCronogramaYRutaPorFecha(String fecha);
-	  
+	  //Obtener todos
 	@Query(value = "SELECT a.id,a.numero,c.nombre,b.fecha,b.hora_salida,d.ruta_origen,d.ruta_destino,b.id as id_cronograma,a.imagen FROM unidad as a right join cronograma as b on a.id=b.id_unidad inner join cooperativa as c on a.id_cooperativa=c.id inner join ruta as d on b.id_ruta=d.id_ruta", nativeQuery = true)
 	List<Object[]> obtenerUnidadesConCronogramaYRuta();
 	
+	 //Obtener actuales
+	@Query(value = "SELECT a.id, a.numero, c.nombre, b.fecha, b.hora_salida, d.ruta_origen, d.ruta_destino, b.id as id_cronograma,a.imagen FROM unidad as a right join cronograma as b on a.id = b.id_unidad inner join cooperativa as c on a.id_cooperativa = c.id inner join ruta as d on b.id_ruta = d.id_ruta WHERE DATE(b.fecha) = CURRENT_DATE", nativeQuery = true)
+	List<Object[]> obtenerUnidadesConCronogramaActual();
 
 
 }

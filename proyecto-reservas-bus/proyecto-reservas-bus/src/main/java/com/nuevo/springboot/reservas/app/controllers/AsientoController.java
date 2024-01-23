@@ -127,7 +127,7 @@ public class AsientoController {
         List<Asiento> asientosReservados = asientoService.countByEstado(asiento.getCronograma().getId());
         int cantidadDeAsientosReservados = asientosReservados.size();
         int cantidadDeBoletosReservados = boletosReservados.size();
-        if(asiento.getEstado().equals("Reservado")|| cantidadDeAsientosReservados+cantidadDeBoletosReservados< 4){
+        if(asiento.getEstado().equals("Reservado")|| cantidadDeAsientosReservados+cantidadDeBoletosReservados< asientoService.obtenerMax()){
         	 model.addAttribute("titulo", cantidadDeAsientosReservados);
              String estadoActual = asiento.getEstado();
              String nuevoEstado = estadoActual.equals("Disponible") ? "Reservado" : "Disponible";
@@ -142,7 +142,7 @@ public class AsientoController {
              flash.addFlashAttribute("success", mensajeFlash);
         }else {
         	    model.addAttribute("titulo", cantidadDeAsientosReservados);
-                flash.addFlashAttribute("error", "Se alcanzó el límite de asientos por persona (máximo 4)");
+                flash.addFlashAttribute("error", "Se alcanzó el límite de asientos por persona (máximo "+asientoService.obtenerMax()+")");
             }
         
         

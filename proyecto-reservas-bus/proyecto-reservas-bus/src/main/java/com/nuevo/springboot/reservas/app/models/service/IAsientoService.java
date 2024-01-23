@@ -35,4 +35,5 @@ public interface IAsientoService {
     double obtenerCostoTotal(Integer cronogramaId);
     
     double obtenerSubtotal(Integer cronogramaId);
+	int obtenerMax();
 }

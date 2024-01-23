@@ -94,6 +94,16 @@ public class ConfiguracionService implements  IConfiguracionService{
 	public List<Configuracion> findAllConfiguracionesActivas() {
         return configuracionDao.findAllConfiguracionesActivas();
     }
+
+
+	@Override
+	public int obtenerMax() {
+		Configuracion configuracionActiva = configuracionDao.findByEstado("Activo");
+        if (configuracionActiva != null) {
+            return configuracionActiva.getCantidadVentaB();
+        }
+		return 0;
+	}
 	
 }
 
