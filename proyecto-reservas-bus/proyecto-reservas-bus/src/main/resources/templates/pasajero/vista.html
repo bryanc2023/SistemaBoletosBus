@@ -9,14 +9,17 @@
 <body>
 	<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 		<header th:replace="pasajero/layout :: header"></header>
-
+<link rel="stylesheet" th:href="@{/css/pasajero/vista.css}" />
 		
-
+     <div class="contenido">
+	  
+	 <h5> ASIENTO :</h5>
 	 <div id="qrcode"></div>
+	 </div>
     <script>
         var qrcode = new QRCode(document.getElementById("qrcode"), {
-            width: 200,
-            height: 200
+            width: 400,
+            height: 400
         });
 
         // Obtener el ID del boleto de la URL
