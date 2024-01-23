@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+</head>
+<body>
+    <div th:if="${message != null}">
+        <p class="text-warning">[[${message}]]</p>
+    </div>
+
+    <!-- Agrega el botón de redirección al login -->
+    <a th:href="@{/login}">
+        <button type="button">Ir a Login</button>
+    </a>
+</body>
+</html>

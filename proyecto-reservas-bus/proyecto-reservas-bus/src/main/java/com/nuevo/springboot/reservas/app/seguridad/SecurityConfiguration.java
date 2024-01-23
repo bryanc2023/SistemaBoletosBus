@@ -43,15 +43,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		  http.authorizeRequests()
+	    http.authorizeRequests()
 	        .antMatchers(
 	            "/registro",
 	            "/js/**",
 	            "/css/**",
 	            "/img/**",
-	            "/confirm-account", // Agregado para permitir el acceso sin autenticación
-	            "/accountVerified",  // Agregado para permitir el acceso sin autenticación
-	            "/error"  // Agregado para permitir el acceso sin autenticación
+	            "/confirm-account",
+	            "/accountVerified",
+	            "/error",
+	            "/forgot_password",      // Agregado para permitir el acceso sin autenticación
+	            "/reset_password"        // Agregado para permitir el acceso sin autenticación
 	        ).permitAll()
 	        .anyRequest().authenticated()
 	        .and()
