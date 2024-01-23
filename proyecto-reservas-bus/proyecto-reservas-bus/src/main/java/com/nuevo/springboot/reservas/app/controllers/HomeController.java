@@ -63,7 +63,8 @@ public class HomeController {
 		    	        Usuario user = usuarioService.findByEmail(email);
 		    	        if (user.isEnabled()) {
 		    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
-		    	            model.addAttribute("id", idUsuario);
+		    	            Usuario pasajero= usuarioService.findById(idUsuario);
+		    	            model.addAttribute("pasajero", pasajero.getNombre()+" "+pasajero.getApellido());
 		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
 		    	            model.addAttribute("resultados", resultados);
 		    	            return "pasajero/home";

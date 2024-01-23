@@ -50,6 +50,16 @@ public class BoletoController {
 	}
 	
 
+	@GetMapping("/pasajero/reservas")
+	public String listarReservas(Model model,Authentication authentication) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String email = ((UserDetails) principal).getUsername();
+        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+	 
+	    model.addAttribute("boletos", boletoService.findByIdUsuario(idUsuario));
+	    return "pasajero/listarreservas";
+	}
+	
 
 	@GetMapping("/cancelar/boleto/{idBoleto}/{idAsiento}")
 	public String eliminar(@PathVariable(value="idBoleto") Integer idBoleto, @PathVariable(value="idAsiento") Integer idAsiento,RedirectAttributes flash

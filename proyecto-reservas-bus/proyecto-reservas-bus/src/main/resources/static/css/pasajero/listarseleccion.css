@@ -1,0 +1,104 @@
+.uni h1{
+		    margin-top: 10px;
+		    margin-left: 50px;
+			font-weight: bold;
+			
+		}
+		
+#seleccion{
+	margin-right: 100px;
+	margin-left: 100px;
+	margin-bottom: 10px;
+}
+
+#tar{
+	margin-left: 100px;
+	margin-right: 150px;
+}
+
+#ast{
+	font-weight: bold;
+}
+
+.vista p{
+	font-weight: 50;
+    font-size: 20px;
+	color: #9eaab8;
+}
+
+
+#seleccion2{
+	margin-right: 100px;
+	margin-left: 100px;
+	margin-bottom: 10px;
+}
+
+#tar2{
+	margin-left: 100px;
+	margin-right: 150px;
+}
+
+#ast2{
+	font-weight: bold;
+}
+
+.vista2 p{
+	font-weight: 50;
+    font-size: 20px;
+	color: #9eaab8;
+}
+
+.infor{
+	
+	margin-right: 30px;
+	margin-left: 180px;
+	margin-bottom: 10px;
+	
+
+}
+
+.infor h5{
+	text-align: center;
+	font-weight: bold;
+}
+
+.infor img{
+	margin-left: 35%;
+}
+
+.is {
+	text-align: center;
+	font-weight: bold;
+	color: #9eaab8;
+}
+
+.isa {
+	text-align: justify;
+	
+}
+.is p{
+	color: black;
+	font-weight: 100;
+}
+
+    
+    #tarjeta2 .card div div p{
+        text-align: justify; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+       #tarjeta2 .card h5{
+        font-weight: bold; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+    
+     #tarjeta2 .card div div img{
+        padding-top: 20%;
+        height: 100px; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+
+
+@media (max-width: 768px) {
+     #tarjeta2 .card div div img{
+        padding-top: 10px;
+        height: 150px; /* Ajusta el valor según tu preferencia para el espacio horizontal */
+    }
+      }
+

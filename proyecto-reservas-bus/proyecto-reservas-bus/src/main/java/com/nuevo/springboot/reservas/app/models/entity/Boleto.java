@@ -62,7 +62,7 @@ public class Boleto{
 	
 	
 	@Column(name = "total_Pago")
-	private Float totalPago;
+	private double totalPago;
 	
 
 	
@@ -107,11 +107,11 @@ public class Boleto{
 
 
 
-	public Float getTotalPago() {
+	public double getTotalPago() {
 		return totalPago;
 	}
 
-	public void setTotalPago(Float totalPago) {
+	public void setTotalPago(double totalPago) {
 		this.totalPago = totalPago;
 	}
 
@@ -141,7 +141,7 @@ public class Boleto{
 	
 
 	public Boleto(Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario, String metodoPago,
-			Float totalPago) {
+			double totalPago) {
 		super();
 		this.detalle = detalle;
 		this.asiento = asiento;
@@ -152,7 +152,7 @@ public class Boleto{
 	}
 
 	public Boleto(Integer id, Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario,
-			String metodoPago, Float totalPago) {
+			String metodoPago, double totalPago) {
 		super();
 		this.id = id;
 		this.detalle = detalle;
