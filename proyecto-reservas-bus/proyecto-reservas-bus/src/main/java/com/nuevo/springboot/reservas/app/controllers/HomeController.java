@@ -72,7 +72,7 @@ public class HomeController {
 		    	            model.addAttribute("pasajero", pasajero.getNombre()+" "+pasajero.getApellido());
 		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaActual();
 		    	            model.addAttribute("resultados", resultados);
-		    	            return "pasajero/home";
+		    	            return "pasajero/home2";
 		    	        } else {
 		    	            return "redirect:/login?error2";
 		    	        }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="pasajero/layout :: head">
+<head th:replace="layout/layout2 :: head">
 
 </head>
 
 <body>
 <link rel="stylesheet" th:href="@{/css/pasajero/contacto.css}" />
-<header th:replace="pasajero/layout :: header"></header>
+<header th:replace="layout/layout2 :: header"></header>
 
 <div id="panel" class="panel-container">
       <strong>Te gustaría calificar tu experiencia?</strong>
@@ -34,7 +34,7 @@
       <button class="btn" id="send">Enviar</button>
     </div>
 
-   <footer th:replace="pasajero/layout :: footer"></footer>
+   <footer th:replace="layout/layout2 :: footer"></footer>
    
 		<script th:src="@{/js/pasajero/script.js}"></script>
 

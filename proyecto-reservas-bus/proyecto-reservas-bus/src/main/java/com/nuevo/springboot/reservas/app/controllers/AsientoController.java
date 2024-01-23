@@ -106,12 +106,12 @@ public class AsientoController {
            if(cantidadDeAsientosReservados == 0) {
         	   List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
 		        model.addAttribute("resultados", resultados);
-               return "pasajero/home";
+               return "pasajero/home2";
            }else {
         	asientoService.updateEstadoToDisponible(id);
         	List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
 	        model.addAttribute("resultados", resultados);
-       		return "pasajero/home"; 
+       		return "pasajero/home2"; 
            }
         
     }
