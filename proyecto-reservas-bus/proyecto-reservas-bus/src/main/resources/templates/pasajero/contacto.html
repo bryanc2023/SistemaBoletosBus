@@ -6,12 +6,11 @@
 </head>
 
 <body>
-	<link rel="stylesheet" th:href="@{/css/pasajero/confirmar.css}" />
-	<header th:replace="layout/layout2 :: header"></header>
-<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
-	
+<link rel="stylesheet" th:href="@{/css/pasajero/contacto.css}" />
+<header th:replace="layout/layout2 :: header"></header>
 
-<section id="clients" class="clients section-bg">
+	<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
+		<section id="clients" class="clients section-bg">
 			<div class="container">
 
 				<div class="row" data-aos="zoom-in">
@@ -56,34 +55,51 @@
 
 			</div>
 		</section>
-	
-	
-		
 		<section id="services" class="services section-bg">
 			
 			<div class="container" data-aos="fade-up">
 	
     <div class="uni">
-						
-	<div class="section-title">
+		<div class="section-title">
 	
-					<h2>RESERVA REALIZADA CON ÉXITO </h2>
-					<small style="font-weight: bold;">Indicaciones de tu compra:</small>
-					<br>
-					<small>- Los boletos tienen su propio QR individual para pasar.</small>
-					<br>
-					<small>- Las cancelaciones de las reservaciones sin amonestaciones se aceptan en un lapso de 10 horas antes de que el viaje se realize.</small>
-					
+					<h2>Retroalimentación</h2>
+					<small>Para nosotros es importante saber tu opinión para mejorar la aplicación dia a dia</small>
+				<div id="panel" class="panel-container">
+      <strong>Te gustaría calificar tu experiencia?</strong>
+      <div class="ratings-container">
+        <div class="rating">
+          <img src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-17.png" alt="">
+          <small>Malo</small>
+        </div>
+
+        <div class="rating">
+          <img src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-3.png" alt=""/>
+          <small>Normal</small>
+        </div>
+
+        <div class="rating active">
+          <img src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-30.png" alt=""/>
+ <small>Excelente</small>
+        </div>
+      </div>
+
+      <label for="comments">Tienes algún comentario adicional?</label><br>
+    <textarea id="comments" name="comments"></textarea><br>
+
+      <button class="btn" id="send">Enviar</button>
+    </div>
 				</div>
     </div>
-    <center><a class="btn btn-primary"  th:href="${'/'}" role="button">Aceptar</a></center>
+ 
 			</section>
 
-			
 
+   <footer th:replace="layout/layout2 :: footer"></footer>
+   
+		<script th:src="@{/js/pasajero/script.js}"></script>
 
-	<footer th:replace="layout/layout2 :: footer"></footer>
-	
 </body>
 
+
+	
 </html>

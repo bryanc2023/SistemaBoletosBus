@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class contacto {
 
-    @GetMapping("/contacto")
+    @GetMapping("pasajero/contacto")
     public String showContactoPage() {
         return "pasajero/contacto";
     }

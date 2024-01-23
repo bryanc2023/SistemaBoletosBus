@@ -37,24 +37,15 @@
  		<button class="mobile-nav-toggle bi bi-list" aria-label="Toggle Navigation"></button>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" th:href="@{/personal/listar}">Personal</a></li>
-                <li class="dropdown"><a href="#"><span>Buses</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a th:href="@{/ruta/listar}">Rutas</a></li>
-                        <li><a th:href="@{/cooperativa/listar}">Cooperativas</a></li>
-                        <li><a th:href="@{/unidad/listar}">Unidades</a></li>
-                        <li><a th:href="@{/cronograma/listar}">Cronogramas</a></li>
-                    </ul>
-                </li>
-                <li><a class="nav-link scrollto" th:href="@{/configuracion/listar}">Configuracion</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/pasajero/boleto}">Mis Boletos</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/pasajero/reservas}">Mis Reservas</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/pasajero/perfil}">Mi perfil</a></li>
+                <li><a class="nav-link scrollto" th:href="@{/pasajero/contacto}">Contacto</a></li>
                 <li><a class="getstarted scrollto" th:href="@{/logout}">Cerrar Sesión</a></li>
             </ul>
         </nav><!-- .navbar -->
     </div>
-  <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
-    <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
-    <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
-    <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+ 
 
 </header>
 

@@ -71,9 +71,23 @@ public class UsuarioService implements IUsuarioService{
          // Construir el cuerpo del correo con HTML
         String verificationLink = "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken();
         String nombreCompleto = registroDTO.getNombre() + " " + registroDTO.getApellido();
-        String emailBody = "<div style='text-align: center;'><h2>Complete Registration</h2>"
-        		+ "<p>Estimado " + nombreCompleto + ",</p>"
-                + "<p>Para confirmar tu cuenta da click en el siguiente enlace:</p>"
+        String emailBody = "<html>"
+                + "<head>"
+                + "<style>"
+                + "body { margin: 0; padding: 0; }"
+                + "table, tr, td { vertical-align: top; border-collapse: collapse; }"
+                + "</style>"
+                + "</head>"
+                + "<body style='margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #c2e0f4; color: #000000;'>"
+                + "<table id='u_body' style='border-collapse: collapse; table-layout: fixed; border-spacing: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt; vertical-align: top; min-width: 320px; Margin: 0 auto; background-color: #c2e0f4; width: 100%;' cellpadding='0' cellspacing='0'>"
+                + "<tbody>"
+                + "<tr style='vertical-align: top'>"
+                + "<td style='word-break: break-word; border-collapse: collapse !important; vertical-align: top;'>"
+                + "<!--[if (mso)|(IE)]><table width='100%' cellpadding='0' cellspacing='0' border='0'><tr><td align='center' style='background-color: #c2e0f4;'><![endif]-->"
+                + "<div style='text-align: center;'>"
+                + "<h2>Complete Registration</h2>"
+                + "<p>Estimado " + nombreCompleto + ",</p>"
+                + "<p>Para confirmar tu cuenta, haz clic en el siguiente enlace:</p>"
                 + "<a href='" + verificationLink + "' style='"
                 + "background-color: #4CAF50; /* Green */"
                 + "border: none;"
@@ -82,7 +96,13 @@ public class UsuarioService implements IUsuarioService{
                 + "text-align: center;"
                 + "text-decoration: none;"
                 + "display: inline-block;"
-                + "font-size: 16px;'>Verificar Cuenta</a></div>";
+                + "font-size: 16px;'>Verificar Cuenta</a></div>"
+                + "</td>"
+                + "</tr>"
+                + "</tbody>"
+                + "</table>"
+                + "</body>"
+                + "</html>";
 
         // Configurar el mensaje de correo
         SimpleMailMessage mailMessage = new SimpleMailMessage();

@@ -1,53 +1,79 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="pasajero/layout :: head">
+<head th:replace="layout/layout2 :: head">
 
 </head>
 
 <body>
 	<link rel="stylesheet" th:href="@{/css/pasajero/home.css}" />
-
-	<header th:replace="pasajero/layout :: header"></header>
+<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
+	<header th:replace="layout/layout2 :: header"></header>
 
 	
 		<br>
 		<br>
-		<h2 class="viaj">Viajes por fecha:</h2>
-		
+		<br>
+		<br>
+			<section id="services" class="services section-bg">
+			<div class="container" data-aos="fade-up">
 
-		<div class="row text-center" th:if="${#lists.isEmpty(resultados)}">
-			<p>No tenemos rutas para la fecha solicitada</p>
-		</div>
-<div class="info">
-		<div id="tarjeta" class="row text-center mb-3" th:if="${not #lists.isEmpty(resultados)}">
-			<div class="card" style="max-width: 450px;" th:each="resultado: ${resultados}">
-				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
-					<div class="col-md-4">
-						<img th:src="@{'/uploads/' + ${resultado[8]}}" class="image" alt="...">
-						<p class="card-text"><small class="text-muted"
-								th:text="'Unidad: '+ ${resultado[2]} +' ' + ${resultado[1]}"></small></p>
+				<div class="section-title">
+					<h2>Viajes Por fecha</h2>
+
+					
+				</div>
+		
+		<div class="row" th:if="${#lists.isEmpty(resultados)}">
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100" >
+						<div class="icon-box">
+							<div class="icon">
+								
+							</div>
+							<h4>
+								<a th:href="${'/'}">Volver a home</a>
+							</h4>
+							<p>No se encontraron viajes en esas fechas, regrese a home para indagar más servicios</p>
+						</div>
 					</div>
-					<div class="col-md-8">
-						<div class="card-body">
+
+					
+				</div>
+				
+				<div id="viaje"class="row" th:if="${not #lists.isEmpty(resultados)}">
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100" th:each="resultado: ${resultados}">
+						<div class="icon-box">
+							<div class="icon">
+								<img th:src="@{'/uploads/' + ${resultado[8]}}" class="image" alt="...">
+							</div>
+							
+							<h4>
+								
 							<h5 class="card-title" th:text="${resultado[5]}+' - '+${resultado[6]}"></h5>
 							<p class="card-text"><small class="text-muted"
 									th:text="'Hora de salida: ' + ${resultado[4]}"></small></p>
-						    <p class="card-text"><small class="text-muted"
+							
+							</h4>
+							<p class="card-text"><small class="text-muted"
+								th:text="'Unidad: '+ ${resultado[2]} +' ' + ${resultado[1]}"></small></p>
+								<p class="card-text"><small class="text-muted"
 									th:text="'Fecha: ' + ${resultado[3]}"></small></p>
-							<a class="btn btn-primary" th:href="@{/asientos/}+ ${resultado[7]}">Reservar</a>
+								<a class="btn btn-primary" th:href="@{/asientos/}+ ${resultado[7]}">Reservar</a>
 						</div>
 					</div>
+
+					
 				</div>
 			</div>
-		</div>
+		</section>
 
-	</div>
-	</div>
+		
 
 	
 	<!-- Footer -->
-	<footer th:replace="pasajero/layout :: footer"></footer>
+	<footer th:replace="layout/layout :: footer"></footer>
 
 	
 </body>
