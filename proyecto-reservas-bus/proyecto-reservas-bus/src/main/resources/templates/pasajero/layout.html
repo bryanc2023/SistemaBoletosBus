@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 	<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 	<link rel="stylesheet" th:href="@{/css/pasajero/layout.css}" />
+	<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+	<script src="https://mediafiles.botpress.cloud/e83b0ad7-2085-4f5a-8663-7d033543e23f/webchat/config.js" defer></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -33,6 +35,7 @@
 						<li class="nav-item"><a class="nav-link" th:href="${'/pasajero/boleto'}"><i class="fa fa-ticket" ></i><br>Mis Boletos</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="${'/pasajero/reservas'}"><i class="fa fa-suitcase" aria-hidden="true"></i><br>Mis Reservas</a></li>
 						<li class="nav-item"><a class="nav-link" th:href="${'/unidad/listar'}"><i class="fas fa-user"></i><br>Mi Perfil</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="${'/contacto'}"><i class="fa-solid fa-hand-holding-medical"></i></i><br>Contacto</a></li>
 						<li class="nav-item"><a class="nav-link" href="/logout"> <i class="fas fa-sign-out-alt"></i><br>Cerrar sesión</a></li>
 					</ul>
 				</div>
