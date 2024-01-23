@@ -14,3 +14,11 @@ footer {
 	text-align: center;
 	font-weight: bold;
 }
+
+#indi a{
+	margin-left: 42%;
+}
+
+#indi h5 {
+    text-decoration: underline;
+}

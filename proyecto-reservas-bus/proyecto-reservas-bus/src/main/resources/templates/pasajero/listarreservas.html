@@ -6,7 +6,14 @@
 </head>
 <body>
 		<header th:replace="pasajero/layout :: header"></header>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyIdb1UuI920TognTo6k9hj4DB1j7q1k5" crossorigin="anonymous">
 
+<!-- Añade jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+<!-- Añade Bootstrap JS (puedes cambiar la versión según tu necesidad) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-cMz3+XqJ02KD9ADh6+5ZP4d/bBl5LrZiHp0U9Lp43xgaoRkM1hpq2I0t0MhBEdDe" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyIdb1UuI920TognTo6k9hj4DB1j7q1k5" crossorigin="anonymous"></script>
 
 		
 	<div class="container py-4">
@@ -36,8 +43,10 @@
 							<td th:text="${boleto.metodoPago}"></td>
 					
 							
-							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/cancelar/boleto/}+ ${boleto.id}+ '/'+ ${boleto.asiento.id}">CANCELAR BOLETO</a></td>
+							<td>
+								<a class="btn btn-danger"
+								th:href="@{/cancelar/boleto/}+ ${boleto.id}+ '/'+ ${boleto.asiento.id}">CANCELAR RESERVACIÓN</a>
+								</td>
 							
 						</tr>
 					</tbody>

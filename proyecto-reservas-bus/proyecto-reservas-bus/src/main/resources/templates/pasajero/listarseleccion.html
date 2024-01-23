@@ -6,9 +6,51 @@
 </head>
 
 <body>
+	<script src="https://www.paypal.com/sdk/js?client-id=AXfF6G_0CeXMq-WDLrXu2KxHNbxucKcNHKfY6-tAyJ1W9H0adlSONwT7MwXOLXm8bJiQQ-fcdlKkgZ_C&currency=USD"></script>
 	<link rel="stylesheet" th:href="@{/css/pasajero/listarseleccion.css}" />
 	<header th:replace="pasajero/layout :: header"></header>
+	<div th:each="dato: ${datos}">
+    <!-- Incluir un input oculto con el valor de dato[6] -->
+    <input type="hidden" id="cronoValue" th:value="${dato[6]}"/>
+	</div>
+<script th:inline="javascript">
+	var costo = /*[[${costo3}]]*/ 0; 
+	var crono = document.getElementById('cronoValue').value;
+    paypal.Buttons({
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            // ...
+            purchase_units: [{
+                amount: {
+                    value: costo
+                }
+            }],
+        });
+    },
+    onApprove: function(data, actions) {
+         var asientosSeleccionados = obtenerAsientosSeleccionados2();
 
+            // Redirigir a la URL del controlador con los parámetros necesarios
+            window.location.href = '/asientos/guardarReserva2/' + crono + '/' + costo + '?idsAsientosSeleccionados=' + encodeURIComponent(asientosSeleccionados);
+    }
+}).render('#paypal-button-container'); 
+
+ function obtenerAsientosSeleccionados2() {
+        var asientosSeleccionados = [];
+        var filasAsientos = document.querySelectorAll("tbody tr");
+
+        filasAsientos.forEach(function(fila) {
+            var idAsiento = fila.getAttribute("data-id");
+            asientosSeleccionados.push(idAsiento);
+        });
+
+        // Asignar los IDs de los asientos al campo oculto
+        document.getElementById("idsAsientosSeleccionados2").value = asientosSeleccionados.join(',');
+
+        return asientosSeleccionados.join(',');
+    }
+    </script>
+    <input type="hidden" id="idsAsientosSeleccionados2" name="idsAsientosSeleccionados2" />
 	<div class="uni">
 		<h1>Confirmar selección:</h1>
 	</div>
@@ -65,30 +107,27 @@
 			<div class="col-sm-6">
 				<div class="card" style="max-width: 450px;">
 					<div class="card-body">
-						<h5 class="card-title">MÉTODO DE RESERVA</h5>
-						<div>
-							<form th:action="@{/payment}" method="get">
-
-								<button type="submit" class="btn btn-secondary" onclick="guardarAsientos()">
-									Realizar reserva (Paypal)
-								</button>
-								<p class="isa">Al reservar por paypal , se cancelara el total y solo debera presentar el
-									qr de cada
-									boleto para ingresar a su unidad.</p>
-							</form>
-						</div>
-						<div th:each="dato: ${datos}">
+						<h5 class="card-title">MÉTODO DE PAGO:</h5>
+						<h5 class="card-title">* RESERVA EN EFECTIVO:</h5>
+							<div th:each="dato: ${datos}">
 							<form id="formReserva" th:action="@{'/asientos/guardarReserva/' + ${dato[6]}+'/'+${costo3}}"
 								method="post">
 								<input type="hidden" id="idsAsientosSeleccionados" name="idsAsientosSeleccionados" />
-								<button type="submit" class="btn btn-secondary" onclick="guardarAsientos()">
-									Realizar reserva (Efectivo)
+								<div class="d-grid gap-2">
+								<button type="submit" class="btn btn-primary" onclick="guardarAsientos()">
+									Reserva en efectivo
 								</button>
+								</div>
 								<p class="isa">Al reservar en efectivo debe cancelar el valor total en ventanilla una
 									hora antes ,
 									caso contrario se aplicará una multa.</p>
 							</form>
 						</div>
+						<h5 class="card-title"> *RESERVA EN LÍNEA:</h5>
+<div id="paypal-button-container"></div>
+						
+			
+						
 						<img th:src="@{/images/pasajero/img7.png}" width="150px" height="110px">
 					</div>
 				</div>
@@ -111,6 +150,7 @@
 
 	<footer th:replace="pasajero/layout :: footer"></footer>
 	<script th:src="@{/js/pasajero/listarseleccion.js}"></script>
+	
 </body>
 
 </html>
