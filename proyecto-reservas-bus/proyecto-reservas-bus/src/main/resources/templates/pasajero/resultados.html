@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="pasajero/layout :: head">
+
+</head>
+
+<body>
+	<link rel="stylesheet" th:href="@{/css/pasajero/home.css}" />
+
+	<header th:replace="pasajero/layout :: header"></header>
+
+	
+		<br>
+		<br>
+		<h2 class="viaj">Viajes por fecha:</h2>
+		<p id="fecha-actual"></p>
+
+		<div class="row text-center" th:if="${#lists.isEmpty(resultados)}">
+			<p>No tenemos rutas para la fecha solicitada</p>
+		</div>
+
+		<div id="tarjeta" class="row text-center mb-3" th:if="${not #lists.isEmpty(resultados)}">
+			<div class="card" style="max-width: 450px;" th:each="resultado: ${resultados}">
+				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
+					<div class="col-md-4">
+						<img th:src="@{'/uploads/' + ${resultado[8]}}" class="image" alt="...">
+						<p class="card-text"><small class="text-muted"
+								th:text="'Unidad: '+ ${resultado[2]} +' ' + ${resultado[1]}"></small></p>
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${resultado[5]}+' - '+${resultado[6]}"></h5>
+							<p class="card-text"><small class="text-muted"
+									th:text="'Hora de salida: ' + ${resultado[4]}"></small></p>
+						    <p class="card-text"><small class="text-muted"
+									th:text="'Fecha: ' + ${resultado[3]}"></small></p>
+							<a class="btn btn-primary" th:href="@{/asientos/}+ ${resultado[7]}">Reservar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	
+	<!-- Footer -->
+	<footer th:replace="pasajero/layout :: footer"></footer>
+
+	<script th:src="@{/js/pasajero/home.js}"></script>
+</body>
+
+</html>
