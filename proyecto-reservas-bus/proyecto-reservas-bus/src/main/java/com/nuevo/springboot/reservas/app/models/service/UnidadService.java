@@ -95,6 +95,11 @@ public class UnidadService implements  IUnidadService{
 		unidadDao.save(unidad);
 	}
 
+	@Override
+	public List<Object[]> obtenerUnidadesConCronogramaActual() {
+		return unidadDao.obtenerUnidadesConCronogramaActual();
+	}
+
 	
 	
 	

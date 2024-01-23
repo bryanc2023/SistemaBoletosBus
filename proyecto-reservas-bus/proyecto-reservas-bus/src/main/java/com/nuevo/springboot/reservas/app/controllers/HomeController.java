@@ -70,7 +70,7 @@ public class HomeController {
 		    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
 		    	            Usuario pasajero= usuarioService.findById(idUsuario);
 		    	            model.addAttribute("pasajero", pasajero.getNombre()+" "+pasajero.getApellido());
-		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
+		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaActual();
 		    	            model.addAttribute("resultados", resultados);
 		    	            return "pasajero/home";
 		    	        } else {

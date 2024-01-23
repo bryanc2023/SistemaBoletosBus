@@ -27,6 +27,7 @@ public interface IUnidadService {
 	//Unidades y cronograma
 
 	List<Object[]> obtenerUnidadesConCronogramaYRuta();
+	List<Object[]> obtenerUnidadesConCronogramaActual();
 	public Optional<Unidad> get(Integer id);
 	public void update(Unidad unidad);
 }
