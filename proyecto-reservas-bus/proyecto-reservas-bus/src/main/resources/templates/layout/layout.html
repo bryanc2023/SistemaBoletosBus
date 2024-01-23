@@ -2,69 +2,86 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="head">
-<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8" />
 <title th:text=" 'Reservas de boletos' +${titulo}"></title>
-<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 
 
-  
+<link  th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
+
+
+  <link  th:href="@{/Administrador/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link  th:href="@{/Administrador/vendor/aos/aos.css}" rel="stylesheet">
+
+  <link th:href="@{/Administrador/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+  <link  th:href="@{/Administrador/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+  <link th:href="@{/Administrador/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+  <link  th:href="@{/Administrador/vendor/remixicon/remixicon.css}" rel="stylesheet">
+  <link  th:href="@{/Administrador/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
 </head>
-<body>
-	<header th:fragment="header">
 
-		<nav class="navbar navbar-expand-lg bg-body-tertiary"
-			data-bs-theme="dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" th:href="${'/'}">Buses</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNav"
-					aria-controls="navbarNav" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-					<div class="collapse navbar-collapse" id="navbarNav">								
-						<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link"
-							th:href="${'/cooperativa/listar'}">Cooperativas</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="${'/unidad/listar'}">Unidades</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="${'/ruta/listar'}">Rutas</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="${'/cronograma/listar'}">Cronogramas</a></li>
-							<li class="nav-item"><a class="nav-link"
-							th:href="${'/personal/listar'}">Personal</a></li>
-						<li class="nav-item"><a class="nav-link" th:href="@{'/configuracion/listar'}">Configuracion</a></li>
-								<li class="nav-item"><a class="nav-link"
-							href="/logout">Cerrar sesión</a></li>
-						
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<div class="alert alert-success" th:if="${success != null}"
-			th:text=${success}></div>
-		<div class="alert alert-danger" th:if="${error != null}"
-			th:text=${error}></div>
-		<div class="alert alert-warning" th:if="${warning != null}"
-			th:text=${warning}></div>
-		<div class="alert alert-info" th:if="${info != null}" th:text=${info}></div>
-		
-		
-	</header>
+ 
+<body class="d-flex flex-column min-vh-100">
+
+
+     <header id="header" th:fragment="header" class="fixed-top">
+     
+    <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a th:href="@{/}">
+        
+        <img src="/images/logo.png" alt="Descripción del logo" style="width: 150px; height: auto;">
+        </a>
+        </h1>
+
+ 		<button class="mobile-nav-toggle bi bi-list" aria-label="Toggle Navigation"></button>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto" th:href="@{/personal/listar}">Personal</a></li>
+                <li class="dropdown"><a href="#"><span>Buses</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a th:href="@{/ruta/listar}">Rutas</a></li>
+                        <li><a th:href="@{/cooperativa/listar}">Cooperativas</a></li>
+                        <li><a th:href="@{/unidad/listar}">Unidades</a></li>
+                        <li><a th:href="@{/cronograma/listar}">Cronogramas</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link scrollto" th:href="@{/configuracion/listar}">Configuracion</a></li>
+                <li><a class="getstarted scrollto" th:href="@{/logout}">Cerrar Sesión</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+    </div>
+  <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+    <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+    <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+    <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+
+</header>
 
 
 
 	<div class="container"></div>
 
-	<footer th:fragment="footer" class="py-5 bg-dark">
+ <footer class="footer" th:fragment="footer" >
+	  
 		<div class="container">
 
 			<p class="m-0 text-center text-white">Copyright &copy; Boletos
 				online</p>
 		</div>
+		
 		<script th:src="@{/bootstrap/js/jquery-3.7.1.min.js}"></script>
+		<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
 		<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/Administrador/vendor/aos/aos.js}"></script>
+	  <script th:src="@{/Administrador/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/glightbox/js/glightbox.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/swiper/swiper-bundle.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/waypoints/noframework.waypoints.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/php-email-form/validate.js}"></script>
+	  <script th:src="@{/Administrador/js/main.js}"></script>
+
 	</footer>
 
 </body>

@@ -44,7 +44,8 @@ public class Unidad {
 
 	@Column
 	private Integer numero;
-
+	
+	private String imagen;
 	@Column(name = "estado_actividad")
 	private String estadoActividad;
 	@Column(name = "cantidad_asientos")
@@ -124,6 +125,14 @@ public class Unidad {
 
 	
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 	public Unidad(Integer id) {
 		super();
 		this.id = id;
@@ -181,6 +190,13 @@ public class Unidad {
 	        return cronogramas.get(0).getRuta().getCostoRuta();
 	    }
 	    return null;
+	}
+
+	@Override
+	public String toString() {
+		return "Unidad [id=" + id + ", cronogramas=" + cronogramas + ", asientos=" + asientos + ", cooperativa="
+				+ cooperativa + ", numero=" + numero + ", imagen=" + imagen + ", estadoActividad=" + estadoActividad
+				+ ", cantidadAsientos=" + cantidadAsientos + ", stockBoletos=" + stockBoletos + "]";
 	}
 	
 	

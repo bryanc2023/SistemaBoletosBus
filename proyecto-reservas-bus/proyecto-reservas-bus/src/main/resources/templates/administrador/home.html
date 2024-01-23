@@ -2,31 +2,216 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout/layout :: head"></head>
+
+
+
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
 <body>
+
+
+
+	<header th:replace="layout/layout :: header" ></header >
+	<section id="hero" class="d-flex align-items-center">
+
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+					data-aos="fade-up" data-aos-delay="200">
+					<h1>Bienvenido <span sec:authentication="principal.username"></span></h1>
+					<h2>Puede editar sus unidades,rutas y cronogramas de la app</h2>
+					<div class="d-flex justify-content-center justify-content-lg-start">
+						<a href="#about" class="btn-get-started scrollto">Get Started</a>
+						<a href="https://www.youtube.com/watch?v=jDDaplaOz7Q"
+							class="glightbox btn-watch-video"><i
+							class="bi bi-play-circle"></i><span>Watch Video</span></a>
+					</div>
+				</div>
+				<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in"
+					data-aos-delay="200">
+					<img src="/images/img.jpg" class="img-fluid animated"
+						alt="">
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<main id="main">
+		<section id="clients" class="clients section-bg">
+			<div class="container">
+
+				<div class="row" data-aos="zoom-in">
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-1.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-2.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-3.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-4.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-5.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-6.png" class="img-fluid"
+							alt="">
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<section id="about" class="about">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>About Us</h2>
+				</div>
+
+				<div class="row content">
+					<div class="col-lg-6">
+						<p>Bienvenido al panel de administración de nuestra plataforma
+							de reserva de boletos de buses. Como administrador, tienes acceso
+							privilegiado a herramientas y funciones diseñadas para gestionar
+							eficientemente todos los aspectos de nuestro servicio. Desde este
+							panel, puedes agregar y editar información crucial, como datos de
+							cooperativas, detalles de unidades y configuraciones de rutas. La
+							flexibilidad de nuestro sistema te permite ajustar cronogramas y
+							mantener actualizada la base de datos de personal, garantizando
+							un servicio de transporte público eficiente.</p>
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0">
+						<p>La seguridad es primordial, y nuestro sistema te permite
+							gestionar permisos y accesos para garantizar que solo personal
+							autorizado pueda realizar cambios críticos en la plataforma.</p>
+						<a href="#" class="btn-learn-more">Learn More</a>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<!-- End About Us Section -->
+
+		<!-- ======= Why Us Section ======= -->
+
+
+		<!-- ======= Skills Section ======= -->
+
+		<!-- ======= Services Section ======= -->
+		<section id="services" class="services section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Servicios</h2>
+					<p>El administrador de la aplicación cuenta con privilegios
+						especiales que le permiten realizar diversas tareas relacionadas
+						con la gestión integral de los servicios de transporte. Entre las
+						funciones clave, el administrador tiene la capacidad de editar y
+						agregar información relacionada con las cooperativas, unidades de
+						transporte, rutas y cronogramas. Además, posee la facultad de
+						registrar y gestionar datos de personal, lo que incluye la
+						incorporación de nuevos miembros al sistema.</p>
+				</div>
+
+				<div class="row">
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-bus"></i>
+							</div>
+							<h4>
+								<a th:href="${'/cooperativa/listar'}">Cooperativas</a>
+							</h4>
+							<p>La estructura cooperativa fomenta la solidaridad entre los
+								propietarios y contribuye a una operación más coordinada y
+								sostenible en el sector del transporte.</p>
+						</div>
+					</div>
+
+					<div
+						class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+						data-aos="zoom-in" data-aos-delay="200">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-file"></i>
+							</div>
+							<h4>
+								<a th:href="${'/cronograma/listar'}">Cronogramas</a>
+							</h4>
+							<p>La gestión efectiva de los cronogramas es esencial para
+								garantizar una operación fluida y satisfacer las necesidades de
+								los usuarios.</p>
+						</div>
+					</div>
+
+					<div
+						class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0"
+						data-aos="zoom-in" data-aos-delay="300">
+						<div class="icon-box">
+							<div class="icon">
+								<i class='bx bxs-bus' ></i>
+							</div>
+							<h4>
+								<a th:href="${'/unidad/listar'}">Unidades</a>
+							</h4>
+							<p>La información detallada sobre cada unidad, como su estado
+								operativo y disponibilidad, es fundamental para garantizar un
+								servicio de transporte público confiable y efectivo.</p>
+						</div>
+					</div>
+
+					<div
+						class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0"
+						data-aos="zoom-in" data-aos-delay="400">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-layer"></i>
+							</div>
+							<h4>
+								<a th:href="${'/ruta/listar'}">Rutas</a>
+							</h4>
+							<p>La planificación de rutas esencial para optimizar la
+								cobertura de áreas y garantizar una conectividad efectiva.</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Services Section -->
+</main>
+		
+
+
+	<!-- Footer -->
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	
-	 <h4>
-			Bienvenido <span sec:authentication="principal.username"></span>
-		</h4>
-		<h4>
-			Puede editar sus unidades,rutas y cronogramas de la app
-		</h4>
-		 <div class="m-3"></div>
-	<header th:replace="layout/layout :: header"></header>
-	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
+</body>
 
-      <!-- /.row -->
-
-    </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
- <footer th:replace="layout/layout :: footer"></footer>
-    <script th:src="@{vendor/jquery/jquery.min.js}"></script>
-    <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-
-  </body>
-
-  </html>
+</html>
