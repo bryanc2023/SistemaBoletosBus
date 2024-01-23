@@ -48,9 +48,10 @@
               <td th:text="${cronograma.descripcion}"></td>
               <td th:text="${cronograma.fecha}"></td>
               <td th:text="${cronograma.dia}"></td>
-              <td th:text="${cronograma.horaSalida}"></td>
+              
               <td th:text="${cronograma.mes}"></td>
               <td th:text="${cronograma.anio}"></td>
+              <td th:text="${cronograma.horaSalida}"></td>
               <td th:text="${cronograma.unidad.id}"></td>
               <td th:text="${cronograma.ruta.id}"></td>
               <td><a class="btn btn-secondary btn-xs" th:href="@{/cronograma/form/}+ ${cronograma.id}">editar</a></td>
