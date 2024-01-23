@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="pasajero/layout :: head">
+
+</head>
+
+<body>
+<link rel="stylesheet" th:href="@{/css/pasajero/contacto.css}" />
+<header th:replace="pasajero/layout :: header"></header>
+
+<div id="panel" class="panel-container">
+      <strong>Te gustaría calificar tu experiencia?</strong>
+      <div class="ratings-container">
+        <div class="rating">
+          <img src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-17.png" alt="">
+          <small>Malo</small>
+        </div>
+
+        <div class="rating">
+          <img src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-3.png" alt=""/>
+          <small>Normal</small>
+        </div>
+
+        <div class="rating active">
+          <img src="https://img.icons8.com/external-neu-royyan-wijaya/64/000000/external-emoji-neumojis-smiley-neu-royyan-wijaya-30.png" alt=""/>
+ <small>Excelente</small>
+        </div>
+      </div>
+
+      <label for="comments">Tienes algún comentario adicional?</label><br>
+    <textarea id="comments" name="comments"></textarea><br>
+
+      <button class="btn" id="send">Enviar</button>
+    </div>
+
+   <footer th:replace="pasajero/layout :: footer"></footer>
+   
+		<script th:src="@{/js/pasajero/script.js}"></script>
+
+</body>
+
+
+	
+</html>
