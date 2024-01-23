@@ -49,14 +49,14 @@
 		<p id="fecha-actual"></p>
 
 		<div class="row text-center" th:if="${#lists.isEmpty(resultados)}">
-			<p>No se encontraron resultados.</p>
+			<p>No tenemos rutas para el dia de hoy</p>
 		</div>
 
 		<div id="tarjeta" class="row text-center mb-3" th:if="${not #lists.isEmpty(resultados)}">
 			<div class="card" style="max-width: 450px;" th:each="resultado: ${resultados}">
 				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
 					<div class="col-md-4">
-						<img th:src="@{/images/logo.png}" class="img-fluid rounded-start" alt="...">
+						<img th:src="@{'/uploads/' + ${resultado[8]}}" class="image" alt="...">
 						<p class="card-text"><small class="text-muted"
 								th:text="'Unidad: '+ ${resultado[2]} +' ' + ${resultado[1]}"></small></p>
 					</div>

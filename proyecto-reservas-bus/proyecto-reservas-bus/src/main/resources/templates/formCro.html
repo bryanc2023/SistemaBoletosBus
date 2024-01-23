@@ -90,7 +90,7 @@
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-4">Hora de salida</label>
                                 <div class="col-sm-8">
-                                    <input type="time" th:field="*{horaSalida}" class="form-control" onchange="validarHora()" required>
+                                    <input type="time" th:field="*{horaSalida}" class="form-control" required>
                                 </div>
                             </div>
 
@@ -163,20 +163,7 @@
         var today = new Date().toISOString().split('T')[0];
         document.getElementById("fechaInput").setAttribute("min", today);
 
-        function validarHora() {
-            var horaInput = document.querySelector('input[type="time"]');
-            var horaActual = new Date();
-            var hora = horaActual.getHours();
-            var minutos = horaActual.getMinutes();
-
-            if (minutos < 60) {
-                minutos = '00';
-                hora += 1;
-            }
-
-            var horaMinima = hora.toString().padStart(2, '0') + ':' + minutos.toString().padStart(2, '0');
-            horaInput.setAttribute('min', horaMinima);
-        }
+        
     </script>
 </body>
 
