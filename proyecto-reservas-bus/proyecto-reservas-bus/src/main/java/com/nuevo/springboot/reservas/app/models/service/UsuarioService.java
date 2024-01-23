@@ -223,4 +223,30 @@ public class UsuarioService implements IUsuarioService{
 		return usuarioRepositorio.findByEmail(email);
 	}
 
-}
+
+
+	public void updateResetPasswordToken(String token, String email) throws CustomerNotFoundException {
+		Usuario usuario=usuarioRepositorio.findByEmail(email);
+		if(usuario != null) {
+			usuario.setResetPasswordToken(token);
+			usuarioRepositorio.save(usuario);
+		}else {
+			throw new CustomerNotFoundException("No se pudo encontrar ningun usuario con el email" + email);
+		}
+		
+	}
+
+	public Usuario get(String resetPasswordToken) {
+		return usuarioRepositorio.findByResetPasswordToken(resetPasswordToken);
+	}
+	
+	public void updatePassword(Usuario usuario, String newPassword) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(newPassword);
+		
+		usuario.setPassword(encodedPassword);
+		usuario.setResetPasswordToken(null);
+		
+		usuarioRepositorio.save(usuario);
+	}
+	}
