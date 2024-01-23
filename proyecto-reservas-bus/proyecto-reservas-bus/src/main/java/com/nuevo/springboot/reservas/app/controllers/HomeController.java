@@ -55,6 +55,11 @@ public class HomeController {
 		    if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 		        // Lógica para mostrar contenido específico para el rol de admin
 		        model.addAttribute("mensaje", "Bienvenido ADMIN");
+		        String email = ((UserDetails) principal).getUsername();
+    	        Usuario user = usuarioService.findByEmail(email);
+		        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+	            Usuario admin= usuarioService.findById(idUsuario);
+	            model.addAttribute("admin", admin.getNombre()+" "+admin.getApellido());
 		        // Agrega más atributos al modelo si es necesario para el rol de admin
 		        return "administrador/home"; // Vista para el rol de admin
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
