@@ -1,100 +1,79 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8">
-<title>Registro de usuarios</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-</head>
+<head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
 <body>
+<header th:replace="layout/layout :: header"></header>
 
+<section id="hero1" class="d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="200">
+                <h1>Personal</h1>
+            </div>
+        </div>
+    </div>
+</section>
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-						<a class="nav-link"
-							th:href="${'/personal/listar'}">Personal</a>
-				</button>
-		
-			</div>
-		</div>
-	</nav>
+<br>
+<br>
 
-	<br>
-	<br>
+<div class="container text-center">
+    <div class="row">
+        <!-- Agregar una columna para la imagen -->
+        <div class="col-xs-12 col-sm-6 col-sm-offset-2"> <!-- Ajuste de offset para separar más de la izquierda -->
+            <div class="card bg-dark text-white">
+                <div class="card-header">
+                    <h1>Regístrate</h1>
+                </div>
+                <div class="card-body">
+                    <!-- Formulario -->
+                    <form th:action="@{/personal/form}" method="post" th:object="${usuario}" class="mx-auto">
+                        <div class="form-group">
+                            <label class="control-label" for="nombre">Nombre:</label>
+                            <input id="nombre" type="text" class="form-control" th:field="*{nombre}" required autofocus="autofocus">
+                        </div>
 
+                        <div class="form-group">
+                            <label class="control-label" for="apellido">Apellido:</label>
+                            <input id="apellido" class="form-control" th:field="*{apellido}" required autofocus="autofocus">
+                        </div>
 
+                        <div class="form-group">
+                            <label class="control-label" for="email">Email:</label>
+                            <input id="email" type="email" class="form-control" th:field="*{email}" required autofocus="autofocus">
+                        </div>
 
-				<h1>Regístrate</h1>
-				<form th:action="@{/personal/form}" method="post" th:object="${usuario}">
-					<div class="form-group">
-						<label class="control-label" for="nombre">Nombre : </label> <input
-							id="nombre" type="text" class="form-control" th:field="*{nombre}"
-							required autofocus="autofocus">
-					</div>
+                        <div class="form-group">
+                            <label class="control-label" for="password">Password:</label>
+                            <input type="password" id="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
+                        </div>
 
-					<div class="form-group">
-						<label class="control-label" for="apellido">Apellido : </label> <input
-							id="apellido" class="form-control" th:field="*{apellido}"
-							required autofocus="autofocus">
-					</div>
+                        <div class="form-group" style="margin-top: 10px;">
+                          <button type="submit" class="btn btn-custom" style="background-color: #37517e; color: #fff;">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-					<div class="form-group">
-						<label class="control-label" for="email">Email : </label> <input
-							id="email" type="email" class="form-control" th:field="*{email}"
-							required autofocus="autofocus">
-					</div>
+        <!-- Columna para la imagen fuera del formulario -->
+        <div class="col-xs-12 col-sm-4"> <!-- Ajuste de la columna para separar más de la derecha -->
+            <img src="/images/jefe.png" alt="Imagen" style="width: 100%; height: auto;">
+        </div>
+    </div>
+</div>
 
-					<div class="form-group">
-						<label class="control-label" for="password">Password : </label> <input
-							type="password" id="password" class="form-control" th:field="*{password}"
-							required autofocus="autofocus">
-					</div>
+<div class="container py-5"></div>
 
-					<div class="form-group">
-						<button type="submit" class="btn btn-success">Registrar</button>
-					</div>
-				</form>
+<footer th:replace="layout/layout :: footer"></footer>
 
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

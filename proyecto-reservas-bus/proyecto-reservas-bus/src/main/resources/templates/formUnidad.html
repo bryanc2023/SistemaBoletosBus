@@ -2,85 +2,118 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
 
 <body>
-	<header th:replace="layout/layout :: header"></header>
-	<div class="container py-4">
+    <header th:replace="layout/layout :: header"></header>
+    <section id="hero1" class="d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <h1>Unidad</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <div class="card-header" th:text="${titulo}"></div>
+                    <div class="card-body">
+                       <form th:action="@{/unidad/form}" th:object="${unidad}" method="post" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto;">
+                            <div class="m-3"></div>
 
-		<div class="card bg-dark text-white">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
-				<form th:action="@{/unidad/form}" th:object="${unidad}" method="post"
-					style="max-width: 600px; margin: 0 auto;">
-					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">Numero de unidad </label>
-						<div class="col-sm-8">
-							<input type="text" th:field="*{numero}" class="form-control" required>
-						</div>
-					</div>
-					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">Cooperativa</label>
-						<div class="col-sm-8">
-							<select th:field="*{cooperativa.id}" class="form-control">
-								<option th:each="cooperativa : ${cooperativas}" th:value="${cooperativa.id}"
-									th:text="${cooperativa.nombre}"></option>
-							</select>
-						</div>
-					</div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4" for="img">Imagen</label>
+                                <div class="col-sm-8">
+                                    <input type="file" class="form-control-file" name="img" id="img">
+                                </div>
+                            </div>
+                            <div class="m-3"></div>
 
-					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">Estado de la unidad
-						</label>
-						<div class="col-sm-8">
-							<select th:field="*{estadoActividad}" class="form-control">
-								<option th:value="ACTIVO" th:text="Activo">Activo</option>
-								<option th:value="INACTIVO" th:text="Inactivo">Inactivo</option>
-							</select>
-						</div>
-					</div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Numero de unidad </label>
+                                <div class="col-sm-8">
+                                    <input type="text" th:field="*{numero}" class="form-control" required>
+                                </div>
+                            </div>
 
-					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">Cantidad de
-							asientos</label>
-						<select th:field="*{cantidadAsientos}" class="form-select" required>
-							<option value="30">30</option>
-							<option value="40">40</option>
-							<option value="44">44</option>
-						</select>
-					</div>
-					<div class="m-3"></div>
-					<div class="m-3"></div>
-					<!-- Mensaje de error -->
-					<div class="text-center p">
-						<div th:if="${mensaje}" class="alert alert-danger" role="alert">
-							<span th:text="${mensaje}"></span>
-						</div>
-					</div>
-					<div class="m-3"></div>
-					<div class="form-group row">
-						<label class="col-form-label col-sm-4">Stock de boletos</label>
-						<div class="col-sm-8">
-							<!-- Utilizamos la directiva th:value para establecer el valor predeterminado en 1 (true) -->
-							<input type="checkbox" th:field="*{stockBoletos}" checked>
-						</div>
-					</div>
-					<div class="m-3"></div>
-					<div class="text-center p">
-						<button type="submit" class="btn btn-secondary">Guardar
-							Unidad</button>
-					</div>
-					<input type="hidden" th:field="*{id}">
+                            <div class="m-3"></div>
 
-				</form>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Cooperativa</label>
+                                <div class="col-sm-8">
+                                    <select th:field="*{cooperativa.id}" class="form-control">
+                                        <option th:each="cooperativa : ${cooperativas}" th:value="${cooperativa.id}"
+                                            th:text="${cooperativa.nombre}"></option>
+                                    </select>
+                                </div>
+                            </div>
 
-			</div>
-		</div>
-	</div>
-	<footer th:replace="layout/layout :: footer"></footer>
+                            <div class="m-3"></div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Estado de la unidad</label>
+                                <div class="col-sm-8">
+                                    <select th:field="*{estadoActividad}" class="form-control">
+                                        <option th:value="ACTIVO" th:text="Activo">Activo</option>
+                                        <option th:value="INACTIVO" th:text="Inactivo">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="m-3"></div>
+
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Cantidad de asientos</label>
+                                <div class="col-sm-8">
+                                    <select th:field="*{cantidadAsientos}" class="form-select" required>
+                                        <option value="30">30</option>
+                                        <option value="40">40</option>
+                                        <option value="44">44</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="m-3"></div>
+
+                         
+
+                            <div class="text-center p">
+                                <!-- Mensaje de error -->
+                                <div th:if="${mensaje}" class="alert alert-danger" role="alert">
+                                    <span th:text="${mensaje}"></span>
+                                </div>
+
+                                <div class="m-3"></div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-4">Stock de boletos</label>
+                                    <div class="col-sm-8">
+                                        <input type="checkbox" th:field="*{stockBoletos}" checked>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="m-3"></div>
+
+                                <button type="submit" class="btn btn-secondary">Guardar Unidad</button>
+                            </div>
+
+                            <input type="hidden" th:field="*{id}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center">
+                    <img src="/images/autobus.png" alt="Descripción de la imagen" style="max-width: 60%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout/layout :: footer"></footer>
 </body>
 
 </html>

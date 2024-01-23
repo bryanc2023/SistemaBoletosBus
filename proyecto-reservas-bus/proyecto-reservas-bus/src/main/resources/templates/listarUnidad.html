@@ -2,52 +2,63 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
 <body>
 	
 
-		 <div class="m-3"></div>
 	<header th:replace="layout/layout :: header"></header>
-	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
+	  <section id="hero1" class="d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <h1>Unidades</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+	<div class="container py-2">
+  <div class="card bg-light">
+    <div class="card-header" th:text="${titulo}"></div>
+    <div class="card-body">
 
+      <div class="m-3"></div>
 
-                 <div class="m-3"></div>
-				<table class="table table-striped table-bordered">
-					<thead class="thead-inverse">
-						<tr>
-						<tr>
-							<th class="bg-dark text-white">id</th>
-							<th class="bg-dark text-white">numero</th>
-							<th class="bg-dark text-white">cooperativa</th>
-							<th class="bg-dark text-white">estado_actividad</th>
-							<th class="bg-dark text-white">cantidad de asientos</th>
-							<th class="bg-dark text-white">stock_boletos</th>
-							<th class="bg-dark text-white">editar</th>
-							<th class="bg-dark text-white">eliminar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="unidad: ${unidades}">
-							<td th:text="${unidad.id}"></td>
-							<td th:text="${unidad.numero}"></td>
-							<td th:text="${unidad.cooperativa.nombre}"></td>
-							<td th:text="${unidad.estadoActividad}"></td>
-							<td th:text="${unidad.cantidadAsientos}"></td>
-							<td th:text="${unidad.stockBoletos}"></td>
-							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/unidad/form/}+ ${unidad.id}">editar</a></td>
-							<td><a class="btn btn-danger btn-xs"
-								th:href="@{/unidad/eliminar/}+ ${unidad.id}">eliminar</a></td>
-						</tr>
-					</tbody>
-				</table>
-				<a th:href="@{/unidad/form}" class="btn btn-secondary">Crear
-					Unidad</a>
-			</div>
-		</div>
-	</div>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" style="max-width: 800px; margin: auto;">
+          <thead class="thead-inverse">
+            <tr>
+              <th class="bg-dark text-white">id</th>
+              <th class="bg-dark text-white">numero</th>
+              <th class="bg-dark text-white">cooperativa</th>
+              <th class="bg-dark text-white">Imagen</th>
+              <th class="bg-dark text-white">estado_actividad</th>
+              <th class="bg-dark text-white">cantidad de asientos</th>
+              <th class="bg-dark text-white">stock_boletos</th>
+              <th class="bg-dark text-white">editar</th>
+              <th class="bg-dark text-white">eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="unidad: ${unidades}">
+              <td th:text="${unidad.id}"></td>
+              <td th:text="${unidad.numero}"></td>
+              <td th:text="${unidad.cooperativa.nombre}"></td>
+              <td th:text="${unidad.imagen}"></td>
+              <td th:text="${unidad.estadoActividad}"></td>
+              <td th:text="${unidad.cantidadAsientos}"></td>
+              <td th:text="${unidad.stockBoletos}"></td>
+              <td><a class="btn btn-secondary btn-xs" th:href="@{/unidad/form/}+ ${unidad.id}">editar</a></td>
+              <td><a class="btn btn-danger btn-xs" th:href="@{/unidad/eliminar/}+ ${unidad.id}">eliminar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a th:href="@{/unidad/form}" class="btn btn-secondary">Crear Unidad</a>
+    </div>
+  </div>
+</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 
 </body>

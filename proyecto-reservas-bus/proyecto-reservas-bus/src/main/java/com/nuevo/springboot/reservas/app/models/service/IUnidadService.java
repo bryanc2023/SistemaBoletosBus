@@ -3,6 +3,7 @@ package com.nuevo.springboot.reservas.app.models.service;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.query.Param;
 
@@ -26,4 +27,6 @@ public interface IUnidadService {
 	//Unidades y cronograma
 
 	List<Object[]> obtenerUnidadesConCronogramaYRuta();
+	public Optional<Unidad> get(Integer id);
+	public void update(Unidad unidad);
 }

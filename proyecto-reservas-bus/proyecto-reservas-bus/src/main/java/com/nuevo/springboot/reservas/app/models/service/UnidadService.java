@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,17 @@ public class UnidadService implements  IUnidadService{
 	@Override
 	public List<Object[]>obtenerUnidadesConCronogramaYRuta() {
 		return unidadDao.obtenerUnidadesConCronogramaYRuta();
+	}
+
+	@Override
+	public Optional<Unidad> get(Integer id) {
+		return unidadDao.findById(id);
+	}
+
+	@Override
+	public void update(Unidad unidad) {
+	
+		unidadDao.save(unidad);
 	}
 
 	
