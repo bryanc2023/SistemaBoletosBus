@@ -98,7 +98,7 @@ public class HomeController {
 		
         List<Object[]> unidades = unidadService.findByCronogramaFecha(fecha);
         model.addAttribute("resultados", unidades);
-        return "pasajero/home";
+        return "pasajero/resultados";
 	}
 
 	 }
