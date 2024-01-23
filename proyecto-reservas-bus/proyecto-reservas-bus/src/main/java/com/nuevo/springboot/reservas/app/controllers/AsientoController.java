@@ -190,11 +190,47 @@ public class AsientoController {
     	 List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
     	 String mensajeFlash =  "Boleto reservado correctamente, acerquese a la ventanilla a cancelar el total." ;
          
-         flash.addFlashAttribute("success", mensajeFlash);
 	        model.addAttribute("resultados", resultados);
-    		return "pasajero/home"; // Redireccionar a la página deseada después de procesar la reserva
+    		return "pasajero/confirmar_1"; // Redireccionar a la página deseada después de procesar la reserva
     }
    
  
+    @GetMapping("/asientos/guardarReserva2/{cronogramaId}/{costoTotal}")
+    public String aceptarReserva2(@PathVariable("cronogramaId") Integer id, @PathVariable("costoTotal") Float costoTotal, @RequestParam("idsAsientosSeleccionados") String idsAsientosSeleccionados, Model model,
+    		Authentication authentication,RedirectAttributes flash) {
+    	Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	String email = ((UserDetails) principal).getUsername();
+        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+        Usuario usuario =usuarioService.findById(idUsuario);
+    	String[] idsAsientosArray = idsAsientosSeleccionados.split(",");
+    	
+    	 for (String idAsiento : idsAsientosArray) {
+    	        // Crear un nuevo Boleto y establecer los valores necesarios
+    	        Boleto boleto = new Boleto();
+    	        Asiento asiento= new Asiento();
+    	        
+    	        asiento = asientoService.findOne(Integer.parseInt(idAsiento));
+    	        asiento.setEstado("Ocupado");
+    	        asientoService.save(asiento);
+
+    	        Cronograma cronograma = cronogramaService.findOne(id);
+    	        boleto.setAsiento(asiento);
+    	        boleto.setCronograma(cronograma);
+    	        boleto.setMetodoPago("Tarjeta");
+    	        boleto.setTotalPago(costoTotal);
+    	        boleto.setUsuario(usuario);
+    	        
+    	        boletoService.save(boleto);
+    	        
+    	       
+    	    }
+
+    	 List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
+    	 String mensajeFlash =  "Boleto reservado correctamente, acerquese a la ventanilla a cancelar el total." ;
+         
+	        model.addAttribute("resultados", resultados);
+    		return "pasajero/confirmar_2"; // Redireccionar a la página deseada después de procesar la reserva
+    }
+   
    
 }

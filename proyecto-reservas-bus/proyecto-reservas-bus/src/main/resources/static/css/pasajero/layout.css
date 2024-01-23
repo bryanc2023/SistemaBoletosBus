@@ -1,0 +1,67 @@
+/* Tipo de letra*/
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Barra de navegacion - INICIO*/
+.header {
+    box-shadow: 0 0.5px 3px rgba(0, 0, 0, 0.1);  
+}
+
+
+
+.header nav div {
+	
+	padding-left: 2%;
+	padding-right: 1%;
+}
+
+.header nav div ul{
+	padding-left: 65%;
+	padding-top: 2%;
+}
+
+.header nav div ul li a{
+	color: #2880ff;
+	font-weight: bold;
+	
+	
+}
+
+.header nav div ul li a i{
+	padding-left: 40%;
+	
+}
+
+/* Responsividad Barra de navegacion*/
+@media (max-width: 768px) {
+    .header nav div ul {
+        padding-left: 0;
+    }
+    
+    .header nav div {
+	padding-top: 0;
+	padding-left: 15px;
+	padding-bottom: 0;
+	padding-right: 0;
+}
+.header nav div ul li a i{
+	padding-left: 2%;
+	
+}
+    
+}
+
+/* Barra de navegacion - FIN*/
+
+footer {
+    background-color: #37517e;
+    color: #fff;
+    text-align: center;
+    margin-top: 13.5%;
+}
+

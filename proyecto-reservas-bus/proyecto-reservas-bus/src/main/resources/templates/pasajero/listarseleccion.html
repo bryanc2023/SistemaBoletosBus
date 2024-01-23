@@ -1,132 +1,156 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<head th:replace="pasajero/layout :: head">
 
 </head>
-<body>
-	<header th:fragment="header">
 
-		<nav class="navbar navbar-expand-lg bg-body-tertiary"
-			data-bs-theme="dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" th:href="${'/'}">Buses</a>
-				<button class="navbar-toggler" type="button"
-					data-bs-toggle="collapse" data-bs-target="#navbarNav"
-					aria-controls="navbarNav" aria-expanded="false"
-					aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNav">
-					
+<body>
+	<script src="https://www.paypal.com/sdk/js?client-id=AXfF6G_0CeXMq-WDLrXu2KxHNbxucKcNHKfY6-tAyJ1W9H0adlSONwT7MwXOLXm8bJiQQ-fcdlKkgZ_C&currency=USD"></script>
+	<link rel="stylesheet" th:href="@{/css/pasajero/listarseleccion.css}" />
+	<header th:replace="pasajero/layout :: header"></header>
+	<div th:each="dato: ${datos}">
+    <!-- Incluir un input oculto con el valor de dato[6] -->
+    <input type="hidden" id="cronoValue" th:value="${dato[6]}"/>
+	</div>
+<script th:inline="javascript">
+	var costo = /*[[${costo3}]]*/ 0; 
+	var crono = document.getElementById('cronoValue').value;
+    paypal.Buttons({
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            // ...
+            purchase_units: [{
+                amount: {
+                    value: costo
+                }
+            }],
+        });
+    },
+    onApprove: function(data, actions) {
+         var asientosSeleccionados = obtenerAsientosSeleccionados2();
+
+            // Redirigir a la URL del controlador con los parámetros necesarios
+            window.location.href = '/asientos/guardarReserva2/' + crono + '/' + costo + '?idsAsientosSeleccionados=' + encodeURIComponent(asientosSeleccionados);
+    }
+}).render('#paypal-button-container'); 
+
+ function obtenerAsientosSeleccionados2() {
+        var asientosSeleccionados = [];
+        var filasAsientos = document.querySelectorAll("tbody tr");
+
+        filasAsientos.forEach(function(fila) {
+            var idAsiento = fila.getAttribute("data-id");
+            asientosSeleccionados.push(idAsiento);
+        });
+
+        // Asignar los IDs de los asientos al campo oculto
+        document.getElementById("idsAsientosSeleccionados2").value = asientosSeleccionados.join(',');
+
+        return asientosSeleccionados.join(',');
+    }
+    </script>
+    <input type="hidden" id="idsAsientosSeleccionados2" name="idsAsientosSeleccionados2" />
+	<div class="uni">
+		<h1>Confirmar selección:</h1>
+	</div>
+	<div class="m-3"></div>
+	<div class="container py-4">
+		<div id="seleccion" class="card bg-light">
+			<div id="ast" class="card-header"> Asientos seleccionados:</div>
+			<div id="tar" class="card-body d-flex justify-content-between align-items-center">
+
+				<div class="vista">
+					<p>Usted ha seleccionado el/los siguientes asientos:</p>
+					<table class="table table-dark table-hover">
+						<thead class="thead-inverse">
+							<tr>
+								<th class="bg-dark text-white">F I L A</th>
+								<th class="bg-dark text-white">C O L U M N A</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="asiento: ${asientos}" th:data-id="${asiento.id}">
+								<td th:text="${asiento.fila}"></td>
+								<td th:text="${asiento.columna}"></td>
+							</tr>
+						</tbody>
+					</table>
+					<span>Cada número y fila se encuentran anotados en la unidad seleccionada, favor de prestar
+						atención si son los asientos a reservar.</span>
+				</div>
+
+				<img th:src="@{/images/pasajero/img6r.png}" width="500px" height="200px">
+
+			</div>
+		</div>
+	</div>
+
+	<div class="infor">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card" style="max-width: 450px; max-height: 450px; overflow: auto;">
+					<div class="card-body">
+						<h5 class="card-title">COSTO:</h5>
+						<div class="is">Precio Unitario: <p th:text="'$'+${costo2}"></p>
+						</div>
+						<div class="is">Subtotal (sin iva): <p th:text="'$'+${costo}"></p>
+						</div>
+						<div class="is">Total: <p th:text="'$'+${costo3}"></p>
+						</div>
+
+					</div>
+					<img th:src="@{/images/pasajero/img8.png}" width="150px" height="120px">
+					<br>
 				</div>
 			</div>
-		</nav>
-		<div class="alert alert-success" th:if="${success != null}"
-			th:text=${success}></div>
-		<div class="alert alert-danger" th:if="${error != null}"
-			th:text=${error}></div>
-		<div class="alert alert-warning" th:if="${warning != null}"
-			th:text=${warning}></div>
-		<div class="alert alert-info" th:if="${info != null}" th:text=${info}></div>
-		
-		
-	</header>
-
-		 <div class="m-3"></div>
-	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header"> Su seleccion fue:</div>
-			<div class="card-body">
-
-
-                 <div class="m-3"></div>
-				<table class="table table-striped table-bordered">
-					<thead class="thead-inverse">
-						<tr>
-						<tr>
-							<th class="bg-dark text-white">fila</th>
-							<th class="bg-dark text-white">columna</th>
-							<th class="bg-dark text-white">estado</th>
-							<th class="bg-dark text-white">fecha</th>
-							<th class="bg-dark text-white">hora</th>
-							<th class="bg-dark text-white">unidad</th>
-							<th class="bg-dark text-white">ruta</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="asiento: ${asientos}" th:data-id="${asiento.id}">
-							<td th:text="${asiento.fila}"></td>
-							<td th:text="${asiento.columna}"></td>
-							<td th:text="${asiento.estado}"></td>
-							<td th:text="${asiento.cronograma.fecha}"></td>
-							<td th:text="${asiento.cronograma.horaSalida}"></td>
-							<td th:text="${asiento.unidad.numero}+ ' - ' +${asiento.unidad.cooperativa.nombre}"></td>
-							<td th:text="${asiento.cronograma.ruta.rutaOrigen}+ ' - ' +${asiento.cronograma.ruta.rutaDestino}"></td>
-						</tr>
-					</tbody>
-				</table>
-				
-              
-            </div>
-        </div>
-    </div>
-</div>
-
-<div>* Costo por boleto: <p th:text="${costo2}"></p></div>
-<div>* Costo subtotal (sin iva) : <p th:text="${costo}"></p></div>
-<div>* Costo total  : <p th:text="${costo3}"></p></div>
- <script th:inline="javascript">
-        function guardarAsientos() {
-            var asientosSeleccionados = [];
-            var filasAsientos = document.querySelectorAll("tbody tr");
-
-            filasAsientos.forEach(function(fila) {
-                var idAsiento = fila.getAttribute("data-id");
-                asientosSeleccionados.push(idAsiento);
-            });
-
-            document.getElementById("idsAsientosSeleccionados").value = asientosSeleccionados.join(',');
-
-            document.getElementById("formReserva").submit();
-        }
-    </script>
-
- <center><div  th:each="dato: ${datos}">
-	<form id="formReserva" th:action="@{'/asientos/guardarReserva/' + ${dato[6]}+'/'+${costo3}}" method="post">
-                                 
-                                   <input type="hidden" id="idsAsientosSeleccionados" name="idsAsientosSeleccionados" />
-                  <button type="submit" class="btn btn-secondary" onclick="guardarAsientos()">
-                    Realizar reserva (Efectivo)
-                </button>
-                                </form>
-                                </div>
-                                </center>
-                                
-                                <div class="m-3"></div>
+			<div class="col-sm-6">
+				<div class="card" style="max-width: 450px;">
+					<div class="card-body">
+						<h5 class="card-title">MÉTODO DE PAGO:</h5>
+						<h5 class="card-title">* RESERVA EN EFECTIVO:</h5>
+							<div th:each="dato: ${datos}">
+							<form id="formReserva" th:action="@{'/asientos/guardarReserva/' + ${dato[6]}+'/'+${costo3}}"
+								method="post">
+								<input type="hidden" id="idsAsientosSeleccionados" name="idsAsientosSeleccionados" />
+								<div class="d-grid gap-2">
+								<button type="submit" class="btn btn-primary" onclick="guardarAsientos()">
+									Reserva en efectivo
+								</button>
+								</div>
+								<p class="isa">Al reservar en efectivo debe cancelar el valor total en ventanilla una
+									hora antes ,
+									caso contrario se aplicará una multa.</p>
+							</form>
+						</div>
+						<h5 class="card-title"> *RESERVA EN LÍNEA:</h5>
+<div id="paypal-button-container"></div>
+						
+			
+						
+						<img th:src="@{/images/pasajero/img7.png}" width="150px" height="110px">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="m-3"></div>
 	<div class="m-3"></div>
-	
-	<!-- Botón para pagar con tarjeta -->
- <center><div>
-    <form th:action="@{/payment}" method="get">
-        <button type="submit" class="btn btn-dark btn-block btn-lg">Checkout</button>
-    </form>
-    </div>
-</center>
- <center><div  th:each="dato: ${datos}">
-	<form th:action="@{'/asientos/cancelarReserva/' + ${dato[6]}}" method="post">
-                                 
-                                    <button type="submit" class="btn btn-danger">
-										Cancelar reserva
-									</button>
-                                </form>
-                                </div>
-                                </center>
-                                
-                                <div class="m-3"></div>
-	<footer th:replace="layout/layout :: footer"></footer>
+	<center>
+		<div th:each="dato: ${datos}">
+			<form th:action="@{'/asientos/cancelarReserva/' + ${dato[6]}}" method="post">
 
+				<button type="submit" class="btn btn-danger">
+					Cancelar reserva
+				</button>
+			</form>
+		</div>
+	</center>
+
+
+	<footer th:replace="pasajero/layout :: footer"></footer>
+	<script th:src="@{/js/pasajero/listarseleccion.js}"></script>
+	
 </body>
+
 </html>
