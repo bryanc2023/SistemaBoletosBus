@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head th:replace="personal/layout :: head">
+</head>
+<body>
+    <link rel="stylesheet" th:href="@{/css/personal/home.css}" />
+    <header th:replace="personal/layout :: header"></header>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+        
+            <div class="col-md-6">
+                <div class="cuadro position-relative p-2 bg-light rounded mt-2">
+                    <h6>Nombre</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Nombre">
+                    <h6>Asiento</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Asiento">
+                    <h6>Unidad</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Unidad">
+                    <h6>Hora</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Hora">
+                    <h6>Estado</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Estado">
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <!-- Agregar imagen centrada -->
+              <img th:src="@{/images/personal/qr.jpg}"  alt="Imagen" class="mt-2 mx-auto d-block" style="max-width: 20%;" />
+                <!-- Botón Pagar centrado -->
+                <button class="btn btn-primary mt-2 mx-auto d-block" style="width: 200px;">Pagar</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="cuadro position-relative p-2 bg-light rounded mt-2">
+                    <h6>Nombre</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Nombre">
+                    <h6>Asiento</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Asiento">
+                    <h6>Unidad</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Unidad">
+                    <h6>Hora</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Hora">
+                    <h6>Estado</h6>
+                    <input type="text" class="form-control small-placeholder" placeholder="Estado">
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <!-- Agregar imagen centrada -->
+                <img th:src="@{/images/personal/qr.jpg}"  alt="Imagen" class="mt-2 mx-auto d-block" style="max-width: 20%;" />
+                <!-- Botón Pagar centrado -->
+                <button class="btn btn-primary mt-2 mx-auto d-block" style="width: 200px;">Pagar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="text-center">
+                <!-- Botón Cancelar centrado -->
+                <a class="nav-link btn btn-primary mt-2" th:href="${'/'}" style="width: 200px;">Cancelar</a>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="personal/layout :: footer"></footer>
+    <script th:src="@{/js/personal/home.js}"></script>
+</body>
+</html>

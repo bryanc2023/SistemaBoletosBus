@@ -98,4 +98,14 @@ public class BoletoController {
 	        model.addAttribute("boletos", boletos);
 	        return "pasajero/home";
 		}
+	 
+	 @GetMapping("/personal/camera")
+	 public String showCameraPage() {
+	     return "personal/activarCamaraQR";
+	 }
+	 
+	 @GetMapping("/personal/pagos")
+	 public String pagar() {
+	     return "personal/pagos";
+	 }
 }
