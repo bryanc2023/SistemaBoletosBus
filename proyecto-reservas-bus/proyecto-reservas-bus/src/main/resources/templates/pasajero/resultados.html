@@ -14,12 +14,12 @@
 		<br>
 		<br>
 		<h2 class="viaj">Viajes por fecha:</h2>
-		<p id="fecha-actual"></p>
+		
 
 		<div class="row text-center" th:if="${#lists.isEmpty(resultados)}">
 			<p>No tenemos rutas para la fecha solicitada</p>
 		</div>
-
+<div class="info">
 		<div id="tarjeta" class="row text-center mb-3" th:if="${not #lists.isEmpty(resultados)}">
 			<div class="card" style="max-width: 450px;" th:each="resultado: ${resultados}">
 				<div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
@@ -43,12 +43,13 @@
 		</div>
 
 	</div>
+	</div>
 
 	
 	<!-- Footer -->
 	<footer th:replace="pasajero/layout :: footer"></footer>
 
-	<script th:src="@{/js/pasajero/home.js}"></script>
+	
 </body>
 
 </html>
