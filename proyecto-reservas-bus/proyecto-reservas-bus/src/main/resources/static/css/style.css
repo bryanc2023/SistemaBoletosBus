@@ -380,3 +380,110 @@ body {
 .bkg {
     background-color: #37517e;
 }
+
+
+input-group__input {
+    font-weight: bold;
+  }
+
+  .input-group__input:focus {
+    outline-offset: 5px;
+  }
+
+  .input-group {
+    position: relative;
+    --x: 20px;
+    --y: 10px;
+    margin-bottom: 15px;
+  }
+
+  .input-group__label,
+  .input-group__input,
+  .submit-btn {
+    font-size: 1.2rem;
+  }
+
+  .input-group__input {
+    border: 2px solid rgb(177, 177, 177);
+    width: 100%;
+    padding: var(--y) var(--x);
+  }
+  
+  .input-group_input, .input-group_error {
+    --left: 0;
+    left: var(--left);
+    position: relative;
+  }
+
+ .input-group__input:is(
+      :focus,
+      :not(:placeholder-shown)
+    )
+    ~ .input-group__label {
+    top: calc(var(--y) - 20px);
+    font-size: 0.7rem;
+    border-color: black;
+    color: var(--color-valid);
+  }
+
+  .input-group__label {
+    position: absolute;
+    background-color: white;
+    left: calc(var(--x) - 6px);
+    top: calc(var(--y) - 3px);
+    border: 1px solid transparent;
+    padding: 0 6px;
+    margin: 0;
+    cursor: text;
+    transition: top 300ms, font-size 300ms,
+      border-color 300ms;
+  }
+  .g{
+	  color: #ffffff;
+  }
+
+  .input-group__error {
+    color: red;
+    display: block;
+    visibility: hidden;
+    margin-left: var(--x);
+    margin-top: 1px;
+    font-size: 0.6rem;
+  }
+
+ .input-group__input:not(:focus):invalid {
+    color: red;
+    animation: error-shake 600ms;
+    border: 2px solid var(red);
+  }
+
+  .input-group_input:not(:focus):invalid ~ .input-group_error {
+    visibility: visible;
+    animation: error-shake 600ms;
+  }
+
+  @keyframes error-shake {
+    0% {
+      --left: -10px;
+    }
+    20% {
+      --left: 8px;
+    }
+    40% {
+      --left: -6px;
+    }
+    60% {
+      --left: 4px;
+    }
+    80% {
+      --left: -2px;
+    }
+    100% {
+      --left: 0;
+    }
+  }
+
+  .input-group_input:not(:focus):invalid ~ .input-group_label {
+    color: red;
+    border-color: red;
+    }
