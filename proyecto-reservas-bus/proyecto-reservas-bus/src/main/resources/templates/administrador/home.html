@@ -6,7 +6,9 @@
 
 
 <link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+<style>
 
+</style>
 <body>
 
 
@@ -106,12 +108,14 @@
 						<p>La seguridad es primordial, y nuestro sistema te permite
 							gestionar permisos y accesos para garantizar que solo personal
 							autorizado pueda realizar cambios críticos en la plataforma.</p>
-						<a href="#" class="btn-learn-more">Learn More</a>
+						<a href="#" class="btn-learn-more">Conocer más</a>
 					</div>
 				</div>
 
 			</div>
 		</section>
+		
+		
 		<!-- End About Us Section -->
 
 		<!-- ======= Why Us Section ======= -->
@@ -203,6 +207,55 @@
 			</div>
 		</section>
 		<!-- End Services Section -->
+		<section id="services" class="services section-bg">
+			<div class="container" data-aos="fade-up">
+
+
+				<div class="row">
+				
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100">
+						
+					</div>
+					
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-bus"></i>
+							</div>
+							<h4>
+								<a th:href="@{'/personal/listar'}">Personal</a>
+							</h4>
+							<p>El registro de nuevo personal es un proceso fundamental que asegura la eficiencia operativa y la calidad del servicio ofrecido.</p>
+						</div>
+					</div>
+
+					<div
+						class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+						data-aos="zoom-in" data-aos-delay="200">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-file"></i>
+							</div>
+							<h4>
+								<a th:href="@{'/configuracion/listar'}">Configuración</a>
+							</h4>
+							<p>
+La configuración administrativa aborda aspectos fundamentales como tasas de impuestos, descuentos, límites de asientos en reservas y estados activos o inactivos, tanto a nivel general como para elementos específicos.</p>
+						</div>
+					</div>
+
+					
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100">
+						
+					</div>
+
+				</div>
+
+			</div>
+		</section>
 </main>
 		
 
