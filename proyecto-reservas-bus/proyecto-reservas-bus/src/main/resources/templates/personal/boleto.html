@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="personal/layout :: head">
+<head th:replace="layout/layout3 :: head">
 
 </head>
 
@@ -9,10 +9,11 @@
 <body>
 	
 		 <div class="m-3"></div>
+		 
 	<header th:fragment="header">
 
-	 <header th:replace="personal/layout :: header"></header>
-	
+	 <header th:replace="layout/layout3 :: header"></header>
+	<link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
 	
 
 	<div class="container py-4">
@@ -83,7 +84,7 @@
             });
         });
     </script>
-        <footer th:replace="personal/layout :: footer"></footer>
+        <footer th:replace="layout/layout3 :: footer"></footer>
     <script th:src="@{/js/personal/home.js}"></script>
 </body>
 </html>

@@ -29,17 +29,61 @@
         .login-button-container {
             margin-top: 20px;
         }
+         .navbar {
+    background-color: #ffffff; /* Color de fondo del navbar */
+    padding: 10px; /* Espaciado interno del navbar */
+    text-align: center;
+    position: fixed; /* Fija el navbar en la parte superior */
+    top: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 1000; /* Z-index alto para que est√© por encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra al navbar */
+    display: flex; /* Utiliza flexbox para alinear el contenido */
+    justify-content: space-between; /* Espacio uniforme entre los elementos */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.navbar img{
+	margin-left: 65px;
+}
+
+ 
+ footer {
+    position:fixed;
+    margin-top: 400px;
+    padding-top: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: #37517e; /* Color de fondo del footer */
+    color: #fff; /* Color del texto del footer */
+    padding: 10px; /* Espaciado interno del footer */
+    text-align: center;
+    z-index: 1000;
+}
     </style>
 </head>
 <body>
+	<div class="navbar">
+	<a th:href="@{/loging}">
+         <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
+         </a>
+    </div>
     <div class="content-container">
         <div th:if="${message != null}" class="alert alert-warning">
         <p th:text="${message}"></p>
     </div>
-        <!-- Agrega el botÛn de redirecciÛn al login -->
+        <!-- Agrega el botÔøΩn de redirecciÔøΩn al login -->
         <div class="login-button-container">
             <a th:href="@{/login}" class="btn btn-primary btn-block">Ir al login</a>
         </div>
     </div>
+     <footer  >
+	  
+		
+			<p class="m-0 text-center text-white">Copyright &copy; Boletos
+				online</p>
+	
+		</footer>
 </body>
 </html>

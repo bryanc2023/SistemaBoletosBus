@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-<head th:replace="personal/layout :: head">
+<head th:replace="layout/layout3 :: head">
 
 </head>
 <body>
     <link rel="stylesheet" th:href="@{/css/personal/home.css}" />
     
-    <header th:replace="personal/layout :: header"></header>
-    
+    <header th:replace="layout/layout3 :: header"></header>
+   
     <div class="text-center">
         <h1>Escanear Codigo QR</h1>
     </div>
-    
+    <link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
     <!-- Tres cuadros con títulos -->
     <div class="row mt-4">
         <div class="col-md-4">
@@ -107,7 +107,7 @@
     </script>
 
 
-    <footer th:replace="personal/layout :: footer"></footer>
+    <footer th:replace="layout/layout3 :: footer"></footer>
     <script th:src="@{/js/personal/home.js}"></script>
 </body>
 </html>
