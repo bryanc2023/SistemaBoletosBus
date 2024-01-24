@@ -523,3 +523,17 @@ input-group__input {
     text-align: center;
     z-index: 1000;
 }
+
+ .alert-info {
+      color: white; /* Establece el color del texto a blanco */
+      background-color: greenyellow;  /* Puedes ajustar el color de fondo según tus necesidades */
+      padding: 15px;
+      border-radius: 5px;
+    }
+    
+    
+ .o {
+	color: white !important; /* Establece el color del texto a blanco */
+      background-color: #37517e; /* Puedes ajustar el color de fondo según tus necesidades */
+      padding: 15px;
+      border-radius: 5px; }
