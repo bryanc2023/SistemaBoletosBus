@@ -47,7 +47,7 @@ public class HomeController {
 	@Autowired
 	private  IUsuarioService usuarioService;
 	
-	@GetMapping("/")
+	@GetMapping("/app")
 	public String mostrarHome(Authentication authentication,Model model) {
 		
 		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -91,7 +91,11 @@ public class HomeController {
 
 	}
 	
-	
+	@GetMapping
+	public String mostrarIndex() {
+		return "index";
+	}
+		
 
 	
 	
