@@ -31,7 +31,7 @@ public class ForgotPasswordController {
 	private JavaMailSender mailSender;
 	@GetMapping("/forgot_password")
 	public String showForgotPasswordForm(Model model) {
-		model.addAttribute("pageTitle", "Forgor Password");
+		model.addAttribute("pageTitle", "Recupera tu contraseña");
 		return "forgot_password_form";
 	}
 	
@@ -51,7 +51,7 @@ public class ForgotPasswordController {
 	    } catch (UnsupportedEncodingException | MessagingException e) {
 	        model.addAttribute("error", "Error al enviar el email");
 	    }
-		model.addAttribute("pageTitle", "Forgor Password");
+		model.addAttribute("pageTitle", "Recupera tu contraseña");
 	    return "forgot_password_form";
 	}
 
@@ -86,7 +86,7 @@ public class ForgotPasswordController {
 	    model.addAttribute("token", token);
 	     
 	    if (usuario == null) {
-	        model.addAttribute("message", "Invalid Token");
+	        model.addAttribute("message", "Error al cambiar la contraseña");
 	        return "message";
 	    }
 	     
@@ -99,15 +99,15 @@ public class ForgotPasswordController {
 	    String password = request.getParameter("password");
 	     
 	    Usuario usuario = usuarioService.get(token);
-	    model.addAttribute("title", "Reset your password");
+	    model.addAttribute("title", "Cambia tu contraseña");
 	     
 	    if (usuario == null) {
-	        model.addAttribute("message", "Invalid Token");
+	        model.addAttribute("message", "Error al cambiar la contraseña");
 	        return "message";
 	    } else {           
 	        usuarioService.updatePassword(usuario, password);
 	         
-	        model.addAttribute("message", "You have successfully changed your password.");
+	        model.addAttribute("message", "Has tenido exito al cambiar tu contraseña.");
 	    }
 	     
 	    return "message";
