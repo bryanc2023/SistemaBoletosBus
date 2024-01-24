@@ -49,6 +49,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String mostrarHome(Authentication authentication,Model model) {
+		
 		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -84,6 +85,8 @@ public class HomeController {
 		    } else {
 		    	 return "redirect:/login?error";
 		    }
+		    
+		    
 	
 
 	}
