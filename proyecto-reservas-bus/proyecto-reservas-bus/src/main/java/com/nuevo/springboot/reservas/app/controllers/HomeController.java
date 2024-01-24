@@ -80,7 +80,13 @@ public class HomeController {
 		       
 		     
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_PERSONAL"))) {
-		    	
+		    	 String email = ((UserDetails) principal).getUsername();
+	    	        Usuario user = usuarioService.findByEmail(email);
+	    	       
+	    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+	    	            Usuario pasajero= usuarioService.findById(idUsuario);
+	    	            model.addAttribute("personal", pasajero.getNombre()+" "+pasajero.getApellido());
+	    	       
 		        return "personal/home";
 		    } else {
 		    	 return "redirect:/login?error";
