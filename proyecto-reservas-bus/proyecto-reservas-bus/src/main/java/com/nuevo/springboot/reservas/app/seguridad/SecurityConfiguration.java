@@ -48,12 +48,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	            "/registro",
 	            "/js/**",
 	            "/css/**",
-	            "/img/**",
+	            "/images/**",
 	            "/confirm-account",
 	            "/accountVerified",
 	            "/error",
 	            "/forgot_password",      // Agregado para permitir el acceso sin autenticación
-	            "/reset_password"        // Agregado para permitir el acceso sin autenticación
+	            "/reset_password" 
+	            // Agregado para permitir el acceso sin autenticación
 	        ).permitAll()
 	        .anyRequest().authenticated()
 	        .and()

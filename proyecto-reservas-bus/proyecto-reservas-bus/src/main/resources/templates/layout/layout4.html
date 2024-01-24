@@ -1,0 +1,79 @@
+																																																																								<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8" />
+<title th:text="BookMyDrive"></title>
+
+
+<link  th:href="@{https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap}" rel="stylesheet">
+
+
+  <link  th:href="@{/Administrador/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link  th:href="@{/Administrador/vendor/aos/aos.css}" rel="stylesheet">
+
+  <link th:href="@{/Administrador/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+  <link  th:href="@{/Administrador/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+  <link th:href="@{/Administrador/vendor/glightbox/css/glightbox.min.css}" rel="stylesheet">
+  <link  th:href="@{/Administrador/vendor/remixicon/remixicon.css}" rel="stylesheet">
+  <link  th:href="@{/Administrador/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+
+</head>
+
+ 
+<body class="d-flex flex-column min-vh-100">
+
+
+     <header id="header" th:fragment="header" class="fixed-top">
+     
+    <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a th:href="@{/}">
+        
+        <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
+        </a>
+        </h1>
+
+ 		<button class="mobile-nav-toggle bi bi-list" aria-label="Toggle Navigation"></button>
+        <nav id="navbar" class="navbar">
+            <ul>
+                
+                <li><a class="getstarted scrollto" th:href="@{/logout}">Cerrar Sesión</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+    </div>
+  <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+    <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+    <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+    <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+
+</header>
+
+
+
+	<div class="container"></div>
+
+ <footer class="footer" th:fragment="footer" >
+	  
+		<div class="container">
+
+			<p class="m-0 text-center text-white">Copyright &copy; Boletos
+				online</p>
+		</div>
+		
+		<script th:src="@{/bootstrap/js/jquery-3.7.1.min.js}"></script>
+		<script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+		<script th:src="@{/Administrador/vendor/aos/aos.js}"></script>
+	  <script th:src="@{/Administrador/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/glightbox/js/glightbox.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/isotope-layout/isotope.pkgd.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/swiper/swiper-bundle.min.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/waypoints/noframework.waypoints.js}"></script>
+	  <script  th:src="@{/Administrador/vendor/php-email-form/validate.js}"></script>
+	  <script th:src="@{/Administrador/js/main.js}"></script>
+
+	</footer>
+
+</body>
+</html>
