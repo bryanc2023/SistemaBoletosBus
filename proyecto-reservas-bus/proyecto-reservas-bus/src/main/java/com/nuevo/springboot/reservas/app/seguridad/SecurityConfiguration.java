@@ -41,37 +41,39 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	}
 	
 	
-	 @Override
-	    protected void configure(HttpSecurity http) throws Exception {
-	        http.authorizeRequests()
-	            .antMatchers(
-	                "/registro",
-	                "/js/**",
-	                "/css/**",
-	                "/img/**",
-	                "/confirm-account",
-	                "/accountVerified",
-	                "/error",
-	                "/forgot_password",
-	                "/reset_password",
-	                "/index"  // Permitir acceso a la página principal sin restricciones
-	            ).permitAll()
-	            .anyRequest().authenticated()
-	            .and()
-	            .formLogin()
-	                .loginPage("/login")
-	                .defaultSuccessUrl("/", true)
-	                .permitAll()
-	            .and()
-	            .logout()
-	                .invalidateHttpSession(true)
-	                .clearAuthentication(true)
-	                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-	                .logoutSuccessUrl("/login?logout")
-	                .permitAll()
-	            .and()
-	            .exceptionHandling().accessDeniedPage("/error");
-	    }
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+	    http.authorizeRequests()
+	        .antMatchers(
+	            "/registro",
+	            "/js/**",
+	            "/css/**",
+	            "/images/**",
+	            "/confirm-account",
+	            "/accountVerified",
+	            "/error",
+	            "/forgot_password",      // Agregado para permitir el acceso sin autenticación
+	            "/reset_password" 
+	            // Agregado para permitir el acceso sin autenticación
+	        ).permitAll()
+	        .anyRequest().authenticated()
+	        .and()
+	        .formLogin()
+	            .loginPage("/login")
+	            .defaultSuccessUrl("/", true)
+	            .permitAll()
+	        .and()
+	        .logout()
+	            .invalidateHttpSession(true)
+	            .clearAuthentication(true)
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+	            .logoutSuccessUrl("/login?logout")
+	            .permitAll()
+	        .and()
+	        .exceptionHandling().accessDeniedPage("/error");
+	}
+
 }
 
 

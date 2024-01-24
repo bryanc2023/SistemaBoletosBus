@@ -39,10 +39,10 @@
  		<button class="mobile-nav-toggle bi bi-list" aria-label="Toggle Navigation"></button>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" th:href="@{/pasajero/boleto}">Mis Boletos</a></li>
-                <li><a class="nav-link scrollto" th:href="@{/pasajero/reservas}">Mis Reservas</a></li>
-                <li><a class="nav-link scrollto" th:href="@{/pasajero/perfil}">Mi perfil</a></li>
-                <li><a class="nav-link scrollto" th:href="@{/pasajero/contacto}">Contacto</a></li>
+                <li><a class="nav-link scrollto" th:href="${'/personal/camera'}">Códigos</a></li>
+                <li><a class="nav-link scrollto" th:href="${'/personal/boleto'}">Informes</a></li>
+                <li><a class="nav-link scrollto" th:href="${'/personal/pagos'}">Pagos</a></li>
+               
                 <li><a class="getstarted scrollto" th:href="@{/logout}">Cerrar Sesión</a></li>
             </ul>
         </nav><!-- .navbar -->

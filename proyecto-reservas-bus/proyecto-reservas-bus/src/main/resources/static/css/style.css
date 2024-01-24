@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 * {
     margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Mulish', sans-serif;
+     font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,6 +22,8 @@ body {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 /* .container .box {
@@ -379,4 +381,144 @@ body {
 
 .bkg {
     background-color: #37517e;
+}
+
+
+input-group__input {
+    font-weight: bold;
+  }
+
+  .input-group__input:focus {
+    outline-offset: 5px;
+  }
+
+  .input-group {
+    position: relative;
+    --x: 20px;
+    --y: 10px;
+    margin-bottom: 15px;
+  }
+
+  .input-group__label,
+  .input-group__input,
+  .submit-btn {
+    font-size: 1.2rem;
+  }
+
+  .input-group__input {
+    border: 2px solid rgb(177, 177, 177);
+    width: 100%;
+    padding: var(--y) var(--x);
+  }
+  
+  .input-group_input, .input-group_error {
+    --left: 0;
+    left: var(--left);
+    position: relative;
+  }
+
+ .input-group__input:is(
+      :focus,
+      :not(:placeholder-shown)
+    )
+    ~ .input-group__label {
+    top: calc(var(--y) - 20px);
+    font-size: 0.7rem;
+    border-color: black;
+    color: var(--color-valid);
+  }
+
+  .input-group__label {
+    position: absolute;
+    background-color: white;
+    left: calc(var(--x) - 6px);
+    top: calc(var(--y) - 3px);
+    border: 1px solid transparent;
+    padding: 0 6px;
+    margin: 0;
+    cursor: text;
+    transition: top 300ms, font-size 300ms,
+      border-color 300ms;
+  }
+  .g{
+	  color: #ffffff;
+  }
+
+  .input-group__error {
+    color: red;
+    display: block;
+    visibility: hidden;
+    margin-left: var(--x);
+    margin-top: 1px;
+    font-size: 0.6rem;
+  }
+
+ .input-group__input:not(:focus):invalid {
+    color: red;
+    animation: error-shake 600ms;
+    border: 2px solid var(red);
+  }
+
+  .input-group_input:not(:focus):invalid ~ .input-group_error {
+    visibility: visible;
+    animation: error-shake 600ms;
+  }
+
+  @keyframes error-shake {
+    0% {
+      --left: -10px;
+    }
+    20% {
+      --left: 8px;
+    }
+    40% {
+      --left: -6px;
+    }
+    60% {
+      --left: 4px;
+    }
+    80% {
+      --left: -2px;
+    }
+    100% {
+      --left: 0;
+    }
+  }
+
+  .input-group_input:not(:focus):invalid ~ .input-group_label {
+    color: red;
+    border-color: red;
+    }
+    
+  .navbar {
+    background-color: #ffffff; /* Color de fondo del navbar */
+    padding: 10px; /* Espaciado interno del navbar */
+    text-align: center;
+    position: fixed; /* Fija el navbar en la parte superior */
+    top: 0;
+    height: 70px;
+    width: 100%;
+    z-index: 1000; /* Z-index alto para que esté por encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra al navbar */
+    display: flex; /* Utiliza flexbox para alinear el contenido */
+    justify-content: space-between; /* Espacio uniforme entre los elementos */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.navbar img{
+	margin-left: 65px;
+}
+
+ 
+ footer {
+    position:fixed;
+    margin-top: 400px;
+    padding-top: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: #37517e; /* Color de fondo del footer */
+    color: #fff; /* Color del texto del footer */
+    padding: 10px; /* Espaciado interno del footer */
+    text-align: center;
+    z-index: 1000;
 }

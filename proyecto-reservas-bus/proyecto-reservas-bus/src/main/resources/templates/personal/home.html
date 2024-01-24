@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="personal/layout :: head">
+<head th:replace="layout/layout3 :: head">
 
 </head>
 
 <body>
 	<link rel="stylesheet" th:href="@{/css/personal/home.css}" />
-
-	<header th:replace="personal/layout :: header"></header>
+<link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
+	<header th:replace="layout/layout3 :: header"></header>
 
 
 
@@ -112,7 +112,7 @@ Brindamos atención excepcional porque cada interacción es una oportunidad para
 		</div>
 	</div>
 	<!-- Footer -->
-	<footer th:replace="personal/layout :: footer"></footer>
+	<footer th:replace="layout/layout3 :: footer"></footer>
 
 	<script th:src="@{/js/personal/home.js}"></script>
 </body>

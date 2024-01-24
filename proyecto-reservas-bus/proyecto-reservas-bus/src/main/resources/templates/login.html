@@ -13,10 +13,13 @@
 	<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
 	<script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>BookMyDrive</title>
 </head>
  <link rel="stylesheet" th:href="@{/css/style.css}">
 <body>
+	<div class="navbar">
+         <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
+    </div>
     <div class="container">
         <div class="box">
             <div class="form sign_in">
@@ -25,18 +28,21 @@
 
                 <form th:action="@{/login}" method="post" class="form_input">
                     <div class="type">
-                        <input type="text" placeholder="Correo electronico" name="username" id="username">
-                    </div>
+                        <input class="input-group__input" type="text" placeholder="Correo electronico" name="username" id="username">
+                    </div><br>
                     <div class="type">
-                        <input type="password" placeholder="Contraseña" name="password" id="passwordSignIn">
+                        <input class="input-group__input"  type="password" placeholder="Contraseña" name="password" id="passwordSignIn">
+                    </div> <br>
+                     <div >
+                        <a class="g" th:href="@{/forgot_password}">Olvidaste tu contraseña?</a>
                     </div>
+                    
+                     <br> 
 
                    
 
                     <button class="btn bkg" type="submit">Ingresar</button>
-                     <div >
-                        <a th:href="@{/forgot_password}">Olvidaste tu contraseña?</a>
-                    </div>
+                    
                 </form>
             </div>
     
@@ -49,17 +55,19 @@
 				</div>
                 <form th:action="@{/registro}" method="post" class="form_input">
                     <div class="type">
-                        <input type="text" placeholder="Nombre" name="nombre" id="name">
-                    </div>
+                        <input class="input-group__input" type="text" placeholder="Nombre" name="nombre" id="name">
+                    </div> <br>
                       <div class="type">
-                        <input type="text" placeholder="Apellido" name="apellido" id="apellido">
-                    </div>
+                        <input class="input-group__input" type="text" placeholder="Apellido" name="apellido" id="apellido">
+                    </div> <br>
                     <div class="type">
-                        <input type="email" placeholder="Correo Electrónico" name="email" id="email">
-                    </div>
+                        <input class="input-group__input" type="email" placeholder="Correo Electrónico" name="email" id="email">
+                        <span>No es un correo valido</span>
+                    </div> 
                     <div class="type">
-                        <input type="password" placeholder="Contraseña" name="password" id="passwordSignUp">
-                    </div>
+                        <input class="input-group__input" type="password" placeholder="Contraseña" name="password" id="passwordSignUp" pattern="[a-z0-9] {8,}">
+                        <span class="input-group__error">Ingresa digitos y letras, minimo 8 caracteres</span>
+                    </div><br><br>
 
                     <button class="btn bkg" type="submit">Confirmar</button>
                 </form>
@@ -68,7 +76,7 @@
 
         <div class="overlay">
             <div class="page page_signIn">
-                <h3>Bienvenido de vuetla!</h3>
+                <h3>Bienvenido de vuelta!</h3>
                 <p>Aun no estas registrado?</p>
 
                 <button class="btn btnSign-in">Registrate <i class="bi bi-arrow-right"></i></button>
@@ -86,6 +94,13 @@
 
     <!-- link script -->
     <script th:src="@{/js/main.js}"></script>
+    <footer  >
+	  
+		
+			<p class="m-0 text-center text-white">Copyright &copy; Boletos
+				online</p>
+	
+		</footer>
 </body>
 
 <script
