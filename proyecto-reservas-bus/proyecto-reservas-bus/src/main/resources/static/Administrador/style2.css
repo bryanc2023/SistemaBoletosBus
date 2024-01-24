@@ -1870,6 +1870,13 @@ section {
   }
 }
 
+@media (max-width: 768px) {
+	#viaje{
+		margin-left: 25%;
+		
+	}
+	
+	}
 
 #viaje img{
 	width: 200px;
