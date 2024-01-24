@@ -91,7 +91,7 @@ public class HomeController {
 
 	}
 	
-	@GetMapping
+	@GetMapping ("/")
 	public String mostrarIndex() {
 		return "index";
 	}
