@@ -38,6 +38,9 @@ public class Usuario {
 
 	@Column(name = "apellido")
 	private String apellido;
+	
+	@Column(name = "reset_password_token")
+	private String resetPasswordToken;
 
 	@OneToMany(mappedBy = "usuario", cascade =CascadeType.ALL)
 	public List<Boleto> boletos;
@@ -121,8 +124,18 @@ public class Usuario {
 	public void setRoles(Collection<Rol> roles) {
 		this.roles = roles;
 	}
+	
+	
 
 	
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
+
 	public Usuario(Long id, String nombre, String apellido, List<Boleto> boletos, String email, String password,
 			Collection<Rol> roles) {
 		super();

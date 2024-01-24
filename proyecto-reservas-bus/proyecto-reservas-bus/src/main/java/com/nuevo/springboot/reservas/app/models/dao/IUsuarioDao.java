@@ -15,7 +15,6 @@ public interface IUsuarioDao extends JpaRepository<Usuario, Long> {
 
 	public List<Usuario> findByRolesNombre(String rolNombre);
 
+	public Usuario findByResetPasswordToken(String token);
 	
-	
-
 }
