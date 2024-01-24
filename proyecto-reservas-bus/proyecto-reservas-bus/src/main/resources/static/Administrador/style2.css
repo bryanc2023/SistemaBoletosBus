@@ -103,7 +103,7 @@ h6 {
 --------------------------------------------------------------*/
 #header {
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 10;
   padding: 15px 0;
   background: #ffffff;
 }
