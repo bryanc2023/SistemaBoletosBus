@@ -30,10 +30,10 @@
 					<thead class="thead-inverse">
 						<tr>
 						<tr>
-							<th class="bg-dark text-white">id</th>
-							<th class="bg-dark text-white">nombre</th>
-							<th class="bg-dark text-white">editar</th>
-							<th class="bg-dark text-white">eliminar</th>
+							<th class="bg-dark text-white">Id</th>
+							<th class="bg-dark text-white">Nombre</th>
+							<th class="bg-dark text-white">Editar</th>
+							<th class="bg-dark text-white">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,9 +41,9 @@
 							<td th:text="${cooperativa.id}"></td>
 							<td th:text="${cooperativa.nombre}"></td>
 							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/cooperativa/form/}+ ${cooperativa.id}">editar</a></td>
+								th:href="@{/cooperativa/form/}+ ${cooperativa.id}">Editar</a></td>
 							<td><a class="btn btn-danger btn-xs"
-								th:href="@{/cooperativa/eliminar/}+ ${cooperativa.id}">eliminar</a></td>
+								th:href="@{/cooperativa/eliminar/}+ ${cooperativa.id}">Eliminar</a></td>
 						</tr>
 					</tbody>
 				</table>

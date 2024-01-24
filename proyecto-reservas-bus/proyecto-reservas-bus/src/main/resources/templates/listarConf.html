@@ -27,14 +27,14 @@
           <!-- Añadí un estilo para limitar la anchura y centrar la tabla -->
           <thead class="thead-inverse">
             <tr>
-              <th class="bg-dark text-white">id</th>
-              <th class="bg-dark text-white">fecha de Configuracion</th>
-              <th class="bg-dark text-white">descuento</th>
-              <th class="bg-dark text-white">iva</th>
-              <th class="bg-dark text-white">cantidad de VentaB</th>
-              <th class="bg-dark text-white">estado</th>
-              <th class="bg-dark text-white">editar</th>
-              <th class="bg-dark text-white">eliminar</th>
+              <th class="bg-dark text-white">Id</th>
+              <th class="bg-dark text-white">Fecha de Configuracion</th>
+              <th class="bg-dark text-white">Descuento</th>
+              <th class="bg-dark text-white">Iva</th>
+              <th class="bg-dark text-white">Cantidad de VentaB</th>
+              <th class="bg-dark text-white">Estado</th>
+              <th class="bg-dark text-white">Editar</th>
+              <th class="bg-dark text-white">Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -45,8 +45,8 @@
               <td th:text="${configuracion.iva}"></td>
               <td th:text="${configuracion.cantidadVentaB}"></td>
               <td th:text="${configuracion.estado}"></td>
-              <td><a class="btn btn-primary btn-xs" th:href="@{/configuracion/form/}+ ${configuracion.id}">editar</a></td>
-              <td><a class="btn btn-danger btn-xs" th:href="@{/configuracion/eliminar/}+ ${configuracion.id}">eliminar</a></td>
+              <td><a class="btn btn-primary btn-xs" th:href="@{/configuracion/form/}+ ${configuracion.id}">Editar</a></td>
+              <td><a class="btn btn-danger btn-xs" th:href="@{/configuracion/eliminar/}+ ${configuracion.id}">Eliminar</a></td>
             </tr>
           </tbody>
         </table>
