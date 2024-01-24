@@ -56,7 +56,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	            "/forgot_password",      // Agregado para permitir el acceso sin autenticación
 	            "/reset_password",
 	            "/index",
-	            "/Administrador/**"
+	            "/Administrador/**",
+	            "/"
 	            // Agregado para permitir el acceso sin autenticación
 	        ).permitAll()
 	        .anyRequest().authenticated()
