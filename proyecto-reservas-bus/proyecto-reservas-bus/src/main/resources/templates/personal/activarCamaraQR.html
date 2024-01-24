@@ -1,17 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
-<head th:replace="personal/layout :: head">
+<head th:replace="layout/layout3 :: head">
 
 </head>
 <body>
     <link rel="stylesheet" th:href="@{/css/personal/home.css}" />
     
-    <header th:replace="personal/layout :: header"></header>
-    
-    <div class="text-center">
-        <h1>Escanear Codigo QR</h1>
+    <header th:replace="layout/layout3 :: header"></header>
+   <section id="clients" class="clients section-bg">
+			<div class="container">
+
+				<div class="row" data-aos="zoom-in">
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-1.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-2.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-3.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-4.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-5.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-6.png" class="img-fluid"
+							alt="">
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<section id="services" class="services section-bg">
+			
+			<div class="container" data-aos="fade-up">
+	
+    <div class="uni">
+		<div class="section-title">
+					<h2>Validación de boletos</h2>
+					<small>Escanee el codigo QR para validar el estado</small>
+				</div>
     </div>
+    </section>
     
+    <link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
     <!-- Tres cuadros con títulos -->
     <div class="row mt-4">
         <div class="col-md-4">
@@ -107,7 +160,7 @@
     </script>
 
 
-    <footer th:replace="personal/layout :: footer"></footer>
+    <footer th:replace="layout/layout3 :: footer"></footer>
     <script th:src="@{/js/personal/home.js}"></script>
 </body>
 </html>

@@ -6,58 +6,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- link css -->
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+   
 
     <!-- link icon -->
     <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css}" integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-<script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
+	<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+	<script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>BookMyDrive</title>
 </head>
+ <link rel="stylesheet" th:href="@{/css/style.css}">
 <body>
+	<div class="navbar">
+		<a th:href="@{/}">
+         <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
+         </a>
+    </div>
     <div class="container">
         <div class="box">
             <div class="form sign_in">
                 <h3>Inicio de sesión</h3>
-                <span>Usa tus credenciales en la aplicacion:</span>
+                <br> 
+                
+                <div th:if=${param.logout}>
+						<div class="alert alert-info">Ha cerrado sesión exitosamente
+						</div>
+					</div>
+					
+					 <div th:if=${param.error}>
+						<div class="alert alert-danger">Usuario o Contraseña Invalido
+						</div>
+					</div>
+				
+				
+					<div th:if=${param.error2}>
+						<div class="alert alert-danger">Por favor, confirma tu correo electrónico para iniciar sesión.
+						</div>
+					</div>
+					
+                <span class="o">Usa tus credenciales en la aplicacion:</span> <br> <br>
 
                 <form th:action="@{/login}" method="post" class="form_input">
+					
+				
+				
                     <div class="type">
-                        <input type="text" placeholder="Correo electronico" name="username" id="username">
-                    </div>
+                        <input class="input-group__input" type="text" placeholder="Correo electronico" name="username" id="username">
+                    </div><br>
                     <div class="type">
-                        <input type="password" placeholder="Contraseña" name="password" id="passwordSignIn">
+                        <input class="input-group__input"  type="password" placeholder="Contraseña" name="password" id="passwordSignIn">
+                    </div> <br>
+                     <div >
+                        <a class="g" th:href="@{/forgot_password}">Olvidaste tu contraseña?</a>
                     </div>
+                    
+                     <br> 
 
-                    <div class="forgot">
-                        <a>Olvidaste tu contraseña?</a>
-                    </div>
+                   
 
                     <button class="btn bkg" type="submit">Ingresar</button>
+                    
                 </form>
             </div>
     
             <div class="form sign_up">
                 <h3>Registro</h3>
-                <span>Ingresa tu información para registrarte:</span>
-				<div th:if=${param.exito}>
+                
+                
+                <div th:if=${param.exito}>
 					<div class="alert alert-info">Se ha registrado exitosamente a
 						la aplicación. Revise su enlace de verificacion para continuar</div>
 				</div>
+				
+                <span class="o">Ingresa tu información para registrarte:</span> <br><br>
+                		
+				
                 <form th:action="@{/registro}" method="post" class="form_input">
                     <div class="type">
-                        <input type="text" placeholder="Nombre" name="nombre" id="name">
-                    </div>
+                        <input class="input-group__input" type="text" placeholder="Nombre" name="nombre" id="name">
+                    </div> <br>
                       <div class="type">
-                        <input type="text" placeholder="Apellido" name="apellido" id="apellido">
-                    </div>
+                        <input class="input-group__input" type="text" placeholder="Apellido" name="apellido" id="apellido">
+                    </div> <br>
                     <div class="type">
-                        <input type="email" placeholder="Correo Electrónico" name="email" id="email">
-                    </div>
+                        <input class="input-group__input" type="email" placeholder="Correo Electrónico" name="email" id="email">
+                        <span>No es un correo valido</span>
+                    </div> 
                     <div class="type">
-                        <input type="password" placeholder="Contraseña" name="password" id="passwordSignUp">
-                    </div>
+                        <input class="input-group__input" type="password" placeholder="Contraseña" name="password" id="passwordSignUp" pattern=".{8,}">
+                        <span class="input-group__error">Ingresa digitos y letras, minimo 8 caracteres</span>
+                    </div><br><br>
 
                     <button class="btn bkg" type="submit">Confirmar</button>
                 </form>
@@ -66,7 +104,7 @@
 
         <div class="overlay">
             <div class="page page_signIn">
-                <h3>Bienvenido de vuetla!</h3>
+                <h3>Bienvenido de vuelta!</h3>
                 <p>Aun no estas registrado?</p>
 
                 <button class="btn btnSign-in">Registrate <i class="bi bi-arrow-right"></i></button>
@@ -84,11 +122,25 @@
 
     <!-- link script -->
     <script th:src="@{/js/main.js}"></script>
+    
+    
+    <footer  >
+	  
+		
+			<p class="m-0 text-center text-white">Copyright &copy; Boletos
+				online</p>
+	
+		</footer>
 </body>
 
 <script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 		crossorigin="anonymous"></script>
+		
+		 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
 
 </html>

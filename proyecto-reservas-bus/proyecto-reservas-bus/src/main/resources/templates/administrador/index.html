@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
+<body>
+
+
+
+	  <header id="header"  class="fixed-top">
+	<div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a th:href="@{/}">
+        
+        <img src="/images/logo.png" alt="Descripción del logo" style="width: 150px; height: auto;">
+        </a>
+        </h1>
+
+ 		<button class="mobile-nav-toggle bi bi-list" aria-label="Toggle Navigation"></button>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="getstarted scrollto" th:href="@{/login}">Acceder</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+    </div>
+	
+	</header>
+	<section id="hero" class="d-flex align-items-center">
+
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+					data-aos="fade-up" data-aos-delay="200">
+					<h1>
+						Bienvenido a BookMyDrive<span></span>
+					</h1>
+					<h2></h2>
+					<div class="d-flex justify-content-center justify-content-lg-start">
+						<a th:href="@{/login}" class="btn-get-started scrollto">Iniciar experiencia</a> <a
+							href="https://www.youtube.com/watch?v=D0SdaYGYa4I"
+							class="glightbox btn-watch-video"><i
+							class=""></i><span></span></a>
+					</div>
+				</div>
+				<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in"
+					data-aos-delay="200">
+					<img th:src="@{Administrador/img/boleto.png}"
+						class="img-fluid animated" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<main id="main">
+
+		<section id="clients" class="clients section-bg">
+			<div class="container">
+
+				<div class="row" data-aos="zoom-in">
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img th:src="@{Administrador/img/icon1.png}" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img th:src="@{Administrador/img/icon2.png}" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img th:src="@{Administrador/img/icon3.png}" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img th:src="@{Administrador/img/icon4.png}" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img th:src="@{Administrador/img/icon5.png}" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img th:src="@{Administrador/img/icon6.png}" class="img-fluid"
+							alt="">
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+		<section id="about" class="about">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Acerca de BookMyDrive</h2>
+				</div>
+
+				<div class="row content">
+					<div class="col-lg-6">
+						<p>En BookMyDrive, te damos la bienvenida a la plataforma
+							líder en reserva y compra de boletos de autobús. Simplificamos tu
+							experiencia de viaje al ofrecerte un servicio integral para
+							planificar tus trayectos en autobús de manera conveniente y
+							eficiente.
+							Descubre la comodidad de explorar una amplia gama de
+							destinos, seleccionar las mejores opciones de horarios y
+							asientos, y asegurar tus viajes con tan solo unos clics. </p>
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0">
+						<p>Con BookMyDrive, tu viaje comienza desde el momento en que decides
+							planificarlo. Ofrecemos no solo una plataforma de reserva, sino
+							una puerta de entrada a un mundo de posibilidades para que
+							disfrutes al máximo de cada viaje en autobús.</p>
+						<a href="#" class="btn-learn-more">Conocer más</a>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		
+		
+	</main>
+	<!-- Footer -->
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 * {
     margin: 0;
@@ -8,7 +7,7 @@
 }
 
 body {
-    font-family: 'Mulish', sans-serif;
+     font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,11 +17,14 @@ body {
 
 .container {
     width: 60%;
+    
     display: flex;
-    height: 650px;
+    height: 530px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 /* .container .box {
@@ -222,6 +224,15 @@ body {
     text-align: center;
 }
 
+#form_input .forgot a {
+    color: #ffffff !important; /* Agrega !important para asegurar la especificidad */
+    text-decoration: none;
+}
+
+#form_input .forgot a:hover {
+    color: #37517e !important;
+}
+
 .container .box .form.sign_up {
     /* transition: all 0.5s;
     opacity: 0;
@@ -232,14 +243,14 @@ body {
     transition: all 1.15s;
     z-index: 1;
     opacity: 0;
-    background-color: #fff;
+  background-color: #343a40; 
 }
 
 .container .box .form.sign_in {
     opacity: 1;
     transition: all 1.15s;
     z-index: 5;
-    background-color: #fff;
+  background-color: #343a40; 
 }
 
 .container.active .box .form.sign_in {
@@ -274,7 +285,7 @@ body {
     width: 50%;
     transition: all 0.8s;
     transform: translateX(0);
-    background-color: #0042A4;
+    background-color: #37517e;
     z-index: 1;
     overflow: hidden;
     z-index: 5;
@@ -335,7 +346,7 @@ body {
 }
 
 .form h3 {
-    color: #222;
+    color: #fff;
     font-size: 40px;
 }
 
@@ -370,5 +381,190 @@ body {
 }
 
 .bkg {
-    background-color: #0042A4;
+    background-color: #37517e;
 }
+
+
+input-group__input {
+    font-weight: bold;
+  }
+
+  .input-group__input:focus {
+    outline-offset: 5px;
+  }
+
+  .input-group {
+    position: relative;
+    --x: 20px;
+    --y: 10px;
+    margin-bottom: 15px;
+  }
+
+  .input-group__label,
+  .input-group__input,
+  .submit-btn {
+    font-size: 1.2rem;
+  }
+
+  .input-group__input {
+    border: 2px solid rgb(177, 177, 177);
+    width: 100%;
+    padding: var(--y) var(--x);
+  }
+  
+  .input-group_input, .input-group_error {
+    --left: 0;
+    left: var(--left);
+    position: relative;
+  }
+
+ .input-group__input:is(
+      :focus,
+      :not(:placeholder-shown)
+    )
+    ~ .input-group__label {
+    top: calc(var(--y) - 20px);
+    font-size: 0.7rem;
+    border-color: black;
+    color: var(--color-valid);
+  }
+
+  .input-group__label {
+    position: absolute;
+    background-color: white;
+    left: calc(var(--x) - 6px);
+    top: calc(var(--y) - 3px);
+    border: 1px solid transparent;
+    padding: 0 6px;
+    margin: 0;
+    cursor: text;
+    transition: top 300ms, font-size 300ms,
+      border-color 300ms;
+  }
+  .g{
+	  color: #ffffff;
+  }
+
+  .input-group__error {
+    color: red;
+    display: block;
+    visibility: hidden;
+    margin-left: var(--x);
+    margin-top: 1px;
+    font-size: 0.6rem;
+  }
+
+ .input-group__input:not(:focus):invalid {
+    color: red;
+    animation: error-shake 600ms;
+    border: 2px solid var(red);
+  }
+
+  .input-group_input:not(:focus):invalid ~ .input-group_error {
+    visibility: visible;
+    animation: error-shake 600ms;
+  }
+
+  @keyframes error-shake {
+    0% {
+      --left: -10px;
+    }
+    20% {
+      --left: 8px;
+    }
+    40% {
+      --left: -6px;
+    }
+    60% {
+      --left: 4px;
+    }
+    80% {
+      --left: -2px;
+    }
+    100% {
+      --left: 0;
+    }
+  }
+
+  .input-group_input:not(:focus):invalid ~ .input-group_label {
+    color: red;
+    border-color: red;
+    }
+    
+  .navbar {
+    background-color: #ffffff; /* Color de fondo del navbar */
+    padding: 10px; /* Espaciado interno del navbar */
+    text-align: center;
+    position: fixed; /* Fija el navbar en la parte superior */
+    top: 0;
+    height: 70px;
+    width: 100%;
+     z-index: 10; /* Z-index alto para que esté por encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra al navbar */
+    display: flex; /* Utiliza flexbox para alinear el contenido */
+    justify-content: space-between; /* Espacio uniforme entre los elementos */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.navbar img{
+	margin-left: 65px;
+}
+
+ 
+ footer {
+    position:fixed;
+    margin-top: 400px;
+    padding-top: 100px;
+    bottom: 0;
+    width: 100%;
+    background-color: #37517e; /* Color de fondo del footer */
+    color: #fff; /* Color del texto del footer */
+    padding: 10px; /* Espaciado interno del footer */
+    text-align: center;
+    z-index: 1000;
+}
+
+ .alert-info {
+      color: white; /* Establece el color del texto a blanco */
+      background-color: seagreen;  /* Puedes ajustar el color de fondo según tus necesidades */
+      padding: 15px;
+      border-radius: 5px;
+    }
+    
+     .alert {
+      margin-bottom: 20px;
+    }
+
+    /* Estilo específico para la alerta de logout */
+    .alert-logout {
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+      color: #155724;
+    }
+    
+    .perro{
+		color: black;
+	}
+	
+ .o {
+	color: white !important; /* Establece el color del texto a blanco */
+      background-color: #37517e; /* Puedes ajustar el color de fondo según tus necesidades */
+      padding: 15px;
+      border-radius: 5px; 
+      
+      }
+      
+      
+
+ .alert-danger {
+            background-color: red;
+     		border-color: red;
+      		color: white;
+      		  padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+   
+      
+      

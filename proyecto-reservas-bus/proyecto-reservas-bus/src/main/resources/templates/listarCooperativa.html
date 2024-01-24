@@ -2,16 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
 <body>
 	
-	 <h4>
-			Bienvenido <span sec:authentication="principal.username"></span>
-		</h4>
-		<h4>
-			Puede editar sus cooperativas,unidades,rutas y cronogramas de la app
-		</h4>
-		 <div class="m-3"></div>
+
+
 	<header th:replace="layout/layout :: header"></header>
+	
+	  <section id="clients" class="clients section-bg">
+			<div class="container">
+
+				<div class="row" data-aos="zoom-in">
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-1.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-2.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-3.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-4.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-5.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-6.png" class="img-fluid"
+							alt="">
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<section id="services" class="services section-bg">
+			
+			<div class="container" data-aos="fade-up">
+	
+    <div class="uni">
+		<div class="section-title">
+					<h2>Cooperativas</h2>
+					<small>Aqui puede administrar las cooperativas de las unidades</small>
+				</div>
+    </div>
+    </section>
 	<div class="container py-4">
 		<div class="card bg-light">
 			<div class="card-header" th:text="${titulo}"></div>
@@ -23,10 +77,10 @@
 					<thead class="thead-inverse">
 						<tr>
 						<tr>
-							<th class="bg-dark text-white">id</th>
-							<th class="bg-dark text-white">nombre</th>
-							<th class="bg-dark text-white">editar</th>
-							<th class="bg-dark text-white">eliminar</th>
+							<th class="bg-dark text-white">Id</th>
+							<th class="bg-dark text-white">Nombre</th>
+							<th class="bg-dark text-white">Editar</th>
+							<th class="bg-dark text-white">Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,9 +88,9 @@
 							<td th:text="${cooperativa.id}"></td>
 							<td th:text="${cooperativa.nombre}"></td>
 							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/cooperativa/form/}+ ${cooperativa.id}">editar</a></td>
+								th:href="@{/cooperativa/form/}+ ${cooperativa.id}">Editar</a></td>
 							<td><a class="btn btn-danger btn-xs"
-								th:href="@{/cooperativa/eliminar/}+ ${cooperativa.id}">eliminar</a></td>
+								th:href="@{/cooperativa/eliminar/}+ ${cooperativa.id}">Eliminar</a></td>
 						</tr>
 					</tbody>
 				</table>

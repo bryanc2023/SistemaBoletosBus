@@ -2,43 +2,100 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
 <body>
 	<header th:replace="layout/layout :: header"></header>
-	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
+	   <section id="clients" class="clients section-bg">
+			<div class="container">
 
+				<div class="row" data-aos="zoom-in">
 
-				<table class="table table-striped table-bordered">
-					<thead class="thead-inverse">
-						<tr>
-						<tr>
-							<th class="bg-dark text-white">id</th>
-							<th class="bg-dark text-white">rutaorigen</th>
-							<th class="bg-dark text-white">rutadestino</th>
-							<th class="bg-dark text-white">costoruta</th>
-							<th class="bg-dark text-white">editar</th>
-							<th class="bg-dark text-white">eliminar</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="ruta: ${rutas}">
-							<td th:text="${ruta.id}"></td>
-							<td th:text="${ruta.rutaOrigen}"></td>
-							<td th:text="${ruta.rutaDestino}"></td>
-							<td th:text="${ruta.costoRuta}"></td>
-							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/ruta/form/}+ ${ruta.id}">editar</a></td>
-							<td><a class="btn btn-danger btn-xs"
-								th:href="@{/ruta/eliminar/}+ ${ruta.id}">eliminar</a></td>
-						</tr>
-					</tbody>
-				</table>
-				<a th:href="@{/ruta/form}" class="btn btn-secondary">Crear Ruta</a>
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-1.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-2.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-3.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-4.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-5.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-6.png" class="img-fluid"
+							alt="">
+					</div>
+
+				</div>
+
 			</div>
-		</div>
-	</div>
+		</section>
+		<section id="services" class="services section-bg">
+			
+			<div class="container" data-aos="fade-up">
+	
+    <div class="uni">
+		<div class="section-title">
+					<h2>Ruta</h2>
+					<small>Aqui puede administrar las rutas de las unidades</small>
+				</div>
+    </div>
+    </section>
+	<div class="container py-2">
+  <div class="card bg-light">
+    <div class="card-header" th:text="${titulo}"></div>
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" style="max-width: 800px; margin: auto;">
+          <thead class="thead-inverse">
+            <tr>
+              <th class="bg-dark text-white">Id</th>
+              <th class="bg-dark text-white">Ruta de origen</th>
+              <th class="bg-dark text-white">Ruta de destino</th>
+              <th class="bg-dark text-white">Costo de la ruta</th>
+              <th class="bg-dark text-white">Editar</th>
+              <th class="bg-dark text-white">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="ruta: ${rutas}">
+              <td th:text="${ruta.id}"></td>
+              <td th:text="${ruta.rutaOrigen}"></td>
+              <td th:text="${ruta.rutaDestino}"></td>
+              <td th:text="${ruta.costoRuta}"></td>
+              <td><a class="btn btn-secondary btn-xs" th:href="@{/ruta/form/}+ ${ruta.id}">Editar</a></td>
+              <td><a class="btn btn-danger btn-xs" th:href="@{/ruta/eliminar/}+ ${ruta.id}">Eliminar</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a th:href="@{/ruta/form}" class="btn btn-secondary">Crear Ruta</a>
+    </div>
+  </div>
+</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 
 </body>

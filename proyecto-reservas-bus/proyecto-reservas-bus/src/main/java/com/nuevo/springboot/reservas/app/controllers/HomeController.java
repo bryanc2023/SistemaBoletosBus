@@ -47,14 +47,20 @@ public class HomeController {
 	@Autowired
 	private  IUsuarioService usuarioService;
 	
-	@GetMapping("/")
+	@GetMapping("/app")
 	public String mostrarHome(Authentication authentication,Model model) {
+		
 		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		    if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 		        // Lógica para mostrar contenido específico para el rol de admin
 		        model.addAttribute("mensaje", "Bienvenido ADMIN");
+		        String email = ((UserDetails) principal).getUsername();
+    	        Usuario user = usuarioService.findByEmail(email);
+		        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+	            Usuario admin= usuarioService.findById(idUsuario);
+	            model.addAttribute("admin", admin.getNombre()+" "+admin.getApellido());
 		        // Agrega más atributos al modelo si es necesario para el rol de admin
 		        return "administrador/home"; // Vista para el rol de admin
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))) {
@@ -65,25 +71,37 @@ public class HomeController {
 		    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
 		    	            Usuario pasajero= usuarioService.findById(idUsuario);
 		    	            model.addAttribute("pasajero", pasajero.getNombre()+" "+pasajero.getApellido());
-		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaYRuta();
+		    	            List<Object[]> resultados = unidadService.obtenerUnidadesConCronogramaActual();
 		    	            model.addAttribute("resultados", resultados);
-		    	            return "pasajero/home";
+		    	            return "pasajero/home2";
 		    	        } else {
 		    	            return "redirect:/login?error2";
 		    	        }
 		       
 		     
 		    } else if (authorities.contains(new SimpleGrantedAuthority("ROLE_PERSONAL"))) {
-		    	
+		    	 String email = ((UserDetails) principal).getUsername();
+	    	        Usuario user = usuarioService.findByEmail(email);
+	    	       
+	    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+	    	            Usuario pasajero= usuarioService.findById(idUsuario);
+	    	            model.addAttribute("personal", pasajero.getNombre()+" "+pasajero.getApellido());
+	    	       
 		        return "personal/home";
 		    } else {
 		    	 return "redirect:/login?error";
 		    }
+		    
+		    
 	
 
 	}
 	
-	
+	@GetMapping ("/")
+	public String mostrarIndex() {
+		return "index";
+	}
+		
 
 	
 	
@@ -93,7 +111,22 @@ public class HomeController {
 		
         List<Object[]> unidades = unidadService.findByCronogramaFecha(fecha);
         model.addAttribute("resultados", unidades);
-        return "pasajero/home";
+        return "pasajero/resultados";
+	}
+	
+	@GetMapping("/pasajero/perfil")
+	public String mostrarPerfil(Authentication authentication,Model model) {
+		
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		  String email = ((UserDetails) principal).getUsername();
+	        Usuario user = usuarioService.findByEmail(email);
+	        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
+          Usuario pasajero= usuarioService.findById(idUsuario);
+          model.addAttribute("nombre", pasajero.getNombre());
+          model.addAttribute("apellido", pasajero.getApellido());
+          model.addAttribute("correo", pasajero.getEmail());
+        return "pasajero/perfil";
 	}
 
 	 }

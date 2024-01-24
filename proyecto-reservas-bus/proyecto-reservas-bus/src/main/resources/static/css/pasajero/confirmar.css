@@ -1,0 +1,24 @@
+footer {
+    background-color: #37517e;
+    color: #fff;
+    text-align: center;
+    margin-top: 150px;
+}
+
+#indi{
+	margin-left: 25%;
+	margin-top: 5%;
+}
+
+#indititulo{
+	text-align: center;
+	font-weight: bold;
+}
+
+#indi a{
+	margin-left: 42%;
+}
+
+#indi h5 {
+    text-decoration: underline;
+}

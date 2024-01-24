@@ -1,6 +1,10 @@
 /* Tipo de letra*/
 body {
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 /* Barra de navegacion - INICIO*/
@@ -24,6 +28,7 @@ body {
 .header nav div ul li a{
 	color: #2880ff;
 	font-weight: bold;
+	font-size: 12px;
 	
 	
 }
@@ -54,4 +59,11 @@ body {
 
 /* Barra de navegacion - FIN*/
 
+footer {
+    background-color: #37517e;
+    color: #fff;
+    text-align: center;
+    margin-top: 13.5%;
+    bottom: 0;
+}
 

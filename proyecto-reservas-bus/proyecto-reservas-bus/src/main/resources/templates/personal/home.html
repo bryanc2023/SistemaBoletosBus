@@ -1,37 +1,94 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="personal/layout :: head">
+<head th:replace="layout/layout3 :: head">
 
 </head>
 
 <body>
 	<link rel="stylesheet" th:href="@{/css/personal/home.css}" />
+<link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
+	<header th:replace="layout/layout3 :: header"></header>
 
-	<header th:replace="personal/layout :: header"></header>
+	<section id="hero" class="d-flex align-items-center">
 
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+					data-aos="fade-up" data-aos-delay="200">
+					<h1>Bienvenida <span th:text="${personal}"></span></h1>
+					<h2>Aqui podrás gestionar los boletos y unidades de la app</h2>
+					<div class="d-flex justify-content-center justify-content-lg-start">
+						<a href="#about" class="btn-get-started scrollto">Acerca de tu rol</a>
+						
+					</div>
+				</div>
+				<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in"
+					data-aos-delay="200">
+					<img src="/images/img60.png" class="img-fluid animated"
+						alt="">
+				</div>
+			</div>
+		</div>
 
+	</section>
+	<main id="main">
+		<section id="clients" class="clients section-bg">
+			<div class="container">
 
+				<div class="row" data-aos="zoom-in">
 
-	<!-- Jumbotron Header -->
-	<div class="nombre">
-		<h4 class="titulo">
-			Bienvenido <span th:text="${personal}"></span>
-			<p class="descrip">
-				Aqui realizaras tus actividades
-			</p>
-		</h4>
-	</div>
-	<div class="busqueda">
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-1.png" class="img-fluid"
+							alt="">
+					</div>
 
-	<div class="text-center">
-    <h1 class="card-title">BookMyDrive</h1>
-    <img th:src="@{/images/personal/img6.png}" class="img-fluid rounded-start img-thumbnail" style="width: 50%;" alt="...">
-</div>
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-2.png" class="img-fluid"
+							alt="">
+					</div>
 
-	</div>
-	
-	<div class="info">
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-3.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-4.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-5.png" class="img-fluid"
+							alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="assets/img/clients/client-6.png" class="img-fluid"
+							alt="">
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+<section id="about" class="about">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Acerca de tu rol</h2>
+				</div>
+
+				<div class="row content">
+					<div class="col-lg-6">
+						<div class="info">
 
 		<h4 class="viaj">
 			¿Que debe tener presente nuestro personal siempre?
@@ -69,50 +126,27 @@ Brindamos atención excepcional porque cada interacción es una oportunidad para
             </div>
         </div>
     </div>
-      <div class="card" style="max-width: 450px;" >
-        <div class="row g-0 mb-2"> <!-- Aplicar el margen inferior aquí -->
-         
-            <div class="col-md-4">
-                <img th:src="@{/images/personal/img3.png}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title" > Metricas de Trabajo</h5>
-                    <p class="card-text"><small class="text-muted" >"Supera las expectativas, alcanza las métricas; nuestro compromiso es la excelencia en cada tarea que realizamos."</small></p>
-       
-                </div>
-            </div>
-        </div>
-    </div>
+      
 </div>
 
 	</div>
-	
-	
-	<div class="consejo">
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0">
+						<p>Bienvenido al panel de administración de nuestra plataforma de reserva de boletos de buses. Como personal autorizado, tienes acceso privilegiado a herramientas y funciones diseñadas para gestionar eficientemente todos los aspectos de nuestro servicio. Desde este panel, puedes ver códigos, informes y realizar el seguimiento de pagos. La flexibilidad de nuestro sistema te permite ajustar cronogramas y mantener actualizada la base de datos, garantizando un servicio de transporte público eficiente.</p>
+						<a href="#" class="btn-learn-more">Conocer más</a>
+					</div>
+				</div>
 
-		<h4 class="viaj">
-			Noticias
-		</h4>
-		<div id="tarjeta3" class="row text-center mb-3" >
-		<div class="card" style="max-width: 650px;" >
-        <div class="row g-0 mb-2"> 
-		<img th:src="@{/images/personal/img4.jpg}" height="350px" >
-		<h5 class="card-title" >Cuida tu Bienestar  </h5>
-		<p class="card-text"><small class="text-muted" >Conduciendo con Cuidado, Sirviendo con Compromiso: Nuestro Lema es tu Bienestar. </small></p>
-        </div>
-		</div>
-		<div class="card" style="max-width: 650px;" >
-        <div class="row g-0 mb-2"> 
-		<img th:src="@{/images/personal/img5.jpg}" height="350px" >
-		<h5 class="card-title" > Noticias</h5>
-		<p class="card-text"><small class="text-muted" >Revise las noticias actuales para estar al tanto de los acontecimientos y mantenerse informado sobre la situación del país.</small></p>
-        </div>
-		</div>
-		</div>
-	</div>
+			</div>
+		</section>
+
+	
+	
+	
+	
+
 	<!-- Footer -->
-	<footer th:replace="personal/layout :: footer"></footer>
+	<footer th:replace="layout/layout3 :: footer"></footer>
 
 	<script th:src="@{/js/personal/home.js}"></script>
 </body>

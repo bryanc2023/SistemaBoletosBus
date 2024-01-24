@@ -1,9 +1,17 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.FileCopyUtils;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
@@ -57,55 +65,56 @@ public class UsuarioService implements IUsuarioService{
     
 
 	
-	@Override
-	public void guardar(UsuarioRegistroDTO registroDTO) {
-		Usuario usuario = new Usuario(registroDTO.getNombre(), 
-				registroDTO.getApellido(),registroDTO.getEmail(),
-				passwordEncoder.encode(registroDTO.getPassword()),Arrays.asList(new Rol("ROLE_USER")));
-		
-		usuarioRepositorio.save(usuario);
-		ConfirmationToken confirmationToken = new ConfirmationToken(usuario);
+    @Override
+    public void guardar(UsuarioRegistroDTO registroDTO) {
+        Usuario usuario = new Usuario(registroDTO.getNombre(),
+                registroDTO.getApellido(), registroDTO.getEmail(),
+                passwordEncoder.encode(registroDTO.getPassword()), Arrays.asList(new Rol("ROLE_USER")));
 
+        usuarioRepositorio.save(usuario);
+        ConfirmationToken confirmationToken = new ConfirmationToken(usuario);
+        Resource resource1 = new ClassPathResource("static/images/image-1.png");
+        String imageSrc1 = "cid:image-1";
+        Resource resource2 = new ClassPathResource("static/images/image-2.png");
+        String imageSrc2 = "cid:image-2";
         confirmationTokenRepository.save(confirmationToken);
-        
-         // Construir el cuerpo del correo con HTML
+        String emailTemplate = readHtmlFile("templates/correo.html");
+        // Construir el cuerpo del correo con HTML
         String verificationLink = "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken();
         String nombreCompleto = registroDTO.getNombre() + " " + registroDTO.getApellido();
-        String emailBody = "<div style='text-align: center;'><h2>Complete Registration</h2>"
-        		+ "<p>Estimado " + nombreCompleto + ",</p>"
-                + "<p>Para confirmar tu cuenta da click en el siguiente enlace:</p>"
-                + "<a href='" + verificationLink + "' style='"
-                + "background-color: #4CAF50; /* Green */"
-                + "border: none;"
-                + "color: white;"
-                + "padding: 15px 32px;"
-                + "text-align: center;"
-                + "text-decoration: none;"
-                + "display: inline-block;"
-                + "font-size: 16px;'>Verificar Cuenta</a></div>";
-
+        emailTemplate = emailTemplate.replace("[NOMBRE_COMPLETO]", nombreCompleto);
+        emailTemplate = emailTemplate.replace("[VERIFICATION_LINK]", verificationLink);
+        emailTemplate = emailTemplate.replace("[IMAGE_SRC1]", imageSrc1);
+        emailTemplate = emailTemplate.replace("[IMAGE_SRC2]", imageSrc2);
+        final String finalEmailTemplate = emailTemplate;
         // Configurar el mensaje de correo
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(usuario.getEmail());
-        mailMessage.setSubject("Completa tu registro!");
-        mailMessage.setFrom("chand312902@gmail.com");
-        mailMessage.setText("To confirm your account, please click here: " + verificationLink);
-
-        // Configurar el contenido HTML del correo
         MimeMessagePreparator messagePreparator = mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setTo(mailMessage.getTo());
-            messageHelper.setSubject(mailMessage.getSubject());
-            messageHelper.setFrom(mailMessage.getFrom());
-            messageHelper.setText(emailBody, true); // true indica que el contenido es HTML
+            // Utilizar constructor con 'true' para indicar que el contenido es multipart
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
+            messageHelper.setTo(usuario.getEmail());
+            messageHelper.setSubject("Completa tu registro!");
+            messageHelper.setFrom("tikers@gmail.com");
+            messageHelper.setText(finalEmailTemplate, true);
+            messageHelper.addInline("image-1", resource1);
+            messageHelper.addInline("image-2", resource2);// true indica que el contenido es HTML
         };
 
         // Enviar el correo
         emailSenderService.sendHtmlEmail(messagePreparator);
-		
-		
+    }
+
+
+	private String readHtmlFile(String filePath) {
+	    try {
+	        Resource resource = new ClassPathResource(filePath);
+	        byte[] fileData = FileCopyUtils.copyToByteArray(resource.getInputStream());
+	        return new String(fileData, StandardCharsets.UTF_8);
+	    } catch (IOException e) {
+	        // Manejar la excepción según tus necesidades
+	        e.printStackTrace();
+	        return ""; // O devolver un valor predeterminado
+	    }
 	}
-	
 	
 
 	@Override
@@ -223,4 +232,30 @@ public class UsuarioService implements IUsuarioService{
 		return usuarioRepositorio.findByEmail(email);
 	}
 
-}
+
+
+	public void updateResetPasswordToken(String token, String email) throws CustomerNotFoundException {
+		Usuario usuario=usuarioRepositorio.findByEmail(email);
+		if(usuario != null) {
+			usuario.setResetPasswordToken(token);
+			usuarioRepositorio.save(usuario);
+		}else {
+			throw new CustomerNotFoundException("No se pudo encontrar ningun usuario con el email" + email);
+		}
+		
+	}
+
+	public Usuario get(String resetPasswordToken) {
+		return usuarioRepositorio.findByResetPasswordToken(resetPasswordToken);
+	}
+	
+	public void updatePassword(Usuario usuario, String newPassword) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(newPassword);
+		
+		usuario.setPassword(encodedPassword);
+		usuario.setResetPasswordToken(null);
+		
+		usuarioRepositorio.save(usuario);
+	}
+	}
