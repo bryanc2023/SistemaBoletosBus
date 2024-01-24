@@ -101,8 +101,10 @@ public class UsuarioService implements IUsuarioService{
 
         // Enviar el correo
         emailSenderService.sendHtmlEmail(messagePreparator);
+       
     }
 
+	
 
 	private String readHtmlFile(String filePath) {
 	    try {
@@ -116,7 +118,6 @@ public class UsuarioService implements IUsuarioService{
 	    }
 	}
 	
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepositorio.findByEmail(username);

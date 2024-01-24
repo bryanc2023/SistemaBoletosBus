@@ -1,7 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout3 :: head">
+<style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+            font-family: Arial, sans-serif;
+        }
 
+        .container {
+            margin-top: 20px;
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+
+        #miTabla {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #miTabla th,
+        #miTabla td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: center;
+        }
+
+        #miTabla th {
+            background-color: #343a40;
+            color: #fff;
+        }
+
+        #generarInforme {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        #generarInforme:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 
 
@@ -66,18 +114,20 @@
     <div class="uni">
 		<div class="section-title">
 					<h2>Informes</h2>
+					
 					<small>Aqui se presenta los informes de las unidades y boletos vendidos</small>
 				</div>
     </div>
     </section>
 
 	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${titulo}"></div>
+        <img th:src="@{/images/logo.png}" alt="Descripción de la imagen" width="200" height="70" class="mt-2" />
+        <div id="informeContainer" class="card-body">
 
-			 <h2>Informe de boletos</h2>
-				<table class="table table-striped table-bordered" id="miTabla">
+            <h2>Informe de boletos</h2>
+            <table class="table table-striped table-bordered" id="miTabla">
 					<thead class="thead-inverse">
 						<tr>
 							<th class="bg-dark text-white">id</th>
@@ -92,7 +142,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="boleto: ${boletos}">
+                    <tr th:each="boleto: ${boletos}">
 							<td th:text="${boleto.id}"></td>
 							<td th:text="${boleto.usuario.email}"></td>
 							<td th:text="${boleto.cronograma.fecha}"></td>
@@ -102,43 +152,126 @@
 							<td th:text="${boleto.asiento.unidad.numero}+ ''+ ${boleto.asiento.unidad.cooperativa.nombre}"></td>
 							<td th:text="${boleto.cronograma.ruta.rutaOrigen}+ ' - ' + ${boleto.cronograma.ruta.rutaDestino}"></td>
 							<td th:text="${boleto.totalPago}"></td>
-						</tr>
-					</tbody>
-				</table>
-				 <a  class="btn btn-secondary" id="generarInforme">Generar Informe</a>
+						 </tr>
+                </tbody>
+            </table>
+            <a href="#" class="btn btn-secondary" id="generarInforme" onclick="descargarInforme()">Generar Informe</a>
+
 			</div>
 		</div>
 	</div>
+	
+<script>
+	function descargarInforme() {
+    // Obtener el contenido del contenedor
+    var informeContainer = document.getElementById("informeContainer");
+
+    // Agregar estilos al informe
+    informeContainer.style.fontFamily = "Arial, sans-serif";
+    informeContainer.style.backgroundColor = "#fff";
+    informeContainer.style.padding = "20px";
+    informeContainer.style.border = "1px solid #ddd";
+
+    // Agregar la imagen al informe en la parte superior izquierda
+    var logoImg = document.createElement("img");
+    logoImg.src = window.location.origin + "/images/logo.png"; // Ruta completa
+    logoImg.alt = "Descripción de la imagen";
+    logoImg.width = 200;
+    logoImg.height = 70;
+    logoImg.className = "mt-2";
+
+    // Insertar la imagen al inicio del contenedor
+    informeContainer.insertBefore(logoImg, informeContainer.firstChild);
+
+    // Mostrar la fecha, día y hora en la parte superior derecha
+    var fechaHoraDiv = document.createElement("div");
+    fechaHoraDiv.style.position = "absolute";
+    fechaHoraDiv.style.top = "0";
+    fechaHoraDiv.style.right = "0";
+    fechaHoraDiv.style.padding = "10px";
+    fechaHoraDiv.style.backgroundColor = "#007bff";
+    fechaHoraDiv.style.color = "#fff";
+
+    var fechaHora = obtenerFechaHoraActual();
+    fechaHoraDiv.textContent = fechaHora;
+
+    informeContainer.appendChild(fechaHoraDiv);
+
+    // Agregar la firma del administrador en la parte inferior izquierda
+    var firmaDiv = document.createElement("div");
+    firmaDiv.style.position = "absolute";
+    firmaDiv.style.bottom = "0";
+    firmaDiv.style.left = "0";
+    firmaDiv.style.padding = "10px";
+    firmaDiv.style.backgroundColor = "#f8f9fa";
+    firmaDiv.textContent = "Firma Administrador: ";
+
+    informeContainer.appendChild(firmaDiv);
+
+    // Aplicar estilos a la tabla
+    var tabla = informeContainer.querySelector("table");
+    tabla.style.width = "100%";
+    tabla.style.borderCollapse = "collapse";
+    tabla.style.marginTop = "20px";
+    tabla.style.backgroundColor = "#007bff"; // Color de fondo azul
+    tabla.style.color = "#fff"; // Color de texto blanco
+
+    var celdas = tabla.querySelectorAll("th, td");
+    celdas.forEach(function(celda) {
+        celda.style.border = "1px solid #ddd";
+        celda.style.padding = "8px";
+        celda.style.textAlign = "center";
+    });
+
+    // Agregar el número de página
+    var numeroPaginaDiv = document.createElement("div");
+    numeroPaginaDiv.style.position = "absolute";
+    numeroPaginaDiv.style.bottom = "0";
+    numeroPaginaDiv.style.right = "0";
+    numeroPaginaDiv.style.padding = "10px";
+    numeroPaginaDiv.style.backgroundColor = "#f8f9fa";
+    numeroPaginaDiv.textContent = "Página 1";  // Actualiza el número de página según sea necesario
+
+    informeContainer.appendChild(numeroPaginaDiv);
+
+    
+
+    // Crear un archivo Blob con el contenido HTML
+    var blob = new Blob([informeContainer.outerHTML], { type: "text/html" });
+
+    // Crear un enlace para descargar el archivo
+    var a = document.createElement("a");
+    a.href = window.URL.createObjectURL(blob);
+    a.download = "Informe.html";
+
+    // Agregar el enlace al documento y simular clic para iniciar la descarga
+    document.body.appendChild(a);
+    a.click();
+
+    // Limpiar el enlace y el contenido del contenedor (opcional)
+    document.body.removeChild(a);
+    informeContainer.innerHTML = "¡Informe descargado!";
+}
+
+function obtenerFechaHoraActual() {
+    var fechaHora = new Date();
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+    return fechaHora.toLocaleDateString('es-ES', options);
+}
+
+
+
+</script>
+
+
+
+
+
+
 
 	
 
 
-
-<script th:inline="javascript">
-        document.getElementById("generarInforme").addEventListener("click", function() {
-            var table = document.getElementById("miTabla");
-
-            // Crear un div contenedor para incluir el título y la tabla
-            var divContainer = document.createElement("div");
-
-            // Agregar el título al div contenedor
-            var titulo = document.createElement("h2");
-            titulo.textContent = "Informe de boletos";
-            divContainer.appendChild(titulo);
-
-            // Agregar la tabla al div contenedor
-            divContainer.appendChild(table);
-
-            // Generar el PDF con html2pdf
-            html2pdf(divContainer, {
-                margin: 0.5,
-                filename: 'informe.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-            });
-        });
-    </script>
         <footer th:replace="layout/layout3 :: footer"></footer>
     <script th:src="@{/js/personal/home.js}"></script>
 </body>
