@@ -498,7 +498,7 @@ input-group__input {
     top: 0;
     height: 70px;
     width: 100%;
-    z-index: 1000; /* Z-index alto para que esté por encima de otros elementos */
+     z-index: 10; /* Z-index alto para que esté por encima de otros elementos */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra al navbar */
     display: flex; /* Utiliza flexbox para alinear el contenido */
     justify-content: space-between; /* Espacio uniforme entre los elementos */
