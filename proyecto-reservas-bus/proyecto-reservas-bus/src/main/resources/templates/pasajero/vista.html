@@ -55,43 +55,42 @@
 				</div>
 
 			</div>
-		</section>
-			<section id="services" class="services section-bg">
-			
-			<div class="container" data-aos="fade-up">
-	
-    <div class="uni">
-		<div class="section-title">
-	
-					<h2>ASIENTO </h2>
-					
-				
-	  
-	
-	<center> <div id="qrcode"></div></center>
-	
-				
-				</div>
-    </div>
- 
-			</section>
-    
-	
-    <script>
+	 </section>
+    <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+            <div class="uni">
+                <div class="section-title">
+                    <h2>ASIENTO </h2>
+                    <center>
+                        <div id="qrcode"></div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var qrCodeData = /*[[${qrCodeData}]]*/ '';
+        console.log('Datos para el código QR:', qrCodeData);
+        /*]]>*/
+    </script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
         var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: qrCodeData,
             width: 400,
             height: 400
         });
-
-        // Obtener el ID del boleto de la URL
-        var urlParams = new URLSearchParams(window.location.search);
-        var boletoId = urlParams.get('id');
-
-        // Generar el código QR con el ID del boleto
-        qrcode.makeCode(boletoId);
+        /*]]>*/
     </script>
+    <footer th:replace="layout/layout2 :: footer"></footer>
 
-	<footer th:replace="layout/layout2 :: footer"></footer>
+					
+				
+	  
+
+	
 
 </body>
 </html>
