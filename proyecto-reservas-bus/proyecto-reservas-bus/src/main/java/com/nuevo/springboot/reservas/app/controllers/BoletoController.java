@@ -73,14 +73,32 @@ public class BoletoController {
 		return "redirect:/pasajero/boleto";
 	}
 
+	@GetMapping("/generarQR/{boletoId}")
+	public String generarQR(@PathVariable Integer boletoId, Model model) {
+	    Boleto boleto = boletoService.findById(boletoId);
 
-	
-	 @GetMapping("/ver/boleto")
-	    public String verBoletoQR(@RequestParam("id") Integer idBoleto) {
-	        
-	        return "pasajero/vista"; 
+	    if (boleto != null) {
+	        String asientoInfo = "Asiento no especificado";
+	        if (boleto.getAsiento() != null) {
+	            // Obtener información específica de Asiento
+	            String fila = boleto.getAsiento().getFila();
+	            String columna = boleto.getAsiento().getColumna();
+	            asientoInfo = String.format(" %s%s", fila, columna);
+	        }
+
+	        String usuarioNombre = (boleto.getUsuario() != null) ? boleto.getUsuario().getNombre() : "Usuario no especificado";
+
+	        // Usar \n para representar un salto de línea en la cadena QR
+	        String qrCodeData = String.format("Boleto ID: %d\nAsiento: %s\nUsuario: %s\nTotal Pago: %.2f",
+	                boleto.getId(), asientoInfo, usuarioNombre, boleto.getTotalPago());
+
+	        model.addAttribute("qrCodeData", qrCodeData);
+	        return "pasajero/vista";
+	    } else {
+	        return "Boleto no encontrado";
 	    }
-	 
+	}
+	
 	 @GetMapping("/personal/boleto")
 		public String listarPersonal(Model model,Authentication authentication) {
 			

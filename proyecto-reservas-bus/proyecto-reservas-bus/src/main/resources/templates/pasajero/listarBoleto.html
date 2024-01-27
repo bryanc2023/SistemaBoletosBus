@@ -93,7 +93,7 @@
 							<td th:text="${boleto.cronograma.fecha}"></td>
 							<td th:text="${boleto.cronograma.horaSalida}"></td>
 							<td><a class="btn btn-secondary btn-xs"
-								th:href="@{/ver/boleto(id=${boleto.id})}">VER QR</a></td>
+								th:href="@{/generarQR/{boletoId}(boletoId=${boleto.id})}">Generar QR</a></td>
 							
 							
 							
