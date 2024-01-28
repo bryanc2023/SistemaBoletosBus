@@ -63,7 +63,13 @@
 				</div>
     </div>
     </section>
-    
+<div class="container mt-4">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 text-center">
+            <p id="codigoQRResultado" class="alert alert-primary text-dark"></p>
+        </div>
+    </div>
+</div>
     <link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
     <!-- Tres cuadros con títulos -->
     <div class="row mt-4">
@@ -84,66 +90,49 @@
         </div>
     </div>
     <br>
-    <br>
-   <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="text-center">
-                <h4>Unidad</h4>
-                <input type="text" class="form-control" placeholder="Unidad">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="text-center">
-                <h4>Hora de Salida</h4>
-                <input type="text" class="form-control" placeholder="Hora Salida">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="text-center" id="fechaContainer">
-                <h4>Asiento</h4>
-                <input type="text" class="form-control" placeholder="Asiento">
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    
-    <div class="d-flex justify-content-center mt-3">
-        
-    <a class="nav-link btn btn-primary" th:href="${'/'}">
-        Cancelar
-    </a>
+  
 
-	
-        <button class="btn btn-primary mr-2" onclick="escanearCodigoQR()">Escanear QR</button>
+    
+<div class="d-flex justify-content-center mt-3">
+    <div class="mb-2">
+        <a class="btn btn-secondary mr-2" href="${'/'}">
+            Cancelar
+        </a>
     </div>
+    <div class="mb-2">
+        <button class="btn btn-primary" onclick="escanearCodigoQR()">
+            Escanear QR
+        </button>
+    </div>
+</div>
 
    <script>
-        function escanearCodigoQR() {
-            var video = document.getElementById('video');
-            var canvas = document.createElement('canvas');
-            var context = canvas.getContext('2d');
+   function escanearCodigoQR() {
+	    var video = document.getElementById('video');
+	    var canvas = document.createElement('canvas');
+	    var context = canvas.getContext('2d');
 
-            // Dibujar el video en el canvas
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+	    // Dibujar el video en el canvas
+	    context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            // Obtener la imagen en base64 desde el canvas
-            var imagenBase64 = canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, '');
+	    // Obtener la imagen en base64 desde el canvas
+	    var imagenBase64 = canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, '');
 
-            // Enviar la imagen en base64 al servidor
-            fetch('/escanearCodigoQR', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: 'imagenBase64=' + encodeURIComponent(imagenBase64),
-            })
-            .then(response => response.text())
-            .then(resultado => {
-                alert(resultado);
-            })
-            .catch(error => console.error('Error al escanear el código QR: ' + error));
-        }
+	    // Decodificar el código QR utilizando jsQR
+	    var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+	    var code = jsQR(imageData.data, imageData.width, imageData.height);
+
+	    // Verificar si se ha encontrado un código QR
+	    if (code) {
+	        // Mostrar los datos en la página HTML
+	        document.getElementById('codigoQRResultado').innerText = 'Código QR detectado: ' + code.data;
+
+	        // También puedes asignar los datos a inputs si es necesario
+	        document.getElementById('inputResultado').value = code.data;
+	    } else {
+	        alert('No se detectó ningún código QR.');
+	    }
+	}
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(function (stream) {
                 var video = document.getElementById('video');
@@ -159,8 +148,10 @@
         fechaContainer.innerHTML += '<p>' + fechaActual.toLocaleDateString('es-ES', options) + '</p>';
     </script>
 
-
+	
     <footer th:replace="layout/layout3 :: footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.0.0/dist/jsQR.min.js"></script>
+    
     <script th:src="@{/js/personal/home.js}"></script>
 </body>
 </html>
