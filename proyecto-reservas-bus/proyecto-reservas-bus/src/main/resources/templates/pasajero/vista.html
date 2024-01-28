@@ -68,12 +68,12 @@
             </div>
         </div>
     </section>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var qrCodeData = /*[[${qrCodeData}]]*/ '';
-        console.log('Datos para el código QR:', qrCodeData);
-        /*]]>*/
-    </script>
+ <script th:inline="javascript">
+    /*<![CDATA[*/
+    var qrCodeData = /*[[${qrCodeData}]]*/ '';
+    console.log("Contenido de qrCodeData:\n" + qrCodeData);
+    /*]]>*/
+</script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script th:inline="javascript">
         /*<![CDATA[*/
