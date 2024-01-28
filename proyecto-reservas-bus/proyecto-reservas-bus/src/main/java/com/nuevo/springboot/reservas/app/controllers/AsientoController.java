@@ -181,6 +181,7 @@ public class AsientoController {
     	        boleto.setMetodoPago("Efectivo");
     	        boleto.setTotalPago(costoTotal);
     	        boleto.setUsuario(usuario);
+    	        boleto.setEstado("Pendiente");
     	        
     	        boletoService.save(boleto);
     	        
@@ -219,6 +220,7 @@ public class AsientoController {
     	        boleto.setMetodoPago("Tarjeta");
     	        boleto.setTotalPago(costoTotal);
     	        boleto.setUsuario(usuario);
+    	        boleto.setEstado("Pagado");
     	        
     	        boletoService.save(boleto);
     	        

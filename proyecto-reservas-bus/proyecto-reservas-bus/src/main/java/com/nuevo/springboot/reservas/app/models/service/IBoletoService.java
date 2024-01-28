@@ -22,4 +22,6 @@ public interface IBoletoService {
 	List<Boleto> findByUnidadId(Integer unidadId);
 
 	List<Boleto> findByIdUsuarioCronograma(Long  usuarioId,Integer  cronogramaId);
+	
+	List<Boleto> getBoletosFechaActualMetodo();
 }
