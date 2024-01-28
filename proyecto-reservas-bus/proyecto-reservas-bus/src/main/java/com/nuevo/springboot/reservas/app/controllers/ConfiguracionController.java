@@ -90,7 +90,7 @@ public class ConfiguracionController {
 			configuracionService.delete(id);
 			flash.addFlashAttribute("success", "Configuracion eliminada con exito!");
 		}
-		return "redirect:/listar";
+		return "redirect:/configuracion/listar";
 	}
 	
 	@PostMapping("/form")

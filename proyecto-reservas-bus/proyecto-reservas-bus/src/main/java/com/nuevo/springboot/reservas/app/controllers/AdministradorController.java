@@ -63,9 +63,10 @@ public class AdministradorController {
 	}
 	
 	@GetMapping("/personal/eliminar/{id}")
-	public String eliminar(@PathVariable(value="id") Long id) {
+	public String eliminar(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		if(id > 0) {
 			usuarioServicio.delete(id);
+			flash.addFlashAttribute("success", "Personal eliminado con exito!");
 		}
 		return "redirect:/personal/listar";
 	}
@@ -250,17 +251,22 @@ public class AdministradorController {
 	}
 	
 	@GetMapping("/ruta/eliminar/{id}")
-	public String eliminarRuta(@PathVariable(value="id") Integer id) {
+	public String eliminarRuta(@PathVariable(value="id") Integer id, RedirectAttributes flash) {
 		if(id > 0) {
 			rutaService.delete(id);
+			flash.addFlashAttribute("success", "Ruta eliminada con exito!");
 		}
 		return "redirect:/ruta/listar";
 	}
 	
 	@PostMapping("/ruta/form")
-	public String guardarRuta(Ruta ruta, Model model) {
+	public String guardarRuta(Ruta ruta,RedirectAttributes flash, Model model,  SessionStatus status) {
+		
 		 try {
+			 String mensajeFlash = (ruta.getId() != null)? "Ruta editada con exito!" : "Ruta creada con exito!";
 	            rutaService.save(ruta);
+	            status.setComplete();
+	            flash.addFlashAttribute("success", mensajeFlash);
 	            return "redirect:/ruta/listar";
 	        } catch (DataIntegrityViolationException ex) {
 	            String errorMessage = "Error: Ruta duplicada. Esta ruta ya existe.";
@@ -268,6 +274,6 @@ public class AdministradorController {
 	            return "formRuta"; // Redirige de vuelta al formulario con el mensaje de error.
 	        }
 	}
-		
+	
 	
 }
