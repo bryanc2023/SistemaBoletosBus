@@ -52,7 +52,7 @@ public class HomeController {
 		
 		  Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+		  
 		    if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
 		        // Lógica para mostrar contenido específico para el rol de admin
 		        model.addAttribute("mensaje", "Bienvenido ADMIN");
@@ -68,6 +68,7 @@ public class HomeController {
 		    	        String email = ((UserDetails) principal).getUsername();
 		    	        Usuario user = usuarioService.findByEmail(email);
 		    	        if (user.isEnabled()) {
+		    	        	
 		    	            Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
 		    	            Usuario pasajero= usuarioService.findById(idUsuario);
 		    	            model.addAttribute("pasajero", pasajero.getNombre()+" "+pasajero.getApellido());
@@ -89,6 +90,8 @@ public class HomeController {
 	    	       
 		        return "personal/home";
 		    } else {
+
+		        
 		    	 return "redirect:/login?error";
 		    }
 		    

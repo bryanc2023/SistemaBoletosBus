@@ -1,6 +1,7 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,6 +9,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.FileCopyUtils;
@@ -16,6 +21,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.core.GrantedAuthority;
@@ -48,6 +54,8 @@ public class UsuarioService implements IUsuarioService{
    @Autowired
     private EmailServiceSender emailSenderService;
    
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	private IUsuarioDao usuarioRepositorio;
 	 @Autowired
@@ -259,4 +267,51 @@ public class UsuarioService implements IUsuarioService{
 		
 		usuarioRepositorio.save(usuario);
 	}
+	
+	public void sendEmail2(String recipientEmail, String link)
+	        throws MessagingException, UnsupportedEncodingException {
+		 MimeMessage message = mailSender.createMimeMessage();
+		    MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+		    helper.setTo(recipientEmail);
+		    helper.setSubject("Recupera tu contraseña!");
+
+		    // Construir el cuerpo del correo con HTML
+		    Resource resource1 = new ClassPathResource("static/images/image-1.png");
+		    String imageSrc1 = "cid:image-1";
+		    Resource resource2 = new ClassPathResource("static/images/image-3.png");
+		    String imageSrc2 = "cid:image-2";
+
+		    String emailTemplate = readHtmlFile("templates/correo2.html");
+		    
+		 
+		    emailTemplate = emailTemplate.replace("[VERIFICATION_LINK]", link);
+		    emailTemplate = emailTemplate.replace("[IMAGE_SRC1]", imageSrc1);
+		    emailTemplate = emailTemplate.replace("[IMAGE_SRC2]", imageSrc2);
+
+		    // Configurar el mensaje de correo
+		    helper.setText(emailTemplate, true);
+		    helper.addInline("image-1", resource1);
+		    helper.addInline("image-2", resource2);
+
+		    mailSender.send(message);
+	}
+	@Override
+	public void incrementarIntentosFallidos(String email) {
+        Usuario usuario = findByEmail(email);
+        if (usuario != null) {
+            usuario.setIntentosFallidos(usuario.getIntentosFallidos() + 1);
+            usuarioRepositorio.save(usuario);
+        }
+    }
+	@Override
+    public void reiniciarIntentosFallidos(String email) {
+        Usuario usuario = findByEmail(email);
+        if (usuario != null) {
+            usuario.setIntentosFallidos(0);
+            usuarioRepositorio.save(usuario);
+        }
+    }
+	
+	
 	}

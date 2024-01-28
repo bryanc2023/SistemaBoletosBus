@@ -2,6 +2,7 @@ package com.nuevo.springboot.reservas.app.models.entity;
 
 
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -59,7 +60,22 @@ public class Usuario {
 			)
 	private Collection<Rol> roles;
 
-	
+	@Column(name = "intentos_fallidos", nullable = true, columnDefinition = "int default 0")
+    private int intentosFallidos;
+
+    
+
+    // Otros campos y relaciones...
+
+    public int getIntentosFallidos() {
+        return intentosFallidos;
+    }
+
+    public void setIntentosFallidos(int intentosFallidos) {
+        this.intentosFallidos = intentosFallidos;
+    }
+
+   
 	
 	public boolean isEnabled() {
 		return isEnabled;

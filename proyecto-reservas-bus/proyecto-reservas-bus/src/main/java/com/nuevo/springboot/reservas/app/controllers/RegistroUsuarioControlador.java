@@ -1,6 +1,7 @@
 package com.nuevo.springboot.reservas.app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import com.nuevo.springboot.reservas.app.models.service.UsuarioService;
 import com.nuevo.springboot.reservas.app.models.service.EmailServiceSender;
 
 @Controller
-@RequestMapping("/registro")
+
 public class RegistroUsuarioControlador {
 
 	    private UsuarioService usuarioServicio;
@@ -38,18 +39,22 @@ public class RegistroUsuarioControlador {
 		return new UsuarioRegistroDTO();
 	}
 
-	@GetMapping
-	public String mostrarFormularioDeRegistro() {
-		return "login";
-	}
-	
-	@PostMapping
-	public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
+
+	@PostMapping("/registro")
+	public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO,Model model) {
+		try {
 		usuarioServicio.guardar(registroDTO);
-		return "redirect:/login?exito";
+		 model.addAttribute("message", "Se ha enviado un correo electrónico para confirmar la identidad. Verifique su cuenta para iniciar seción");
+		return "emailen";
+		} catch (DataIntegrityViolationException e) {
+		    // Manejar la excepción y enviar un mensaje amigable al usuario.
+		    model.addAttribute("message", "El correo electrónico que intenta ingresar , ya está registrado.");
+		    return "error2";
+		}
 	}
 	
 	
+
 	
     
 	

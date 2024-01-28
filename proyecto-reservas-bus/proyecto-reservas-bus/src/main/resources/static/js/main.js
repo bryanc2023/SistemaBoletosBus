@@ -9,3 +9,4 @@ btnSignIn.addEventListener('click', () => {
 btnSignUp.addEventListener('click', () => {
     container.classList.remove('active')
 })
+   
