@@ -20,6 +20,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 
@@ -186,7 +187,20 @@ public class Boleto{
 	}
 
 
-	
+	@Transient
+    private String totalPagoFormateado;
+
+    // Resto de la clase...
+
+    // Getter y Setter para el totalPago formateado
+    public String getTotalPagoFormateado() {
+        return totalPagoFormateado;
+    }
+
+    public void setTotalPagoFormateado(String totalPagoFormateado) {
+        this.totalPagoFormateado = totalPagoFormateado;
+    }
+    
 }	
 	
 	
