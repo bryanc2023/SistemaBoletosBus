@@ -88,12 +88,17 @@ public class BoletoController {
 
 	        String usuarioNombre = (boleto.getUsuario() != null) ? boleto.getUsuario().getNombre() : "Usuario no especificado";
 
-	        // Agregar unidad y fecha
-	     
+	        // Obtener información de unidad y fecha
+	        String unidadInfo = (boleto.getCronograma() != null && boleto.getCronograma().getUnidad() != null)
+	                ? boleto.getCronograma().getUnidad().toString()
+	                : "Unidad no especificada";
+	        String fechaInfo = (boleto.getCronograma() != null && boleto.getCronograma().getFecha() != null)
+	                ? boleto.getCronograma().getFecha().toString()
+	                : "Fecha no especificada";
 
 	        // Usar \n para representar un salto de línea en la cadena QR
-	        String qrCodeData = String.format("Boleto ID: %d\nAsiento: %s\nUsuario: %s\nTotal Pago: %.2f",
-	                boleto.getId(), asientoInfo, usuarioNombre, boleto.getTotalPago());
+	        String qrCodeData = String.format("Boleto ID: %d\nAsiento: %s\nUsuario: %s\nUnidad: %s\nFecha: %s\nTotal Pago: %.2f",
+	                boleto.getId(), asientoInfo, usuarioNombre, boleto.getCronograma().getUnidad().getNumero(), boleto.getCronograma().getFecha(), boleto.getTotalPago());
 
 	        model.addAttribute("qrCodeData", qrCodeData);
 	        return "pasajero/vista";
