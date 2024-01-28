@@ -109,27 +109,6 @@ public class HomeController {
 	
 	
 	
-	@PostMapping("/search")
-	public String searchProduct(@RequestParam("fecha") String fecha, Model model) {
-		
-        List<Object[]> unidades = unidadService.findByCronogramaFecha(fecha);
-        model.addAttribute("resultados", unidades);
-        return "pasajero/resultados";
-	}
 	
-	@GetMapping("/pasajero/perfil")
-	public String mostrarPerfil(Authentication authentication,Model model) {
-		
-		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-		  Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		  String email = ((UserDetails) principal).getUsername();
-	        Usuario user = usuarioService.findByEmail(email);
-	        Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
-          Usuario pasajero= usuarioService.findById(idUsuario);
-          model.addAttribute("nombre", pasajero.getNombre());
-          model.addAttribute("apellido", pasajero.getApellido());
-          model.addAttribute("correo", pasajero.getEmail());
-        return "pasajero/perfil";
-	}
 
 	 }

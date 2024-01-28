@@ -65,4 +65,8 @@ public class PersonalController {
 		    return "personal/boleto";
 		}
 	
+	 @GetMapping("/personal/camera")
+	 public String showCameraPage() {
+	     return "personal/activarCamaraQR";
+	 }
 }
