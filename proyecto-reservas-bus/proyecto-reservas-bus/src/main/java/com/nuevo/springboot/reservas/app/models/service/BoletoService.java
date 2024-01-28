@@ -1,5 +1,6 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,12 @@ public class BoletoService implements IBoletoService {
 	public List<Boleto> findByIdUsuarioCronograma(Long usuarioId, Integer cronogramaId) {
 		// TODO Auto-generated method stub
 		return boletoDao.findByIdUsuarioCronograma(usuarioId,cronogramaId);
+	}
+
+	@Override
+	public List<Boleto> getBoletosFechaActualMetodo() {
+		LocalDate fechaActual = LocalDate.now();
+        return boletoDao.findBoletosByFechaActualAndMetodoPago(fechaActual);
 	}
 	
 }

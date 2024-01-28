@@ -2,6 +2,7 @@ package com.nuevo.springboot.reservas.app.models.dao;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,4 +23,7 @@ public interface IBoletoDao extends JpaRepository<Boleto, Integer>{
 	
 	 @Query("SELECT a FROM Boleto a JOIN a.asiento b WHERE b.unidad.id = :unidadId")
 	 List<Boleto> findByUnidadId(@Param("unidadId") Integer unidadId);
+	 
+	 @Query("SELECT b FROM Boleto b WHERE b.cronograma.fecha = :fechaActual AND b.metodoPago = 'Efectivo'")
+	    List<Boleto> findBoletosByFechaActualAndMetodoPago(@Param("fechaActual") LocalDate fechaActual);
 }

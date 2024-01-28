@@ -130,8 +130,5 @@ public class BoletoController {
 	     return "personal/activarCamaraQR";
 	 }
 	 
-	 @GetMapping("/personal/pagos")
-	 public String pagar() {
-	     return "personal/pagos";
-	 }
+	
 }
