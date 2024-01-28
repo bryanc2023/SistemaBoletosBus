@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -165,6 +166,9 @@ public class AsientoController {
         Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
         Usuario usuario =usuarioService.findById(idUsuario);
     	String[] idsAsientosArray = idsAsientosSeleccionados.split(",");
+    	DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String costoTotalFormateado = decimalFormat.format(costoTotal);
+        costoTotal = Float.parseFloat(costoTotalFormateado.replace(",", "."));
     	
     	 for (String idAsiento : idsAsientosArray) {
     	        // Crear un nuevo Boleto y establecer los valores necesarios
@@ -204,6 +208,9 @@ public class AsientoController {
         Long idUsuario = usuarioService.obtenerIdUsuarioPorEmail(email);
         Usuario usuario =usuarioService.findById(idUsuario);
     	String[] idsAsientosArray = idsAsientosSeleccionados.split(",");
+    	DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String costoTotalFormateado = decimalFormat.format(costoTotal);
+        costoTotal = Float.parseFloat(costoTotalFormateado.replace(",", "."));
     	
     	 for (String idAsiento : idsAsientosArray) {
     	        // Crear un nuevo Boleto y establecer los valores necesarios

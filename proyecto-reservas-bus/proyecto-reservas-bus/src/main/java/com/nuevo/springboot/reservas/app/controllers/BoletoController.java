@@ -107,13 +107,7 @@ public class BoletoController {
 	    }
 	}
 	
-	 @GetMapping("/personal/boleto")
-		public String listarPersonal(Model model,Authentication authentication) {
-			
-		    model.addAttribute("unidades", unidadService.findAll());
-		    model.addAttribute("boletos", boletoService.findAll());
-		    return "personal/boleto";
-		}
+	
 	
 	 
 	 @PostMapping("/buscarBoleto/{unidadId}")
