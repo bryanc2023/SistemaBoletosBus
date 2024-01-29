@@ -90,6 +90,7 @@
 							<th class="bg-dark text-white">FECHA</th>
 							<th class="bg-dark text-white">HORA</th>
 							<th class="bg-dark text-white">MÉTODO DE PAGO</th>
+							<th class="bg-dark text-white">ESTADO</th>
 							<th class="bg-dark text-white">CANCELAR RESERVA</th>
 						</tr>
 					</thead>
@@ -101,7 +102,7 @@
 							<td th:text="${boleto.cronograma.fecha}"></td>
 							<td th:text="${boleto.cronograma.horaSalida}"></td>
 							<td th:text="${boleto.metodoPago}"></td>
-					
+					        <td th:text="${boleto.estado}"></td>
 							
 							<td>
 								<a class="btn btn-danger"

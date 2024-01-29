@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- link css -->
-   
-
-    <!-- link icon -->
-    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css}" integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-	<script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookMyDrive</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    
+    <!-- Link Bootstrap Icons -->
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css}" integrity="sha512-ZnR2wlLbSbr8/c9AgLg3jQPAattCUImNsae6NHYnS9KrIwRdcY9DxFotXhNAKIKbAXlRnujIqUWoXXwqyFOeIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Botpress Webchat Scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
 </head>
- <link rel="stylesheet" th:href="@{/css/style.css}">
+
 <body>
-	<div class="navbar">
-		<a th:href="@{/}">
-         <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
-         </a>
+    <div class="navbar">
+        <a th:href="@{/}">
+            <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto" />
+        </a>
     </div>
+
     <div class="container">
         <div class="box">
             <div class="form sign_in">
@@ -29,65 +32,47 @@
                 <h3>Inicio de sesión</h3>
                 <br> 
                 
-                <div th:if=${param.logout}>
-						<div class="alert alert-info">Ha cerrado sesión exitosamente
-						</div>
-					</div>
-					
-					 <div th:if=${param.error}>
-						<div class="alert alert-danger">Usuario o Contraseña Invalido
-						</div>
-					</div>
-				
-				
-					<div th:if=${param.error2}>
-						<div class="alert alert-danger">Por favor, confirma tu correo electrónico para iniciar sesión.
-						</div>
-					</div>
-					
-                <span class="o">Usa tus credenciales en la aplicacion:</span> <br> <br>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">Ha cerrado sesión exitosamente</div>
+                </div>
+                    
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Usuario o Contraseña Invalido</div>
+                </div>
+                    
+                <div th:if="${param.error2}">
+                    <div class="alert alert-danger">Por favor, confirma tu correo electrónico para iniciar sesión.</div>
+                </div>
 
-                <form th:action="@{/login}" method="post" class="form_input"> 
-					<br>
-				
-				
+                <span class="o">Usa tus credenciales en la aplicación:</span> <br> <br>
+
+                <form th:action="@{/login}" method="post" class="form_input">
                     <div class="type">
-                        <input class="input-group__input" type="text" placeholder="Correo electronico" name="username" id="username">
+                        <input class="input-group__input" type="text" placeholder="Correo electrónico" name="username" id="username">
                     </div><br>
                     <div class="type">
                         <input class="input-group__input"  type="password" placeholder="Contraseña" name="password" id="passwordSignIn">
                     </div> <br>
-                     <div >
-                        <a class="g" th:href="@{/forgot_password}">Olvidaste tu contraseña?</a>
+                    <div>
+                        <a class="g" th:href="@{/forgot_password}">¿Olvidaste tu contraseña?</a>
                     </div>
                     
-                     <br> 
-
-                   
+                    <br> 
 
                     <button class="btn bkg" type="submit">Ingresar</button>
-                    
                 </form>
             </div>
     
             <div class="form sign_up">
                 <h3>Registro</h3>
                 
-                
-                <div th:if=${param.exito}>
-					<div class="alert alert-info">Se ha registrado exitosamente a
-						la aplicación. Revise su enlace de verificacion para continuar</div>
-				</div>
-				
                 <span class="o">Ingresa tu información para registrarte:</span> <br><br>
-                		
-				
+                
                 <form th:action="@{/registro}" method="post" class="form_input">
                     <div class="type">
-						<br>
                         <input class="input-group__input" type="text" placeholder="Nombre" name="nombre" id="name">
                     </div> <br>
-                      <div class="type">
+                    <div class="type">
                         <input class="input-group__input" type="text" placeholder="Apellido" name="apellido" id="apellido">
                     </div> <br>
                     <div class="type">
@@ -96,7 +81,7 @@
                     </div> 
                     <div class="type">
                         <input class="input-group__input" type="password" placeholder="Contraseña" name="password" id="passwordSignUp" pattern=".{8,}">
-                        <span class="input-group__error">Ingresa digitos y letras, minimo 8 caracteres</span>
+                        <span class="input-group__error">Ingresa dígitos y letras, mínimo 8 caracteres</span>
                     </div><br><br>
 
                     <button class="btn bkg" type="submit">Confirmar</button>
@@ -106,15 +91,15 @@
 
         <div class="overlay">
             <div class="page page_signIn">
-                <h3>Bienvenido de vuelta!</h3>
-                <p>Aun no estas registrado?</p>
+                <h3>¡Bienvenido de vuelta!</h3>
+                <p>¿Aún no estás registrado?</p>
 
-                <button class="btn btnSign-in">Registrate <i class="bi bi-arrow-right"></i></button>
+                <button class="btn btnSign-in">Regístrate <i class="bi bi-arrow-right"></i></button>
             </div>
 
             <div class="page page_signUp">
-                <h3>Hola Amigo!</h3>
-                <p>Ya formas parte de nosotros?</p>
+                <h3>¡Hola Amigo!</h3>
+                <p>¿Ya formas parte de nosotros?</p>
 
                 <button class="btn btnSign-up">
                     <i class="bi bi-arrow-left"></i> Ingreso</button>
@@ -122,27 +107,16 @@
         </div>
     </div>
 
-    <!-- link script -->
+    <!-- Link JavaScript -->
     <script th:src="@{/js/main.js}"></script>
     
-    
-    <footer  >
-	  
-		
-			<p class="m-0 text-center text-white">Copyright &copy; Boletos
-				online</p>
-	
-		</footer>
+    <footer>
+        <p class="m-0 text-center text-white">Copyright &copy; Boletos online</p>
+    </footer>
 </body>
 
-<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-		crossorigin="anonymous"></script>
-		
-		 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </html>

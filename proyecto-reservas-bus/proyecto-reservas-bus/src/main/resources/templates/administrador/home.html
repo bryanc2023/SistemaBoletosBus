@@ -11,7 +11,7 @@
 
 
 
-	<header th:replace="layout/layout :: header" ></header >
+	<header th:replace="layout/layout :: header"></header>
 	<section id="hero" class="d-flex align-items-center">
 
 		<div class="container">
@@ -19,19 +19,20 @@
 				<div
 					class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
 					data-aos="fade-up" data-aos-delay="200">
-					<h1>Bienvenido <span th:text="${admin}"></span></h1>
+					<h1>
+						Bienvenido <span th:text="${admin}"></span>
+					</h1>
 					<h2>Puede editar sus unidades,rutas y cronogramas de la app</h2>
 					<div class="d-flex justify-content-center justify-content-lg-start">
-						<a href="#about" class="btn-get-started scrollto">Acerca de</a>
-						<a href="https://www.youtube.com/watch?v=D0SdaYGYa4I"
+						<a href="#about" class="btn-get-started scrollto">Acerca de</a> <a
+							href="https://www.youtube.com/watch?v=D0SdaYGYa4I"
 							class="glightbox btn-watch-video"><i
 							class="bi bi-play-circle"></i><span>Demo Video</span></a>
 					</div>
 				</div>
 				<div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in"
 					data-aos-delay="200">
-					<img src="/images/hero-img.png" class="img-fluid animated"
-						alt="">
+					<img src="/images/hero-img.png" class="img-fluid animated" alt="">
 				</div>
 			</div>
 		</div>
@@ -112,8 +113,8 @@
 
 			</div>
 		</section>
-		
-		
+
+
 		<!-- End About Us Section -->
 
 		<!-- ======= Why Us Section ======= -->
@@ -174,7 +175,7 @@
 						data-aos="zoom-in" data-aos-delay="300">
 						<div class="icon-box">
 							<div class="icon">
-								<i class='bx bxs-bus' ></i>
+								<i class='bx bxs-bus'></i>
 							</div>
 							<h4>
 								<a th:href="${'/unidad/listar'}">Unidades</a>
@@ -210,13 +211,10 @@
 
 
 				<div class="row">
+
 				
-					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
-						data-aos="zoom-in" data-aos-delay="100">
-						
-					</div>
-					
-					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+
+					<div class="col-xl-3 col-md-6 col-sm-12 d-flex align-items-stretch"
 						data-aos="zoom-in" data-aos-delay="100">
 						<div class="icon-box">
 							<div class="icon">
@@ -225,44 +223,44 @@
 							<h4>
 								<a th:href="@{'/personal/listar'}">Personal</a>
 							</h4>
-							<p>El registro de nuevo personal es un proceso fundamental que asegura la eficiencia operativa y la calidad del servicio ofrecido.</p>
+							<p>El registro de nuevo personal es un proceso fundamental
+								que asegura la eficiencia operativa y la calidad del servicio
+								ofrecido.</p>
 						</div>
 					</div>
 
-					<div
-						class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+					<div class="col-xl-3 col-md-6 col-sm-12 mt-4 mt-md-0"
 						data-aos="zoom-in" data-aos-delay="200">
 						<div class="icon-box">
 							<div class="icon">
-								<i class='bx bx-cog' ></i>
+								<i class='bx bx-cog'></i>
 							</div>
 							<h4>
 								<a th:href="@{'/configuracion/listar'}">Configuración</a>
 							</h4>
-							<p>
-La configuración administrativa aborda aspectos fundamentales como tasas de impuestos, descuentos, límites de asientos en reservas y estados activos o inactivos, tanto a nivel general como para elementos específicos.</p>
+							<p>La configuración administrativa aborda aspectos
+								fundamentales como tasas de impuestos, descuentos, límites de
+								asientos en reservas y estados activos o inactivos, tanto a
+								nivel general como para elementos específicos.</p>
 						</div>
 					</div>
 
+
 					
-					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
-						data-aos="zoom-in" data-aos-delay="100">
-						
-					</div>
 
 				</div>
 
 			</div>
 		</section>
-</main>
-		
+	</main>
+
 
 
 	<!-- Footer -->
 	<footer th:replace="layout/layout :: footer"></footer>
 	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
 	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-	
+
 </body>
 
 </html>

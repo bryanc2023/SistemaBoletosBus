@@ -1,10 +1,15 @@
 package com.nuevo.springboot.reservas.app.controllers;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.FileCopyUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -43,7 +48,7 @@ public class ForgotPasswordController {
 	    try {
 	        usuarioService.updateResetPasswordToken(token, email);
 	        String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
-	        sendEmail(email, resetPasswordLink);
+	        usuarioService.sendEmail2(email, resetPasswordLink);
 	        model.addAttribute("message", "Te hemos enviado un mensaje a tu correo por favor verificalo.");
 	         
 	    } catch (CustomerNotFoundException ex) {
@@ -55,30 +60,7 @@ public class ForgotPasswordController {
 	    return "forgot_password_form";
 	}
 
-	public void sendEmail(String recipientEmail, String link)
-	        throws MessagingException, UnsupportedEncodingException {
-	    MimeMessage message = mailSender.createMimeMessage();              
-	    MimeMessageHelper helper = new MimeMessageHelper(message);
-	     
-	    helper.setFrom("contact@shopme.com", "Shopme Support");
-	    helper.setTo(recipientEmail);
-	     
-	    String subject = "Here's the link to reset your password";
-	     
-	    String content = "<p>Hello,</p>"
-	            + "<p>You have requested to reset your password.</p>"
-	            + "<p>Click the link below to change your password:</p>"
-	            + "<p><a href=\"" + link + "\">Change my password</a></p>"
-	            + "<br>"
-	            + "<p>Ignore this email if you do remember your password, "
-	            + "or you have not made the request.</p>";
-	     
-	    helper.setSubject(subject);
-	     
-	    helper.setText(content, true);
-	     
-	    mailSender.send(message);
-	}
+	
 	
 	@GetMapping("/reset_password")
 	public String showResetPasswordForm(@Param(value = "token") String token, Model model) {

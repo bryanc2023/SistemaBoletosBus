@@ -36,4 +36,8 @@ public interface IUsuarioService extends UserDetailsService{
 	public Long obtenerIdUsuarioPorEmail(String email);
 	public Long obtenerIdUsuarioLogueado();
 
+	public void incrementarIntentosFallidos(String email);
+
+	public void reiniciarIntentosFallidos(String email);
+
 }

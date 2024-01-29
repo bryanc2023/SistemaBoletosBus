@@ -28,10 +28,10 @@ public class ConfirmationController {
 	        user.setEnabled(true);
 	        usuarioServicio.save(user);
 	        confirmationTokenRepository.delete(token); 
-	        model.addAttribute("message", "Account verified successfully!");
+	        model.addAttribute("message", "Cuenta verificada correctamente!");
 	        return "accountVerified";
 	    } else {
-	        model.addAttribute("message", "The link is invalid or broken!");
+	        model.addAttribute("message", "Enlace o link expirado!");
 	        return "error";
 	    }
 	}

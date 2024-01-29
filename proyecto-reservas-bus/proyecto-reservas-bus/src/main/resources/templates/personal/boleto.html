@@ -1,68 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="layout/layout3 :: head">
-<style>
-        body {
-            background-color: #f8f9fa;
-            color: #343a40;
-            font-family: Arial, sans-serif;
-        }
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        .container {
-            margin-top: 20px;
-        }
-
-        .card {
-            margin-top: 20px;
-        }
-
-        #miTabla {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        #miTabla th,
-        #miTabla td {
-            border: 1px solid #dee2e6;
-            padding: 8px;
-            text-align: center;
-        }
-
-        #miTabla th {
-            background-color: #343a40;
-            color: #fff;
-        }
-
-        #generarInforme {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            text-align: center;
-            text-decoration: none;
-            background-color: #007bff;
-            color: #fff;
-            border-radius: 5px;
-        }
-
-        #generarInforme:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
-
-
-
+<style>
+  #generarInforme:hover {
+    background-color: #1a2b40 !important;
+    color: #fff !important;
+  }
+</style>
 <body>
-	
-		 <div class="m-3"></div>
-		 
-	<header th:fragment="header">
 
-	 <header th:replace="layout/layout3 :: header"></header>
-	<link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
-	  <section id="clients" class="clients section-bg">
+	<div class="m-3"></div>
+
+	
+
+		<header th:replace="layout/layout3 :: header"></header>
+		<link rel="stylesheet" th:href="@{/Administrador/style3.css}" />
+		<section id="clients" class="clients section-bg">
 			<div class="container">
 
 				<div class="row" data-aos="zoom-in">
@@ -108,171 +64,230 @@
 			</div>
 		</section>
 		<section id="services" class="services section-bg">
-			
+
 			<div class="container" data-aos="fade-up">
-	
-    <div class="uni">
-		<div class="section-title">
-					<h2>Informes</h2>
-					
-					<small>Aqui se presenta los informes de las unidades y boletos vendidos</small>
+
+				<div class="uni">
+					<div class="section-title">
+						<h2>Informes</h2>
+
+						<small>Aqui se presenta los informes de las unidades y
+							boletos vendidos</small>
+					</div>
 				</div>
-    </div>
-    </section>
+		</section>
+<section>
+		<div class="container py-0">
+			<div class="card bg-light">
+				<div class="card-header" th:text="${titulo}"></div>
+				
+				<div id="informeContainer" class="card-body">
 
-	<div class="container py-4">
-    <div class="card bg-light">
-        <div class="card-header" th:text="${titulo}"></div>
-        <img th:src="@{/images/logo.png}" alt="Descripción de la imagen" width="200" height="70" class="mt-2" />
-        <div id="informeContainer" class="card-body">
 
-            <h2>Informe de boletos</h2>
-            <table class="table table-striped table-bordered" id="miTabla">
-					<thead class="thead-inverse">
-						<tr>
-							<th class="bg-dark text-white">id</th>
-							<th class="bg-dark text-white">usuario</th>
-							<th class="bg-dark text-white">fecha de viaje</th>
-							<th class="bg-dark text-white">hora de salida</th>
-							<th class="bg-dark text-white">numero de asiento</th>
-							<th class="bg-dark text-white">metodo de pago</th>
-							<th class="bg-dark text-white">unidad</th>
-							<th class="bg-dark text-white">ruta</th>
-							<th class="bg-dark text-white">total pagado</th>
-						</tr>
-					</thead>
-					<tbody>
-                    <tr th:each="boleto: ${boletos}">
-							<td th:text="${boleto.id}"></td>
-							<td th:text="${boleto.usuario.email}"></td>
-							<td th:text="${boleto.cronograma.fecha}"></td>
-							<td th:text="${boleto.cronograma.horaSalida}"></td>
-							<td th:text="${boleto.asiento.fila}+ ' - ' + ${boleto.asiento.columna}"></td>
-							<td th:text="${boleto.metodoPago}"></td>
-							<td th:text="${boleto.asiento.unidad.numero}+ ''+ ${boleto.asiento.unidad.cooperativa.nombre}"></td>
-							<td th:text="${boleto.cronograma.ruta.rutaOrigen}+ ' - ' + ${boleto.cronograma.ruta.rutaDestino}"></td>
-							<td th:text="${boleto.totalPago}"></td>
-						 </tr>
-                </tbody>
-            </table>
-            <a href="#" class="btn btn-secondary" id="generarInforme" onclick="descargarInforme()">Generar Informe</a>
+					<div id="miTablaContainer" class="table-responsive">
+						<table class="table table-striped table-bordered" id="miTabla">
+							<thead class="thead-inverse">
+								<tr>
+									<th class="bg-dark text-white">CLIENTE</th>
+									<th class="bg-dark text-white">FECHA VIAJE</th>
+									<th class="bg-dark text-white">HORA SALIDA</th>
+									<th class="bg-dark text-white">ASIENTO</th>
+									<th class="bg-dark text-white">METODO PAGO</th>
+									<th class="bg-dark text-white">UNIDAD</th>
+									<th class="bg-dark text-white">RUTA</th>
+									<th class="bg-dark text-white">TOTAL PAGADO</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="boleto: ${boletos}">
+									<td th:text="${boleto.usuario.email}"></td>
+									<td th:text="${boleto.cronograma.fecha}"></td>
+									<td th:text="${boleto.cronograma.horaSalida}"></td>
+									<td
+										th:text="${boleto.asiento.fila}+ ' - ' + ${boleto.asiento.columna}"></td>
+									<td th:text="${boleto.metodoPago}"></td>
+									<td
+										th:text="${boleto.asiento.unidad.cooperativa.nombre}+ ' ' +${boleto.asiento.unidad.numero}"></td>
+									<td
+										th:text="${boleto.cronograma.ruta.rutaOrigen}+ ' - ' + ${boleto.cronograma.ruta.rutaDestino}"></td>
+									<td th:text="${boleto.totalPagoFormateado}"></td>
+								</tr>
+							</tbody>
+						</table>
+					<a href="#" class="btn btn-secondary" id="generarInforme" onclick="descargarInforme()" 
+   style="background-color: #37517e; color: #fff; transition: background-color 0.3s ease;">
+   Generar Informe
+</a>
 
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	
-<script>
-	function descargarInforme() {
-    // Obtener el contenido del contenedor
-    var informeContainer = document.getElementById("informeContainer");
+			</div>
+</section>
+			<script>
+				function descargarInforme() {
 
-    // Agregar estilos al informe
-    informeContainer.style.fontFamily = "Arial, sans-serif";
-    informeContainer.style.backgroundColor = "#fff";
-    informeContainer.style.padding = "20px";
-    informeContainer.style.border = "1px solid #ddd";
+					// Obtener el contenido del contenedor
+					var informeContainer = document
+							.getElementById("informeContainer");
 
-    // Agregar la imagen al informe en la parte superior izquierda
-    var logoImg = document.createElement("img");
-    logoImg.src = window.location.origin + "/images/logo.png"; // Ruta completa
-    logoImg.alt = "Descripción de la imagen";
-    logoImg.width = 200;
-    logoImg.height = 70;
-    logoImg.className = "mt-2";
+					var botonGenerarInforme = document
+							.getElementById("generarInforme");
+					if (botonGenerarInforme) {
+						botonGenerarInforme.parentNode
+								.removeChild(botonGenerarInforme);
+					}
+					// Agregar estilos al informe
+					informeContainer.style.fontFamily = "Arial, sans-serif";
+					informeContainer.style.backgroundColor = "#fff";
+					informeContainer.style.padding = "20px";
+					informeContainer.style.border = "1px solid #212529";
 
-    // Insertar la imagen al inicio del contenedor
-    informeContainer.insertBefore(logoImg, informeContainer.firstChild);
+					// Agregar la imagen al informe en la parte superior izquierda
+					var logoImg = document.createElement("img");
+					logoImg.src = window.location.origin + "/images/logo.png"; // Ruta completa
+					logoImg.alt = "Descripción de la imagen";
+					logoImg.width = 150;
+					logoImg.height = 25;
+					logoImg.className = "mt-2";
 
-    // Mostrar la fecha, día y hora en la parte superior derecha
-    var fechaHoraDiv = document.createElement("div");
-    fechaHoraDiv.style.position = "absolute";
-    fechaHoraDiv.style.top = "0";
-    fechaHoraDiv.style.right = "0";
-    fechaHoraDiv.style.padding = "10px";
-    fechaHoraDiv.style.backgroundColor = "#007bff";
-    fechaHoraDiv.style.color = "#fff";
+					// Insertar la imagen al inicio del contenedor
+					informeContainer.insertBefore(logoImg,
+							informeContainer.firstChild);
 
-    var fechaHora = obtenerFechaHoraActual();
-    fechaHoraDiv.textContent = fechaHora;
+					// Mostrar la fecha, día y hora en la parte superior derecha
+					var fechaHoraDiv = document.createElement("div");
+					fechaHoraDiv.style.position = "absolute";
+					fechaHoraDiv.style.top = "0";
+					fechaHoraDiv.style.right = "0";
+					fechaHoraDiv.style.padding = "10px";
+					fechaHoraDiv.style.backgroundColor = "#37517e";
+					fechaHoraDiv.style.color = "#fff";
 
-    informeContainer.appendChild(fechaHoraDiv);
+					var fechaHora = obtenerFechaHoraActual();
+					fechaHoraDiv.textContent = fechaHora;
 
-    // Agregar la firma del administrador en la parte inferior izquierda
-    var firmaDiv = document.createElement("div");
-    firmaDiv.style.position = "absolute";
-    firmaDiv.style.bottom = "0";
-    firmaDiv.style.left = "0";
-    firmaDiv.style.padding = "10px";
-    firmaDiv.style.backgroundColor = "#f8f9fa";
-    firmaDiv.textContent = "Firma Administrador: ";
+					informeContainer.appendChild(fechaHoraDiv);
 
-    informeContainer.appendChild(firmaDiv);
+					// Agregar la firma del administrador en la parte inferior izquierda
+					var firmaDiv = document.createElement("div");
+					firmaDiv.style.position = "absolute";
+					firmaDiv.style.bottom = "0";
+					firmaDiv.style.left = "0";
+					firmaDiv.style.padding = "10px";
+					firmaDiv.style.backgroundColor = "#f8f9fa";
+					firmaDiv.textContent = "Firma Administrador: ";
 
-    // Aplicar estilos a la tabla
-    var tabla = informeContainer.querySelector("table");
-    tabla.style.width = "100%";
-    tabla.style.borderCollapse = "collapse";
-    tabla.style.marginTop = "20px";
-    tabla.style.backgroundColor = "#007bff"; // Color de fondo azul
-    tabla.style.color = "#fff"; // Color de texto blanco
+					informeContainer.appendChild(firmaDiv);
 
-    var celdas = tabla.querySelectorAll("th, td");
-    celdas.forEach(function(celda) {
-        celda.style.border = "1px solid #ddd";
-        celda.style.padding = "8px";
-        celda.style.textAlign = "center";
-    });
+					var tabla = informeContainer.querySelector("table");
+					tabla.style.width = "100%";
+					tabla.style.borderCollapse = "collapse";
+					tabla.style.marginTop = "20px";
+					tabla.style.backgroundColor = "#fff"; // Fondo blanco para toda la tabla
+					tabla.style.color = "#000"; // Texto negro para toda la tabla
+					tabla.style.border = "2px solid #000"; // Bordes negros para toda la tabla
 
-    // Agregar el número de página
-    var numeroPaginaDiv = document.createElement("div");
-    numeroPaginaDiv.style.position = "absolute";
-    numeroPaginaDiv.style.bottom = "0";
-    numeroPaginaDiv.style.right = "0";
-    numeroPaginaDiv.style.padding = "10px";
-    numeroPaginaDiv.style.backgroundColor = "#f8f9fa";
-    numeroPaginaDiv.textContent = "Página 1";  // Actualiza el número de página según sea necesario
+					// Aplicar estilos específicos para las celdas de encabezado
+					var titulos = tabla.querySelectorAll("th");
+					titulos.forEach(function(titulo) {
+						titulo.style.backgroundColor = "#37517e"; // Color de fondo azul para títulos
+						titulo.style.color = "#fff"; // Texto blanco para títulos
+						titulo.style.border = "1px solid #000"; // Bordes negros para títulos
+						titulo.style.textAlign = "center"; // Texto centrado para títulos
+						titulo.style.padding = "15px 10px"; // Agregar espacio interno a los títulos (ajustar según sea necesario)
+					});
 
-    informeContainer.appendChild(numeroPaginaDiv);
+					// Aplicar estilos generales para celdas de datos
+					var celdas = tabla.querySelectorAll("td");
+					celdas.forEach(function(celda) {
+						celda.style.border = "1px solid #000"; // Bordes negros para celdas de datos
+						celda.style.textAlign = "center"; // Texto centrado para celdas de datos
+						 celda.style.padding = "15px 10px"; // Agregar espacio interno a las celdas (ajustar según sea necesario)
+					});
 
-    
+					// Agregar el número de página
+					var numeroPaginaDiv = document.createElement("div");
+					numeroPaginaDiv.style.position = "absolute";
+					numeroPaginaDiv.style.bottom = "0";
+					numeroPaginaDiv.style.right = "0";
+					numeroPaginaDiv.style.padding = "10px";
+					numeroPaginaDiv.style.backgroundColor = "#f8f9fa";
+					numeroPaginaDiv.textContent = "Página 1"; // Actualiza el número de página según sea necesario
 
-    // Crear un archivo Blob con el contenido HTML
-    var blob = new Blob([informeContainer.outerHTML], { type: "text/html" });
+					informeContainer.appendChild(numeroPaginaDiv);
 
-    // Crear un enlace para descargar el archivo
-    var a = document.createElement("a");
-    a.href = window.URL.createObjectURL(blob);
-    a.download = "Informe.html";
+					// Crear un archivo Blob con el contenido HTML
+					var blob = new Blob([ informeContainer.outerHTML ], {
+						type : "text/html"
+					});
 
-    // Agregar el enlace al documento y simular clic para iniciar la descarga
-    document.body.appendChild(a);
-    a.click();
+					// Crear un enlace para descargar el archivo
+					var a = document.createElement("a");
+					a.href = window.URL.createObjectURL(blob);
+					a.download = "Informe.html";
 
-    // Limpiar el enlace y el contenido del contenedor (opcional)
-    document.body.removeChild(a);
-    informeContainer.innerHTML = "¡Informe descargado!";
-}
+					// Agregar el enlace al documento y simular clic para iniciar la descarga
+					document.body.appendChild(a);
+					a.click();
 
-function obtenerFechaHoraActual() {
-    var fechaHora = new Date();
-    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
-    return fechaHora.toLocaleDateString('es-ES', options);
-}
+					// Limpiar el enlace y el contenido del contenedor (opcional)
+					document.body.removeChild(a);
+					informeContainer.innerHTML = "¡Informe descargado!";
 
+					// Crear un salto de línea
+					var saltoLinea = document.createElement("br");
+					informeContainer.appendChild(saltoLinea);
 
+					// Crear el botón de regreso
+					var botonRegresar = document.createElement("button");
+					botonRegresar.innerHTML = "Regresar a Informes";
+					botonRegresar.className = "btn btn-primary"; // Agregar la clase de estilo
+					botonRegresar.style.backgroundColor = "#37517e"; // Color de fondo del botón
+					botonRegresar.style.color = "#fff"; // Color del texto del botón
+					botonRegresar.style.marginTop = "10px"; // Espaciado superior
+					botonRegresar.style.transition = "background-color 0.3s ease"; // Agregar la transición para el hover
 
-</script>
+					// Agregar el botón al contenedor
+					informeContainer.appendChild(botonRegresar);
 
+					// Agregar el evento click para redirigir a la anterior vista
+					botonRegresar.addEventListener("click", function() {
+					    // Aquí puedes agregar la lógica para redirigir a la anterior vista
+					    // window.location.href = "url de la anterior vista";
+					});
+					botonRegresar.addEventListener("click", function() {
+					    // Aquí puedes agregar la lógica para redirigir a la anterior vista
+					    window.location.href = "/personal/boleto";
+					});
 
+					// Agregar el efecto hover al botón
+					botonRegresar.addEventListener("mouseover", function() {
+					    botonRegresar.style.backgroundColor = "#1a2b40";
+					});
 
+					botonRegresar.addEventListener("mouseout", function() {
+					    botonRegresar.style.backgroundColor = "#37517e";
+					});
+				}
 
-
-
-
-	
-
-
-        <footer th:replace="layout/layout3 :: footer"></footer>
-    <script th:src="@{/js/personal/home.js}"></script>
+				function obtenerFechaHoraActual() {
+					var fechaHora = new Date();
+					var options = {
+						weekday : 'long',
+						year : 'numeric',
+						month : 'long',
+						day : 'numeric',
+						hour : 'numeric',
+						minute : 'numeric',
+						second : 'numeric',
+						timeZoneName : 'short'
+					};
+					return fechaHora.toLocaleDateString('es-ES', options);
+				}
+			</script>
+			<script th:src="@{/js/personal/home.js}"></script>
+			<footer th:replace="layout/layout3 :: footer"></footer>
 </body>
+
 </html>

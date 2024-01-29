@@ -2,7 +2,10 @@ package com.nuevo.springboot.reservas.app.controllers;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nuevo.springboot.reservas.app.controlador.dto.UsuarioRegistroDTO;
+import com.nuevo.springboot.reservas.app.models.entity.Boleto;
 import com.nuevo.springboot.reservas.app.models.entity.Ruta;
 import com.nuevo.springboot.reservas.app.models.entity.Usuario;
+import com.nuevo.springboot.reservas.app.models.service.IBoletoService;
 import com.nuevo.springboot.reservas.app.models.service.IRutaService;
 import com.nuevo.springboot.reservas.app.models.service.IUnidadService;
 import com.nuevo.springboot.reservas.app.models.service.IUsuarioService;
@@ -26,9 +31,42 @@ public class PersonalController {
 	@Autowired
 	private  IUsuarioService usuarioServicio;
 
+	@Autowired
+	private IBoletoService boletoService;
+	
+	@Autowired
+	private IUnidadService unidadService;
 	
 	
+	 @GetMapping("/personal/pagos")
+	 public String pagar(Model model) {
+		 List<Boleto> boletos = boletoService.getBoletosFechaActualMetodo();
+		 boletos.forEach(boleto -> {
+		        double totalPago = boleto.getTotalPago();
+		        String totalPagoFormateado = String.format("%.2f", totalPago);
+		        boleto.setTotalPagoFormateado(totalPagoFormateado);
+		    });
+	     model.addAttribute("boletos", boletos);
+	     return "personal/pagos";
+	 }
+	 
+	 @GetMapping("/personal/boleto")
+		public String listarPersonal(Model model,Authentication authentication) {
+		 List<Boleto> boletos = boletoService.getBoletosFechaActualMetodo();
+		 boletos.forEach(boleto -> {
+		        double totalPago = boleto.getTotalPago();
+		        String totalPagoFormateado = String.format("%.2f", totalPago);
+		        boleto.setTotalPagoFormateado(totalPagoFormateado);
+		    });
+		    model.addAttribute("unidades", unidadService.findAll());
+		    
+		    model.addAttribute("boletos", boletos);
+		    
+		    return "personal/boleto";
+		}
 	
-
-	
+	 @GetMapping("/personal/camera")
+	 public String showCameraPage() {
+	     return "personal/activarCamaraQR";
+	 }
 }

@@ -20,6 +20,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 
@@ -65,7 +66,18 @@ public class Boleto{
 	private double totalPago;
 	
 
+	@Column(name = "estado")
+	private String estado;
 	
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -141,7 +153,7 @@ public class Boleto{
 	
 
 	public Boleto(Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario, String metodoPago,
-			double totalPago) {
+			double totalPago,String estado) {
 		super();
 		this.detalle = detalle;
 		this.asiento = asiento;
@@ -149,10 +161,11 @@ public class Boleto{
 		this.usuario = usuario;
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
+		this.estado = estado;
 	}
 
 	public Boleto(Integer id, Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario,
-			String metodoPago, double totalPago) {
+			String metodoPago, double totalPago,String estado) {
 		super();
 		this.id = id;
 		this.detalle = detalle;
@@ -161,6 +174,7 @@ public class Boleto{
 		this.usuario = usuario;
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
+		this.estado = estado;
 	}
 
 	public Boleto(Integer id) {
@@ -173,7 +187,20 @@ public class Boleto{
 	}
 
 
-	
+	@Transient
+    private String totalPagoFormateado;
+
+    // Resto de la clase...
+
+    // Getter y Setter para el totalPago formateado
+    public String getTotalPagoFormateado() {
+        return totalPagoFormateado;
+    }
+
+    public void setTotalPagoFormateado(String totalPagoFormateado) {
+        this.totalPagoFormateado = totalPagoFormateado;
+    }
+    
 }	
 	
 	

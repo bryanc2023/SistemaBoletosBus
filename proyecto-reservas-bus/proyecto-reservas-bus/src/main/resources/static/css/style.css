@@ -7,7 +7,7 @@
 }
 
 body {
-     font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,6 @@ body {
 
 .container {
     width: 60%;
-    
     display: flex;
     height: 530px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
@@ -27,152 +26,7 @@ body {
     margin-bottom: 100px;
 }
 
-/* .container .box {
-    position: relative;
-    height: 100%;
-    width: 50%;
-    transition: all 1.5s;
-    transform: translateX(0);
-    background-color: #fff;
-    z-index: 1;
-}
 
-.container.active .box {
-    transition: all 1.5s;
-    transform: translateX(100%);
-}
-
-.container .box .form {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.container .box .form.sign_up {
-    opacity: 0;
-    z-index: 2;
-    background-color: #fff;
-}
-
-
-.container .box .form.sign_in {
-    transition: all 0.5s;
-    z-index: 5;
-    background-color: #fff;
-}
-
-.container.active .box .form.sign_in {
-    animation: Show 0.65s ease-in-out;
-}
-
-.container .overlay {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    background-color: #FF4167;
-    width: calc(100% - 50%);
-    height: 100%;
-    transition: all 1.5s;
-    transform: translateX(0);
-    z-index: 5;
-}
-
-.container.active .overlay {
-    transition: all 1.5s;
-    transform: translateX(-100%);
-}
-
-.container .overlay .page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-}
-
-.container .overlay .page.page_signIn {
-    z-index: 2;
-    background-color: #FF4167;
-}
-
-.container .overlay .page.page_signUp {
-    z-index: 5;
-    background-color: #FF4167;
-}
-
-.overlay .page h3 {
-    color: #fff;
-    font-size: 40px;
-    margin-bottom: 15px;
-}
-
-.overlay .page p {
-    color: #fff;
-    font-weight: 600;
-    margin-bottom: 20px;
-    font-size: 17px;
-}
-
-.btn {
-    display: inline-block;
-    outline: none;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 550;
-    background-color: transparent;
-    padding: 12px 45px;
-    border-radius: 22px;
-    border: 1.5px solid #fff;
-    cursor: pointer;
-}
-
-.form h3 {
-    color: #222;
-    font-size: 40px;
-}
-
-.form span {
-    color: #3a3838;
-}
-
-#form_input .type {
-    width: 330px;
-    height: 48px;
-    background-color: #EEEDEF;
-    margin: 30px 0;
-}
-
-#form_input .type input {
-    width: 100%;
-    height: 100%;
-    padding: 0 10px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-}
-
-#form_input .type input::placeholder {
-    color: #A9A8A9;
-}
-
-#form_input .forgot {
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.bkg {
-    background-color: #FF4167;
-} */
 
 @keyframes Show {
     0%, 49.999% {
@@ -233,11 +87,7 @@ body {
     color: #37517e !important;
 }
 
-.container .box .form.sign_up {
-    /* transition: all 0.5s;
-    opacity: 0;
-    transform: translateX(-100%); */
-}
+
 
 .container .box .form.sign_up {
     transition: all 1.15s;
@@ -263,21 +113,7 @@ body {
     opacity: 1;
 }
 
-.container.active .box .form.sign_up {
-    /* opacity: 1;
-    transform: translateX(0%); */
-}
 
-.container .box .form.sign_in {
-    /* transition: all 0.5s;
-    opacity: 1;
-    transform: translateX(0%); */
-}
-
-.container.active .box .form.sign_in {
-    /* opacity: 0;
-    transform: translateX(100%); */
-}
 
 .container .overlay {
     display: flex;
@@ -336,10 +172,10 @@ body {
     outline: none;
     color: #fff;
     text-transform: uppercase;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 550;
     background-color: transparent;
-    padding: 12px 45px;
+    padding: 10px 20px;
     border-radius: 22px;
     border: 1.5px solid #fff;
     cursor: pointer;
@@ -355,20 +191,40 @@ body {
 }
 
 #form_input .type {
-    width: 330px;
-    height: 48px;
-    background-color: #EEEDEF;
-    margin: 30px 0;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0; /* Ajusta el margen */
 }
 
 #form_input .type input {
-    width: 100%;
+    width: calc(100% - 20px);
     height: 100%;
-    padding: 0 10px;
+    padding: 10px;
     font-size: 16px;
-    border: none;
+    border: 1px solid #ced4da; /* Color del borde */
+    border-radius: 0.25rem; /* Bordes redondeados */
     outline: none;
-    background-color: transparent;
+    background-color: #fff; /* Color de fondo del input */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Efecto de transición */
+}
+
+.btn {
+    font-size: 13px;
+    padding: 10px 35px;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn:hover {
+    color: #fff; /* Color del texto al pasar el mouse */
+    background-color: #4e73df; /* Color de fondo al pasar el mouse */
+    border-color: #4e73df; /* Color del borde al pasar el mouse */
+}
+
+#form_input .type input:focus {
+    border-color: #4e73df; /* Color del borde al tener el foco */
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25); /* Sombra al tener el foco */
 }
 
 #form_input .type input::placeholder {
@@ -405,12 +261,22 @@ input-group__input {
   .submit-btn {
     font-size: 1.2rem;
   }
-
-  .input-group__input {
-    border: 2px solid rgb(177, 177, 177);
+.input-group__input {
     width: 100%;
-    padding: var(--y) var(--x);
-  }
+    height: 100%;
+    padding: 9px;
+    font-size: 16px;
+    border: 1px solid #ced4da; /* Color del borde */
+    border-radius: 0.25rem; /* Bordes redondeados */
+    outline: none;
+    background-color: #fff; /* Color de fondo del input */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Efecto de transición */
+}
+
+.input-group__input:focus {
+    border-color: #4e73df; /* Color del borde al tener el foco */
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25); /* Sombra al tener el foco */
+}
   
   .input-group_input, .input-group_error {
     --left: 0;
@@ -444,6 +310,10 @@ input-group__input {
   .g{
 	  color: #ffffff;
   }
+  .g:hover {
+    text-decoration: underline; /* O cualquier otro estilo que desees */
+    color: #1e90ff; /* Color al pasar el mouse */
+}
 
   .input-group__error {
     color: red;
@@ -525,46 +395,107 @@ input-group__input {
 }
 
  .alert-info {
-      color: white; /* Establece el color del texto a blanco */
-      background-color: seagreen;  /* Puedes ajustar el color de fondo según tus necesidades */
-      padding: 15px;
-      border-radius: 5px;
-    }
+   background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+    font-size: 18px;
+    padding: 20px; /* Ajusta el espacio dentro del cuadro */
+    margin-bottom: 20px; /* Ajusta el espacio debajo del cuadro */
+}
     
-     .alert {
-      margin-bottom: 20px;
-    }
+    
+    .alert {
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 20px;
+}
 
     /* Estilo específico para la alerta de logout */
     .alert-logout {
-      background-color: #d4edda;
-      border-color: #c3e6cb;
-      color: #155724;
-    }
+     background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+    font-size: 18px;
+    padding: 20px; /* Ajusta el espacio dentro del cuadro */
+    margin-bottom: 20px; /* Ajusta el espacio debajo del cuadro */
+}
+    
     
     .perro{
 		color: black;
 	}
 	
- .o {
-	color: white !important; /* Establece el color del texto a blanco */
-      background-color: #37517e; /* Puedes ajustar el color de fondo según tus necesidades */
-      padding: 15px;
-      border-radius: 5px; 
-      
-      }
+.o {
+    color: white !important;
+    background-color: #37517e;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: -20px; /* Puedes ajustar este valor según tus necesidades */
+}
       
       
 
- .alert-danger {
-            background-color: red;
-     		border-color: red;
-      		color: white;
-      		  padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-   
+
+
+/* Estilo para alerta de error */
+.alert-danger {
+   background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+    font-size: 18px;
+    padding: 20px; /* Ajusta el espacio dentro del cuadro */
+    margin-bottom: 20px; /* Ajusta el espacio debajo del cuadro */
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .container .box,
+    .container .overlay {
+        width: 100%;
+    }
+     .alert {
+        font-size: 14px; /* Ajusta el tamaño del texto para pantallas más pequeñas */
+        padding: 15px; /* Ajusta el espacio dentro del cuadro para pantallas más pequeñas */
+    }
+  }
+.container {
+    box-shadow: none; /* Puedes ajustar o eliminar la sombra según sea necesario */
+    margin-top: 50px; /* Reduce el espacio superior */
+    margin-bottom: 50px; /* Reduce el espacio inferior */
+}
+
+.navbar img {
+    margin-left: 15px; /* Reduce el espacio izquierdo del logo */
+}
+
+.footer {
+    margin-top: 20px; /* Reduce el espacio superior del footer */
+}
+#form_input .type {
+    width: 100%;
+}
+
+#form_input .type input {
+    width: calc(100% - 20px);
+}
+
+.form h3 {
+    font-size: 28px; /* Reduce el tamaño del título del formulario */
+}
+
+.btn {
+    font-size: 13px; /* Reduce el tamaño del botón */
+    padding: 10px 35px; /* Ajusta el padding del botón */
+}
       
-      
+.container .box .form.sign_in .type input,
+.container .box .form.sign_up .type input {
+    width: 100%;
+}
