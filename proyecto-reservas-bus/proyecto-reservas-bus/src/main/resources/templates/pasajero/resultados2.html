@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout2 :: head">
+
+</head>
+
+<body>
+	<link rel="stylesheet" th:href="@{/css/pasajero/home.css}" />
+<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
+	<header th:replace="layout/layout2 :: header"></header>
+
+	
+		<br>
+		<br>
+		<br>
+		<br>
+			<section id="services" class="services section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Viajes Por fecha</h2>
+
+					
+				</div>
+		
+		<div class="row" th:if="${#lists.isEmpty(resultados)}">
+					<div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100" >
+						<div class="icon-box">
+							<div class="icon">
+								
+							</div>
+							<h4>
+								<a th:href="${'/app'}">Volver a home</a>
+							</h4>
+							<p>No se encontraron informes en esas fechas, regrese a home para indagar más servicios</p>
+						</div>
+					</div>
+
+					
+				</div>
+				
+			<div id="reports" class="row" th:if="${not #lists.isEmpty(resultados2)}">
+    <div class="col-xl-3 col-md-6 d-flex align-items-stretch"
+        data-aos="zoom-in" data-aos-delay="100" th:each="resultado: ${resultados2}">
+        <div class="icon-box">
+            <!-- Assuming the report contains an image -->
+            <div class="icon">
+                <img th:src="@{'/uploads/' + ${report[8]}}" class="image" alt="...">
+            </div>
+            <!-- Assuming the report contains a title -->
+            <h4 th:text="${report[5]}+' - '+${report[6]}"></h4>
+            <!-- Assuming the report contains a date -->
+            <p class="card-text"><small class="text-muted"
+                    th:text="'Fecha: ' + ${report[3]}"></small></p>
+            <!-- Assuming the report contains other relevant information -->
+            <p class="card-text"><small class="text-muted"
+                    th:text="'Unidad: '+ ${report[2]} +' ' + ${report[1]}"></small></p>
+            <p class="card-text"><small class="text-muted"
+                    th:text="'Hora de salida: ' + ${report[4]}"></small></p>
+            <!-- Assuming each report has a unique identifier for reservation -->
+            <a class="btn btn-primary" th:href="@{/reservar/}+ ${report[7]}">Reservar</a>
+        </div>
+    </div>
+</div>
+
+			</div>
+		</section>
+
+		
+
+	
+	<!-- Footer -->
+	<footer th:replace="layout/layout :: footer"></footer>
+
+	
+</body>
+
+</html>
