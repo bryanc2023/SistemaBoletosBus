@@ -319,6 +319,14 @@ public class PasajeroController {
 	        model.addAttribute("resultados", unidades);
 	        return "pasajero/resultados";
 		}
+	    
+	    @PostMapping("/search2")
+		public String searchInforme(@RequestParam("fecha") String fecha, Model model) {
+
+	        List<Object[]> unidades = unidadService.findByCronogramaFecha(fecha);
+	        model.addAttribute("resultados", unidades);
+	        return "pasajero/resultados2";
+		}
 		
 		@GetMapping("/pasajero/perfil")
 		public String mostrarPerfil(Authentication authentication,Model model) {

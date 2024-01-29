@@ -76,6 +76,43 @@
 					</div>
 				</div>
 		</section>
+		
+		<section id="viajes" class="about">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Busqueda de Informe por Fechas </h2>
+				</div>
+
+				<div class="row content">
+					<div class="col-lg-6">
+						<p>No encontraste algo a tu gusto , busca tu informe por fecha:
+							</p>
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0">
+						
+		<div class="inputt">
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search2}">
+						<label for="fecha" class="form-label">Búsqueda por fecha:</label>
+						<div class="input-group">
+							<input class="form-control" type="date" name="fecha" id="fecha"
+								placeholder="Seleccionar fecha">
+							<button class="btn btn-primary" type="submit">Buscar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		
+		
+		
 <section>
 		<div class="container py-0">
 			<div class="card bg-light">
@@ -124,9 +161,14 @@
 			</div>
 			</div>
 </section>
+
+
+		
 			<script>
 				function descargarInforme() {
-
+					
+				
+    
 					// Obtener el contenido del contenedor
 					var informeContainer = document
 							.getElementById("informeContainer");
