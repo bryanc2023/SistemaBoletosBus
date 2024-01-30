@@ -291,7 +291,7 @@ input-group__input {
     ~ .input-group__label {
     top: calc(var(--y) - 20px);
     font-size: 0.7rem;
-    border-color: black;
+    border-color: white;
     color: var(--color-valid);
   }
 
@@ -318,7 +318,7 @@ input-group__input {
   .input-group__error {
     color: red;
     display: block;
-    visibility: hidden;
+    
     margin-left: var(--x);
     margin-top: 1px;
     font-size: 0.6rem;
@@ -498,4 +498,104 @@ input-group__input {
 .container .box .form.sign_in .type input,
 .container .box .form.sign_up .type input {
     width: 100%;
+}
+
+
+
+.boxa {
+  position: relative;
+  background: #ffffff;
+  width: 340px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 5px solid #ececec;
+  box-shadow: 15px 15px 20px rgba(150, 150, 150, 0.1),
+    -15px -15px 20px rgba(150, 150, 150, 0.1),
+    inset 15px 15px 20px rgba(170, 170, 170, 0.25),
+    inset -15px -15px 20px rgba(170, 170, 170, 0.25);
+}
+
+.boxa .inputBox {
+  position: relative;
+  width: 100%;
+  background: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.boxa .inputBox input {
+  position: relative;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px 5px;
+}
+
+.boxa .inputBox #togglePswrd {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxa .inputBox #togglePswrd::before {
+  content: "\f06e";
+  font-family: fontAwesome;
+}
+
+.boxa .inputBox #togglePswrd.hide::before {
+  content: "\f070";
+  font-family: fontAwesome;
+}
+
+.validation {
+  background: #376488;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+}
+
+.validation ul {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.validation ul li {
+  list-style: none;
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.5s;
+}
+
+.validation ul li::before {
+  content: "\f192";
+  font-family: fontAwesome;
+  width: 20px;
+  height: 10px;
+  display: inline-flex;
+  transition: 0.5s;
+}
+
+.validation ul li.valid {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.validation ul li.valid::before {
+  /* content: '\f7b6'; */
+  content: "\f00c";
+  color: #0f0;
+  font-family: fontAwesome;
+  transition: 0.5s;
 }

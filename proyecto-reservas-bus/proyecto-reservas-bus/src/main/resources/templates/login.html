@@ -15,6 +15,7 @@
 
     <!-- Botpress Webchat Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://kit.fontawesome.com/827cd1c55c.js" crossorigin="anonymous"></script>
     <script src="https://mediafiles.botpress.cloud/8ea7035c-513b-42fc-8968-4046aca4a9eb/webchat/config.js" defer></script>
 </head>
 
@@ -64,10 +65,7 @@
             </div>
     
             <div class="form sign_up">
-                <h3>Registro</h3>
-                
-                <span class="o">Ingresa tu información para registrarte:</span> <br><br>
-                
+                <h3>Registro</h3>              
                 <form th:action="@{/registro}" method="post" class="form_input">
                     <div class="type">
                         <input class="input-group__input" type="text" placeholder="Nombre" name="nombre" id="name">
@@ -77,12 +75,31 @@
                     </div> <br>
                     <div class="type">
                         <input class="input-group__input" type="email" placeholder="Correo Electrónico" name="email" id="email">
-                        <span>No es un correo valido</span>
-                    </div> 
+                    </div> <br>
+                    
+                    
                     <div class="type">
-                        <input class="input-group__input" type="password" placeholder="Contraseña" name="password" id="passwordSignUp" pattern=".{8,}">
-                        <span class="input-group__error">Ingresa dígitos y letras, mínimo 8 caracteres</span>
-                    </div><br><br>
+                        <input class="input-group__input" type="password" placeholder="Contraseña" name="password" id="passwordSignUp" onkeyup="checkPassword(this.value)" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$" >
+                  		 <span id="togglePswrd"></span>
+                  		
+                  		<div class="validation">
+    <ul>
+      <li id="lower">Al menos un carácter en minúscula</li>
+      <li id="upper">Al menos un carácter en mayúscula</li>
+      <li id="number">Al menos un numero</li>
+      <li id="special">Al menos un carácter especial</li>
+      <li id="length">Al menos 8 caracteres</li>
+
+    </ul>
+  </div>
+  
+  
+                  
+                  </div><br><br>
+                  
+
+
+
 
                     <button class="btn bkg" type="submit">Confirmar</button>
                 </form>
