@@ -28,6 +28,8 @@ public interface IBoletoService {
 	
 	List<Boleto> getBoletosFechaActualMetodo();
 	
+	List<Boleto> getBoletosFechaActual();
+	
 	List<Boleto> getBoletosFechaActualMetodoDescuento();
 	
 }
