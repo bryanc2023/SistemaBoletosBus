@@ -100,6 +100,13 @@ public class BoletoService implements IBoletoService {
         return boletoDao.findBoletosByFechaActualAndMetodoPago(fechaActual);
 	}
 	
+	
+	@Override
+	public List<Boleto> getBoletosFechaActual() {
+		LocalDate fechaActual = LocalDate.now();
+        return boletoDao.findBoletosByFechaActual(fechaActual);
+	}
+	
 	@Override
 	public List<Boleto> getBoletosFechaActualMetodoDescuento() {
 		LocalDate fechaActual = LocalDate.now();

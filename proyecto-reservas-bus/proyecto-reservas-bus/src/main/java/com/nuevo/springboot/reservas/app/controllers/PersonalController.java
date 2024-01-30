@@ -126,7 +126,7 @@ public class PersonalController {
 	 
 	 @GetMapping("/personal/boleto")
 		public String listarPersonal(Model model,Authentication authentication) {
-		 List<Boleto> boletos = boletoService.getBoletosFechaActualMetodo();
+		 List<Boleto> boletos = boletoService.getBoletosFechaActual();
 		 boletos.forEach(boleto -> {
 		        double totalPago = boleto.getTotalPago();
 		        String totalPagoFormateado = String.format("%.2f", totalPago);

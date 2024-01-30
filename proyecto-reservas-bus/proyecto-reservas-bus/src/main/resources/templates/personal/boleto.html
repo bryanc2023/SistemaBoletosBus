@@ -138,7 +138,7 @@
 							<tbody>
 								<tr th:each="boleto: ${boletos}">
 									<td th:text="${boleto.usuario.email}"></td>
-									<td th:text="${boleto.cronograma.fecha}"></td>
+									<td th:text="${boleto.cronograma.fecha.dayOfMonth}+'/'+${boleto.cronograma.fecha.monthValue}+'/'+${boleto.cronograma.fecha.year}"></td>
 									<td th:text="${boleto.cronograma.horaSalida}"></td>
 									<td
 										th:text="${boleto.asiento.fila}+ ' - ' + ${boleto.asiento.columna}"></td>
