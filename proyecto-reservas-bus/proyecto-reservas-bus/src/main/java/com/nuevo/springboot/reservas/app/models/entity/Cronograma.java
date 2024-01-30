@@ -36,7 +36,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
-@Table
+@Table (uniqueConstraints = @UniqueConstraint(columnNames = {"id_unidad", "fecha"}))
 @Entity
 public class Cronograma{
 
@@ -63,9 +63,7 @@ public class Cronograma{
 		this.horaSalida = horaSalida;
 	}
 
-	private String dia;
-	private String mes;
-	private int anio;
+
 	
 	@ManyToOne
 	@JoinColumn(name="id_unidad")
@@ -224,15 +222,13 @@ public class Cronograma{
 	
 
 
-	public Cronograma(String descripcion, LocalDate fecha, String horaSalida, String dia, String mes, int anio,
+	public Cronograma(String descripcion, LocalDate fecha, String horaSalida,
 			Unidad unidad, Ruta ruta, List<Asiento> asientos, List<Boleto> boletos) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.horaSalida = horaSalida;
-		this.dia = dia;
-		this.mes = mes;
-		this.anio = anio;
+		
 		this.unidad = unidad;
 		this.ruta = ruta;
 		this.asientos = asientos;
@@ -241,16 +237,14 @@ public class Cronograma{
 
 
 
-	public Cronograma(Integer id, String descripcion, LocalDate fecha, String horaSalida, String dia, String mes,
-			int anio, Unidad unidad, Ruta ruta, List<Asiento> asientos, List<Boleto> boletos) {
+	public Cronograma(Integer id, String descripcion, LocalDate fecha, String horaSalida
+			, Unidad unidad, Ruta ruta, List<Asiento> asientos, List<Boleto> boletos) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.horaSalida = horaSalida;
-		this.dia = dia;
-		this.mes = mes;
-		this.anio = anio;
+		
 		this.unidad = unidad;
 		this.ruta = ruta;
 		this.asientos = asientos;
@@ -283,29 +277,7 @@ public class Cronograma{
 		this.fecha = fecha;
 	}
 
-	public String getDia() {
-		return dia;
-	}
 
-	public void setDia(String dia) {
-		this.dia = dia;
-	}
-
-	public String getMes() {
-		return mes;
-	}
-
-	public void setMes(String mes) {
-		this.mes = mes;
-	}
-
-	public int getAnio() {
-		return anio;
-	}
-
-	public void setAnio(int anio) {
-		this.anio = anio;
-	}
 	
 	
 	

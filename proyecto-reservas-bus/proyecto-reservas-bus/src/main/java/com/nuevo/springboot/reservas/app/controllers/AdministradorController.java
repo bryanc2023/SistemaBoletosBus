@@ -188,21 +188,20 @@ public class AdministradorController {
 	    cronograma.setUnidad(unidadSeleccionada);
 
 	    // Verifica si ya existe un cronograma con la misma fecha, unidad y hora de salida
-	    if (cronogramaService.existsByFechaAndUnidadAndHoraSalida(cronograma.getFecha(), unidadSeleccionada, cronograma.getHoraSalida())) {
-	        flash.addFlashAttribute("error", "Ya existe un cronograma para la misma fecha, unidad y hora de salida.");
+	   try {
+		   // Guardar el cronograma con las relaciones establecidas
+		    cronogramaService.save(cronograma,unidadSeleccionada);
+		    status.setComplete();
+		    flash.addFlashAttribute("success", mensajeFlash);
+		    return "redirect:listar";
+	    	
+	    } catch (DataIntegrityViolationException ex) {
+	    	String errorMessage = "Error: Ya existe un cronograma para la misma fecha, unidad por politica no puede ser posible asignar la misma unidad para la misma fecha.";
+	    	model.addAttribute("mensaje", errorMessage);
 	        model.addAttribute("unidades", unidadService.findAll());
 			model.addAttribute("rutas", rutaService.findAll());
 			model.addAttribute("cooperativa", cooperativaService.findAll());
 	        return "redirect:/cronograma/form";
-	    }else {
-	    // Guardar el cronograma con las relaciones establecidas
-	    cronogramaService.save(cronograma,unidadSeleccionada);
-	    status.setComplete();
-
-	   
-	    flash.addFlashAttribute("success", mensajeFlash);
-
-	    return "redirect:listar";
 	    }
 	}
 

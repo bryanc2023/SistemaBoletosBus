@@ -185,8 +185,8 @@
 					<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
 						<label for="fecha" class="form-label">Búsqueda por fecha:</label>
 						<div class="input-group">
-							<input class="form-control" type="date" name="fecha" id="fecha"
-								placeholder="Seleccionar fecha">
+						
+								<input placeholder="Seleccionar fecha" type="date"  name="fecha" id="fecha" class="form-control"  min="<?php echo date('d-m-Y'); ?>" required>
 							<button class="btn btn-primary" type="submit">Buscar</button>
 						</div>
 					</form>
@@ -199,7 +199,24 @@
 			</div>
 		</section>
 </main>
-		
+		<script>
+      
+
+        function obtenerDia(fecha) {
+            const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            return diasSemana[fecha.getDay()];
+        }
+
+        function obtenerMes(fecha) {
+            const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            return meses[fecha.getMonth()];
+        }
+
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById("fecha").setAttribute("min", today);
+
+        
+    </script>
 
 
 	<!-- Footer -->

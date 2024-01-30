@@ -15,6 +15,6 @@ import com.nuevo.springboot.reservas.app.models.entity.Unidad;
 
 public interface ICronogramaDao extends JpaRepository<Cronograma, Integer>{
 	
-	   @Query("SELECT COUNT(c) > 0 FROM Cronograma c WHERE c.fecha = :fecha AND c.unidad = :unidad AND c.horaSalida = :horaSalida")
-	    boolean existsByFechaAndUnidadAndHoraSalida(@Param("fecha") LocalDate fecha, @Param("unidad") Unidad unidad, @Param("horaSalida") String horaSalida);
+	   @Query("SELECT COUNT(c) > 0 FROM Cronograma c WHERE c.fecha = :fecha AND c.unidad = :unidad")
+	    boolean existsByFechaAndUnidadAndHoraSalida(@Param("fecha") LocalDate fecha, @Param("unidad") Unidad unidad);
 }
