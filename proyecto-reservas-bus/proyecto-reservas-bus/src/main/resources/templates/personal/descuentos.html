@@ -58,13 +58,13 @@
     <div class="container" data-aos="fade-up">
         <div class="uni">
             <div class="section-title">
-                <h2>Pagos</h2>
-                <small>Aquí se pueden validar los pagos realizados en ventanilla</small>
+                <h2>Descuentos</h2>
+                <small>Aquí se pueden validar los descuentos a aquellos que seleccionaron descuentos por ventanilla</small>
             </div>
         </div>
     </div>
 </section>
-<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+ <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
     <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
     <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
     <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
@@ -88,8 +88,8 @@
                         <th class="bg-dark text-white text-center">HORA</th>
                         <th class="bg-dark text-white text-center">ESTADO</th>
                         <th class="bg-dark text-white text-center">TOTAL A CANCELAR</th>
-                        
-                        <th class="bg-dark text-white text-center">ACCIONES</th>
+                       
+                        <th class="bg-dark text-white text-center">DESCUENTO VÁLIDO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -105,9 +105,12 @@
                         <td th:text="${boleto.cronograma.horaSalida}" class="text-center"></td>
                         <td th:text="${boleto.estado}" class="text-center"></td>
                         <td th:text="${boleto.totalPagoFormateado}" class="text-center"></td>
+                       
                         <td class="text-center">
-                            <a class="btn btn-success"
-                                th:href="@{/pagar/}+ ${boleto.id}">Pagado</a>
+							<a class="btn btn-success"
+                                th:href="@{/aplicar/}+ ${boleto.id}">Válido</a>
+                            <a class="btn btn-danger"
+                                th:href="@{/aplicar/no/}+ ${boleto.id}">No Válido</a>
                         </td>
                     </tr>
                 </tbody>
@@ -118,7 +121,7 @@
 </div>
 
 
-<script th:src="@{/js/personal/home.js}"></script>
+<script th:src="@{/js/personal/home2.js}"></script>
 
 <!-- Agrega el script de Bootstrap (asegúrate de incluirlo) -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -70,6 +70,28 @@
 	text-align: center;
 	font-weight: bold;
 	color: #9eaab8;
+	
+}
+
+.is2{
+	text-align: center;
+	font-weight: bold;
+	color: #9eaab8;
+	 display: flex;
+    flex-direction: row;
+    background-color: antiquewhite;
+    margin-left: 70px;
+    margin-right: 70px;
+    padding-left: 20px;
+}
+
+.is2 p{
+	color: black;
+	font-weight: 100;
+}
+
+.column {
+    margin-right: 20px; /* Ajusta el espacio entre las columnas según tus preferencias */
 }
 
 .isa {

@@ -69,7 +69,22 @@ public class Boleto{
 	@Column(name = "estado")
 	private String estado;
 	
+	@Column(name = "descuento")
+	private String descuento;
 	
+	
+	
+	
+	
+
+	public String getDescuento() {
+		return descuento;
+	}
+
+	public void setDescuento(String descuento) {
+		this.descuento = descuento;
+	}
+
 	public String getEstado() {
 		return estado;
 	}
@@ -162,6 +177,7 @@ public class Boleto{
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
 		this.estado = estado;
+		this.descuento = "No";
 	}
 
 	public Boleto(Integer id, Detalle detalle, Asiento asiento, Cronograma cronograma, Usuario usuario,
@@ -175,6 +191,7 @@ public class Boleto{
 		this.metodoPago = metodoPago;
 		this.totalPago = totalPago;
 		this.estado = estado;
+		this.descuento = "No";
 	}
 
 	public Boleto(Integer id) {

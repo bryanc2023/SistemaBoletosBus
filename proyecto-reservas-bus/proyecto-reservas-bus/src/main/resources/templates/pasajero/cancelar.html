@@ -8,11 +8,10 @@
 <body>
 	<link rel="stylesheet" th:href="@{/css/pasajero/confirmar.css}" />
 	<header th:replace="layout/layout2 :: header"></header>
+<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
+	
 
-
-
-	<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
-		<section id="clients" class="clients section-bg">
+<section id="clients" class="clients section-bg">
 			<div class="container">
 
 				<div class="row" data-aos="zoom-in">
@@ -57,43 +56,33 @@
 
 			</div>
 		</section>
+	
+	
+		
 		<section id="services" class="services section-bg">
 			
 			<div class="container" data-aos="fade-up">
 	
     <div class="uni">
-		<div class="section-title">
+						
+	<div class="section-title">
 	
-					<h2>Mi Perfil </h2>
-					
-				<center>  <div class="card-body">
-    <div class="row">
-      <div class="col-md-6 order-md-2">
-        <img th:src="@{/images/pasajero/img11.png}" width="200px" height="220px">
-      </div>
-      <div class="col-md-6 order-md-1 text-md-left">
-        <h5 class="card-title">Nombre:</h5>
-        <p class="card-text" th:text="${nombre}"></p>
-        <h5 class="card-title">Apellido:</h5>
-        <p class="card-text" th:text="${apellido}"></p>
-        <h5 class="card-title">Correo:</h5>
-        <p class="card-text" th:text="${correo}"></p>
-       
-      </div>
-    </div>
-  </div>
-  <div class="card-footer text-muted">
-    Multas: 0 penalizaciones
-  </div>
-</div>
-
-      </center> 
+					<h2>TÉRMINOS DE CANCELACIÓN: </h2>
+					<small style="font-weight: bold;">¿Esta seguro de cancelar?</small>
+					<br>
+					<small>- No se aplica una multa si se cancela mínimo 3 horas antes, caso contrario será multado.</small>
+					<br>
+					<small>- Las multas se visualizarán en su perfil, por cada multa se le limita un asiento menos. Al llegar a 3 multas no podra reservar durante 24 horas</small>
+					<br>
+					<small>- El pago total de la reserva era: <span th:text="${pago1}"></span></small>
+					<br>
+					<small>- El pago al cancelar este boleto es de : <span th:text="${pago}"></span></small>
+					<br>
 					
 				</div>
     </div>
- 
+    <center><a class="btn btn-warning"  th:href="@{/cancelar/}+ ${boleto}" role="button">PROCEDER A CANCELAR </a></center>
 			</section>
-
 
 			
 

@@ -73,7 +73,7 @@
 			<div class="card-body">
 
 		
-				<table class="table table-success table-striped">
+				<table class="table table-striped table-bordered">
 					<thead class="thead-inverse">
 						<tr>
 							<th class="bg-dark text-white">ASIENTO</th>
@@ -90,7 +90,7 @@
 							<td th:text="${boleto.asiento.fila}+ ' - ' + ${boleto.asiento.columna}"></td>
 							<td th:text="${boleto.cronograma.ruta.rutaOrigen}+ ' - ' + ${boleto.cronograma.ruta.rutaDestino}"></td>
 							<td th:text="${boleto.cronograma.unidad.numero}+ ' - ' + ${boleto.cronograma.unidad.cooperativa.nombre}"></td>
-							<td th:text="${boleto.cronograma.fecha}"></td>
+							<td th:text="${boleto.cronograma.fecha.dayOfMonth}+'/'+${boleto.cronograma.fecha.monthValue}+'/'+${boleto.cronograma.fecha.year}"></td>
 							<td th:text="${boleto.cronograma.horaSalida}"></td>
 							<td><a class="btn btn-secondary btn-xs"
 								th:href="@{/generarQR/{boletoId}(boletoId=${boleto.id})}">Generar QR</a></td>

@@ -93,8 +93,8 @@ public class CronogramaService implements ICronogramaService{
 	}
 
 	@Override
-	public boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad, String horaSalida) {
-		 return cronogramaDao.existsByFechaAndUnidadAndHoraSalida(fecha, unidad, horaSalida);
+	public boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad) {
+		 return cronogramaDao.existsByFechaAndUnidadAndHoraSalida(fecha, unidad);
 	}
 
 }

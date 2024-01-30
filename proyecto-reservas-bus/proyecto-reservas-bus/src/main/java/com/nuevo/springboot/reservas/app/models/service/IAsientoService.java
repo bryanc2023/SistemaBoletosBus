@@ -33,7 +33,9 @@ public interface IAsientoService {
     double obtenerCostoRutaPorCronogramaId(Integer cronogramaId);
     
     double obtenerCostoTotal(Integer cronogramaId);
-    
+    double obtenerCostoTotalD(Integer cronogramaId);
     double obtenerSubtotal(Integer cronogramaId);
 	int obtenerMax();
+	
+	double obtenerAplicado(double costo);
 }
