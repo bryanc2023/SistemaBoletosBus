@@ -60,8 +60,11 @@
     <input type="hidden" id="cronoValue" th:value="${dato[6]}"/>
 	</div>
 <script th:inline="javascript">
-	var costo = /*[[${costo3}]]*/ 0; 
+	var costo = /*[[${costo4}]]*/ 0; 
+	
 	var crono = document.getElementById('cronoValue').value;
+	
+	
     paypal.Buttons({
     createOrder: function(data, actions) {
         return actions.order.create({
@@ -146,20 +149,38 @@
 	<div class="infor">
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="card" style="max-width: 450px; max-height: 450px; overflow: auto;">
+				<div class="card" style="max-width: 450px; max-height: 520px; overflow: auto;">
 					<div class="card-body">
 						<h5 class="card-title">COSTO:</h5>
 						<div class="is">Precio Unitario: <p th:text="'$'+${costo2}"></p>
 						</div>
 						<div class="is">Subtotal (sin iva): <p th:text="'$'+${costo}"></p>
 						</div>
-						<div class="is">Descuento: <p>No Aplica</p>
+						<div class="is">Cantidad asientos: <p th:text="${cantidad}"></p>
 						</div>
-						<div class="is">Total: <p th:text="'$'+${costo3}"></p>
-						</div>
-
+						<center><div class="is2">
+							
+    <div class="column">
+		
+        Total: <p th:text="'$'+${costo3}"></p>
+        <br>
+        <button type="button" class="btn btn-info btn-sm" title="Este valor se cancelará si no cumple con los requisitos de descuento">
+            <i class="bi bi-info-circle"></i>
+        </button>
+    </div>
+    <div class="column" title="Haga clic para obtener más información sobre el Total Si Aplica Descuento">
+        
+        Total Si Aplica Descuento: <p th:text="'$'+${costo4}"></p>
+        <button type="button" class="btn btn-info btn-sm" title="Se aplica descuento si se paga en línea o pertenezca al grupo de: tercera edad o discapacidad, para aplicar este descuento debe acercarse a ventanilla con su cedula de identidad/documentos y la secretaria aplicara este valor de descuento una hora antes">
+            <i class="bi bi-info-circle"></i>
+        </button>
+    </div>
+</div>
+</center>
+						
 					</div>
-					<img th:src="@{/images/pasajero/img8.png}" width="150px" height="120px">
+					
+					<img th:src="@{/images/pasajero/img8.png}" width="100px" height="100px">
 					<br>
 				</div>
 			</div>
@@ -167,10 +188,20 @@
 				<div class="card" style="max-width: 450px;">
 					<div class="card-body">
 						<h5 class="card-title">MÉTODO DE PAGO:</h5>
+						
+
 						<h5 class="card-title">* RESERVA EN EFECTIVO:</h5>
 							<div th:each="dato: ${datos}">
 							<form id="formReserva" th:action="@{'/asientos/guardarReserva/' + ${dato[6]}+'/'+${costo3}}"
 								method="post">
+								<center>
+						<div class="form-check">
+    <input class="form-check-input" type="checkbox" id="metodoPagoCheck" name="metodoPagoCheck">
+    <label class="form-check-label" for="metodoPagoCheck">
+        Pago con descuento
+    </label>
+</div>
+</center>
 								<input type="hidden" id="idsAsientosSeleccionados" name="idsAsientosSeleccionados" />
 								<div class="d-grid gap-2">
 								<button type="submit" class="btn btn-primary" onclick="guardarAsientos()">

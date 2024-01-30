@@ -110,6 +110,15 @@ public class AsientoService implements IAsientoService{
 	    return redondearDosDecimales(costoRuta * cantidadDeAsientosReservados);
 	}
 	
+	@Override
+	public double obtenerCostoTotalD(Integer cronogramaId) {
+		double iva = configuracionService.obtenerIVA();
+		double total = (obtenerCostoTotal(cronogramaId)*iva);
+		double cantidad = (obtenerCostoTotal(cronogramaId));
+	    Double descuento = (configuracionService.obtenerDescuento())*(total+cantidad);
+	    return redondearDosDecimales((total+cantidad)-descuento);
+	}
+	
 	private double redondearDosDecimales(Double valor) {
 	    if (valor == null) {
 	        return 0.0;
@@ -133,6 +142,12 @@ public class AsientoService implements IAsientoService{
 		int cantidad= configuracionService.obtenerMax();
 		
 		return cantidad;
+	}
+
+	@Override
+	public double obtenerAplicado(double costo) {
+		Double descuento = (configuracionService.obtenerDescuento()*costo);
+		return redondearDosDecimales(costo-descuento);
 	}
 	
 

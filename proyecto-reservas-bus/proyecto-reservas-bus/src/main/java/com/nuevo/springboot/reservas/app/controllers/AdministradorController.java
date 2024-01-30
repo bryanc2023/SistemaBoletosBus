@@ -175,10 +175,11 @@ public class AdministradorController {
 	}
 
 	@PostMapping("/cronograma/form")
-	public String guardar(@ModelAttribute("cronograma") Cronograma cronograma, @ModelAttribute("ruta.id") Integer rutaId,
-	        @ModelAttribute("unidad.id") Integer unidadId, RedirectAttributes flash, SessionStatus status, Model model) {
+	public String guardar(@ModelAttribute("cronograma") Cronograma cronograma, RedirectAttributes flash, @ModelAttribute("ruta.id") Integer rutaId,
+	        @ModelAttribute("unidad.id") Integer unidadId, SessionStatus status, Model model) {
 
-		String mensajeFlash = (cronograma.getId() != null)? "Cronograma editado con exito!" : "Cronograma creado con exito!";
+		 String mensajeFlash = "Error: Ese cronograma no puede registrarse porque ya esta asignada para esa fecha esa unidad! ";
+		 String mensajeFlash2 = "Cronograma Creado! ";
 	    // Obtener la instancia de Ruta y Unidad utilizando los IDs
 	    Ruta rutaSeleccionada = rutaService.findById(rutaId);
 	    Unidad unidadSeleccionada = unidadService.findById(unidadId);
@@ -192,12 +193,14 @@ public class AdministradorController {
 		   // Guardar el cronograma con las relaciones establecidas
 		    cronogramaService.save(cronograma,unidadSeleccionada);
 		    status.setComplete();
-		    flash.addFlashAttribute("success", mensajeFlash);
-		    return "redirect:listar";
+		    flash.addFlashAttribute("success", mensajeFlash2);
+		    return "redirect:/cronograma/listar";
 	    	
 	    } catch (DataIntegrityViolationException ex) {
-	    	String errorMessage = "Error: Ya existe un cronograma para la misma fecha, unidad por politica no puede ser posible asignar la misma unidad para la misma fecha.";
-	    	model.addAttribute("mensaje", errorMessage);
+	    	 
+			 status.setComplete();
+			 flash.addFlashAttribute("error", mensajeFlash);
+	  
 	        model.addAttribute("unidades", unidadService.findAll());
 			model.addAttribute("rutas", rutaService.findAll());
 			model.addAttribute("cooperativa", cooperativaService.findAll());

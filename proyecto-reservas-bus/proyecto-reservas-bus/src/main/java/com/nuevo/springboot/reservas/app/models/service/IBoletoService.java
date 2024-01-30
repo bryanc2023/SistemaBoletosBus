@@ -19,9 +19,15 @@ public interface IBoletoService {
 	
 	List<Boleto> findByIdUsuario(Long  usuarioId);
 	
+	List<Boleto> findByIdUsuarioEfectivo(Long  usuarioId);
+	List<Boleto> findByIdUsuarioTarjeta(Long  usuarioId);
+	
 	List<Boleto> findByUnidadId(Integer unidadId);
 
 	List<Boleto> findByIdUsuarioCronograma(Long  usuarioId,Integer  cronogramaId);
 	
 	List<Boleto> getBoletosFechaActualMetodo();
+	
+	List<Boleto> getBoletosFechaActualMetodoDescuento();
+	
 }
