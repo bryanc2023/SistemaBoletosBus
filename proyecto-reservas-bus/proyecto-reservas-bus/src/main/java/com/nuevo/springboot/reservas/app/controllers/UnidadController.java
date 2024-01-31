@@ -67,7 +67,7 @@ public class UnidadController {
 		model.addAttribute("unidad", unidad);
 		model.addAttribute("cooperativas", cooperativaService.findAll());
 		model.addAttribute("titulo", "Editar cliente");
-		return "formUnidad";
+		return "formUnidadEdi";
 	}
 	
 	@GetMapping("/unidad/eliminar/{id}")
@@ -80,10 +80,45 @@ public class UnidadController {
 			if(u.getImagen().equals("default.jpg")) {
 				upload.deleteImage(u.getImagen());
 			}
+			
+		if(u.tieneCronogramas()==true) {
+			return "redirect:/confirmarEliminar/" + id;
+		}else {
 			unidadService.delete(id);
 			flash.addFlashAttribute("success", "Unidad eliminada con exito!");
+			return "redirect:/unidad/listar";
+		}
 		}
 		return "redirect:/unidad/listar";
+		
+	}
+	
+	
+	@GetMapping("/unidad/eliminarf/{id}")
+	public String eliminarf(@PathVariable(value="id") Integer id, RedirectAttributes flash) {
+		
+		
+			Unidad u=new Unidad();
+			u=unidadService.get(id).get();
+			//eliminar cuando no sea la imagen por defecto
+			if(u.getImagen().equals("default.jpg")) {
+				upload.deleteImage(u.getImagen());
+			}
+			
+		
+			unidadService.delete(id);
+			flash.addFlashAttribute("success", "Unidad eliminada con exito!");
+			
+		
+		
+		return "redirect:/unidad/listar";
+		
+	}
+	
+	@GetMapping("/confirmarEliminar/{id}")
+	public String confirmarEliminar(@PathVariable(value = "id") Integer id, Model model) {
+	    model.addAttribute("id", id);
+	    return "confirmarEliminar";
 	}
 
 	@PostMapping("/unidad/form")
@@ -104,6 +139,8 @@ public class UnidadController {
 	        	String nombreImagen= upload.saveImage(file);
 	        	unidad.setImagen(nombreImagen);
 	        }
+	        unidad.setEstadoActividad("Activo");
+	        unidad.setStockBoletos(true);
 	        unidadService.save(unidad);
 	        status.setComplete();
 	        flash.addFlashAttribute("success", mensajeFlash);

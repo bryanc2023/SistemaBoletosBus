@@ -199,6 +199,9 @@ public class Unidad {
 				+ ", cantidadAsientos=" + cantidadAsientos + ", stockBoletos=" + stockBoletos + "]";
 	}
 	
+	public boolean tieneCronogramas() {
+	    return cronogramas != null && !cronogramas.isEmpty();
+	}
 	
 	
 }
