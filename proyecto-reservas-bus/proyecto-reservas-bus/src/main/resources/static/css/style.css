@@ -557,25 +557,26 @@ input-group__input {
 }
 
 .validation {
+  text-align: left;
   background: #376488;
   padding: 10px;
   margin-top: 10px;
   border-radius: 8px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  color: #fff; /* Set default text color */
 }
 
 .validation ul {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding for the list */
 }
 
 .validation ul li {
-  list-style: none;
-  position: relative;
-  color: #fff;
   font-size: 14px;
+  position: relative;
+  display: flex;
+  align-items: center; /* Align items vertically in the list */
+  gap: 8px; /* Add some space between icon and text */
   transition: 0.5s;
 }
 
@@ -583,7 +584,7 @@ input-group__input {
   content: "\f192";
   font-family: fontAwesome;
   width: 20px;
-  height: 10px;
+  height: 20px; /* Increase height for better alignment with text */
   display: inline-flex;
   transition: 0.5s;
 }
@@ -593,7 +594,6 @@ input-group__input {
 }
 
 .validation ul li.valid::before {
-  /* content: '\f7b6'; */
   content: "\f00c";
   color: #0f0;
   font-family: fontAwesome;
