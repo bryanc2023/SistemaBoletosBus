@@ -111,15 +111,15 @@
 </div>
             <div class="form sign_up">
                 <h3>Registro</h3>              
-                <form th:action="@{/registro}" method="post" class="form_input">
+                <form th:action="@{/registro}" method="post" class="form_input" onsubmit="showLoading()">
                     <div class="type icon-input">
     <i class="bi bi-person-fill icon"></i>
-    <input class="input-group__input" type="text" placeholder="Nombre" name="nombre" id="name">
+    <input class="input-group__input" type="text" placeholder="Nombre" name="nombre" id="name" required>
 </div> <br>
 
 <div class="type icon-input">
     <i class="bi bi-person-fill icon"></i>
-    <input class="input-group__input" type="text" placeholder="Apellido" name="apellido" id="apellido">
+    <input class="input-group__input" type="text" placeholder="Apellido" name="apellido" id="apellido" required>
 </div> <br>
 
 <div class="type icon-input">
@@ -156,7 +156,7 @@
 
 <!-- Luego actualiza el llamado a la función showLoading -->
 
-                   <button class="btn bkg" type="submit" onclick="showLoading()">Confirmar</button>
+                   <button class="btn bkg" type="submit" >Confirmar</button>
              
                 </form>
             </div>
