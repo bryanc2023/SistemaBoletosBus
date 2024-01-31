@@ -110,40 +110,36 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('#navbar').classList.toggle('navbar-mobile')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
+ document.addEventListener('DOMContentLoaded', function() {
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const navbar = document.querySelector('#navbar');
 
-  /**
-   * Mobile nav dropdowns activate
-   */
-  on('click', '.navbar .dropdown > a', function(e) {
-    if (select('#navbar').classList.contains('navbar-mobile')) {
-      e.preventDefault()
-      this.nextElementSibling.classList.toggle('dropdown-active')
-    }
-  }, true)
+    mobileNavToggle.addEventListener('click', function() {
+        navbar.classList.toggle('navbar-mobile');
+        mobileNavToggle.classList.toggle('bi-list');
+        mobileNavToggle.classList.toggle('bi-x');
+    });
 
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
+    // Cierra el menú cuando se hace clic en un enlace del menú en dispositivos móviles
+    document.querySelectorAll('#navbar a').forEach(function(navLink) {
+        navLink.addEventListener('click', function() {
+            if (navbar.classList.contains('navbar-mobile')) {
+                navbar.classList.remove('navbar-mobile');
+                mobileNavToggle.classList.add('bi-list');
+                mobileNavToggle.classList.remove('bi-x');
+            }
+        });
+    });
 
-      let navbar = select('#navbar')
-      if (navbar.classList.contains('navbar-mobile')) {
-        navbar.classList.remove('navbar-mobile')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
+    // Cierra el menú cuando se hace clic fuera del menú en dispositivos móviles
+    document.addEventListener('click', function(e) {
+        if (!navbar.contains(e.target) && e.target !== mobileNavToggle) {
+            navbar.classList.remove('navbar-mobile');
+            mobileNavToggle.classList.add('bi-list');
+            mobileNavToggle.classList.remove('bi-x');
+        }
+    });
+});
   /**
    * Scroll with ofset on page load with hash links in the url
    */
