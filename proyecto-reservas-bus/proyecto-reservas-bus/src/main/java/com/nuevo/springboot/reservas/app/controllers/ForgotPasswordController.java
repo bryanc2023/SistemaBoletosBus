@@ -50,7 +50,7 @@ public class ForgotPasswordController {
 	        String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
 	        usuarioService.sendEmail2(email, resetPasswordLink);
 	        model.addAttribute("message", "Te hemos enviado un mensaje a tu correo por favor verificalo.");
-	         
+	      
 	    } catch (CustomerNotFoundException ex) {
 	        model.addAttribute("error", ex.getMessage());
 	    } catch (UnsupportedEncodingException | MessagingException e) {
