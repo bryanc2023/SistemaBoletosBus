@@ -113,4 +113,11 @@ public class BoletoService implements IBoletoService {
         return boletoDao.findBoletosByFechaActualAndMetodoPagoDescuento(fechaActual);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Boleto> findBoletosByUnidadIdAndFecha(Integer unidadId, LocalDate fecha) {
+	    return boletoDao.findBoletosByUnidadIdAndFecha(unidadId, fecha);
+	}
+
+	
 }
