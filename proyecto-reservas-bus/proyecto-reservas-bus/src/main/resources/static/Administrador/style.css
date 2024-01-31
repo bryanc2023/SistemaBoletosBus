@@ -5,6 +5,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-size: 16px; /* Set a base font size */
 }
 
 a {
@@ -290,6 +291,9 @@ h6 {
   .navbar ul {
     display: none;
   }
+  body {
+                font-size: 14px;
+            }
 }
 
 .navbar-collapse {
