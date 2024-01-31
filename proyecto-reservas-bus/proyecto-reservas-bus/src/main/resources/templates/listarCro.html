@@ -82,9 +82,6 @@
 								<th class="bg-dark text-white">Id</th>
 								<th class="bg-dark text-white">Descripcion</th>
 								<th class="bg-dark text-white">Fecha</th>
-								<th class="bg-dark text-white">Dia</th>
-								<th class="bg-dark text-white">Mes</th>
-								<th class="bg-dark text-white">Año</th>
 								<th class="bg-dark text-white">Hora de salida</th>
 								<th class="bg-dark text-white">Unidad</th>
 								<th class="bg-dark text-white">Ruta</th>
@@ -96,11 +93,7 @@
 							<tr th:each="cronograma: ${cronogramas}">
 								<td th:text="${cronograma.id}"></td>
 								<td th:text="${cronograma.descripcion}"></td>
-								<td th:text="${cronograma.fecha}"></td>
-								<td th:text="${cronograma.dia}"></td>
-
-								<td th:text="${cronograma.mes}"></td>
-								<td th:text="${cronograma.anio}"></td>
+								<td th:text="${cronograma.fecha.dayOfMonth}+'/'+${cronograma.fecha.monthValue}+'/'+${cronograma.fecha.year}"></td>
 								<td th:text="${cronograma.horaSalida}"></td>
 								<td th:text="${cronograma.unidad.id}"></td>
 								<td th:text="${cronograma.ruta.id}"></td>

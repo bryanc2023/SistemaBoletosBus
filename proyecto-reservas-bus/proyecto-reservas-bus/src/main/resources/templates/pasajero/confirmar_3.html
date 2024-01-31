@@ -8,11 +8,10 @@
 <body>
 	<link rel="stylesheet" th:href="@{/css/pasajero/confirmar.css}" />
 	<header th:replace="layout/layout2 :: header"></header>
+<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
+	
 
-
-
-	<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
-		<section id="clients" class="clients section-bg">
+<section id="clients" class="clients section-bg">
 			<div class="container">
 
 				<div class="row" data-aos="zoom-in">
@@ -57,43 +56,30 @@
 
 			</div>
 		</section>
+	
+	
+		
 		<section id="services" class="services section-bg">
 			
 			<div class="container" data-aos="fade-up">
 	
     <div class="uni">
-		<div class="section-title">
+						
+	<div class="section-title">
 	
-					<h2>Mi Perfil </h2>
-					
-				<center>  <div class="card-body">
-    <div class="row">
-      <div class="col-md-6 order-md-2">
-        <img th:src="@{/images/pasajero/img11.png}" width="200px" height="220px">
-      </div>
-      <div class="col-md-6 order-md-1 text-md-left">
-        <h5 class="card-title">Nombre:</h5>
-        <p class="card-text" th:text="${nombre}"></p>
-        <h5 class="card-title">Apellido:</h5>
-        <p class="card-text" th:text="${apellido}"></p>
-        <h5 class="card-title">Correo:</h5>
-        <p class="card-text" th:text="${correo}"></p>
-       
-      </div>
-    </div>
-  </div>
-  <div class="card-footer text-muted">
-    Multas: 0 penalizaciones
-  </div>
-</div>
-
-      </center> 
+					<h2>RESERVA REALIZADA CON ÉXITO </h2>
+					<small style="font-weight: bold;">Indicaciones de tu compra:</small>
+					<br>
+					<small>- Los boletos tienen su propio QR individual para pasar.</small>
+					<br>
+					<small>- Las cancelaciones de las reservaciones sin amonestaciones se aceptan en un lapso de 10 horas antes de que el viaje se realize.</small>
+					<br>
+					<small>- Debe presentar los documentos respectivos para validar su descuento, caso contrario el precio se matendra al original mostrado.</small>
 					
 				</div>
     </div>
- 
+    <center><a class="btn btn-primary"  th:href="${'/app'}" role="button">Aceptar</a></center>
 			</section>
-
 
 			
 

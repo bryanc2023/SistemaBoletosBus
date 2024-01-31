@@ -68,6 +68,20 @@ public class BoletoService implements IBoletoService {
 		return boletoDao.findByIdUsuario(usuarioId);
 	}
 
+	
+	@Override
+	public List<Boleto> findByIdUsuarioEfectivo(Long usuarioId) {
+		
+		return boletoDao.findByIdUsuarioEfectivo(usuarioId);
+	}
+	
+	
+	@Override
+	public List<Boleto> findByIdUsuarioTarjeta(Long usuarioId) {
+		
+		return boletoDao.findByIdUsuarioTarjeta(usuarioId);
+	}
+	
 	@Override
 	public List<Boleto> findByUnidadId(Integer unidadId) {
 		
@@ -84,6 +98,19 @@ public class BoletoService implements IBoletoService {
 	public List<Boleto> getBoletosFechaActualMetodo() {
 		LocalDate fechaActual = LocalDate.now();
         return boletoDao.findBoletosByFechaActualAndMetodoPago(fechaActual);
+	}
+	
+	
+	@Override
+	public List<Boleto> getBoletosFechaActual() {
+		LocalDate fechaActual = LocalDate.now();
+        return boletoDao.findBoletosByFechaActual(fechaActual);
+	}
+	
+	@Override
+	public List<Boleto> getBoletosFechaActualMetodoDescuento() {
+		LocalDate fechaActual = LocalDate.now();
+        return boletoDao.findBoletosByFechaActualAndMetodoPagoDescuento(fechaActual);
 	}
 	
 }

@@ -28,7 +28,7 @@
                             <div class="form-group row">
                                 <label class="col-form-label col-sm-4">Fecha</label>
                                 <div class="col-sm-8">
-                                    <input type="date" th:field="*{fecha}" id="fechaInput" class="form-control" onchange="llenarCamposFecha()" min="<?php echo date('Y-m-d'); ?>" required>
+                                    <input type="date" th:field="*{fecha}" id="fechaInput" class="form-control"  min="<?php echo date('d-m-Y'); ?>" required>
                                 </div>
                             </div>
 
@@ -41,50 +41,7 @@
                             </div>
 
                             <div class="m-3"></div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-sm-4">Dia</label>
-                                <div class="col-sm-8">
-                                    <select id="diaSelect" th:field="*{dia}" class="form-control">
-                                        <option th:value="Lunes" th:text="Lunes">Lunes</option>
-                                        <option th:value="Martes" th:text="Martes">Martes</option>
-                                        <option th:value="Miercoles" th:text="Miercoles">Miercoles</option>
-                                        <option th:value="Jueves" th:text="Jueves">Jueves</option>
-                                        <option th:value="Viernes" th:text="Viernes">Viernes</option>
-                                        <option th:value="Sabado" th:text="Sabado">Sabado</option>
-                                        <option th:value="Domingo" th:text="Domingo">Domingo</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="m-3"></div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-sm-4">Mes</label>
-                                <div class="col-sm-8">
-                                    <select id="mesSelect" th:field="*{mes}" class="form-control">
-                                        <option th:value="Enero" th:text="Enero">Enero</option>
-                                        <option th:value="Febrero" th:text="Febrero">Febrero</option>
-                                        <option th:value="Marzo" th:text="Marzo">Marzo</option>
-                                        <option th:value="Abril" th:text="Abril">Abril</option>
-                                        <option th:value="Mayo" th:text="Mayo">Mayo</option>
-                                        <option th:value="Junio" th:text="Junio">Junio</option>
-                                        <option th:value="Julio" th:text="Julio">Julio</option>
-                                        <option th:value="Agosto" th:text="Agosto">Agosto</option>
-                                        <option th:value="Septiembre" th:text="Septiembre">Septiembre</option>
-                                        <option th:value="Octubre" th:text="Octubre">Octubre</option>
-                                        <option th:value="Noviembre" th:text="Noviembre">Noviembre</option>
-                                        <option th:value="Diciembre" th:text="Diciembre">Diciembre</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="m-3"></div>
-                            <div class="form-group row">
-                                <label class="col-form-label col-sm-4">Año</label>
-                                <div class="col-sm-8">
-                                    <input id="anioInput" type="number" th:field="*{anio}" class="form-control" required>
-                                </div>
-                            </div>
-
+                           
                             <!-- Campo oculto para el ID de la unidad -->
                             <div class="m-3"></div>
                             <div class="form-group row">
@@ -114,7 +71,12 @@
                                     </select>
                                 </div>
                             </div>
-
+<div class="text-center p">
+                               <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+    <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+    <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+    <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+                            </div>
                             <div class="m-3"></div>
 
                             <div class="text-center p">
@@ -137,18 +99,7 @@
     <footer th:replace="layout/layout :: footer"></footer>
 
     <script>
-        function llenarCamposFecha() {
-            var fechaSeleccionada = document.getElementById('fechaInput').value;
-            var fecha = new Date(fechaSeleccionada);
-
-            var dia = obtenerDia(fecha);
-            var mes = obtenerMes(fecha);
-            var anio = fecha.getFullYear();
-
-            document.getElementById('diaSelect').value = dia;
-            document.getElementById('mesSelect').value = mes;
-            document.getElementById('anioInput').value = anio;
-        }
+      
 
         function obtenerDia(fecha) {
             const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -160,8 +111,11 @@
             return meses[fecha.getMonth()];
         }
 
-        var today = new Date().toISOString().split('T')[0];
-        document.getElementById("fechaInput").setAttribute("min", today);
+        var today = new Date();
+    today.setDate(today.getDate() + 1);  // Añadir un día a la fecha actual
+
+    var minDate = today.toISOString().split('T')[0];
+    document.getElementById("fechaInput").setAttribute("min", minDate);
 
         
     </script>

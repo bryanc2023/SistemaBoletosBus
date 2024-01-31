@@ -19,5 +19,5 @@ public interface ICronogramaService {
 	public void delete1(Integer id);
 	
     //Validacion de fecha unidad y hora
-	 boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad, String horaSalida);
+	 boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad);
 }
