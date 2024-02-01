@@ -36,4 +36,7 @@ public interface IBoletoDao extends JpaRepository<Boleto, Integer>{
 	 
 	 @Query("SELECT b FROM Boleto b WHERE b.cronograma.fecha = :fechaActual AND b.metodoPago = 'Efectivo' AND b.descuento = 'Solicitado'")
 	 List<Boleto> findBoletosByFechaActualAndMetodoPagoDescuento(@Param("fechaActual") LocalDate fechaActual);
+	 
+	 @Query("SELECT b FROM Boleto b JOIN b.asiento a WHERE a.unidad.id = :unidadId AND b.cronograma.fecha = :fechaActual")
+	 List<Boleto> findBoletosByUnidadIdAndFecha(@Param("unidadId") Integer unidadId, @Param("fechaActual") LocalDate fecha);
 }

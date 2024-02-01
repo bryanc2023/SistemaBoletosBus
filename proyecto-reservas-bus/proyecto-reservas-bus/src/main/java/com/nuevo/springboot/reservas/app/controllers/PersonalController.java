@@ -2,9 +2,11 @@ package com.nuevo.springboot.reservas.app.controllers;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -124,23 +127,43 @@ public class PersonalController {
 	     return "redirect:/personal/descuentos";
 	 }
 	 
-	 @GetMapping("/personal/boleto")
-		public String listarPersonal(Model model,Authentication authentication) {
-		 List<Boleto> boletos = boletoService.getBoletosFechaActual();
-		 boletos.forEach(boleto -> {
-		        double totalPago = boleto.getTotalPago();
-		        String totalPagoFormateado = String.format("%.2f", totalPago);
-		        boleto.setTotalPagoFormateado(totalPagoFormateado);
-		    });
-		    model.addAttribute("unidades", unidadService.findAll());
-		    
-		    model.addAttribute("boletos", boletos);
-		    
-		    return "personal/boleto";
-		}
+	
 	
 	 @GetMapping("/personal/camera")
 	 public String showCameraPage() {
 	     return "personal/activarCamaraQR";
 	 }
+	 
+	 @GetMapping("/personal/boleto")
+	 public String listarPersonal(
+	         @RequestParam(name = "unidadId", required = false) Integer unidadId,
+	         @RequestParam(name = "fecha", required = false) 
+	         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha,
+	         Model model,
+	         Authentication authentication) {
+
+	     List<Boleto> boletos;
+
+	     if (unidadId != null && fecha != null) {
+	         boletos = boletoService.findBoletosByUnidadIdAndFecha(unidadId, fecha);
+	     } else {
+	         boletos = boletoService.getBoletosFechaActual();
+	     }
+
+	     // Formatear los pagos en cada boleto
+	     boletos.forEach(boleto -> {
+	         double totalPago = boleto.getTotalPago();
+	         String totalPagoFormateado = String.format("%.2f", totalPago);
+	         boleto.setTotalPagoFormateado(totalPagoFormateado);
+	     });
+
+	     // Agregar atributos al modelo
+	     model.addAttribute("unidades", unidadService.findAll());
+	     model.addAttribute("boletos", boletos);
+	     model.addAttribute("unidadId", unidadId);  // Agregar la unidadId al modelo
+	     model.addAttribute("fecha", fecha);        // Agregar la fecha al modelo
+
+	     return "personal/boleto";
+	 }
+
 }
