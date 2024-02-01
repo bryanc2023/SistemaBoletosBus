@@ -1,5 +1,6 @@
 package com.nuevo.springboot.reservas.app.models.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.repository.query.Param;
@@ -31,5 +32,7 @@ public interface IBoletoService {
 	List<Boleto> getBoletosFechaActual();
 	
 	List<Boleto> getBoletosFechaActualMetodoDescuento();
+	
+	List<Boleto> findBoletosByUnidadIdAndFecha(Integer unidadId, LocalDate fecha);
 	
 }

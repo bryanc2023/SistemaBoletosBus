@@ -83,20 +83,16 @@
 				
 				
 						
-		<div class="inputt">
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search2}">
-						<label for="fecha" class="form-label">Búsqueda por fecha:</label>
-						<div class="input-group">
-							<input class="form-control" type="date" name="fecha" id="fecha"
-								placeholder="Seleccionar fecha">
-							<button class="btn btn-primary" type="submit">Buscar</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+		<!-- personal/boleto.html -->
+<div class="input-group">
+    <form action="/personal/boleto" method="get">
+        <input placeholder="Seleccionar fecha" type="date" name="fecha" id="fecha" class="form-control" min="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
+
+        <input type="text" name="unidadId" placeholder="Ingrese la unidadId" required>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </form>
+</div>
+
 					</div>
 				</div>
 
