@@ -21,6 +21,8 @@ public class RutaService implements  IRutaService{
 	@Autowired
 	private IRutaDao rutaDao;
 	
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional
 	public void save(Ruta ruta) {
@@ -70,6 +72,8 @@ public class RutaService implements  IRutaService{
 		return null;
 	}
 
+	/* Funciones: Funciones de validacion*/
+	/* Descripcion: Funciones de busqueda para obtener rutas sin tener duplicadas */
 	@Override
 	public List<Ruta> duplicados() {
 		List<Ruta> rutas = findAll(); // Obtener tu lista de rutas desde tu servicio o repositorio
@@ -86,6 +90,8 @@ public class RutaService implements  IRutaService{
 		return rutasSinDuplicados;
 	}
 
+	/* Funciones: Funciones de validacion 2*/
+	/* Descripcion: Funciones de busqueda para obtener los no duplicados basado en la ruta de origen */
 	@Override
 	public List<Ruta> duplicados2() {
 		List<Ruta> rutas = findAll(); // Obtener tu lista de rutas desde tu servicio o repositorio
@@ -102,6 +108,8 @@ public class RutaService implements  IRutaService{
 		return rutasSinDuplicados;
 	}
 	
+	/* Funciones: Funciones de busqueda ruta origen y destino */
+	/* Descripcion: */
 	// Método para obtener rutas por origen y destino con cronograma
     @Override
     @Transactional(readOnly = true)

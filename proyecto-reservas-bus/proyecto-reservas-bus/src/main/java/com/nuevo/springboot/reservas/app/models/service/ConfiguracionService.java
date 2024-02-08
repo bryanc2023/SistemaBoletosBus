@@ -19,6 +19,9 @@ public class ConfiguracionService implements  IConfiguracionService{
 	@Autowired
 	private IConfiguracionDao configuracionDao;
 	
+	
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional
 	public void save(Configuracion configuracion) {
@@ -69,6 +72,9 @@ public class ConfiguracionService implements  IConfiguracionService{
 		return configuracionDao.findByEstado("Activo");
 	}
 
+	
+	/* Funciones: Funciones obtener el IVA de la configuracion*/
+	/* Descripcion: Funciones para obtener el IVA de la configuracion */
 	@Override
 	public double obtenerIVA() {
         Configuracion configuracionActiva = configuracionDao.findByEstado("Activo");
@@ -78,6 +84,8 @@ public class ConfiguracionService implements  IConfiguracionService{
         return 0.0; // Otra acción en caso de que no se encuentre la configuración activa
     }
 
+	/* Funciones: Funciones obtener el descuento de la configuracion*/
+	/* Descripcion: Funciones para obtener el descuento de la configuracion */
 	@Override
 	public double obtenerDescuento() {
         Configuracion configuracionActiva = configuracionDao.findByEstado("Activo");
@@ -87,6 +95,9 @@ public class ConfiguracionService implements  IConfiguracionService{
         return 0.0; // Otra acción en caso de que no se encuentre la configuración activa
     }
 	
+	
+	/* Funciones: Funciones obtener la configuracion ACTIVA*/
+	/* Descripcion: Funciones para obtener la configuracion activa del sistema */
 	public Configuracion findConfiguracionActiva() {
 	    return configuracionDao.findByEstado("activo");
 	}
@@ -96,6 +107,8 @@ public class ConfiguracionService implements  IConfiguracionService{
     }
 
 
+	/* Funciones: Funciones obtener el Maximo de asientos por persona de la configuracion*/
+	/* Descripcion: Funciones para obtener el Maximo de asientos por persona de la configuracion activa*/
 	@Override
 	public int obtenerMax() {
 		Configuracion configuracionActiva = configuracionDao.findByEstado("Activo");

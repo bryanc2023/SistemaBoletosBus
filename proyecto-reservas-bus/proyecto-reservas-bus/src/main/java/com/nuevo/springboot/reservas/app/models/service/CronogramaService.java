@@ -22,6 +22,8 @@ public class CronogramaService implements ICronogramaService{
 	@Autowired
 	private ICronogramaDao cronogramaDao;
 	
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional
 	public void save(Cronograma cronograma,Unidad unidad) {
@@ -92,6 +94,8 @@ public class CronogramaService implements ICronogramaService{
 		cronogramaDao.deleteById(id);
 	}
 
+	/* Funciones: Funciones de validación*/
+	/* Descripcion: Funciones de validacion para saber si existe un cronograma con esa fecha,unidad y hora de salida */
 	@Override
 	public boolean existsByFechaAndUnidadAndHoraSalida(LocalDate fecha, Unidad unidad) {
 		 return cronogramaDao.existsByFechaAndUnidadAndHoraSalida(fecha, unidad);
