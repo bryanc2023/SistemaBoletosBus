@@ -1,6 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout/layout2 :: head"></head>
+<head th:replace="layout/layout2 :: head">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+</head>
 
 
 
@@ -8,12 +11,18 @@
 <body>
 
 
-<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
-	<header th:replace="layout/layout2 :: header" ></header >
-	<section id="hero" class="d-flex align-items-center">
 
+<link rel="stylesheet" th:href="@{/Administrador/style2.css}" />
+	<header th:replace="layout/layout2 :: header" >
+		
+	</header >
+	
+	<section id="hero" class="d-flex align-items-center">
+	
 		<div class="container">
+		
 			<div class="row">
+				
 				<div
 					class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
 					data-aos="fade-up" data-aos-delay="200">
@@ -39,6 +48,7 @@
 
 	</section>
 	<main id="main">
+		
 		<section id="clients" class="clients section-bg">
 			<div class="container">
 
@@ -205,8 +215,21 @@
 		</section>
 </main>
 		<script>
-      
-
+      window.onload = function () {
+        var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName("close")[0];
+        
+        
+        modal.style.display = "block";
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+}
         function obtenerDia(fecha) {
             const diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
             return diasSemana[fecha.getDay()];
@@ -229,6 +252,14 @@
 	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
 	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/js/pasajero/home.js}"></script>
+	<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2><i class="fa fa-exclamation-circle"></i> Su reserva está por cumplirse</h2>
+        <p>Estimad@ <span th:text="${pasajero}"></span>, tiene una reserva que esta por cumplirse. Recuerde presentarse con tiempo , y si tiene pagos en efectivo o descuentos solicitados acercarse a ventanilla 30 minutos antes para evitar multas en la aplicación.</p>
+    </div>
+</div>
+</div>
 </body>
 
 </html>

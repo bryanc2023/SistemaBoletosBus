@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+<link rel="stylesheet" th:href="@{/Administrador/style.css}" />
+
+<body>
+    <header th:replace="layout/layout :: header"></header>
+    <section id="hero1" class="d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <h1>Cronograma</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card bg-dark text-white">
+                    <div class="card-header" th:text="${titulo}"></div>
+                    <div class="card-body">
+                        <form th:action="@{/cronograma/form/actualizar}" th:object="${cronograma}" method="post"
+                            style="max-width: 600px; margin: 0 auto;">
+
+                        <center><h2>Si una unidad no puede realizar este viaje, selecciona otra en su lugar:</h2></center>
+<div class="m-3"></div>
+                            <div class="m-3"></div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Descripcion </label>
+                                <div class="col-sm-8">
+                                    <input type="text" th:field="*{descripcion}" class="form-control" required>
+                                </div>
+                            </div>
+
+
+                            <!-- Campo oculto para el ID de la ruta -->
+                            <div class="m-3"></div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Unidad</label>
+                                <div class="col-sm-8">
+                                    <select th:field="*{unidad.id}" class="form-control">
+                                        <option th:each="unidad : ${unidades}" th:value="${unidad.id}" th:text="${unidad.numero} + ' - ' + ${unidad.cooperativa.nombre}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="m-3"></div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-4">Ruta</label>
+                                <div class="col-sm-8">
+                                    <select th:field="*{ruta.id}" class="form-control">
+                                        <option th:each="ruta : ${rutas}" th:value="${ruta.id}" th:text="${ruta.rutaOrigen} + ' - ' + ${ruta.rutaDestino}"></option>
+                                    </select>
+                                </div>
+                            </div>
+<div class="text-center p">
+                               <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+    <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+    <div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
+    <div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
+                            </div>
+                            <div class="m-3"></div>
+
+                            <div class="text-center p">
+                                <button type="submit" class="btn btn-secondary">Guardar Cronograma</button>
+                            </div>
+                            <input type="hidden" th:field="*{id}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <!-- Espacio para la imagen a la derecha -->
+                <div class="text-center">
+                    <!-- Agrega tu imagen aquí -->
+                    <img src="/images/cronograma.png" alt="Descripción de la imagen" style="max-width: 100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="layout/layout :: footer"></footer>
+
+   
+</body>
+
+</html>

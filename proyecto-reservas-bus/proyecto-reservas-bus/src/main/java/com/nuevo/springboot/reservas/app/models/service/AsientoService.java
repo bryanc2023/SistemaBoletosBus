@@ -21,6 +21,8 @@ public class AsientoService implements IAsientoService{
 	@Autowired
 	private IConfiguracionService configuracionService;
 
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional
 	public void save(Asiento asiento) {
@@ -89,6 +91,8 @@ public class AsientoService implements IAsientoService{
 		return asientoDao.countByEstado(cronogramaId);
 	}
 
+	/* Funciones: Cambiar estado*/
+	/* Descripcion:Una vez deseleccionado se cambia el estado del asiento a disponible */
 	@Override
 	@Transactional
 	public void updateEstadoToDisponible(Integer cronogramaId) {
@@ -96,12 +100,17 @@ public class AsientoService implements IAsientoService{
 		
 	}
 
+	/* Funcion: Obtener el costo del cronograma */
+	/* Descripcion: Dependiendo del cronograma se obtiene el costo almacenado en ruta */
 	@Override
 	public double obtenerCostoRutaPorCronogramaId(Integer cronogramaId) {
 	    Double costo = asientoDao.obtenerCostoRutaPorCronogramaId(cronogramaId);
 	    return redondearDosDecimales(costo);
 	}
-
+	
+	
+	/* Funcion: Obtener el costo total con cantidad de asientos */
+	/* Descripcion: Se multiplica la cantidad de asientos selecccionados por el costo */
 	@Override
 	public double obtenerCostoTotal(Integer cronogramaId) {
 	    List<Asiento> asientosReservados = asientoDao.countByEstado(cronogramaId);
@@ -110,6 +119,9 @@ public class AsientoService implements IAsientoService{
 	    return redondearDosDecimales(costoRuta * cantidadDeAsientosReservados);
 	}
 	
+	
+	/* Funcion: Obtener el costo total con descuento */
+	/* Descripcion:Costo total aplicado el descuento de la configuracion activa */
 	@Override
 	public double obtenerCostoTotalD(Integer cronogramaId) {
 		double iva = configuracionService.obtenerIVA();
@@ -119,6 +131,9 @@ public class AsientoService implements IAsientoService{
 	    return redondearDosDecimales((total+cantidad)-descuento);
 	}
 	
+	
+	/* Funcion: Redondear a dos decimales */
+	/* Descripcion:Obtener el costo a dos decimales (cualquier costo) */
 	private double redondearDosDecimales(Double valor) {
 	    if (valor == null) {
 	        return 0.0;
@@ -128,6 +143,10 @@ public class AsientoService implements IAsientoService{
 	    return bd.doubleValue();
 	}
 
+	
+	
+	/* Funcion: Subtotal sin iva */
+	/* Descripcion:Obtener el costo total sin estar aplicado el iva */
 	@Override
 	public double obtenerSubtotal(Integer cronogramaId) {
 		double iva = configuracionService.obtenerIVA();
@@ -137,6 +156,8 @@ public class AsientoService implements IAsientoService{
 	}
 	
 	
+	/* Funcion: Cantidad de asientos */
+	/* Descripcion:Obtener cantidad de asientos que pueda comprar el cliente por unidad */
 	@Override
 	public int obtenerMax() {
 		int cantidad= configuracionService.obtenerMax();
@@ -144,6 +165,9 @@ public class AsientoService implements IAsientoService{
 		return cantidad;
 	}
 
+
+	/* Funcion: Obtener costo con descuento aplicado */
+	/* Descripcion:Obtener costo con el descuento aplicado sin iva */
 	@Override
 	public double obtenerAplicado(double costo) {
 		Double descuento = (configuracionService.obtenerDescuento()*costo);
