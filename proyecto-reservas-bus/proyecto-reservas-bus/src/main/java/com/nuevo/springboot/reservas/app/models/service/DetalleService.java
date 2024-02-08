@@ -24,6 +24,8 @@ public class DetalleService implements  IDetalleService{
 		
 	}
 
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional(readOnly=true)
 	public Detalle findOne(Integer id) {

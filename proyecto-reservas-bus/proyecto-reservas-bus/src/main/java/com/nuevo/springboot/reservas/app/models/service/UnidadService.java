@@ -22,6 +22,8 @@ public class UnidadService implements  IUnidadService{
 	@Autowired
 	private IUnidadDao unidadDao;
 	
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional
 	  public void save(Unidad unidad) {
@@ -67,18 +69,23 @@ public class UnidadService implements  IUnidadService{
 		
 	}
 	
-	
+	/* Funciones: Funcion de validación*/
+	/* Descripcion: Funciones de busqueda si existe una unidad con el mismo numero y cooperativa*/
 	 @Override
 	    public boolean existeUnidadConNumeroYCooperativa(Integer numero, Cooperativa cooperativa) {
 	        Unidad unidadExistente = unidadDao.findByNumeroAndCooperativa(numero, cooperativa);
 	        return unidadExistente != null;
 	    }
 
+	 /* Funciones: Funcion de búsqueda*/
+		/* Descripcion: Funciones de busqueda por fecha */
 	@Override
 	public List<Object[]> findByCronogramaFecha(String fecha) {
 		return unidadDao.obtenerUnidadesConCronogramaYRutaPorFecha(fecha);
 	}
 
+	/* Funciones: Funciones de búsqueda*/
+	/* Descripcion: Funciones de busqueda para obtener unidades por cronograma y ruta*/
 	@Override
 	public List<Object[]>obtenerUnidadesConCronogramaYRuta() {
 		return unidadDao.obtenerUnidadesConCronogramaYRuta();
@@ -95,6 +102,8 @@ public class UnidadService implements  IUnidadService{
 		unidadDao.save(unidad);
 	}
 
+	/* Funciones: Funcion de búsqueda */
+	/* Descripcion: Funciones de busqueda para obtener unidades de la fecha actual*/
 	@Override
 	public List<Object[]> obtenerUnidadesConCronogramaActual() {
 		return unidadDao.obtenerUnidadesConCronogramaActual();

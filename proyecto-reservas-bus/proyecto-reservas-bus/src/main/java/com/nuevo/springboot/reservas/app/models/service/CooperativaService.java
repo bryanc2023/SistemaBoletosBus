@@ -17,6 +17,8 @@ public class CooperativaService implements  ICooperativaService{
 	@Autowired
 	private ICooperativaDao cooperativaDao;
 	
+	/* Funciones: Funciones CRUD*/
+	/* Descripcion: Funciones de busqueda, guardar, editar y eliminar */
 	@Override
 	@Transactional
 	public void save(Cooperativa cooperativa) {
