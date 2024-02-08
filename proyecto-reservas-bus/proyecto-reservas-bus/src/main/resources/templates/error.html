@@ -63,6 +63,20 @@
                 width: 50%;
             }
         }
+            .alert {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+.alert img {
+    max-width: 50%; /* Define un ancho máximo para la imagen */
+    margin-bottom: 10px; /* Agrega un margen inferior para separar la imagen del texto */
+}
+.alert p {
+    text-align: center; /* Centra el texto horizontalmente */
+}
     </style>
 </head>
 <body>
@@ -75,11 +89,16 @@
     <div th:if="${message != null}" class="alert alert-warning" role="alert">
         <p th:text="${message}"></p>
     </div>
-    <div class="login-button-container">
-        <a th:href="@{/login}" class="btn btn-primary btn-block">Ir al login</a>
+   <div class="login-button-container text-center">
+        <button onclick="goBack()" class="btn btn-primary btn-block">Volver</button>
     </div>
 </div>
 
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
     <footer  >
 	  
 		
@@ -87,6 +106,8 @@
 				online</p>
 	
 		</footer>
+		
+		
 </body>
 </html>
 
