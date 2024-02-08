@@ -2,54 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookMyDrive</title>
     <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
+     <style>
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f8f9fa; /* Color de fondo general */
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
-        .content-container {
+        .navbar {
+            background-color: #ffffff;
+            padding: 10px;
             text-align: center;
-            background-color: #ffffff; /* Color de fondo del contenedor */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .message-container {
-            margin-bottom: 20px;
+        .navbar img {
+            margin-left: 20px;
+            max-width: 100%;
         }
-
-        .login-button-container {
-            margin-top: 20px;
-        }
-         .navbar {
-    background-color: #ffffff; /* Color de fondo del navbar */
-    padding: 10px; /* Espaciado interno del navbar */
-    text-align: center;
-    position: fixed; /* Fija el navbar en la parte superior */
-    top: 0;
-    height: 70px;
-    width: 100%;
-    z-index: 1000; /* Z-index alto para que estÃ© por encima de otros elementos */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra al navbar */
-    display: flex; /* Utiliza flexbox para alinear el contenido */
-    justify-content: space-between; /* Espacio uniforme entre los elementos */
-    align-items: center; /* Centra verticalmente el contenido */
-}
-
-.navbar img{
-	margin-left: 65px;
-}
-
- 
- footer {
+        footer {
     position:fixed;
     margin-top: 400px;
     padding-top: 100px;
@@ -61,27 +45,68 @@
     text-align: center;
     z-index: 1000;
 }
+        .custom-container {
+            width: 90%;
+            max-width: 400px;
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        @media only screen and (min-width: 768px) {
+            .custom-container {
+                width: 70%;
+            }
+        }
+        @media only screen and (min-width: 992px) {
+            .custom-container {
+                width: 50%;
+            }
+        }
+         .login-button-container .btn-primary {
+            background-color: #37517e;
+            border-color: #37517e;
+        }
+        /* Estilo personalizado para el botón al pasar el ratón */
+        .login-button-container .btn-primary:hover {
+            background-color: #2a3b53;
+            border-color: #2a3b53;
+        }
+      .alert {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+.alert img {
+    max-width: 50%; /* Define un ancho máximo para la imagen */
+    margin-bottom: 10px; /* Agrega un margen inferior para separar la imagen del texto */
+}
+.alert p {
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+        
     </style>
 </head>
 <body>
-	<div class="navbar">
-	<a th:href="@{/login}">
-         <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
-         </a>
-    </div>
-    <div class="content-container">
-        <div th:if="${message != null}" class="alert alert-warning">
+<div class="navbar">
+    <a th:href="@{/login}">
+        <img th:src="@{/images/logo.png}" alt="no disponible" width="150" height="auto"/>
+    </a>
+</div>
+<div class="custom-container">
+    <div th:if="${message != null}" class="alert alert-warning" role="alert">
+    <img src="/images/correo.png" alt="Imagen de alerta" class="alert-image">
         <p th:text="${message}"></p>
     </div>
-        <!-- Agrega el botï¿½n de redirecciï¿½n al login -->
-        <div class="login-button-container">
-			<div >
-                        <a class="g" th:href="@{/forgot_password}">Olvidaste tu contraseÃ±a?</a>
-                    </div>
-            <a th:href="@{/login}" class="btn btn-primary btn-block">Ir al login</a>
-        </div>
+ <div class="login-button-container text-center"> <!-- Centro el contenido -->
+        <a th:href="@{/login}" class="btn btn-primary btn-block">Ir al login</a>
     </div>
-     <footer  >
+</div>
+
+    <footer  >
 	  
 		
 			<p class="m-0 text-center text-white">Copyright &copy; Boletos
