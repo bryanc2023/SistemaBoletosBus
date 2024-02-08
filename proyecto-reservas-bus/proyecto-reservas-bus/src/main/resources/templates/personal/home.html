@@ -144,7 +144,27 @@ Brindamos atención excepcional porque cada interacción es una oportunidad para
 		</section>
 
 	</main>
-	
+	<script>
+      window.onload = function () {
+        var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName("close")[0];
+        
+        
+        modal.style.display = "block";
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+}
+      
+
+        
+    </script>
+
 	
 	
 
@@ -152,6 +172,13 @@ Brindamos atención excepcional porque cada interacción es una oportunidad para
 	<footer th:replace="layout/layout3 :: footer"></footer>
 
 	<script th:src="@{/js/personal/home.js}"></script>
+	<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2><i class="fa fa-exclamation-circle"></i> Descuentos pendientes por caducar</h2>
+        <p>Estimad@ <span th:text="${personal}"></span>, algunas solicitudes de descuento estan por cumplirse. Si el usuario no llega a responder por las reservas cancele las solicitudes de descuentos inmediatamente</p>
+    </div>
+</div>
 </body>
 
 </html>

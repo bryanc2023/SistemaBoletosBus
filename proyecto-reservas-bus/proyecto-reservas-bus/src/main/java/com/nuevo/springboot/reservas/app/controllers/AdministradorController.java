@@ -171,9 +171,27 @@ public class AdministradorController {
 		model.addAttribute("rutas", rutaService.findAll());
 		model.addAttribute("cooperativa", cooperativaService.findAll());
 		model.addAttribute("titulo", "Editar cronograma");
-		return "formCro";
+		return "formCro2";
 	}
 
+	
+	@PostMapping("/cronograma/form/actualizar")
+	public String actualizarUnidad(@ModelAttribute("cronograma") Cronograma cronograma, Model model, RedirectAttributes flash) {
+	    // Obtener el cronograma actualizado de la base de datos
+	    Cronograma cronogramaDB = cronogramaService.findOne(cronograma.getId());
+	    if (cronogramaDB == null) {
+	        flash.addFlashAttribute("error", "El cronograma no existe en la base de datos!");
+	        return "redirect:/cronograma/listar";
+	    }
+	    // Actualizar solo el campo 'unidad'
+	    cronogramaDB.setUnidad(cronograma.getUnidad());
+	    cronogramaDB.setRuta(cronograma.getRuta());
+	    cronogramaDB.setDescripcion(cronograma.getDescripcion());
+	    // Guardar los cambios
+	    cronogramaService.save1(cronogramaDB);
+	    flash.addFlashAttribute("success", "Cronograma actualizado correctamente con la nueva unidad!");
+	    return "redirect:/cronograma/listar"; // Redirigir al listado de cronogramas o a donde desees
+	}
 	@PostMapping("/cronograma/form")
 	public String guardar(@ModelAttribute("cronograma") Cronograma cronograma, RedirectAttributes flash, @ModelAttribute("ruta.id") Integer rutaId,
 	        @ModelAttribute("unidad.id") Integer unidadId, SessionStatus status, Model model) {

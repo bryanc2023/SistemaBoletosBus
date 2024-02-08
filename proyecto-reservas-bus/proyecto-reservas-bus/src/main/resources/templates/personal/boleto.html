@@ -80,15 +80,28 @@
 		<section id="viajes" class="about">
 			<div class="container" data-aos="fade-up">
 
-				
+					
+
+				<div class="row content">
+					<div class="col-lg-6">
+						<p>Puede generar sus informes por fecha específica para tener organizado cada informe, porfavor ingrese una fecha caso contrario se mostrará los boletos de la fecha actual:
+							</p>
+					</div>
+					<div class="col-lg-6 pt-4 pt-lg-0">
+						
+		<div class="inputt">
+			<div class="row">
+				<div class="col-md-6 mb-3">
 				
 						
 		<!-- personal/boleto.html -->
-<div class="input-group">
+<div class="inputt">
+			<div class="row">
+				<div class="col-md-6 mb-3">
     <form action="/personal/boleto" method="get">
         <input placeholder="Seleccionar fecha" type="date" name="fecha" id="fecha" class="form-control" min="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" required>
 
-        <input type="text" name="unidadId" placeholder="Ingrese la unidadId" required>
+        
         <button class="btn btn-primary" type="submit">Buscar</button>
     </form>
 </div>

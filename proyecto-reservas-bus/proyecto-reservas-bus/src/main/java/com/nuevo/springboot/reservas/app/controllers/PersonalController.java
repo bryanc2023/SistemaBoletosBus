@@ -160,6 +160,7 @@ public class PersonalController {
 	     // Agregar atributos al modelo
 	     model.addAttribute("unidades", unidadService.findAll());
 	     model.addAttribute("boletos", boletos);
+	     model.addAttribute("unidades2", unidadService.findAll());
 	     model.addAttribute("unidadId", unidadId);  // Agregar la unidadId al modelo
 	     model.addAttribute("fecha", fecha);        // Agregar la fecha al modelo
 
